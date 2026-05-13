@@ -24,6 +24,7 @@ const navLinks = [
 const strumentiLinks = [
   { href: "/analisi-evp", label: "Analisi EVP" },
   { href: "/ex-assessment", label: "EX Assessment" },
+  { href: "/toolkit", label: "Toolkit" },
 ];
 
 const Header = () => {
