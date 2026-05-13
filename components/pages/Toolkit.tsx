@@ -29,6 +29,31 @@ const Toolkit = () => {
 
   const [lumenAnswers, setLumenAnswers] = useState<Record<string, string>>({});
   const [likertAnswers, setLikertAnswers] = useState<Record<string, number>>({});
+  const [interpretation, setInterpretation] = useState<string | null>(null);
+  const [interpreting, setInterpreting] = useState(false);
+
+  const goToResults = async () => {
+    setStep("results");
+    setInterpreting(true);
+    try {
+      const res = await fetch("/api/toolkit-interpret", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          lumenAnswers,
+          likertAnswers,
+          questions: lumenQuestions,
+          dimensions,
+        }),
+      });
+      const data = await res.json();
+      setInterpretation(data.analysis || null);
+    } catch {
+      setInterpretation(null);
+    } finally {
+      setInterpreting(false);
+    }
+  };
 
   const radarData = useMemo(() => {
     return dimensions.map((d) => {
@@ -231,7 +256,7 @@ const Toolkit = () => {
             </div>
 
             <div className="mt-12 flex flex-col sm:flex-row gap-4 items-start">
-              <Button size="lg" onClick={() => setStep("results")} disabled={!allAnswered}>
+              <Button size="lg" onClick={goToResults} disabled={!allAnswered}>
                 Vedi i risultati
               </Button>
               <p className="text-sm text-muted-foreground self-center">
@@ -261,6 +286,30 @@ const Toolkit = () => {
           >
             Una prima fotografia della vostra cultura<span style={{ fontSize: "75%" }}>.</span>
           </h2>
+
+          {/* Claude interpretation */}
+          {interpreting && (
+            <div className="mb-16 border-l-4 border-foreground/20 pl-6 py-2">
+              <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-3">
+                Lettura interpretativa in corso…
+              </p>
+              <div className="space-y-2">
+                <div className="h-4 bg-foreground/8 rounded animate-pulse w-full" />
+                <div className="h-4 bg-foreground/8 rounded animate-pulse w-5/6" />
+                <div className="h-4 bg-foreground/8 rounded animate-pulse w-4/6" />
+              </div>
+            </div>
+          )}
+          {!interpreting && interpretation && (
+            <div className="mb-16 border-l-4 border-foreground pl-6">
+              <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
+                Lettura interpretativa
+              </p>
+              <div className="prose prose-lg max-w-none text-foreground/90 space-y-4 whitespace-pre-line">
+                {interpretation}
+              </div>
+            </div>
+          )}
 
           {/* Overall + Radar */}
           <div className="grid md:grid-cols-2 gap-8 mb-16 items-center">
