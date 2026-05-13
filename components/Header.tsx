@@ -16,6 +16,7 @@ import {
 
 const navLinks = [
   { href: "/lumen", label: "Lumen" },
+  { href: "/principi", label: "Principi" },
   { href: "/casi-studio", label: "Casi studio" },
   { href: "/magazine", label: "Articoli" },
   { href: "/chi-siamo", label: "Chi siamo" },
