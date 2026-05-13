@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import ToolkitPage from "@/components/pages/Toolkit";
 
 export const metadata: Metadata = {
@@ -9,16 +8,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://venturoconsulting.it/toolkit",
   },
-  robots: {
-    index: false,
-    follow: false,
-  },
 };
 
 export default function Toolkit() {
-  return (
-    <Suspense fallback={null}>
-      <ToolkitPage />
-    </Suspense>
-  );
+  return <ToolkitPage />;
 }

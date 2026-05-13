@@ -1,13 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
-import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
@@ -24,54 +21,14 @@ import {
   likertLabels,
   interpretScore,
 } from "@/data/toolkit";
-import { toast } from "sonner";
 
-type Step = "gate" | "intro" | "lumen" | "likert" | "results";
+type Step = "intro" | "lumen" | "likert" | "results";
 
 const Toolkit = () => {
-  const searchParams = useSearchParams();
-  const initialCode = searchParams.get("code") || "";
-
-  const [step, setStep] = useState<Step>("gate");
-  const [code, setCode] = useState(initialCode);
-  const [validating, setValidating] = useState(false);
-  const [clientName, setClientName] = useState<string>("");
+  const [step, setStep] = useState<Step>("intro");
 
   const [lumenAnswers, setLumenAnswers] = useState<Record<string, string>>({});
   const [likertAnswers, setLikertAnswers] = useState<Record<string, number>>({});
-
-  const validateCode = async (codeToCheck: string) => {
-    if (!codeToCheck.trim()) {
-      toast.error("Inserisci il codice di accesso");
-      return;
-    }
-    setValidating(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("toolkit-validate-code", {
-        body: { code: codeToCheck.trim() },
-      });
-      if (error) throw error;
-      if (!data?.valid) {
-        toast.error(data?.error || "Codice non riconosciuto");
-        setValidating(false);
-        return;
-      }
-      setClientName(data.clientName || "");
-      setStep("intro");
-    } catch {
-      toast.error("Errore di verifica. Riprova.");
-    } finally {
-      setValidating(false);
-    }
-  };
-
-  // Auto-validate if code in URL
-  useMemo(() => {
-    if (initialCode && step === "gate") {
-      validateCode(initialCode);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const radarData = useMemo(() => {
     return dimensions.map((d) => {
@@ -92,52 +49,6 @@ const Toolkit = () => {
   const totalLikertItems = dimensions.reduce((acc, d) => acc + d.items.length, 0);
   const answeredLikert = Object.keys(likertAnswers).length;
 
-  // ===== GATE =====
-  if (step === "gate") {
-    return (
-      <div className="min-h-screen bg-background">
-        <SEO title="Toolkit — Accesso riservato" description="Toolkit di assessment culturale Venturo." canonical="https://venturoconsulting.it/toolkit" lang="it" />
-        <Header />
-        <main className="pt-32 pb-20">
-          <div className="max-w-md mx-auto px-5">
-            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
-              Sezione riservata
-            </p>
-            <h1
-              className="text-4xl md:text-5xl font-bold mb-6"
-              style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-            >
-              Toolkit di assessment<span style={{ fontSize: "75%" }}>.</span>
-            </h1>
-            <p className="text-muted-foreground mb-8">
-              Inserisci il codice che ti abbiamo inviato per accedere allo strumento di benchmark culturale.
-            </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                validateCode(code);
-              }}
-              className="space-y-4"
-            >
-              <Input
-                value={code}
-                onChange={(e) => setCode(e.target.value.toUpperCase())}
-                placeholder="ES. ABC23XYZ"
-                maxLength={32}
-                className="font-mono uppercase"
-                autoFocus
-              />
-              <Button type="submit" disabled={validating} className="w-full">
-                {validating ? "Verifica…" : "Entra"}
-              </Button>
-            </form>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
   // ===== INTRO =====
   if (step === "intro") {
     return (
@@ -146,11 +57,6 @@ const Toolkit = () => {
         <Header />
         <main className="pt-32 pb-20">
           <div className="max-w-3xl mx-auto px-5 md:px-8">
-            {clientName && (
-              <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
-                Per {clientName}
-              </p>
-            )}
             <h1
               className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
               style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
