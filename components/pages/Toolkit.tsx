@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { SEO } from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -22,6 +22,15 @@ import {
   interpretScore,
 } from "@/data/toolkit";
 
+const STORAGE_KEY = "venturo_toolkit_session";
+
+type SavedSession = {
+  lumenAnswers: Record<string, string>;
+  likertAnswers: Record<string, number>;
+  interpretation: string | null;
+  savedAt: string;
+};
+
 type Step = "intro" | "lumen" | "likert" | "results";
 
 const Toolkit = () => {
@@ -31,6 +40,39 @@ const Toolkit = () => {
   const [likertAnswers, setLikertAnswers] = useState<Record<string, number>>({});
   const [interpretation, setInterpretation] = useState<string | null>(null);
   const [interpreting, setInterpreting] = useState(false);
+  const [savedSession, setSavedSession] = useState<SavedSession | null>(null);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) setSavedSession(JSON.parse(raw));
+    } catch {}
+  }, []);
+
+  const saveSession = (
+    lumen: Record<string, string>,
+    likert: Record<string, number>,
+    interp: string | null
+  ) => {
+    try {
+      const session: SavedSession = {
+        lumenAnswers: lumen,
+        likertAnswers: likert,
+        interpretation: interp,
+        savedAt: new Date().toISOString(),
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+      setSavedSession(session);
+    } catch {}
+  };
+
+  const restoreSession = () => {
+    if (!savedSession) return;
+    setLumenAnswers(savedSession.lumenAnswers);
+    setLikertAnswers(savedSession.likertAnswers);
+    setInterpretation(savedSession.interpretation);
+    setStep("results");
+  };
 
   const goToResults = async () => {
     setStep("results");
@@ -47,7 +89,9 @@ const Toolkit = () => {
         }),
       });
       const data = await res.json();
-      setInterpretation(data.analysis || null);
+      const analysis = data.analysis || null;
+      setInterpretation(analysis);
+      saveSession(lumenAnswers, likertAnswers, analysis);
     } catch {
       setInterpretation(null);
     } finally {
@@ -82,6 +126,30 @@ const Toolkit = () => {
         <Header />
         <main className="pt-32 pb-20">
           <div className="max-w-3xl mx-auto px-5 md:px-8">
+            {savedSession && (
+              <div className="mb-10 border border-foreground/20 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex-1">
+                  <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-1">
+                    Sessione salvata
+                  </p>
+                  <p className="text-sm text-foreground/80">
+                    {new Date(savedSession.savedAt).toLocaleDateString("it-IT", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                    {" — "}
+                    {new Date(savedSession.savedAt).toLocaleTimeString("it-IT", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                </div>
+                <Button variant="outline" size="sm" onClick={restoreSession}>
+                  Recupera ultima sessione
+                </Button>
+              </div>
+            )}
             <h1
               className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
               style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
