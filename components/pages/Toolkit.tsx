@@ -431,7 +431,7 @@ const Toolkit = () => {
             <Button
               size="lg"
               variant="secondary"
-              onClick={() => (window.location.href = "/#contatti")}
+              onClick={() => (window.location.href = "/#contact")}
             >
               Parliamone
             </Button>
