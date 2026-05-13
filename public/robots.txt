@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /toolkit
+Disallow: /toolkit/
+
+Sitemap: https://venturoconsulting.it/sitemap.xml

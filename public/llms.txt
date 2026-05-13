@@ -1,0 +1,68 @@
+# Venturo — llms.txt
+# https://venturoconsulting.it
+
+## Chi siamo
+
+Venturo è una boutique di consulenza italiana specializzata in cultura organizzativa.
+Aiutiamo le organizzazioni a riconoscere e moltiplicare il meglio di ciò che sono.
+Non partiamo dai problemi. Partiamo da ciò che funziona già.
+
+I tre partner:
+- Rosario Sica: cultura organizzativa, hybrid work, metodologia diagnostica
+- Massimo Benedetti: corporate storytelling, narrative come metodo di conoscenza
+- Arianna Barisan: art direction, identità visiva, architettura della comunicazione
+
+## A chi ci rivolgiamo
+
+Aziende familiari in transizione (100-300 persone) e scale-up in crescita (50-200 persone).
+Lavoriamo solo con mandato C-suite.
+
+## Cosa facciamo
+
+Cultura organizzativa: diagnosi, esplicitazione e attivazione della cultura esistente.
+Employer branding: partendo dalla cultura reale, non da messaggi costruiti a tavolino.
+Leadership: sviluppo continuo della cultura attraverso rituali e pratiche condivise.
+
+## Lumen
+
+Lumen è la metodologia diagnostica proprietaria di Venturo.
+Si basa sul modello a tre livelli di Edgar Schein: artefatti, valori dichiarati, assunzioni di base.
+Usa otto domande narrative oblique per far emergere la cultura autentica di un'organizzazione
+senza chiedere direttamente. Le domande sono: Il trasloco, L'amico al bar, L'errore permesso,
+L'ultima decisione, Le sfide future, Il nuovo collega, La celebrazione, La riunione.
+Lumen illumina, non misura.
+
+## Posizionamento
+
+Approccio maieutico: aiutiamo le organizzazioni a scoprire ciò che già sanno di sé.
+I valori non sono poster. Sono promesse che vanno mantenute.
+La cultura non è mai sbagliata. È solo cultura.
+
+## Pagine principali
+
+- Homepage: https://venturoconsulting.it
+- Metodologia Lumen: https://venturoconsulting.it/lumen
+- Le sfide: https://venturoconsulting.it/le-sfide
+- Chi siamo: https://venturoconsulting.it/chi-siamo
+- Principi (biblioteca di riferimento): https://venturoconsulting.it/principi
+- Blog WHY: https://venturoconsulting.it/magazine
+
+## Contatto
+
+info@venturoconsulting.it
+
+## Magazine — articoli recenti
+
+- L'identità dichiarata e l'identità vissuta: https://venturoconsulting.it/magazine/identita-dichiarata-vissuta
+- I bookish influencer e la nuova fame di sostanza: https://venturoconsulting.it/magazine/bookish-talenti-sostanza
+- Il remote working non è un problema ambientale: https://venturoconsulting.it/magazine/remote-working-specchio
+- Chi è davvero presente? Identità e leadership: https://venturoconsulting.it/magazine/presenza-identita
+- Trasparenza salariale: https://venturoconsulting.it/magazine/trasparenza-salariale
+- Il manuale di brand è una reliquia: https://venturoconsulting.it/magazine/brand-manuale-reliquia
+- La vicinanza nasce dall'intenzionalità: https://venturoconsulting.it/magazine/presenza-intenzionalita
+- AI e cultura organizzativa: https://venturoconsulting.it/magazine/competenze-ai-cultura
+- Il costo del non detto: https://venturoconsulting.it/magazine/il-costo-del-non-detto
+- L'AI ci darà più ascolto: https://venturoconsulting.it/magazine/ai-ascolto
+- La cultura non è mai sbagliata: https://venturoconsulting.it/magazine/la-cultura-non-e-mai-sbagliata
+- La responsabilità non si delega: https://venturoconsulting.it/magazine/la-responsabilita-non-si-delega
+- I valori non sono poster: https://venturoconsulting.it/magazine/i-valori-non-sono-poster
