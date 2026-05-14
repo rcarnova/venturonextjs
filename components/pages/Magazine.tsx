@@ -8,6 +8,17 @@ import ArticleCard from "@/components/ArticleCard";
 const articles = [
   {
     category: "cultura organizzativa",
+    title: "Le buzzword non sono un problema stilistico. Sono un problema cognitivo.",
+    excerpt:
+      "Una ricerca di Cornell conferma ciò che chi lavora nelle organizzazioni sente da anni: chi usa linguaggio aziendale opaco tende ad essere meno competente. Il problema non è stilistico.",
+    date: "14 mag 2026",
+    readTime: "6 min",
+    link: "/magazine/linguaggio-opaco-e-competenza",
+    author: "Rosario",
+    tags: ["cultura organizzativa", "leadership"],
+  },
+  {
+    category: "cultura organizzativa",
     title: "L'identità dichiarata e l'identità vissuta: il cortocircuito silenzioso.",
     excerpt:
       "Il 72% dei dipendenti non capisce la strategia della propria azienda. Non è un problema di comunicazione: è la distanza tra ciò che un'organizzazione dichiara di essere e ciò che le persone vivono ogni giorno.",

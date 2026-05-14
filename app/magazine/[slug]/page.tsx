@@ -14,6 +14,7 @@ import TrasparenzaSalariale from "@/components/pages/magazine/TrasparenzaSalaria
 import RemoteWorkingSpecchio from "@/components/pages/magazine/RemoteWorkingSpecchio";
 import BookishTalenti from "@/components/pages/magazine/BookishTalenti";
 import IdentitaDichiarataVissuta from "@/components/pages/magazine/IdentitaDichiarataVissuta";
+import LinguaggioOpaco from "@/components/pages/magazine/LinguaggioOpaco";
 
 type ArticleMeta = {
   title: string;
@@ -107,6 +108,13 @@ const articles: Record<string, ArticleMeta> = {
     enSlug: "bookish-talents-substance",
     datePublished: "2026-04-24",
     Component: BookishTalenti,
+  },
+  "linguaggio-opaco-e-competenza": {
+    title: "Le buzzword non sono un problema stilistico. Sono un problema cognitivo.",
+    description: "Una ricerca di Cornell conferma ciò che chi lavora nelle organizzazioni sente da anni: chi usa linguaggio aziendale opaco tende ad essere meno competente. Il problema non è stilistico.",
+    enSlug: "corporate-jargon-and-competence",
+    datePublished: "2026-05-14",
+    Component: LinguaggioOpaco,
   },
   "identita-dichiarata-vissuta": {
     title: "L'identità dichiarata e l'identità vissuta: il cortocircuito silenzioso.",
