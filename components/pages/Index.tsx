@@ -14,6 +14,7 @@ const ReferencesSection = lazy(() => import("@/components/ReferencesSection"));
 const LeversSection = lazy(() => import("@/components/LeversSection"));
 
 const ReadingLevelsSection = lazy(() => import("@/components/ReadingLevelsSection"));
+const StudioMillerSection = lazy(() => import("@/components/StudioMillerSection"));
 const PartnersSection = lazy(() => import("@/components/PartnersSection"));
 const TeamPreviewSection = lazy(() => import("@/components/TeamPreviewSection"));
 const LeadMagnetSection = lazy(() => import("@/components/LeadMagnetSection"));
@@ -218,6 +219,7 @@ const Index = () => {
           <LeversSection />
           
           <ReadingLevelsSection />
+          <StudioMillerSection />
           <PartnersSection />
           <TeamPreviewSection />
           <LeadMagnetSection />

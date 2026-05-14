@@ -1,0 +1,183 @@
+import Image from "next/image";
+
+const StudioMillerSection = () => {
+  return (
+    <section
+      style={{
+        backgroundColor: "#111",
+        color: "#fff",
+        padding: "clamp(64px, 10vh, 120px) clamp(24px, 6vw, 80px)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background watermark text */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          right: "-0.05em",
+          top: "50%",
+          transform: "translateY(-50%)",
+          fontSize: "clamp(100px, 18vw, 260px)",
+          fontFamily: "'Space Grotesk', system-ui, sans-serif",
+          fontWeight: 700,
+          color: "rgba(255,255,255,0.03)",
+          letterSpacing: "-0.04em",
+          lineHeight: 1,
+          userSelect: "none",
+          pointerEvents: "none",
+          whiteSpace: "nowrap",
+        }}
+      >
+        MILLER
+      </span>
+
+      <div style={{ maxWidth: 960, margin: "0 auto", position: "relative" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr auto",
+            gap: "clamp(40px, 6vw, 80px)",
+            alignItems: "center",
+          }}
+          className="flex-col-reverse-mobile"
+        >
+          {/* Text column */}
+          <div>
+            {/* Label */}
+            <span
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 10,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "#E6FF3D",
+                display: "block",
+                marginBottom: 20,
+              }}
+            >
+              Braccio visivo · Branding &amp; Comunicazione
+            </span>
+
+            <h2
+              style={{
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                fontSize: "clamp(28px, 4vw, 52px)",
+                fontWeight: 700,
+                lineHeight: 1.1,
+                letterSpacing: "-0.025em",
+                margin: "0 0 8px",
+              }}
+            >
+              Studio Miller
+            </h2>
+
+            <p
+              style={{
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                fontSize: "clamp(15px, 1.5vw, 18px)",
+                lineHeight: 1.5,
+                color: "rgba(255,255,255,0.5)",
+                margin: "0 0 28px",
+                fontStyle: "italic",
+              }}
+            >
+              Lo studio di branding e comunicazione che produce gli artefatti della pratica Venturo.
+            </p>
+
+            <p
+              style={{
+                fontSize: 15,
+                lineHeight: 1.75,
+                color: "rgba(255,255,255,0.65)",
+                maxWidth: 560,
+                margin: "0 0 16px",
+              }}
+            >
+              Quando un progetto Venturo richiede materiali visivi che reggano il
+              confronto con la comunicazione esterna — libri aziendali, video,
+              identità visive, campagne di lancio interno — li produce Studio
+              Miller con standard da agenzia di marketing.
+            </p>
+
+            <p
+              style={{
+                fontSize: 15,
+                lineHeight: 1.75,
+                color: "rgba(255,255,255,0.45)",
+                maxWidth: 560,
+                margin: "0 0 40px",
+              }}
+            >
+              Studio Miller è la pratica originaria da cui Venturo è nata. Oggi
+              opera come braccio visivo dei progetti di cultura organizzativa, e
+              in autonomia su progetti di branding esterno.
+            </p>
+
+            {/* CTA */}
+            <a
+              href="https://www.studiomiller.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                color: "#fff",
+                fontSize: 14,
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                fontWeight: 600,
+                letterSpacing: "0.02em",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(255,255,255,0.3)",
+                paddingBottom: 2,
+                transition: "border-color 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.borderColor = "#E6FF3D")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.3)")
+              }
+            >
+              Vedi il portfolio Studio Miller
+              <span style={{ fontSize: 16 }}>→</span>
+            </a>
+          </div>
+
+          {/* Logo column */}
+          <div
+            style={{
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <a
+              href="https://www.studiomiller.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "block" }}
+            >
+              <Image
+                src="/studio-miller-logo.png"
+                alt="Studio Miller"
+                width={160}
+                height={160}
+                style={{
+                  borderRadius: "50%",
+                  display: "block",
+                  filter: "drop-shadow(0 0 40px rgba(220,40,40,0.25))",
+                }}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StudioMillerSection;
