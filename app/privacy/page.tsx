@@ -13,6 +13,14 @@ export const metadata: Metadata = {
       "x-default": "https://venturoconsulting.it/privacy",
     },
   },
+  openGraph: {
+    title: "Privacy Policy — Venturo",
+    description:
+      "Informativa sulla privacy di Venturo. Come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
+    url: "https://venturoconsulting.it/privacy",
+    locale: "it_IT",
+    alternateLocale: ["en_US"],
+  },
 };
 
 export default function Privacy() {

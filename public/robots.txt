@@ -4,5 +4,7 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /toolkit
 Disallow: /toolkit/
+Disallow: /toolkit/admin
+Disallow: /toolkit/admin/
 
 Sitemap: https://venturoconsulting.it/sitemap.xml

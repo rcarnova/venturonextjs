@@ -19,6 +19,7 @@ export const metadata: Metadata = {
       "Strumento di assessment per misurare e migliorare l'Employee Experience nella tua organizzazione.",
     url: "https://venturoconsulting.it/ex-assessment",
     locale: "it_IT",
+    alternateLocale: ["en_US"],
   },
 };
 
