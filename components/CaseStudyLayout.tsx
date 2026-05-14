@@ -86,7 +86,7 @@ const CaseStudyLayout = ({
                   src={logo}
                   alt={logoAlt || title}
                   className={logoClassName || `h-24 md:h-32 w-auto object-contain mx-auto mb-8 ${logoNeedsInvert ? 'invert' : ''}`}
-                  width={200}
+                  style={{ width: "auto" }}
                   height={128}
                 />
               ) : (
