@@ -2,8 +2,6 @@
 
 const ACCENT = "#E6FF3D";
 const INK = "#111111";
-const MUTED = "#888";
-
 const MONO: React.CSSProperties = {
   fontFamily: "'IBM Plex Mono', monospace",
 };
@@ -14,10 +12,6 @@ const SERIF_ITALIC: React.CSSProperties = {
 };
 
 const HeroSection = () => {
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       style={{
@@ -46,7 +40,7 @@ const HeroSection = () => {
         }}
       >
         {/* Line 1 */}
-        <span style={{ display: "block", fontSize: "clamp(36px, 6.5vw, 88px)" }}>
+        <span style={{ display: "block", fontSize: "clamp(36px, 6.5vw, 88px)", marginBottom: "0.25em" }}>
           Ogni organizzazione
         </span>
 
@@ -87,13 +81,13 @@ const HeroSection = () => {
               />
               <circle cx="180" cy="35" r="2" fill="#888" />
               <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
-                la cultura vera
+                Le persone non acquistano
               </text>
               <text x="188" y="37" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
-                non si dichiara,
+                ciò che fai, acquistano
               </text>
               <text x="188" y="52" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
-                si vive.
+                il perché lo fai.
               </text>
             </svg>
           </span>
@@ -129,56 +123,11 @@ const HeroSection = () => {
       </h1>
 
       {/* Footer */}
-      <footer
-        style={{
-          marginTop: "clamp(32px, 5vh, 64px)",
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          gap: 32,
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, maxWidth: 380 }}>
-          <span
-            style={{
-              ...MONO,
-              fontSize: 10,
-              letterSpacing: "0.12em",
-              color: "#666",
-              textTransform: "uppercase",
-            }}
-          >
-            → Sintesi
-          </span>
-          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555" }}>
-            Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su
-            employer branding, comunicazione interna e trasformazione culturale.
-          </p>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
-          <button
-            onClick={scrollToContact}
-            style={{
-              backgroundColor: INK,
-              color: "#fff",
-              border: "none",
-              padding: "14px 28px",
-              fontSize: 14,
-              fontWeight: 600,
-              fontFamily: "'Space Grotesk', system-ui, sans-serif",
-              letterSpacing: "0.02em",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-          >
-            Parliamone
-            <span style={{ fontSize: 16 }}>→</span>
-          </button>
-        </div>
+      <footer style={{ marginTop: "clamp(32px, 5vh, 64px)" }}>
+        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555", maxWidth: 420 }}>
+          Interveniamo quando l'identità reale di un'organizzazione non emerge
+          nei momenti che contano: recruiting, onboarding, comunicazione interna.
+        </p>
       </footer>
     </section>
   );
