@@ -25,14 +25,14 @@ const levels = [
 const WhyVenturoSection = () => {
   return (
     <>
-      {/* Dark top block */}
-      <section className="py-16 md:py-24 bg-[#0A0A0A]">
+      {/* Light top block */}
+      <section className="py-16 md:py-24 bg-white">
         <div className="container-wide px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-section font-bold text-white mb-4">
+            <h2 className="text-section font-bold text-foreground mb-4">
               Perché esiste Venturo
             </h2>
-            <p className="text-body text-[#888888] mb-12 md:max-w-[60%]">
+            <p className="text-body text-[#666] mb-12 md:max-w-[60%]">
               Quando non è chiaro chi sei come organizzazione, succede questo:
             </p>
           </AnimatedSection>
@@ -42,12 +42,12 @@ const WhyVenturoSection = () => {
               {consequences.map((c) => (
                 <div
                   key={c.n}
-                  className="bg-[#111111] border border-[#222222] rounded-lg p-6"
+                  className="border border-[#E8E8E8] rounded-lg p-6"
                 >
-                  <span className="font-mono text-2xl font-bold text-[#E1FF00] block mb-3">
+                  <span className="font-mono text-2xl font-bold text-[#111] block mb-3">
                     {c.n}
                   </span>
-                  <p className="text-white font-medium text-base">{c.text}</p>
+                  <p className="text-foreground font-medium text-base">{c.text}</p>
                 </div>
               ))}
             </div>
@@ -55,26 +55,26 @@ const WhyVenturoSection = () => {
         </div>
       </section>
 
-      {/* Light bottom block */}
-      <section className="py-16 md:py-20 bg-background">
+      {/* Dark bottom block */}
+      <section className="py-16 md:py-20 bg-[#111]">
         <div className="container-wide px-6 md:px-8">
           <AnimatedSection>
-            <p className="text-body text-foreground mb-10">
+            <p className="text-body text-[rgba(255,255,255,0.55)] mb-10">
               Per questo lavoriamo su tre livelli:
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={100}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[rgba(255,255,255,0.08)]">
               {levels.map((l) => (
                 <div
                   key={l.title}
-                  className="bg-background border border-[#EEEEEE] rounded-lg p-6 border-t-[3px] border-t-[#E1FF00] transition-shadow duration-300 hover:shadow-[0_0_20px_-4px_rgba(225,255,0,0.15)]"
+                  className="bg-[#111] p-6 border-t-2 border-t-[#E6FF3D]"
                 >
-                  <span className="font-bold text-xl text-foreground block mb-2">
+                  <span className="font-bold text-xl text-white block mb-2">
                     {l.title}
                   </span>
-                  <p className="text-[#666666] text-sm leading-relaxed">
+                  <p className="text-[rgba(255,255,255,0.5)] text-sm leading-relaxed">
                     {l.desc}
                   </p>
                 </div>
