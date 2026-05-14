@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Globe, ChevronDown } from "lucide-react";
+import { Menu, Globe } from "lucide-react";
 import { getEnRoute } from "@/lib/language-routes";
 import {
   DropdownMenu,
@@ -19,12 +19,8 @@ const navLinks = [
   { href: "/principi", label: "Principi" },
   { href: "/casi-studio", label: "Casi studio" },
   { href: "/magazine", label: "Articoli" },
+  { href: "/analisi-evp", label: "Misura EVP" },
   { href: "/chi-siamo", label: "Chi siamo" },
-];
-
-const strumentiLinks = [
-  { href: "/analisi-evp", label: "Analisi EVP" },
-  { href: "/ex-assessment", label: "EX Assessment" },
 ];
 
 const Header = () => {
@@ -78,43 +74,7 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.slice(0, 3).map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-mono glow-nav ${
-                  isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              className={`flex items-center gap-1 text-sm font-mono glow-nav focus:outline-none ${
-                strumentiLinks.some((l) => pathname === l.href || pathname.startsWith(l.href + "/"))
-                  ? "text-primary font-semibold"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Strumenti <ChevronDown className="h-3.5 w-3.5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              {strumentiLinks.map((link) => (
-                <DropdownMenuItem key={link.href} asChild>
-                  <Link href={link.href} className="cursor-pointer font-mono text-sm">
-                    {link.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {navLinks.slice(3).map((link) => {
+          {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
             return (
               <Link
@@ -169,30 +129,7 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] pt-12">
               <nav className="flex flex-col gap-4">
-                {navLinks.slice(0, 3).map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="text-lg font-mono font-medium text-foreground hover:text-primary transition-colors py-2"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                <div>
-                  <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2 px-0">Strumenti</p>
-                  {strumentiLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block text-lg font-mono font-medium text-foreground hover:text-primary transition-colors py-2 pl-3"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-                {navLinks.slice(3).map((link) => (
+                {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
