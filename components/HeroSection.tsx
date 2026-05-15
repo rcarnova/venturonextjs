@@ -79,7 +79,7 @@ const HeroSection = () => {
                 strokeDasharray="3 4"
                 fill="none"
               />
-              <circle cx="180" cy="35" r="2" fill="#888" />
+              <circle cx="180" cy="35" r="1.5" fill="#888" />
               <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
                 Le persone non acquistano
               </text>
