@@ -6,14 +6,15 @@ const StudioMillerSection = () => {
       style={{
         backgroundColor: "#111",
         color: "#fff",
-        padding: "clamp(64px, 10vh, 120px) clamp(24px, 6vw, 80px)",
+        padding: "clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px)",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Background watermark text */}
+      {/* Background watermark — desktop only */}
       <span
         aria-hidden="true"
+        className="hidden lg:block"
         style={{
           position: "absolute",
           right: "-0.05em",
@@ -34,18 +35,86 @@ const StudioMillerSection = () => {
       </span>
 
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative" }}>
+
+        {/* ── Mobile: logo + title inline ── */}
+        <div className="flex lg:hidden items-center gap-4 mb-5">
+          <a href="https://www.studiomiller.it" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/studio-miller-logo.png"
+              alt="Studio Miller"
+              width={72}
+              height={72}
+              style={{ borderRadius: "50%", display: "block" }}
+            />
+          </a>
+          <div>
+            <span
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 9,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "#E6FF3D",
+                display: "block",
+                marginBottom: 4,
+              }}
+            >
+              Braccio visivo · Branding
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                fontSize: 24,
+                fontWeight: 700,
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+                margin: 0,
+              }}
+            >
+              Studio Miller
+            </h2>
+          </div>
+        </div>
+
+        {/* Mobile body — single compact paragraph */}
+        <div className="block lg:hidden">
+          <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.6)", margin: "0 0 24px" }}>
+            Lo studio di branding da cui Venturo è nata. Produce i materiali
+            visivi dei progetti Venturo — libri aziendali, identità visive,
+            campagne interne — con standard da agenzia di marketing.
+          </p>
+          <a
+            href="https://www.studiomiller.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              color: "#fff",
+              fontSize: 13,
+              fontFamily: "'Space Grotesk', system-ui, sans-serif",
+              fontWeight: 600,
+              textDecoration: "none",
+              borderBottom: "1px solid rgba(255,255,255,0.3)",
+              paddingBottom: 2,
+            }}
+          >
+            Vedi il portfolio Studio Miller <span>→</span>
+          </a>
+        </div>
+
+        {/* ── Desktop: full two-column layout ── */}
         <div
+          className="hidden lg:grid"
           style={{
-            display: "grid",
             gridTemplateColumns: "1fr auto",
             gap: "clamp(40px, 6vw, 80px)",
             alignItems: "center",
           }}
-          className="flex-col-reverse-mobile"
         >
           {/* Text column */}
           <div>
-            {/* Label */}
             <span
               style={{
                 fontFamily: "'IBM Plex Mono', monospace",
@@ -115,7 +184,6 @@ const StudioMillerSection = () => {
               in autonomia su progetti di branding esterno.
             </p>
 
-            {/* CTA */}
             <a
               href="https://www.studiomiller.it"
               target="_blank"
@@ -132,14 +200,7 @@ const StudioMillerSection = () => {
                 textDecoration: "none",
                 borderBottom: "1px solid rgba(255,255,255,0.3)",
                 paddingBottom: 2,
-                transition: "border-color 0.2s",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.borderColor = "#E6FF3D")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.3)")
-              }
             >
               Vedi il portfolio Studio Miller
               <span style={{ fontSize: 16 }}>→</span>
@@ -147,14 +208,7 @@ const StudioMillerSection = () => {
           </div>
 
           {/* Logo column */}
-          <div
-            style={{
-              flexShrink: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div style={{ flexShrink: 0 }}>
             <a
               href="https://www.studiomiller.it"
               target="_blank"
@@ -175,6 +229,7 @@ const StudioMillerSection = () => {
             </a>
           </div>
         </div>
+
       </div>
     </section>
   );
