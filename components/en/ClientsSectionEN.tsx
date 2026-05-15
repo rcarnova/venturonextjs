@@ -5,7 +5,7 @@ const clients = [
   { name: "Lely", logo: "/logos/lely_white.svg", scale: 0.95, invert: false, href: "/en/case-studies/lely" },
   { name: "Randstad", logo: "/logos/randstad_blue.svg", scale: 1, invert: true, href: "/en/case-studies" },
   { name: "CVE", logo: "/logos/cve_mono.webp", scale: 0.8, invert: false, href: "/en/case-studies/cve" },
-  { name: "Findomestic", logo: "/logos/findomestic_white.webp", scale: 1.9, invert: false, href: "/en/case-studies/findomestic" },
+  { name: "Findomestic", logo: "/logos/findomestic_white.webp", scale: 2.4, invert: false, href: "/en/case-studies/findomestic" },
   { name: "Sambonet", logo: "/logos/sambonet_white.webp", scale: 1, invert: false, href: "/en/case-studies" },
   { name: "Ufficio Pio", logo: "/logos/ufficio_pio_white.webp", scale: 1, invert: false, href: "/en/case-studies/ufficio-pio" },
   { name: "Eu.promotions", logo: "/logos/eupromotion_white.webp", scale: 1.1, invert: false, href: "/en/case-studies/eupromotions" },
