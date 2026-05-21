@@ -18,8 +18,25 @@ export const metadata: Metadata = {
     description:
       "Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale per attrarre i talenti giusti.",
     url: "https://venturoconsulting.it/",
+    siteName: "Venturo",
     locale: "it_IT",
     alternateLocale: ["en_US"],
+    type: "website",
+    images: [
+      {
+        url: "https://venturoconsulting.it/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Venturo — Cultura Organizzativa ed Employer Branding",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Venturo — Cultura Organizzativa ed Employer Branding",
+    description:
+      "Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale per attrarre i talenti giusti.",
+    images: ["https://venturoconsulting.it/og-image.png"],
   },
 };
 
