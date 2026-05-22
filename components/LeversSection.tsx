@@ -14,12 +14,12 @@ interface Lever {
 
 const levers: Lever[] = [
   {
-    title: "Attrazione Talenti",
+    title: "Attrarre e Trattenere i Talenti",
     description: "I candidati arrivano con aspettative che non corrispondono alla realtà. O non arrivano affatto. Il problema non è l'offerta economica né il settore: è che il brand comunica qualcosa di generico che non racconta chi siete davvero. Le persone giuste non si riconoscono, e quelle sbagliate accettano e se ne vanno dopo un anno.",
     icon: UserPlus
   },
   {
-    title: "Comunicazione\u00A0Interna",
+    title: "Cultura Interna",
     description: "I senior difendono un modo di fare che ha funzionato. I nuovi arrivati ne portano un altro. Nessuno dei due ha torto, ma non si parlano. Facciamo emergere le culture diverse che convivono nella stessa organizzazione e costruiamo un linguaggio condiviso.",
     icon: Users2
   },
