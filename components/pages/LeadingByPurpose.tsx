@@ -107,16 +107,16 @@ const LeadingByPurposePage = () => {
               le persone a crescere e dare il meglio, anche quando nessuno sta
               guardando.
             </p>
-            <div style={{ display: "flex", gap: 48, flexWrap: "wrap" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, max-content)", gap: "0 40px", borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 32 }}>
               {[
                 { n: "6", label: "giornate totali" },
                 { n: "3", label: "sessioni" },
                 { n: "2", label: "facilitatori" },
                 { n: "~2", label: "mesi" },
               ].map(({ n, label }) => (
-                <div key={label}>
-                  <span style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontSize: 36, fontWeight: 700, color: ACCENT, display: "block", lineHeight: 1 }}>{n}</span>
-                  <span style={{ ...MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: 6, display: "block" }}>{label}</span>
+                <div key={label} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontSize: 40, fontWeight: 700, color: ACCENT, lineHeight: 1 }}>{n}</span>
+                  <span style={{ ...MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", whiteSpace: "nowrap" }}>{label}</span>
                 </div>
               ))}
             </div>
