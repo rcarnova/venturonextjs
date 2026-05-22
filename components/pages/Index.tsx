@@ -13,6 +13,7 @@ const HowWeWorkSection = lazy(() => import("@/components/HowWeWorkSection"));
 const ReferencesSection = lazy(() => import("@/components/ReferencesSection"));
 const LeversSection = lazy(() => import("@/components/LeversSection"));
 
+const LeadingByPurposeSection = lazy(() => import("@/components/LeadingByPurposeSection"));
 const ReadingLevelsSection = lazy(() => import("@/components/ReadingLevelsSection"));
 const StudioMillerSection = lazy(() => import("@/components/StudioMillerSection"));
 const PartnersSection = lazy(() => import("@/components/PartnersSection"));
@@ -215,6 +216,7 @@ const Index = () => {
         </div>
         <Suspense fallback={LazyFallback}>
           <HowWeWorkSection />
+          <LeadingByPurposeSection />
           <ReferencesSection />
           <LeversSection />
           
