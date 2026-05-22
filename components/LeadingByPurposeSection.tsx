@@ -257,7 +257,7 @@ const LeadingByPurposeSection = () => {
         {/* CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
           <a
-            href="/#contact"
+            href="/leading-by-purpose"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -272,7 +272,7 @@ const LeadingByPurposeSection = () => {
               textDecoration: "none",
             }}
           >
-            Parliamone
+            Scopri il percorso
             <span style={{ fontSize: 16 }}>→</span>
           </a>
           <span
