@@ -47,7 +47,7 @@ const HowWeWorkSection = () => {
                   Il nostro metodo
                 </span>
                 <h3 className="text-section text-white mt-4 mb-5">
-                  Lumen — Non misuriamo la cultura. La illuminiamo.
+                  Lumen. Non misuriamo la cultura. La illuminiamo.
                 </h3>
                 <p className="text-body text-white/70 mb-6">
                   La cultura organizzativa è invisibile proprio perché onnipresente. Lumen è il modo in cui la facciamo emergere — attraverso storie, non questionari. Il risultato è uno specchio fedele di come le persone vivono davvero l'organizzazione.
