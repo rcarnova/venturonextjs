@@ -80,13 +80,13 @@ const HeroSection = () => {
                 fill="none"
               />
               <circle cx="180" cy="35" r="1.5" fill="#888" />
-              <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
+              <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
                 Le persone non acquistano
               </text>
-              <text x="188" y="37" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
+              <text x="188" y="37" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
                 ciò che fai, acquistano
               </text>
-              <text x="188" y="52" style={{ ...SERIF_ITALIC, fontSize: 11, fill: "#666" }}>
+              <text x="188" y="52" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
                 il perché lo fai.
               </text>
             </svg>
