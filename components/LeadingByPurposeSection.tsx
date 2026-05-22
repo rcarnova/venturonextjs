@@ -272,7 +272,7 @@ const LeadingByPurposeSection = () => {
               textDecoration: "none",
             }}
           >
-            Scopri il percorso
+            Scopri di più
             <span style={{ fontSize: 16 }}>→</span>
           </a>
           <span

@@ -9,7 +9,7 @@ const phases = [
     n: "01",
     label: "Kick-off",
     title: "Envisioning",
-    desc: "Il gruppo immagina il futuro dell'organizzazione e porta in superficie le sfide reali attraverso storie vere e momenti di ascolto profondo tra pari. Nella seconda giornata le sfide diventano principi: il gruppo identifica i comportamenti chiave e seleziona — attraverso dot voting — i 4 Principi che diventeranno i capitoli del percorso.",
+    desc: "Il gruppo immagina il futuro dell'organizzazione e porta in superficie le sfide reali attraverso storie vere e momenti di ascolto profondo tra pari. Nella seconda giornata le sfide diventano principi: il gruppo identifica i comportamenti chiave e seleziona (attraverso dot voting) i 4 Principi che diventeranno i capitoli del percorso.",
     days: "2 giornate",
   },
   {
@@ -136,7 +136,7 @@ const LeadingByPurposePage = () => {
             </div>
             <div>
               <p style={{ fontSize: 16, lineHeight: 1.75, color: "#444", margin: "0 0 20px" }}>
-                In un gruppo piccolo e ad alto impatto come il vostro, il valore non sta nell'imparare concetti nuovi. Sta nel trovare come gruppo i principi che già guidano — o dovrebbero guidare — il modo di lavorare, e nel renderli espliciti, condivisi e agiti.
+                In un gruppo piccolo e ad alto impatto come il vostro, il valore non sta nell'imparare concetti nuovi. Sta nel trovare come gruppo i principi che già guidano, o dovrebbero guidare, il modo di lavorare, e nel renderli espliciti, condivisi e agiti.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.75, color: "#444", margin: 0 }}>
                 I valori e i principi diventano strumenti di guida culturale. Non slogan da appendere alle pareti, ma un sistema operativo che orienta decisioni, comportamenti e relazioni ogni giorno.
@@ -171,7 +171,7 @@ const LeadingByPurposePage = () => {
           <div style={{ maxWidth: 960, margin: "0 auto" }}>
             <blockquote style={{ borderLeft: `3px solid ${INK}`, paddingLeft: 28, margin: "0 0 48px" }}>
               <p style={{ ...SERIF_ITALIC, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.6, color: "#222", margin: 0 }}>
-                Prima del kick-off conduciamo interviste individuali con AD e HR per raccogliere visione, tensioni e aspettative — e progettare un percorso che parta dalla realtà della vostra organizzazione, non da un template.
+                Prima del kick-off conduciamo interviste individuali con AD e HR per raccogliere visione, tensioni e aspettative, e progettare un percorso che parta dalla realtà della vostra organizzazione, non da un template.
               </p>
             </blockquote>
           </div>
