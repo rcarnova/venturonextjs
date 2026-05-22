@@ -125,12 +125,12 @@ const LeadingByPurposePage = () => {
 
         {/* What it is */}
         <section style={{ padding: "clamp(64px, 10vh, 100px) clamp(24px, 6vw, 80px)", backgroundColor: "#fff" }}>
-          <div style={{ maxWidth: 960, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px, 6vw, 80px)", alignItems: "start" }} className="grid-single-col-mobile">
+          <div style={{ maxWidth: 960, margin: "0 auto" }} className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
             <div>
               <span style={{ ...MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#888", display: "block", marginBottom: 20 }}>
                 Il nostro approccio
               </span>
-              <h2 style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.025em", margin: "0 0 24px" }}>
+              <h2 style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontSize: "clamp(26px, 3.5vw, 44px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.025em", margin: 0 }}>
                 Non è formazione. È costruzione di identità collettiva.
               </h2>
             </div>
