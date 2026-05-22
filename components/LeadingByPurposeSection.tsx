@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+
 
 const phases = [
   {
@@ -94,7 +95,7 @@ const LeadingByPurposeSection = () => {
               }}
             >
               Un percorso di team coaching per il gruppo di leadership. L'obiettivo
-              non è trasmettere valori dall'esterno — è far emergere dal gruppo
+              non è trasmettere valori dall'esterno: è far emergere dal gruppo
               stesso i principi che già guidano, o dovrebbero guidare, il modo di
               lavorare. E renderli espliciti, condivisi, agiti.
             </p>
@@ -173,7 +174,7 @@ const LeadingByPurposeSection = () => {
             }}
           >
             Il perché di un'organizzazione non è un poster. È l'unica leva reale
-            per ispirare le persone a crescere e a dare il meglio — anche quando
+            per ispirare le persone a crescere e a dare il meglio, anche quando
             nessuno sta guardando.
           </p>
         </blockquote>
@@ -255,8 +256,8 @@ const LeadingByPurposeSection = () => {
 
         {/* CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
-          <Link
-            href="/contact"
+          <a
+            href="/#contact"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -273,7 +274,7 @@ const LeadingByPurposeSection = () => {
           >
             Parliamone
             <span style={{ fontSize: 16 }}>→</span>
-          </Link>
+          </a>
           <span
             style={{
               fontFamily: "'IBM Plex Mono', monospace",
