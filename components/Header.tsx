@@ -51,7 +51,7 @@ const Header = () => {
         <Link
           href="/"
           className="relative h-6 md:h-8 flex items-center"
-          style={{ minWidth: scrolled ? 28 : 120 }}
+          style={{ width: 120, flexShrink: 0 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
