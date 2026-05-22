@@ -16,20 +16,20 @@ interface Challenge {
 
 const challenges: Challenge[] = [
   {
+    title: "Cultura interna: culture diverse che non si parlano",
+    reframing:
+      "Riunioni che non portano a decisioni. Email che non vengono lette. Messaggi interpretati in modo diverso da funzione a funzione. Non è un problema di strumenti o di canali: è che convivono culture diverse che non hanno mai costruito un vocabolario comune.",
+    action:
+      "Facciamo emergere le culture invisibili che coesistono nella stessa organizzazione e costruiamo un linguaggio condiviso che le rispetti tutte.",
+    approccio: "Lumen + Comunicazione interna + Workshop team",
+  },
+  {
     title: "Il brand non attrae le persone giuste",
     reframing:
       "I candidati arrivano con aspettative che non corrispondono alla realtà. O non arrivano affatto. Il problema non è l'offerta economica né il settore: è che il brand comunica qualcosa di generico che non racconta chi siete davvero. Le persone giuste non si riconoscono, e quelle sbagliate accettano e se ne vanno dopo un anno.",
     action:
       "Rendiamo la vostra identità culturale leggibile già dal primo contatto. Non con una campagna, ma partendo da chi siete davvero.",
     approccio: "Lumen + Ingaze + Employer branding + Workshop identità culturale",
-  },
-  {
-    title: "La comunicazione interna non funziona perché manca un linguaggio condiviso",
-    reframing:
-      "Riunioni che non portano a decisioni. Email che non vengono lette. Messaggi interpretati in modo diverso da funzione a funzione. Non è un problema di strumenti o di canali: è che convivono culture diverse che non hanno mai costruito un vocabolario comune.",
-    action:
-      "Facciamo emergere le culture invisibili che coesistono nella stessa organizzazione e costruiamo un linguaggio condiviso che le rispetti tutte.",
-    approccio: "Lumen + Comunicazione interna + Workshop team",
   },
   {
     title: "Quello che dite fuori non corrisponde a quello che vivete dentro",
