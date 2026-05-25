@@ -132,7 +132,6 @@ const initState = (): Record<string, DimState> => {
 
 // ── DEMO DATA ────────────────────────────────────────────────────
 const DEMO_ORG = "Acme S.p.A.";
-const DEMO_SITO = "acme.com";
 const DEMO_FACILITATORE = "Rosario Carnovale";
 const DEMO_DIMS: Record<string, DimState> = {
   c1: { score: 3, fonte: "Dato HR oggettivo", note: "I valori sono nel manuale onboarding ma raramente citati nelle riunioni operative." },
@@ -183,7 +182,6 @@ L'Employee Journey (con tre dimensioni critiche su sei) merita attenzione immedi
 
 const ExAssessment = () => {
   const [org, setOrg] = useState("");
-  const [sito, setSito] = useState("");
   const [data, setData] = useState(todayISO());
   const [facilitatore, setFacilitatore] = useState("");
   const [dims, setDims] = useState<Record<string, DimState>>(initState);
@@ -227,7 +225,6 @@ const ExAssessment = () => {
 
   const handleLoadDemo = () => {
     setOrg(DEMO_ORG);
-    setSito(DEMO_SITO);
     setFacilitatore(DEMO_FACILITATORE);
     setDims(DEMO_DIMS);
     setAiAnalysis(DEMO_ANALYSIS);
@@ -313,26 +310,11 @@ const ExAssessment = () => {
 
     const logoW = 116, logoH = 25; // 317:69 ratio
 
-    const fetchClientLogo = async (): Promise<string | null> => {
-      if (!sito) return null;
-      try {
-        const domain = sito.replace(/^https?:\/\/(www\.)?/, "").split("/")[0].trim();
-        if (!domain) return null;
-        const resp = await fetch(`/api/fetch-logo?domain=${encodeURIComponent(domain)}`);
-        if (!resp.ok) return null;
-        const json = await resp.json();
-        return json.dataUrl ?? null;
-      } catch {
-        return null;
-      }
-    };
-
-    const [regularB64, boldB64, logoWhiteUrl, logoBlackUrl, clientLogoDataUrl] = await Promise.all([
+    const [regularB64, boldB64, logoWhiteUrl, logoBlackUrl] = await Promise.all([
       loadFontBase64("/fonts/SpaceGrotesk-Regular.ttf"),
       loadFontBase64("/fonts/SpaceGrotesk-Bold.ttf"),
       svgToDataUrl(makeLogoSvg("white", "black"), logoW, logoH),
       svgToDataUrl(makeLogoSvg("black", "white"), logoW, logoH),
-      fetchClientLogo(),
     ]);
 
     const jsPDF = await ensureJsPDF();
@@ -366,20 +348,15 @@ const ExAssessment = () => {
     // Logo (white version) left side of header
     doc.addImage(logoWhiteUrl, "PNG", M, 28, logoW, logoH);
 
-    // Right side of header: client logo or fallback text
-    if (clientLogoDataUrl) {
-      const maxLogoH = 36, maxLogoW = 100;
-      doc.addImage(clientLogoDataUrl, "PNG", pageW - M - maxLogoW, (80 - maxLogoH) / 2, maxLogoW, maxLogoH, undefined, "FAST");
-    } else {
-      SG(false);
-      doc.setFontSize(8);
-      doc.setTextColor(180, 180, 180);
-      doc.text("venturoconsulting.it", pageW - M, 38, { align: "right" });
-      SG(false);
-      doc.setFontSize(9);
-      doc.setTextColor(...ACCENT);
-      doc.text("EX Assessment", pageW - M, 52, { align: "right" });
-    }
+    // Right side of header
+    SG(false);
+    doc.setFontSize(8);
+    doc.setTextColor(180, 180, 180);
+    doc.text("venturoconsulting.it", pageW - M, 38, { align: "right" });
+    SG(false);
+    doc.setFontSize(9);
+    doc.setTextColor(...ACCENT);
+    doc.text("EX Assessment", pageW - M, 52, { align: "right" });
 
     let y = 104;
 
@@ -682,14 +659,10 @@ const ExAssessment = () => {
           </p>
 
           {/* SESSION FIELDS — full width */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             <div>
               <Label className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5 block">Organizzazione</Label>
               <Input value={org} onChange={(e) => setOrg(e.target.value)} placeholder="Nome azienda cliente" />
-            </div>
-            <div>
-              <Label className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5 block">Sito web</Label>
-              <Input value={sito} onChange={(e) => setSito(e.target.value)} placeholder="es. acmespa.it" />
             </div>
             <div>
               <Label className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5 block">Data sessione</Label>
