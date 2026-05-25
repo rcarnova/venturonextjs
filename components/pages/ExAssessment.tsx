@@ -318,15 +318,10 @@ const ExAssessment = () => {
       try {
         const domain = sito.replace(/^https?:\/\/(www\.)?/, "").split("/")[0].trim();
         if (!domain) return null;
-        const resp = await fetch(`https://logo.clearbit.com/${domain}`, { mode: "cors" });
+        const resp = await fetch(`/api/fetch-logo?domain=${encodeURIComponent(domain)}`);
         if (!resp.ok) return null;
-        const blob = await resp.blob();
-        return new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.onerror = () => resolve(null);
-          reader.readAsDataURL(blob);
-        });
+        const json = await resp.json();
+        return json.dataUrl ?? null;
       } catch {
         return null;
       }
