@@ -91,7 +91,7 @@ async function sendNotification({
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "EX Assessment <onboarding@resend.dev>",
+      from: "EX Assessment <info@venturoconsulting.it>",
       to: "rosario.carnovale@gmail.com",
       subject: `EX Assessment — ${org || "sessione"} — ${data || new Date().toISOString().slice(0, 10)}`,
       html,
