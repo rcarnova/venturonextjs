@@ -273,12 +273,62 @@ const ExAssessment = () => {
       document.body.appendChild(s);
     });
 
+    // Load Space Grotesk TTF → base64
+    const loadFontBase64 = async (path: string): Promise<string> => {
+      const resp = await fetch(path);
+      const buf = await resp.arrayBuffer();
+      const bytes = new Uint8Array(buf);
+      let str = "";
+      for (let i = 0; i < bytes.length; i++) str += String.fromCharCode(bytes[i]);
+      return btoa(str);
+    };
+
+    // SVG → canvas → PNG data URL
+    const svgToDataUrl = (svgStr: string, w: number, h: number): Promise<string> =>
+      new Promise((resolve) => {
+        const scale = 2;
+        const canvas = document.createElement("canvas");
+        canvas.width = w * scale;
+        canvas.height = h * scale;
+        const ctx = canvas.getContext("2d")!;
+        ctx.scale(scale, scale);
+        const img = new Image();
+        const blob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); resolve(canvas.toDataURL("image/png")); };
+        img.src = url;
+      });
+
+    // Prepare fonts + logo in parallel
+    const VENTURO_SVG = `<svg width="317" height="69" viewBox="0 0 317 69" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#cp)"><path d="M294.342 56.008C290.79 56.008 287.598 55.288 284.766 53.848C281.934 52.408 279.702 50.32 278.07 47.584C276.438 44.848 275.622 41.56 275.622 37.72V36.568C275.622 32.728 276.438 29.44 278.07 26.704C279.702 23.968 281.934 21.88 284.766 20.44C287.598 19 290.79 18.28 294.342 18.28C297.894 18.28 301.086 19 303.918 20.44C306.75 21.88 308.982 23.968 310.614 26.704C312.246 29.44 313.062 32.728 313.062 36.568V37.72C313.062 41.56 312.246 44.848 310.614 47.584C308.982 50.32 306.75 52.408 303.918 53.848C301.086 55.288 297.894 56.008 294.342 56.008ZM294.342 47.944C297.126 47.944 299.43 47.056 301.254 45.28C303.078 43.456 303.99 40.864 303.99 37.504V36.784C303.99 33.424 303.078 30.856 301.254 29.08C299.478 27.256 297.174 26.344 294.342 26.344C291.558 26.344 289.254 27.256 287.43 29.08C285.606 30.856 284.694 33.424 284.694 36.784V37.504C284.694 40.864 285.606 43.456 287.43 45.28C289.254 47.056 291.558 47.944 294.342 47.944Z" fill="FILL"/><path d="M244.309 55V19.288H253.237V23.32H254.533C255.061 21.88 255.925 20.824 257.125 20.152C258.373 19.48 259.813 19.144 261.445 19.144H265.765V27.208H261.301C258.997 27.208 257.101 27.832 255.613 29.08C254.125 30.28 253.381 32.152 253.381 34.696V55H244.309Z" fill="FILL"/><path d="M207.79 55.576C205.006 55.576 202.558 54.952 200.446 53.704C198.382 52.408 196.774 50.632 195.622 48.376C194.47 46.12 193.894 43.528 193.894 40.6V19.288H202.966V39.88C202.966 42.568 203.614 44.584 204.91 45.928C206.254 47.272 208.15 47.944 210.598 47.944C213.382 47.944 215.542 47.032 217.078 45.208C218.614 43.336 219.382 40.744 219.382 37.432V19.288H228.454V55H219.526V50.32H218.23C217.654 51.52 216.574 52.696 214.99 53.848C213.406 55 211.006 55.576 207.79 55.576Z" fill="FILL"/><path d="M169.266 55C166.914 55 164.994 54.28 163.506 52.84C162.066 51.352 161.346 49.384 161.346 46.936V26.776H152.418V19.288H161.346V8.19998H170.418V19.288H180.21V26.776H170.418V45.352C170.418 46.792 171.09 47.512 172.434 47.512H179.346V55H169.266Z" fill="FILL"/><path d="M106.443 55V19.288H115.371V23.968H116.667C117.243 22.72 118.323 21.544 119.907 20.44C121.491 19.288 123.891 18.712 127.107 18.712C129.891 18.712 132.315 19.36 134.379 20.656C136.491 21.904 138.123 23.656 139.275 25.912C140.427 28.12 141.003 30.712 141.003 33.688V55H131.931V34.408C131.931 31.72 131.259 29.704 129.915 28.36C128.619 27.016 126.747 26.344 124.299 26.344C121.515 26.344 119.355 27.28 117.819 29.152C116.283 30.976 115.515 33.544 115.515 36.856V55H106.443Z" fill="FILL"/><path d="M75.4001 56.008C71.8481 56.008 68.7041 55.264 65.9681 53.776C63.2801 52.24 61.1681 50.104 59.6321 47.368C58.1441 44.584 57.4001 41.32 57.4001 37.576V36.712C57.4001 32.968 58.1441 29.728 59.6321 26.992C61.1201 24.208 63.2081 22.072 65.8961 20.584C68.5841 19.048 71.7041 18.28 75.2561 18.28C78.7601 18.28 81.8081 19.072 84.4001 20.656C86.9921 22.192 89.0081 24.352 90.4481 27.136C91.8881 29.872 92.6081 33.064 92.6081 36.712V39.808H66.6161C66.7121 42.256 67.6241 44.248 69.3521 45.784C71.0801 47.32 73.1921 48.088 75.6881 48.088C78.2321 48.088 80.1041 47.536 81.3041 46.432C82.5041 45.328 83.4161 44.104 84.0401 42.76L91.4561 46.648C90.7841 47.896 89.8001 49.264 88.5041 50.752C87.2561 52.192 85.5761 53.44 83.4641 54.496C81.3521 55.504 78.6641 56.008 75.4001 56.008ZM66.6881 33.04H83.3921C83.2001 30.976 82.3601 29.32 80.8721 28.072C79.4321 26.824 77.5361 26.2 75.1841 26.2C72.7361 26.2 70.7921 26.824 69.3521 28.072C67.9121 29.32 67.0241 30.976 66.6881 33.04Z" fill="FILL"/><path d="M20.112 55L7.296 4.59998H17.088L27.744 48.88H28.752L39.408 4.59998H49.2L36.384 55H20.112Z" fill="FILL"/><mask id="m" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="7" y="4" width="43" height="51"><path d="M20.112 54.9999L7.296 4.59995H17.088L27.744 48.8799H28.752L39.408 4.59995H49.2L36.384 54.9999H20.112Z" fill="FILL"/></mask><g mask="url(#m)"><path d="M25.1323 57.1739L50.0855 4.59549" stroke="SLASH" stroke-width="2"/></g></g><defs><clipPath id="cp"><rect width="317" height="69" fill="white"/></clipPath></defs></svg>`;
+
+    const makeLogoSvg = (fill: string, slash: string) =>
+      VENTURO_SVG.replace(/FILL/g, fill).replace("SLASH", slash);
+
+    const logoW = 116, logoH = 25; // 317:69 ratio
+
+    const [regularB64, boldB64, logoWhiteUrl, logoBlackUrl] = await Promise.all([
+      loadFontBase64("/fonts/SpaceGrotesk-Regular.ttf"),
+      loadFontBase64("/fonts/SpaceGrotesk-Bold.ttf"),
+      svgToDataUrl(makeLogoSvg("white", "black"), logoW, logoH),
+      svgToDataUrl(makeLogoSvg("black", "white"), logoW, logoH),
+    ]);
+
     const jsPDF = await ensureJsPDF();
     const doc = new jsPDF({ unit: "pt", format: "a4" });
     const pageW = doc.internal.pageSize.getWidth();   // 595
     const pageH = doc.internal.pageSize.getHeight();  // 842
     const M = 48; // margin
     const contentW = pageW - M * 2;
+
+    // Register Space Grotesk
+    doc.addFileToVFS("SpaceGrotesk-Regular.ttf", regularB64);
+    doc.addFont("SpaceGrotesk-Regular.ttf", "SpaceGrotesk", "normal");
+    doc.addFileToVFS("SpaceGrotesk-Bold.ttf", boldB64);
+    doc.addFont("SpaceGrotesk-Bold.ttf", "SpaceGrotesk", "bold");
+
+    // Helper to set font
+    const SG = (bold = false) => doc.setFont("SpaceGrotesk", bold ? "bold" : "normal");
 
     // Palette
     const INK: [number, number, number] = [17, 17, 17];
@@ -292,26 +342,23 @@ const ExAssessment = () => {
     doc.setFillColor(...INK);
     doc.rect(0, 0, pageW, 80, "F");
 
-    // "EX Assessment" white
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.setTextColor(...WHITE);
-    doc.text("EX Assessment", M, 50);
+    // Logo (white version) left side of header
+    doc.addImage(logoWhiteUrl, "PNG", M, 28, logoW, logoH);
 
-    // "Venturo" yellow top-right
-    doc.setFont("helvetica", "bold");
+    // "EX Assessment" label — right side of header
+    SG(false);
+    doc.setFontSize(8);
+    doc.setTextColor(180, 180, 180);
+    doc.text("venturoconsulting.it", pageW - M, 38, { align: "right" });
+    SG(false);
     doc.setFontSize(9);
     doc.setTextColor(...ACCENT);
-    doc.text("Venturo", pageW - M, 38, { align: "right" });
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(7);
-    doc.setTextColor(180, 180, 180);
-    doc.text("venturoconsulting.it", pageW - M, 50, { align: "right" });
+    doc.text("EX Assessment", pageW - M, 52, { align: "right" });
 
     let y = 104;
 
     // Session info row
-    doc.setFont("helvetica", "normal");
+    SG(false);
     doc.setFontSize(8);
     doc.setTextColor(...GRAY);
     const sessionItems = [
@@ -331,20 +378,20 @@ const ExAssessment = () => {
     y += 16;
 
     // EX Index label
-    doc.setFont("helvetica", "normal");
+    SG(false);
     doc.setFontSize(8);
     doc.setTextColor(...GRAY);
     doc.text("EX INDEX GLOBALE", M, y);
     y += 10;
 
     // Score large number
-    doc.setFont("helvetica", "bold");
+    SG(true);
     doc.setFontSize(72);
     doc.setTextColor(...INK);
     doc.text(String(globalScore), M, y + 60);
 
     // /100 and level beside it
-    doc.setFont("helvetica", "normal");
+    SG(false);
     doc.setFontSize(14);
     doc.setTextColor(...GRAY);
     doc.text(`/ 100`, M + 98, y + 40);
@@ -355,7 +402,7 @@ const ExAssessment = () => {
 
     // Area cards — 4 in a row
     y += 16;
-    doc.setFont("helvetica", "normal");
+    SG(false);
     doc.setFontSize(7);
     doc.setTextColor(...GRAY);
     doc.text("PUNTEGGI PER AREA", M, y);
@@ -373,17 +420,17 @@ const ExAssessment = () => {
       doc.setFillColor(cr, cg, cb);
       doc.rect(cx, y, cardW, 3, "F");
       // Area name (truncated)
-      doc.setFont("helvetica", "normal");
+      SG(false);
       doc.setFontSize(7);
       doc.setTextColor(...GRAY);
       const shortName = a.name.split(" ")[0];
       doc.text(shortName, cx + 8, y + 16);
       // Score
-      doc.setFont("helvetica", "bold");
+      SG(true);
       doc.setFontSize(18);
       doc.setTextColor(...INK);
       doc.text(String(a.score), cx + 8, y + 36);
-      doc.setFont("helvetica", "normal");
+      SG(false);
       doc.setFontSize(9);
       doc.setTextColor(...GRAY);
       doc.text("/100", cx + 8 + (a.score >= 100 ? 28 : a.score >= 10 ? 22 : 14), y + 36);
@@ -401,7 +448,7 @@ const ExAssessment = () => {
       doc.setFillColor(...ACCENT);
       doc.rect(M, y, 3, 14, "F");
       // Label
-      doc.setFont("helvetica", "bold");
+      SG(true);
       doc.setFontSize(8);
       doc.setTextColor(...GRAY);
       doc.text("INTERPRETAZIONE AI", M + 10, y + 10);
@@ -414,7 +461,7 @@ const ExAssessment = () => {
       y += 12;
 
       const cleanedAnalysis = aiAnalysis.replace(/\*\*/g, "").replace(/\*/g, "");
-      doc.setFont("helvetica", "normal");
+      SG(false);
       doc.setFontSize(9);
       doc.setTextColor(50, 50, 50);
       const analysisLines = doc.splitTextToSize(cleanedAnalysis, contentW);
@@ -441,18 +488,18 @@ const ExAssessment = () => {
       doc.setFillColor(cr, cg, cb);
       doc.rect(0, y - 4, 4, 30, "F");
       // Area name
-      doc.setFont("helvetica", "bold");
+      SG(true);
       doc.setFontSize(11);
       doc.setTextColor(...INK);
       doc.text(area.name.toUpperCase(), 14, y + 14);
       // Area score right
       const aScore = areaScores.find(a => a.id === area.id);
-      doc.setFont("helvetica", "bold");
+      SG(true);
       doc.setFontSize(11);
       doc.setTextColor(cr, cg, cb);
       doc.text(`${aScore?.score ?? 0}/100`, pageW - M, y + 14, { align: "right" });
       // Subtitle
-      doc.setFont("helvetica", "normal");
+      SG(false);
       doc.setFontSize(7);
       doc.setTextColor(...GRAY);
       y += 30;
@@ -465,18 +512,18 @@ const ExAssessment = () => {
         const st = dims[d.id];
 
         // Dim title
-        doc.setFont("helvetica", "bold");
+        SG(true);
         doc.setFontSize(8.5);
         doc.setTextColor(...INK);
         doc.text(d.title, M, y);
         // Peso tag
-        doc.setFont("helvetica", "normal");
+        SG(false);
         doc.setFontSize(7);
         doc.setTextColor(...GRAY);
         doc.text(`peso ${d.peso}/3`, M + 240, y);
         // Score on right
         const sc = st?.score ?? null;
-        doc.setFont("helvetica", "bold");
+        SG(true);
         doc.setFontSize(8.5);
         doc.setTextColor(...INK);
         doc.text(sc !== null ? `${sc}/4` : "—", pageW - M, y, { align: "right" });
@@ -494,7 +541,7 @@ const ExAssessment = () => {
         y += 10;
 
         // Source + notes
-        doc.setFont("helvetica", "normal");
+        SG(false);
         doc.setFontSize(7);
         doc.setTextColor(...GRAY);
         if (st?.fonte) {
@@ -522,7 +569,7 @@ const ExAssessment = () => {
     const totalPages = (doc as any).internal.getNumberOfPages();
     for (let p = 1; p <= totalPages; p++) {
       doc.setPage(p);
-      doc.setFont("helvetica", "normal");
+      SG(false);
       doc.setFontSize(7);
       doc.setTextColor(...GRAY);
       doc.text(`EX Assessment — ${org || "Venturo"} — ${data}`, M, pageH - 20);
