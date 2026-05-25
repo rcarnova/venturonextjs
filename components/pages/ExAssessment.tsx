@@ -24,7 +24,6 @@ type Dimension = {
   title: string;
   description: string;
   peso: 1 | 2 | 3;
-  ingaze?: boolean;
 };
 
 type Area = {
@@ -47,8 +46,8 @@ const AREAS: Area[] = [
       { id: "c1", title: "Valori chiari e vissuti", description: "Quanto i valori dichiarati sono coerenti con i comportamenti quotidiani.", peso: 3 },
       { id: "c2", title: "Cultura dell'inclusione e DEI", description: "Politiche e pratiche di diversità, equità e inclusione.", peso: 3 },
       { id: "c3", title: "Fiducia nella leadership", description: "Percezione di trasparenza e credibilità del top management.", peso: 3 },
-      { id: "c4", title: "Cultura del riconoscimento", description: "Sistemi formali e informali di riconoscimento del contributo.", peso: 2, ingaze: true },
-      { id: "c5", title: "Comunicazione aperta e bidirezionale", description: "Flussi di comunicazione tra livelli e qualità dell'ascolto.", peso: 3, ingaze: true },
+      { id: "c4", title: "Cultura del riconoscimento", description: "Sistemi formali e informali di riconoscimento del contributo.", peso: 2 },
+      { id: "c5", title: "Comunicazione aperta e bidirezionale", description: "Flussi di comunicazione tra livelli e qualità dell'ascolto.", peso: 3 },
       { id: "c6", title: "Scopo e significato nel lavoro", description: "Connessione tra attività quotidiane e mission aziendale.", peso: 2 },
       { id: "c7", title: "Work-life balance e flessibilità", description: "Equilibrio reale tra vita personale e professionale.", peso: 2 },
     ],
@@ -89,7 +88,7 @@ const AREAS: Area[] = [
     color: "#E11D48",
     weight: 0.22,
     dimensions: [
-      { id: "j1", title: "Employer brand e attrazione (EVP)", description: "Forza e coerenza della Employee Value Proposition esterna.", peso: 3, ingaze: true },
+      { id: "j1", title: "Employer brand e attrazione (EVP)", description: "Forza e coerenza della Employee Value Proposition esterna.", peso: 3 },
       { id: "j2", title: "Processo di selezione rispettoso", description: "Esperienza candidato durante l'intero recruiting.", peso: 2 },
       { id: "j3", title: "Onboarding strutturato ed efficace", description: "Qualità dell'inserimento dei nuovi assunti.", peso: 3 },
       { id: "j4", title: "Sviluppo lungo tutto il ciclo di vita", description: "Percorsi di crescita continua, non solo iniziali.", peso: 3 },
@@ -103,8 +102,6 @@ const FONTI = [
   "Percezione HR / management",
   "Dato HR oggettivo",
   "Survey dipendenti esistente",
-  "Analisi Ingaze (consigliato)",
-  "Analisi Ingaze + Percezione HR",
   "Intervista narrativa",
   "Osservazione diretta",
   "Assenza di dato",
@@ -138,13 +135,13 @@ const DEMO_DIMS: Record<string, DimState> = {
   c2: { score: 2, fonte: "Percezione HR / management", note: "" },
   c3: { score: 2, fonte: "Survey dipendenti esistente", note: "Il 34% dei dipendenti non si fida delle decisioni strategiche del top management." },
   c4: { score: 1, fonte: "Percezione HR / management", note: "Il riconoscimento avviene in modo informale e non strutturato." },
-  c5: { score: 2, fonte: "Analisi Ingaze + Percezione HR", note: "" },
+  c5: { score: 2, fonte: "Survey dipendenti esistente", note: "" },
   c6: { score: 3, fonte: "Intervista narrativa", note: "" },
   c7: { score: 2, fonte: "Survey dipendenti esistente", note: "" },
   p1: { score: 2, fonte: "Survey dipendenti esistente", note: "Alta varianza tra team: alcuni manager eccellenti, altri molto sotto la media." },
   p2: { score: 1, fonte: "Dato HR oggettivo", note: "Budget formazione tagliato del 40% nel 2025." },
   p3: { score: 2, fonte: "Percezione HR / management", note: "" },
-  p4: { score: 2, fonte: "Analisi Ingaze (consigliato)", note: "" },
+  p4: { score: 2, fonte: "Survey dipendenti esistente", note: "" },
   p5: { score: 1, fonte: "Assenza di dato", note: "" },
   p6: { score: 2, fonte: "Survey dipendenti esistente", note: "" },
   a1: { score: 3, fonte: "Osservazione diretta", note: "" },
@@ -152,7 +149,7 @@ const DEMO_DIMS: Record<string, DimState> = {
   a3: { score: 2, fonte: "Percezione HR / management", note: "" },
   a4: { score: 2, fonte: "Percezione HR / management", note: "" },
   a5: { score: 3, fonte: "Dato HR oggettivo", note: "Politica smart working formalizzata nel 2024 con accordo sindacale." },
-  j1: { score: 2, fonte: "Analisi Ingaze (consigliato)", note: "EVP non differenziata rispetto ai competitor diretti di settore." },
+  j1: { score: 2, fonte: "Percezione HR / management", note: "EVP non differenziata rispetto ai competitor diretti di settore." },
   j2: { score: 3, fonte: "Survey dipendenti esistente", note: "" },
   j3: { score: 1, fonte: "Percezione HR / management", note: "Onboarding strutturato solo su carta, non applicato in modo uniforme." },
   j4: { score: 2, fonte: "Dato HR oggettivo", note: "" },
@@ -720,9 +717,6 @@ const ExAssessment = () => {
                                   <p className="text-xs text-muted-foreground leading-relaxed mb-2">{d.description}</p>
                                   <div className="flex items-center gap-1.5 flex-wrap">
                                     <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-muted text-muted-foreground">peso {d.peso}/3</span>
-                                    {d.ingaze && (
-                                      <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded text-white" style={{ background: "#0D9488" }}>↔ Ingaze</span>
-                                    )}
                                   </div>
                                 </div>
                                 <div>
@@ -828,7 +822,6 @@ const ExAssessment = () => {
                 <p className="text-xs text-muted-foreground mb-4">Come funziona questo assessment</p>
                 <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
                   <p>Questo tool valuta l'employee experience su quattro aree con pesi diversi. Per ogni dimensione si assegna un punteggio da 0 a 4 e si indica la fonte del dato. Il risultato è un indice per area e un EX Index globale ponderato.</p>
-                  <p>Le dimensioni con il badge ↔ Ingaze si sovrappongono con l'analisi Ingaze: usate quei dati come fonte primaria quando disponibili. Lo scarto tra percezione interna ed esterna è già una diagnosi.</p>
                 </div>
                 <Link href="/lumen" className="inline-block mt-6 text-sm text-primary font-semibold hover:underline transition-colors">
                   Scopri come lavora Lumen →
