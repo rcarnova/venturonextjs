@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ChevronDown, Download, RotateCcw } from "lucide-react";
+import { ChevronDown, Download, RotateCcw, Sparkles } from "lucide-react";
 
 import { SEO } from "@/components/SEO";
 import Header from "@/components/Header";
@@ -138,6 +138,9 @@ const ExAssessment = () => {
   const [openAreas, setOpenAreas] = useState<Record<string, boolean>>({
     cultura: true, persone: false, ambiente: false, journey: false,
   });
+  const [aiAnalysis, setAiAnalysis] = useState<string>("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState<string>("");
 
   const updateDim = (id: string, patch: Partial<DimState>) => {
     setDims((prev) => ({ ...prev, [id]: { ...prev[id], ...patch } }));
@@ -166,6 +169,29 @@ const ExAssessment = () => {
 
   const handleReset = () => {
     setDims(initState());
+    setAiAnalysis("");
+    setAiError("");
+  };
+
+  const handleGenerateAnalysis = async () => {
+    setAiLoading(true);
+    setAiError("");
+    setAiAnalysis("");
+    try {
+      const res = await fetch("/api/ex-assessment-analysis", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ org, data, areaScores, dims, dimensions: AREAS }),
+      });
+      const json = await res.json();
+      if (json.error) throw new Error(json.error);
+      setAiAnalysis(json.analysis);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Errore nell'analisi.";
+      setAiError(msg);
+    } finally {
+      setAiLoading(false);
+    }
   };
 
   // Radar SVG geometry
@@ -211,6 +237,24 @@ const ExAssessment = () => {
     doc.setFontSize(14);
     doc.text(`EX Index: ${globalScore} / 100 — ${globalLevel}`, margin, y);
     y += 20;
+
+    if (aiAnalysis) {
+      if (y > 680) { doc.addPage(); y = margin; }
+      doc.setFontSize(11);
+      doc.setTextColor(0);
+      doc.text("Interpretazione AI", margin, y); y += 14;
+      doc.setFontSize(9);
+      doc.setTextColor(60);
+      const cleanedAnalysis = aiAnalysis.replace(/\*\*/g, "").replace(/\*/g, "");
+      const analysisLines = doc.splitTextToSize(cleanedAnalysis, pageW - margin * 2);
+      analysisLines.forEach((line: string) => {
+        if (y > 780) { doc.addPage(); y = margin; }
+        doc.text(line, margin, y);
+        y += 12;
+      });
+      doc.setTextColor(0);
+      y += 10;
+    }
 
     doc.setFontSize(11);
     doc.text("Punteggi per area", margin, y); y += 14;
@@ -330,6 +374,29 @@ const ExAssessment = () => {
               </div>
             </div>
           </div>
+
+          {/* AI ANALYSIS PANEL */}
+          {(aiAnalysis || aiLoading || aiError) && (
+            <div className="mb-10 border-l-4 border-foreground pl-6">
+              <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">
+                Interpretazione AI
+              </p>
+              {aiLoading && (
+                <div className="flex items-center gap-2.5 text-sm text-muted-foreground py-4">
+                  <div className="w-4 h-4 border-2 border-foreground border-t-transparent rounded-full animate-spin flex-shrink-0" />
+                  Lettura in corso…
+                </div>
+              )}
+              {aiError && (
+                <p className="text-sm text-red-500">{aiError}</p>
+              )}
+              {aiAnalysis && !aiLoading && (
+                <div className="prose prose-sm max-w-none text-foreground/90 space-y-4 whitespace-pre-line">
+                  {aiAnalysis}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* RADAR + SCALE */}
           <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 mb-6 rounded-xl border border-border/60 bg-muted/30 p-6 md:p-8">
@@ -490,6 +557,23 @@ const ExAssessment = () => {
 
           {/* ACTIONS */}
           <div className="flex flex-wrap items-center gap-4 mb-16">
+            <Button
+              onClick={handleGenerateAnalysis}
+              disabled={aiLoading || globalScore === 0}
+              size="lg"
+            >
+              {aiLoading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-background border-t-transparent rounded-full animate-spin mr-2" />
+                  Analisi in corso…
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  {aiAnalysis ? "Rigenera analisi AI" : "Genera analisi AI"}
+                </>
+              )}
+            </Button>
             <Button onClick={handleExportPDF} variant="outline" size="lg">
               <Download className="h-4 w-4 mr-2" />
               Esporta PDF
