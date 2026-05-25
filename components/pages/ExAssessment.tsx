@@ -130,6 +130,53 @@ const initState = (): Record<string, DimState> => {
   return s;
 };
 
+// ── DEMO DATA ────────────────────────────────────────────────────
+const DEMO_ORG = "Acme S.p.A.";
+const DEMO_FACILITATORE = "Rosario Carnovale";
+const DEMO_DIMS: Record<string, DimState> = {
+  c1: { score: 3, fonte: "Dato HR oggettivo", note: "I valori sono nel manuale onboarding ma raramente citati nelle riunioni operative." },
+  c2: { score: 2, fonte: "Percezione HR / management", note: "" },
+  c3: { score: 2, fonte: "Survey dipendenti esistente", note: "Il 34% dei dipendenti non si fida delle decisioni strategiche del top management." },
+  c4: { score: 1, fonte: "Percezione HR / management", note: "Il riconoscimento avviene in modo informale e non strutturato." },
+  c5: { score: 2, fonte: "Analisi Ingaze + Percezione HR", note: "" },
+  c6: { score: 3, fonte: "Intervista narrativa", note: "" },
+  c7: { score: 2, fonte: "Survey dipendenti esistente", note: "" },
+  p1: { score: 2, fonte: "Survey dipendenti esistente", note: "Alta varianza tra team: alcuni manager eccellenti, altri molto sotto la media." },
+  p2: { score: 1, fonte: "Dato HR oggettivo", note: "Budget formazione tagliato del 40% nel 2025." },
+  p3: { score: 2, fonte: "Percezione HR / management", note: "" },
+  p4: { score: 2, fonte: "Analisi Ingaze (consigliato)", note: "" },
+  p5: { score: 1, fonte: "Assenza di dato", note: "" },
+  p6: { score: 2, fonte: "Survey dipendenti esistente", note: "" },
+  a1: { score: 3, fonte: "Osservazione diretta", note: "" },
+  a2: { score: 3, fonte: "Survey dipendenti esistente", note: "" },
+  a3: { score: 2, fonte: "Percezione HR / management", note: "" },
+  a4: { score: 2, fonte: "Percezione HR / management", note: "" },
+  a5: { score: 3, fonte: "Dato HR oggettivo", note: "Politica smart working formalizzata nel 2024 con accordo sindacale." },
+  j1: { score: 2, fonte: "Analisi Ingaze (consigliato)", note: "EVP non differenziata rispetto ai competitor diretti di settore." },
+  j2: { score: 3, fonte: "Survey dipendenti esistente", note: "" },
+  j3: { score: 1, fonte: "Percezione HR / management", note: "Onboarding strutturato solo su carta, non applicato in modo uniforme." },
+  j4: { score: 2, fonte: "Dato HR oggettivo", note: "" },
+  j5: { score: 1, fonte: "Dato HR oggettivo", note: "Turnover 18% annuo, sopra la media di settore del 12%." },
+  j6: { score: 1, fonte: "Assenza di dato", note: "" },
+};
+const DEMO_ANALYSIS = `**La tensione principale**
+
+C'è una frattura che attraversa questa organizzazione con una coerenza quasi metodica: i numeri più alti si concentrano nelle aree dove il controllo è visibile e misurabile — gli spazi fisici, gli strumenti digitali, la flessibilità operativa. Quelli più bassi cadono dove la cultura deve essere praticata invece che dichiarata: il riconoscimento, la delega reale, l'uscita dignitosa. Non è un'organizzazione che ignora il benessere delle persone. È un'organizzazione che ha investito nell'involucro senza chiedersi cosa ci fosse dentro.
+
+**Tre osservazioni**
+
+La gestione manageriale (2/4, peso 3/3) è il punto dove questa tensione diventa più costosa. L'alta varianza riportata — "alcuni manager eccellenti, altri molto sotto la media" — è la traduzione operativa di una cultura che non ha mai deciso se la leadership sia un comportamento da allenare o un talento che si trova o non si trova. In assenza di questa decisione, ogni manager interpreta il ruolo a modo suo, e i collaboratori imparano che dipendono dal caso più che dall'organizzazione.
+
+Lo sviluppo professionale (1/4) fondato su un budget tagliato del 40% non è solo una scelta economica: è un segnale culturale che i dipendenti decodificano con precisione. Il riconoscimento (1/4), non strutturato e affidato all'informalità, chiude un triangolo: l'organizzazione chiede risultati senza investire nello sviluppo e senza riconoscere il contributo. In questo triangolo la retention diventa una scommessa contro il mercato.
+
+L'onboarding (1/4) — "strutturato solo su carta, non applicato uniformemente" — è il punto dove l'identità organizzativa si gioca più di quanto si pensi. Quello che un nuovo assunto impara nei primi novanta giorni non è scritto nel manuale: è nella distribuzione informale del potere, in chi viene ascoltato, in cosa è permesso dire. Se questa esperienza è incoerente tra un team e l'altro, l'organizzazione sta producendo micro-culture divergenti invece che un'identità comune.
+
+**Area prioritaria**
+
+L'Employee Journey (con tre dimensioni critiche su sei) merita attenzione immediata non perché sia la più rotta, ma perché è quella con più leverage. Un turnover al 18% non è un problema di retention: è la conseguenza di tutto il resto letto da chi ha scelto di andarsene. Intervenire sulla retention senza affrontare onboarding, sviluppo e riconoscimento è come ridipingere la porta di una casa senza fondamenta.
+
+*Cosa sta trattenendo qui le persone che sono rimaste — e per quanto ancora quella ragione sarà sufficiente?*`;
+
 const ExAssessment = () => {
   const [org, setOrg] = useState("");
   const [data, setData] = useState(todayISO());
@@ -171,6 +218,15 @@ const ExAssessment = () => {
     setDims(initState());
     setAiAnalysis("");
     setAiError("");
+  };
+
+  const handleLoadDemo = () => {
+    setOrg(DEMO_ORG);
+    setFacilitatore(DEMO_FACILITATORE);
+    setDims(DEMO_DIMS);
+    setAiAnalysis(DEMO_ANALYSIS);
+    setAiError("");
+    setOpenAreas({ cultura: true, persone: true, ambiente: true, journey: true });
   };
 
   const handleElabora = async () => {
@@ -489,9 +545,17 @@ const ExAssessment = () => {
       <main className="pt-28 pb-20 px-4">
         <div className="mx-auto max-w-[980px]">
           {/* HERO */}
-          <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">
-            Strumento diagnostico
-          </p>
+          <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
+            <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              Strumento diagnostico
+            </p>
+            <button
+              onClick={handleLoadDemo}
+              className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/50 hover:text-muted-foreground transition-colors underline underline-offset-2"
+            >
+              Carica sessione demo
+            </button>
+          </div>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Come vivono davvero la vostra organizzazione?
           </h1>
