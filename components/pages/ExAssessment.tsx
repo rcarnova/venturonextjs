@@ -240,7 +240,7 @@ const ExAssessment = () => {
       const res = await fetch("/api/ex-assessment-analysis", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ org, data, areaScores, dims, dimensions: AREAS }),
+        body: JSON.stringify({ org, data, facilitatore, areaScores, dims, dimensions: AREAS }),
       });
       const json = await res.json();
       if (json.error) throw new Error(json.error);

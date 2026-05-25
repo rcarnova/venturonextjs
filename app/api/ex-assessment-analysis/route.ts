@@ -28,9 +28,80 @@ DIVIETI ESPLICITI
 - Non usare elenchi puntati nell'output — solo prosa
 - Vietato il pattern retorico "Non è X: è Y" e varianti ("Non è solo X: è Y", "Non è un problema di X: è la conseguenza di Y"). Non iniziare mai una frase con una negazione di ciò che qualcosa è, per poi ribaltarla in affermativo. È un dispositivo formulaico che rende l'analisi generica. Afferma direttamente.`;
 
+async function sendNotification({
+  org, data, facilitatore, globalScore, areaScores, analysis,
+}: {
+  org: string; data: string; facilitatore: string;
+  globalScore: number;
+  areaScores: Array<{ name: string; score: number; weight: number }>;
+  analysis: string;
+}) {
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  if (!RESEND_API_KEY) return;
+
+  const areaRows = areaScores.map((a) =>
+    `<tr>
+      <td style="padding:6px 12px;border-bottom:1px solid #eee">${a.name}</td>
+      <td style="padding:6px 12px;border-bottom:1px solid #eee;font-weight:600">${a.score}/100</td>
+      <td style="padding:6px 12px;border-bottom:1px solid #eee;color:#888">${Math.round(a.weight * 100)}%</td>
+    </tr>`
+  ).join("");
+
+  const htmlAnalysis = analysis
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\n\n/g, "</p><p>")
+    .replace(/\n/g, "<br>");
+
+  const html = `
+  <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#111">
+    <div style="background:#111;padding:24px 32px;margin-bottom:24px">
+      <span style="color:#E6FF3D;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Venturo · EX Assessment</span>
+    </div>
+    <div style="padding:0 32px 32px">
+      <h2 style="margin:0 0 4px;font-size:22px">${org || "Organizzazione non specificata"}</h2>
+      <p style="margin:0 0 24px;color:#888;font-size:13px">${data || "-"} · Facilitatore: ${facilitatore || "-"}</p>
+
+      <div style="background:#f5f5f3;padding:16px 20px;margin-bottom:24px;display:inline-block">
+        <span style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:#888">EX Index globale</span><br>
+        <span style="font-size:40px;font-weight:700;line-height:1.2">${globalScore}</span>
+        <span style="font-size:16px;color:#888">/100</span>
+      </div>
+
+      <table style="width:100%;border-collapse:collapse;margin-bottom:28px">
+        <thead>
+          <tr style="background:#f5f5f3">
+            <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888">Area</th>
+            <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888">Score</th>
+            <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888">Peso</th>
+          </tr>
+        </thead>
+        <tbody>${areaRows}</tbody>
+      </table>
+
+      <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:#888;margin-bottom:12px">Interpretazione AI</h3>
+      <div style="font-size:14px;line-height:1.7;color:#333"><p>${htmlAnalysis}</p></div>
+    </div>
+  </div>`;
+
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: "EX Assessment <onboarding@resend.dev>",
+      to: "rosario.carnovale@gmail.com",
+      subject: `EX Assessment — ${org || "sessione"} — ${data || new Date().toISOString().slice(0, 10)}`,
+      html,
+    }),
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { org, data, areaScores, dims, dimensions } = await req.json();
+    const { org, data, facilitatore, areaScores, dims, dimensions } = await req.json();
 
     const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
     if (!ANTHROPIC_API_KEY) {
@@ -86,6 +157,11 @@ export async function POST(req: NextRequest) {
 
     const responseData = await res.json();
     const analysis = responseData.content?.[0]?.text || "";
+
+    // Fire-and-forget — non blocca la risposta al client
+    sendNotification({ org, data, facilitatore, globalScore, areaScores, analysis }).catch(
+      (e) => console.error("Notification error:", e)
+    );
 
     return NextResponse.json({ analysis });
   } catch (err) {
