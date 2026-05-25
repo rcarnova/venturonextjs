@@ -365,9 +365,9 @@ const ExAssessment = () => {
     doc.setFontSize(8);
     doc.setTextColor(...GRAY);
     const sessionItems = [
-      `Organizzazione: ${org || "—"}`,
-      `Data: ${data || "—"}`,
-      `Facilitatore: ${facilitatore || "—"}`,
+      `Organizzazione: ${org || "-"}`,
+      `Data: ${data || "-"}`,
+      `Facilitatore: ${facilitatore || "-"}`,
     ];
     const colW = contentW / 3;
     sessionItems.forEach((txt, i) => {
@@ -463,15 +463,39 @@ const ExAssessment = () => {
       doc.line(M, y, pageW - M, y);
       y += 12;
 
-      const cleanedAnalysis = aiAnalysis.replace(/\*\*/g, "").replace(/\*/g, "");
-      SG(false);
-      doc.setFontSize(9);
-      doc.setTextColor(50, 50, 50);
-      const analysisLines = doc.splitTextToSize(cleanedAnalysis, contentW);
-      analysisLines.forEach((line: string) => {
-        if (y > pageH - 40) { doc.addPage(); y = M; }
-        doc.text(line, M, y);
-        y += 13;
+      const rawAnalysis = aiAnalysis.replace(/—/g, "-");
+      rawAnalysis.split("\n").forEach((rawLine: string) => {
+        const boldMatch = rawLine.match(/^\*\*(.+)\*\*$/);
+        const italicMatch = rawLine.match(/^\*(.+)\*$/);
+        if (rawLine.trim() === "") { y += 5; return; }
+        if (boldMatch) {
+          if (y > pageH - 40) { doc.addPage(); y = M; }
+          y += 4;
+          SG(true);
+          doc.setFontSize(10);
+          doc.setTextColor(...INK);
+          doc.splitTextToSize(boldMatch[1], contentW).forEach((l: string) => {
+            if (y > pageH - 40) { doc.addPage(); y = M; }
+            doc.text(l, M, y); y += 14;
+          });
+          y += 2;
+        } else if (italicMatch) {
+          SG(false);
+          doc.setFontSize(9);
+          doc.setTextColor(100, 100, 100);
+          doc.splitTextToSize(italicMatch[1], contentW).forEach((l: string) => {
+            if (y > pageH - 40) { doc.addPage(); y = M; }
+            doc.text(l, M, y); y += 13;
+          });
+        } else {
+          SG(false);
+          doc.setFontSize(9);
+          doc.setTextColor(50, 50, 50);
+          doc.splitTextToSize(rawLine, contentW).forEach((l: string) => {
+            if (y > pageH - 40) { doc.addPage(); y = M; }
+            doc.text(l, M, y); y += 13;
+          });
+        }
       });
       y += 20;
     }
@@ -529,7 +553,7 @@ const ExAssessment = () => {
         SG(true);
         doc.setFontSize(8.5);
         doc.setTextColor(...INK);
-        doc.text(sc !== null ? `${sc}/4` : "—", pageW - M, y, { align: "right" });
+        doc.text(sc !== null ? `${sc}/4` : "-", pageW - M, y, { align: "right" });
         y += 11;
 
         // Score bar
