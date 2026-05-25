@@ -600,7 +600,7 @@ const ExAssessment = () => {
           </div>
 
           {/* TWO-COLUMN LAYOUT */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_272px] gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_272px] gap-8">
 
             {/* ── MAIN COLUMN ── */}
             <div>
