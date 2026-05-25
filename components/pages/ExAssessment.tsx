@@ -532,6 +532,25 @@ const ExAssessment = () => {
     doc.save(`ex-assessment-${(org || "sessione").toLowerCase().replace(/\s+/g, "-")}-${data}.pdf`);
   };
 
+  // Sidebar radar geometry (smaller)
+  const sbSize = 220;
+  const sbCenter = sbSize / 2;
+  const sbRadius = sbCenter - 22;
+  const sbPolygonPoints = areaScores.map((a, i) => {
+    const r = (a.score / 100) * sbRadius;
+    return `${sbCenter + r * Math.cos(angles[i])},${sbCenter + r * Math.sin(angles[i])}`;
+  }).join(" ");
+
+  const SCALE_LEVELS = [
+    { n: 0, t: "Assente" },
+    { n: 1, t: "Iniziale" },
+    { n: 2, t: "In sviluppo" },
+    { n: 3, t: "Consolidato" },
+    { n: 4, t: "Eccellente" },
+  ];
+
+  const AREA_LABELS = ["Cultura", "Persone", "Amb. & Tech", "Journey"];
+
   return (
     <div className="min-h-screen bg-background">
       <SEO
@@ -543,8 +562,9 @@ const ExAssessment = () => {
       <Header />
 
       <main className="pt-28 pb-20 px-4">
-        <div className="mx-auto max-w-[980px]">
-          {/* HERO */}
+        <div className="mx-auto max-w-[1200px]">
+
+          {/* HERO — full width */}
           <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
             <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
               Strumento diagnostico
@@ -563,8 +583,8 @@ const ExAssessment = () => {
             Valutate l'employee experience su quattro aree chiave. Il risultato è una mappa delle priorità — il punto di partenza per una conversazione più profonda.
           </p>
 
-          {/* Session fields */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+          {/* SESSION FIELDS — full width */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             <div>
               <Label className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5 block">Organizzazione</Label>
               <Input value={org} onChange={(e) => setOrg(e.target.value)} placeholder="Nome azienda cliente" />
@@ -579,282 +599,271 @@ const ExAssessment = () => {
             </div>
           </div>
 
-          {/* SCORE PANEL */}
-          <div className="bg-foreground text-background rounded-xl p-6 md:p-10 mb-10">
-            <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-8 items-center">
-              <div>
-                <p className="text-xs font-mono uppercase tracking-wider text-background/60 mb-2">EX Index globale</p>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-mono font-bold text-7xl md:text-8xl leading-none tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
-                    {globalScore}
-                  </span>
-                  <span className="text-xl text-background/60 font-mono">/ 100</span>
-                </div>
-                <p className="mt-2 text-sm text-background/80">{globalLevel}</p>
-              </div>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                {areaScores.map((a) => (
-                  <div key={a.id} className="bg-background/5 border border-background/10 rounded-lg p-4">
-                    <p className="text-[11px] uppercase tracking-wider text-background/60 mb-1 truncate">{a.name}</p>
-                    <p className="font-mono font-bold text-2xl tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
-                      {a.score}<span className="text-sm text-background/50 font-normal">/100</span>
-                    </p>
-                    <div className="mt-2 h-1 rounded-full bg-background/10 overflow-hidden">
-                      <div className="h-full transition-all duration-300" style={{ width: `${a.score}%`, background: a.color }} />
-                    </div>
-                    <p className="mt-1.5 text-[10px] font-mono text-background/40">peso {Math.round(a.weight * 100)}%</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {/* TWO-COLUMN LAYOUT */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_272px] gap-8 items-start">
 
-          {/* RADAR + SCALE */}
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 mb-6 rounded-xl border border-border/60 bg-muted/30 p-6 md:p-8">
-            <div className="flex justify-center">
-              <svg width={radarSize} height={radarSize}>
-                {[0.25, 0.5, 0.75, 1].map((f, i) => {
-                  const r = radarRadius * f;
-                  const pts = angles.map((a) => {
-                    const x = radarCenter + r * Math.cos(a);
-                    const y = radarCenter + r * Math.sin(a);
-                    return `${x},${y}`;
-                  }).join(" ");
-                  return <polygon key={i} points={pts} fill="none" stroke="hsl(var(--border))" strokeWidth={1} />;
-                })}
-                {angles.map((a, i) => {
-                  const x = radarCenter + radarRadius * Math.cos(a);
-                  const y = radarCenter + radarRadius * Math.sin(a);
-                  return <line key={i} x1={radarCenter} y1={radarCenter} x2={x} y2={y} stroke="hsl(var(--border))" strokeWidth={1} />;
-                })}
-                <polygon points={polygonPoints} fill="hsl(var(--foreground) / 0.18)" stroke="hsl(var(--foreground))" strokeWidth={1.5} />
-                {areaScores.map((a, i) => {
-                  const r = (a.score / 100) * radarRadius;
-                  const x = radarCenter + r * Math.cos(angles[i]);
-                  const y = radarCenter + r * Math.sin(angles[i]);
-                  return <circle key={a.id} cx={x} cy={y} r={5} fill={a.color} stroke="white" strokeWidth={2} />;
-                })}
-                {areaScores.map((a, i) => {
-                  const x = radarCenter + (radarRadius + 18) * Math.cos(angles[i]);
-                  const y = radarCenter + (radarRadius + 18) * Math.sin(angles[i]);
-                  const labels = ["Cultura", "Persone", "Amb. & Tech", "Journey"];
-                  return <text key={a.id} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={11} fill="hsl(var(--muted-foreground))">{labels[i]}</text>;
-                })}
-              </svg>
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">Legenda</p>
-              <ul className="space-y-2">
-                {areaScores.map((a, i) => {
-                  const labels = ["Cultura", "Persone", "Amb. & Tech", "Journey"];
+            {/* ── MAIN COLUMN ── */}
+            <div>
+              {/* Mobile score strip (lg:hidden) */}
+              <div className="lg:hidden bg-foreground text-background rounded-xl p-5 mb-6">
+                <p className="text-[10px] font-mono uppercase tracking-wider text-background/50 mb-1">EX Index globale</p>
+                <div className="flex items-baseline gap-1.5 mb-3">
+                  <span className="font-mono font-bold text-5xl leading-none tabular-nums">{globalScore}</span>
+                  <span className="text-background/50 font-mono text-sm">/100</span>
+                  <span className="ml-2 text-sm text-background/70">{globalLevel}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {areaScores.map((a, i) => (
+                    <div key={a.id} className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: a.color }} />
+                      <span className="text-[11px] text-background/70 truncate">{AREA_LABELS[i]}</span>
+                      <span className="text-[11px] font-mono text-background/60 ml-auto">{a.score}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Scale reference */}
+              <div className="mb-6 rounded-lg border border-border/60 bg-background overflow-hidden">
+                <div className="grid grid-cols-5 text-[10px] md:text-[11px]">
+                  {SCALE_LEVELS.map((s, i) => (
+                    <div key={s.n} className={`px-2 md:px-3 py-2.5 text-center ${i < 4 ? "border-r border-border/60" : ""}`}>
+                      <div className="font-mono font-bold text-foreground">{s.n}</div>
+                      <div className="text-muted-foreground mt-0.5 leading-tight">{s.t}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* AREAS accordion */}
+              <div className="space-y-4 mb-10">
+                {AREAS.map((area, idx) => {
+                  const aScore = areaScores[idx];
+                  const isOpen = openAreas[area.id];
                   return (
-                    <li key={a.id} className="flex items-center justify-between gap-3 text-sm">
-                      <span className="flex items-center gap-2.5">
-                        <span className="w-2.5 h-2.5 rounded-full" style={{ background: a.color }} />
-                        <span className="text-foreground">{labels[i]}</span>
-                      </span>
-                      <span className="font-mono tabular-nums text-muted-foreground" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{a.score}/100</span>
-                    </li>
+                    <div key={area.id} className="rounded-xl border border-border/60 bg-background overflow-hidden">
+                      <button
+                        onClick={() => setOpenAreas((p) => ({ ...p, [area.id]: !p[area.id] }))}
+                        className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left hover:bg-muted/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-4 min-w-0">
+                          <span className="w-1 self-stretch rounded-full" style={{ background: area.color, minHeight: 40 }} />
+                          <div className="min-w-0">
+                            <h2 className="text-base md:text-lg font-semibold text-foreground truncate">{area.name}</h2>
+                            <p className="text-xs md:text-sm text-muted-foreground truncate">{area.subtitle}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
+                          <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground hidden sm:inline">peso {Math.round(area.weight * 100)}%</span>
+                          <span className="text-xs md:text-sm font-mono font-semibold px-2.5 py-1 rounded text-white tabular-nums" style={{ background: area.color, fontFamily: "'IBM Plex Mono', monospace" }}>
+                            {aScore.score}/100
+                          </span>
+                          <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                        </div>
+                      </button>
+                      {isOpen && (
+                        <div className="border-t border-border/60 divide-y divide-border/40">
+                          {area.dimensions.map((d) => {
+                            const st = dims[d.id];
+                            const points = (st.score ?? 0) * d.peso;
+                            return (
+                              <div key={d.id} className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1.3fr_0.8fr] gap-4 p-5 md:p-6">
+                                <div>
+                                  <h3 className="text-sm font-semibold text-foreground mb-1.5">{d.title}</h3>
+                                  <p className="text-xs text-muted-foreground leading-relaxed mb-2">{d.description}</p>
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-muted text-muted-foreground">peso {d.peso}/3</span>
+                                    {d.ingaze && (
+                                      <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded text-white" style={{ background: "#0D9488" }}>↔ Ingaze</span>
+                                    )}
+                                  </div>
+                                </div>
+                                <div>
+                                  <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Fonte del dato</Label>
+                                  <Select value={st.fonte} onValueChange={(v) => updateDim(d.id, { fonte: v })}>
+                                    <SelectTrigger className="h-9 text-xs">
+                                      <SelectValue placeholder="Seleziona…" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {FONTI.map((f) => <SelectItem key={f} value={f} className="text-xs">{f}</SelectItem>)}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                                <div>
+                                  <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Note ragionamento</Label>
+                                  <Textarea
+                                    value={st.note}
+                                    onChange={(e) => updateDim(d.id, { note: e.target.value })}
+                                    placeholder="Da cosa lo deduciamo? Quali evidenze, esempi o dubbi?"
+                                    className="min-h-[72px] text-xs resize-y"
+                                  />
+                                </div>
+                                <div>
+                                  <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Score</Label>
+                                  <Select value={st.score === null ? "" : String(st.score)} onValueChange={(v) => updateDim(d.id, { score: Number(v) })}>
+                                    <SelectTrigger className="h-9 text-xs">
+                                      <SelectValue placeholder="—" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {SCALE_LEVELS.map(({ n, t }) => (
+                                        <SelectItem key={n} value={String(n)} className="text-xs">
+                                          {n} — {t}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                  <p className="mt-1.5 text-[10px] font-mono text-muted-foreground tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+                                    {points} punti pesati
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
                   );
                 })}
-              </ul>
-            </div>
-          </div>
+              </div>
 
-          {/* SCALE BAR */}
-          <div className="mb-12 rounded-lg border border-border/60 bg-background overflow-hidden">
-            <div className="grid grid-cols-5 text-[11px] md:text-xs">
-              {[
-                { n: 0, t: "Assente" },
-                { n: 1, t: "Iniziale" },
-                { n: 2, t: "In sviluppo" },
-                { n: 3, t: "Consolidato" },
-                { n: 4, t: "Eccellente" },
-              ].map((s, i) => (
-                <div key={s.n} className={`px-2 md:px-4 py-3 text-center ${i < 4 ? "border-r border-border/60" : ""}`}>
-                  <div className="font-mono font-bold text-foreground" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{s.n}</div>
-                  <div className="text-muted-foreground mt-0.5">{s.t}</div>
+              {/* ACTIONS */}
+              <div className="mb-16">
+                {!aiAnalysis && !aiLoading && (
+                  <div>
+                    <Button onClick={handleElabora} disabled={globalScore === 0} size="lg">
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Elabora Analisi
+                    </Button>
+                    <p className="mt-3 text-xs font-mono text-muted-foreground">
+                      L'analisi viene elaborata dall'AI in base ai dati inseriti e inclusa nel PDF.
+                    </p>
+                  </div>
+                )}
+                {aiLoading && (
+                  <div className="flex items-center gap-3 py-2">
+                    <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground">Elaborazione in corso…</span>
+                  </div>
+                )}
+                {aiError && !aiLoading && (
+                  <div className="flex flex-wrap items-center gap-4">
+                    <p className="text-sm text-red-500">{aiError}</p>
+                    <button onClick={handleElabora} className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors">Riprova</button>
+                  </div>
+                )}
+                {aiAnalysis && !aiLoading && (
+                  <div className="flex flex-wrap items-center gap-6">
+                    <div className="flex items-center gap-2.5">
+                      <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <span className="text-sm font-medium text-foreground">L'analisi è pronta.</span>
+                    </div>
+                    <Button onClick={handleExportPDF} size="lg">
+                      <Download className="h-4 w-4 mr-2" />
+                      Scarica il PDF
+                    </Button>
+                    <button onClick={handleElabora} className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors">Rigenera</button>
+                    <button onClick={handleReset} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4">
+                      <RotateCcw className="h-3.5 w-3.5" />
+                      Nuova sessione
+                    </button>
+                  </div>
+                )}
+                {!aiAnalysis && !aiLoading && globalScore > 0 && (
+                  <button onClick={handleReset} className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4">
+                    <RotateCcw className="h-3.5 w-3.5" />
+                    Azzera tutto
+                  </button>
+                )}
+              </div>
+
+              {/* EXPLAINER */}
+              <div className="mt-8 pt-10 border-t border-border/40">
+                <p className="text-xs text-muted-foreground mb-4">Come funziona questo assessment</p>
+                <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+                  <p>Questo tool valuta l'employee experience su quattro aree con pesi diversi. Per ogni dimensione si assegna un punteggio da 0 a 4 e si indica la fonte del dato. Il risultato è un indice per area e un EX Index globale ponderato.</p>
+                  <p>Le dimensioni con il badge ↔ Ingaze si sovrappongono con l'analisi Ingaze: usate quei dati come fonte primaria quando disponibili. Lo scarto tra percezione interna ed esterna è già una diagnosi.</p>
                 </div>
-              ))}
+                <Link href="/lumen" className="inline-block mt-6 text-sm text-primary font-semibold hover:underline transition-colors">
+                  Scopri come lavora Lumen →
+                </Link>
+              </div>
             </div>
-          </div>
 
-          {/* AREAS */}
-          <div className="space-y-4 mb-10">
-            {AREAS.map((area, idx) => {
-              const aScore = areaScores[idx];
-              const isOpen = openAreas[area.id];
-              return (
-                <div key={area.id} className="rounded-xl border border-border/60 bg-background overflow-hidden">
-                  <button
-                    onClick={() => setOpenAreas((p) => ({ ...p, [area.id]: !p[area.id] }))}
-                    className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left hover:bg-muted/30 transition-colors"
-                  >
-                    <div className="flex items-center gap-4 min-w-0">
-                      <span className="w-1 self-stretch rounded-full" style={{ background: area.color, minHeight: 40 }} />
-                      <div className="min-w-0">
-                        <h2 className="text-base md:text-lg font-semibold text-foreground truncate">{area.name}</h2>
-                        <p className="text-xs md:text-sm text-muted-foreground truncate">{area.subtitle}</p>
+            {/* ── STICKY SIDEBAR ── */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 space-y-3">
+
+                {/* EX Index */}
+                <div className="bg-foreground text-background rounded-xl p-5">
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-background/50 mb-1">EX Index globale</p>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-mono font-bold text-6xl leading-none tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+                      {globalScore}
+                    </span>
+                    <span className="text-background/50 font-mono">/100</span>
+                  </div>
+                  <p className="mt-1 text-sm text-background/70">{globalLevel}</p>
+                </div>
+
+                {/* Area bars */}
+                <div className="rounded-xl border border-border/60 bg-background p-4 space-y-3">
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1">Aree</p>
+                  {areaScores.map((a, i) => (
+                    <div key={a.id}>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs text-foreground flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: a.color }} />
+                          {AREA_LABELS[i]}
+                        </span>
+                        <span className="text-xs font-mono tabular-nums text-muted-foreground" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+                          {a.score}/100
+                        </span>
+                      </div>
+                      <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full transition-all duration-300 rounded-full" style={{ width: `${a.score}%`, background: a.color }} />
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground hidden sm:inline">peso {Math.round(area.weight * 100)}%</span>
-                      <span className="text-xs md:text-sm font-mono font-semibold px-2.5 py-1 rounded text-white tabular-nums" style={{ background: area.color, fontFamily: "'IBM Plex Mono', monospace" }}>
-                        {aScore.score}/100
-                      </span>
-                      <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
-                    </div>
-                  </button>
-                  {isOpen && (
-                    <div className="border-t border-border/60 divide-y divide-border/40">
-                      {area.dimensions.map((d) => {
-                        const st = dims[d.id];
-                        const points = (st.score ?? 0) * d.peso;
-                        return (
-                          <div key={d.id} className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1.3fr_0.8fr] gap-4 p-5 md:p-6">
-                            <div>
-                              <h3 className="text-sm font-semibold text-foreground mb-1.5">{d.title}</h3>
-                              <p className="text-xs text-muted-foreground leading-relaxed mb-2">{d.description}</p>
-                              <div className="flex items-center gap-1.5 flex-wrap">
-                                <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-muted text-muted-foreground">peso {d.peso}/3</span>
-                                {d.ingaze && (
-                                  <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded text-white" style={{ background: "#0D9488" }}>↔ Ingaze</span>
-                                )}
-                              </div>
-                            </div>
-                            <div>
-                              <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Fonte del dato</Label>
-                              <Select value={st.fonte} onValueChange={(v) => updateDim(d.id, { fonte: v })}>
-                                <SelectTrigger className="h-9 text-xs">
-                                  <SelectValue placeholder="Seleziona…" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {FONTI.map((f) => <SelectItem key={f} value={f} className="text-xs">{f}</SelectItem>)}
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div>
-                              <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Note ragionamento</Label>
-                              <Textarea
-                                value={st.note}
-                                onChange={(e) => updateDim(d.id, { note: e.target.value })}
-                                placeholder="Da cosa lo deduciamo? Quali evidenze, esempi o dubbi?"
-                                className="min-h-[72px] text-xs resize-y"
-                              />
-                            </div>
-                            <div>
-                              <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Score</Label>
-                              <Select value={st.score === null ? "" : String(st.score)} onValueChange={(v) => updateDim(d.id, { score: Number(v) })}>
-                                <SelectTrigger className="h-9 text-xs">
-                                  <SelectValue placeholder="—" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {[0, 1, 2, 3, 4].map((n) => <SelectItem key={n} value={String(n)} className="text-xs">{n}</SelectItem>)}
-                                </SelectContent>
-                              </Select>
-                              <p className="mt-1.5 text-[10px] font-mono text-muted-foreground tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
-                                {points} punti pesati
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+                  ))}
                 </div>
-              );
-            })}
-          </div>
 
-          {/* ACTIONS */}
-          <div className="mb-16">
-            {/* Pre-generation state */}
-            {!aiAnalysis && !aiLoading && (
-              <div>
-                <Button
-                  onClick={handleElabora}
-                  disabled={globalScore === 0}
-                  size="lg"
-                >
-                  <Sparkles className="h-4 w-4 mr-2" />
-                  Elabora Analisi
-                </Button>
-                <p className="mt-3 text-xs font-mono text-muted-foreground">
-                  L'analisi viene elaborata dall'AI in base ai dati inseriti e inclusa nel PDF.
-                </p>
-              </div>
-            )}
-
-            {/* Loading state */}
-            {aiLoading && (
-              <div className="flex items-center gap-3 py-2">
-                <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">Elaborazione in corso…</span>
-              </div>
-            )}
-
-            {/* Error state */}
-            {aiError && !aiLoading && (
-              <div className="flex flex-wrap items-center gap-4">
-                <p className="text-sm text-red-500">{aiError}</p>
-                <button
-                  onClick={handleElabora}
-                  className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
-                >
-                  Riprova
-                </button>
-              </div>
-            )}
-
-            {/* Success state */}
-            {aiAnalysis && !aiLoading && (
-              <div className="flex flex-wrap items-center gap-6">
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-                  <span className="text-sm font-medium text-foreground">L'analisi è pronta.</span>
+                {/* Radar */}
+                <div className="rounded-xl border border-border/60 bg-muted/30 p-3 flex justify-center">
+                  <svg width={sbSize} height={sbSize}>
+                    {[0.25, 0.5, 0.75, 1].map((f, i) => {
+                      const r = sbRadius * f;
+                      const pts = angles.map((a) => `${sbCenter + r * Math.cos(a)},${sbCenter + r * Math.sin(a)}`).join(" ");
+                      return <polygon key={i} points={pts} fill="none" stroke="hsl(var(--border))" strokeWidth={1} />;
+                    })}
+                    {angles.map((a, i) => (
+                      <line key={i} x1={sbCenter} y1={sbCenter} x2={sbCenter + sbRadius * Math.cos(a)} y2={sbCenter + sbRadius * Math.sin(a)} stroke="hsl(var(--border))" strokeWidth={1} />
+                    ))}
+                    <polygon points={sbPolygonPoints} fill="hsl(var(--foreground) / 0.15)" stroke="hsl(var(--foreground))" strokeWidth={1.5} />
+                    {areaScores.map((a, i) => {
+                      const r = (a.score / 100) * sbRadius;
+                      return <circle key={a.id} cx={sbCenter + r * Math.cos(angles[i])} cy={sbCenter + r * Math.sin(angles[i])} r={4} fill={a.color} stroke="white" strokeWidth={1.5} />;
+                    })}
+                    {AREA_LABELS.map((label, i) => (
+                      <text key={i} x={sbCenter + (sbRadius + 16) * Math.cos(angles[i])} y={sbCenter + (sbRadius + 16) * Math.sin(angles[i])} textAnchor="middle" dominantBaseline="middle" fontSize={9} fill="hsl(var(--muted-foreground))">{label}</text>
+                    ))}
+                  </svg>
                 </div>
-                <Button onClick={handleExportPDF} size="lg">
-                  <Download className="h-4 w-4 mr-2" />
-                  Scarica il PDF
-                </Button>
-                <button
-                  onClick={handleElabora}
-                  className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
-                >
-                  Rigenera
-                </button>
-                <button
-                  onClick={handleReset}
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
-                >
-                  <RotateCcw className="h-3.5 w-3.5" />
-                  Nuova sessione
-                </button>
+
+                {/* Scale reference */}
+                <div className="rounded-lg border border-border/60 bg-background overflow-hidden">
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground px-3 pt-3 pb-1">Scala</p>
+                  <div className="divide-y divide-border/40">
+                    {SCALE_LEVELS.map((s) => (
+                      <div key={s.n} className="flex items-center justify-between px-3 py-1.5">
+                        <span className="text-[11px] font-mono font-bold text-foreground">{s.n}</span>
+                        <span className="text-[11px] text-muted-foreground">{s.t}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
-            )}
+            </aside>
 
-            {/* Reset when nothing done yet */}
-            {!aiAnalysis && !aiLoading && globalScore > 0 && (
-              <button
-                onClick={handleReset}
-                className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
-              >
-                <RotateCcw className="h-3.5 w-3.5" />
-                Azzera tutto
-              </button>
-            )}
-          </div>
-
-          {/* EXPLAINER */}
-          <div className="mt-20 pt-12 border-t border-border/40">
-            <p className="text-xs text-muted-foreground mb-4">Come funziona questo assessment</p>
-            <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-              <p>Questo tool valuta l'employee experience su quattro aree con pesi diversi. Per ogni dimensione si assegna un punteggio da 0 a 4 e si indica la fonte del dato. Il risultato è un indice per area e un EX Index globale ponderato.</p>
-              <p>Le dimensioni con il badge ↔ Ingaze si sovrappongono con l'analisi Ingaze: usate quei dati come fonte primaria quando disponibili. Lo scarto tra percezione interna ed esterna è già una diagnosi.</p>
-            </div>
-            <Link href="/lumen" className="inline-block mt-6 text-sm text-primary font-semibold hover:underline transition-colors">
-              Scopri come lavora Lumen →
-            </Link>
           </div>
         </div>
       </main>
