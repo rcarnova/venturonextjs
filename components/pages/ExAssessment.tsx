@@ -463,11 +463,12 @@ const ExAssessment = () => {
       doc.line(M, y, pageW - M, y);
       y += 12;
 
-      const rawAnalysis = aiAnalysis.replace(/—/g, "-");
-      rawAnalysis.split("\n").forEach((rawLine: string) => {
-        const boldMatch = rawLine.match(/^\*\*(.+)\*\*$/);
-        const italicMatch = rawLine.match(/^\*(.+)\*$/);
-        if (rawLine.trim() === "") { y += 5; return; }
+      const rawAnalysis = aiAnalysis.replace(/—/g, "-").replace(/\r/g, "");
+      rawAnalysis.split("\n").forEach((rawLineRaw: string) => {
+        const rawLine = rawLineRaw.trim();
+        const boldMatch = rawLine.match(/^\*\*(.+?)\*\*/) ;
+        const italicMatch = !boldMatch && rawLine.match(/^\*([^*].+?)\*$/);
+        if (rawLine === "") { y += 5; return; }
         if (boldMatch) {
           if (y > pageH - 40) { doc.addPage(); y = M; }
           y += 4;
