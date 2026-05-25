@@ -84,7 +84,7 @@ async function sendNotification({
     </div>
   </div>`;
 
-  await fetch("https://api.resend.com/emails", {
+  const resendRes = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${RESEND_API_KEY}`,
@@ -92,11 +92,15 @@ async function sendNotification({
     },
     body: JSON.stringify({
       from: "EX Assessment <info@venturoconsulting.it>",
-      to: "rosario.carnovale@gmail.com",
+      to: ["rosario.carnovale@gmail.com"],
       subject: `EX Assessment — ${org || "sessione"} — ${data || new Date().toISOString().slice(0, 10)}`,
       html,
     }),
   });
+  if (!resendRes.ok) {
+    const errBody = await resendRes.text();
+    console.error("Resend error", resendRes.status, errBody);
+  }
 }
 
 export async function POST(req: NextRequest) {
