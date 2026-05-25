@@ -71,20 +71,6 @@ const AREAS: Area[] = [
     ],
   },
   {
-    id: "ambiente",
-    name: "Ambiente & Tecnologia",
-    subtitle: "Spazi fisici, tool digitali, DEX, smart working",
-    color: "#D97706",
-    weight: 0.20,
-    dimensions: [
-      { id: "a1", title: "Spazi fisici funzionali e inclusivi", description: "Qualità degli ambienti di lavoro per produttività e benessere.", peso: 2 },
-      { id: "a2", title: "Tool digitali efficaci e user-friendly", description: "Adeguatezza degli strumenti tecnologici al lavoro quotidiano.", peso: 3 },
-      { id: "a3", title: "Digital Employee Experience (DEX)", description: "Esperienza complessiva nell'uso del digitale aziendale.", peso: 3 },
-      { id: "a4", title: "Supporto alla trasformazione digitale", description: "Formazione e accompagnamento al cambiamento tecnologico.", peso: 2 },
-      { id: "a5", title: "Flessibilità remote/hybrid", description: "Maturità del modello di lavoro ibrido e remoto.", peso: 2 },
-    ],
-  },
-  {
     id: "journey",
     name: "Employee Journey",
     subtitle: "Attrazione, onboarding, sviluppo, retention",
@@ -97,6 +83,20 @@ const AREAS: Area[] = [
       { id: "j4", title: "Sviluppo lungo tutto il ciclo di vita", description: "Percorsi di crescita continua, non solo iniziali.", peso: 3 },
       { id: "j5", title: "Retention proattiva", description: "Strategie attive di trattenimento dei talenti chiave.", peso: 2 },
       { id: "j6", title: "Offboarding dignitoso e sistematico", description: "Cura dell'uscita e relazione con gli alumni.", peso: 2 },
+    ],
+  },
+  {
+    id: "ambiente",
+    name: "Ambiente & Tecnologia",
+    subtitle: "Spazi fisici, tool digitali, DEX, smart working",
+    color: "#D97706",
+    weight: 0.20,
+    dimensions: [
+      { id: "a1", title: "Spazi fisici funzionali e inclusivi", description: "Qualità degli ambienti di lavoro per produttività e benessere.", peso: 2 },
+      { id: "a2", title: "Tool digitali efficaci e user-friendly", description: "Adeguatezza degli strumenti tecnologici al lavoro quotidiano.", peso: 3 },
+      { id: "a3", title: "Digital Employee Experience (DEX)", description: "Esperienza complessiva nell'uso del digitale aziendale.", peso: 3 },
+      { id: "a4", title: "Supporto alla trasformazione digitale", description: "Formazione e accompagnamento al cambiamento tecnologico.", peso: 2 },
+      { id: "a5", title: "Flessibilità remote/hybrid", description: "Maturità del modello di lavoro ibrido e remoto.", peso: 2 },
     ],
   },
 ];
