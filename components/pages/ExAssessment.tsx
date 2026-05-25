@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ChevronDown, Download, RotateCcw, Sparkles } from "lucide-react";
+import { ChevronDown, RotateCcw, Sparkles, Download, CheckCircle2 } from "lucide-react";
 
 import { SEO } from "@/components/SEO";
 import Header from "@/components/Header";
@@ -173,7 +173,7 @@ const ExAssessment = () => {
     setAiError("");
   };
 
-  const handleGenerateAnalysis = async () => {
+  const handleElabora = async () => {
     setAiLoading(true);
     setAiError("");
     setAiAnalysis("");
@@ -208,7 +208,6 @@ const ExAssessment = () => {
   }).join(" ");
 
   const handleExportPDF = async () => {
-    // Load jsPDF from CDN
     const ensureJsPDF = (): Promise<any> => new Promise((resolve, reject) => {
       if ((window as any).jspdf) return resolve((window as any).jspdf.jsPDF);
       const s = document.createElement("script");
@@ -220,88 +219,259 @@ const ExAssessment = () => {
 
     const jsPDF = await ensureJsPDF();
     const doc = new jsPDF({ unit: "pt", format: "a4" });
-    const pageW = doc.internal.pageSize.getWidth();
-    const margin = 40;
-    let y = margin;
+    const pageW = doc.internal.pageSize.getWidth();   // 595
+    const pageH = doc.internal.pageSize.getHeight();  // 842
+    const M = 48; // margin
+    const contentW = pageW - M * 2;
 
-    doc.setFontSize(18);
-    doc.text("EX Assessment", margin, y);
-    y += 22;
-    doc.setFontSize(10);
-    doc.setTextColor(110);
-    doc.text(`Organizzazione: ${org || "—"}`, margin, y); y += 14;
-    doc.text(`Data sessione: ${data || "—"}`, margin, y); y += 14;
-    doc.text(`Facilitatore: ${facilitatore || "—"}`, margin, y); y += 22;
+    // Palette
+    const INK: [number, number, number] = [17, 17, 17];
+    const ACCENT: [number, number, number] = [230, 255, 61];
+    const WHITE: [number, number, number] = [255, 255, 255];
+    const GRAY: [number, number, number] = [120, 120, 120];
+    const LIGHT: [number, number, number] = [245, 245, 243];
 
-    doc.setTextColor(0);
-    doc.setFontSize(14);
-    doc.text(`EX Index: ${globalScore} / 100 — ${globalLevel}`, margin, y);
-    y += 20;
+    // ── PAGE 1: COVER ──────────────────────────────────────────
+    // Black header bar
+    doc.setFillColor(...INK);
+    doc.rect(0, 0, pageW, 80, "F");
 
-    if (aiAnalysis) {
-      if (y > 680) { doc.addPage(); y = margin; }
-      doc.setFontSize(11);
-      doc.setTextColor(0);
-      doc.text("Interpretazione AI", margin, y); y += 14;
-      doc.setFontSize(9);
-      doc.setTextColor(60);
-      const cleanedAnalysis = aiAnalysis.replace(/\*\*/g, "").replace(/\*/g, "");
-      const analysisLines = doc.splitTextToSize(cleanedAnalysis, pageW - margin * 2);
-      analysisLines.forEach((line: string) => {
-        if (y > 780) { doc.addPage(); y = margin; }
-        doc.text(line, margin, y);
-        y += 12;
-      });
-      doc.setTextColor(0);
-      y += 10;
-    }
+    // "EX Assessment" white
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.setTextColor(...WHITE);
+    doc.text("EX Assessment", M, 50);
 
-    doc.setFontSize(11);
-    doc.text("Punteggi per area", margin, y); y += 14;
-    doc.setFontSize(10);
-    areaScores.forEach((a) => {
-      doc.setTextColor(0);
-      doc.text(`${a.name} (${Math.round(a.weight * 100)}%): ${a.score}/100`, margin, y);
-      // bar
-      const barX = margin + 280;
-      const barW = 200;
-      doc.setDrawColor(220);
-      doc.setFillColor(240);
-      doc.rect(barX, y - 8, barW, 8, "F");
-      const [r, g, b] = hexToRgb(a.color);
-      doc.setFillColor(r, g, b);
-      doc.rect(barX, y - 8, (barW * a.score) / 100, 8, "F");
-      y += 16;
+    // "Venturo" yellow top-right
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(...ACCENT);
+    doc.text("Venturo", pageW - M, 38, { align: "right" });
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7);
+    doc.setTextColor(180, 180, 180);
+    doc.text("venturoconsulting.it", pageW - M, 50, { align: "right" });
+
+    let y = 104;
+
+    // Session info row
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(...GRAY);
+    const sessionItems = [
+      `Organizzazione: ${org || "—"}`,
+      `Data: ${data || "—"}`,
+      `Facilitatore: ${facilitatore || "—"}`,
+    ];
+    const colW = contentW / 3;
+    sessionItems.forEach((txt, i) => {
+      doc.text(txt, M + i * colW, y);
     });
+    y += 24;
+
+    // Yellow accent rule
+    doc.setFillColor(...ACCENT);
+    doc.rect(M, y, 48, 3, "F");
+    y += 16;
+
+    // EX Index label
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(...GRAY);
+    doc.text("EX INDEX GLOBALE", M, y);
     y += 10;
 
-    AREAS.forEach((area) => {
-      if (y > 760) { doc.addPage(); y = margin; }
-      doc.setFontSize(12);
-      const [r, g, b] = hexToRgb(area.color);
-      doc.setTextColor(r, g, b);
-      doc.text(`${area.name}`, margin, y); y += 16;
-      doc.setTextColor(0);
+    // Score large number
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(72);
+    doc.setTextColor(...INK);
+    doc.text(String(globalScore), M, y + 60);
+
+    // /100 and level beside it
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.setTextColor(...GRAY);
+    doc.text(`/ 100`, M + 98, y + 40);
+    doc.setFontSize(11);
+    doc.setTextColor(...INK);
+    doc.text(globalLevel, M + 100, y + 58);
+    y += 80;
+
+    // Area cards — 4 in a row
+    y += 16;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7);
+    doc.setTextColor(...GRAY);
+    doc.text("PUNTEGGI PER AREA", M, y);
+    y += 10;
+
+    const cardW = (contentW - 9) / 4;
+    const cardH = 56;
+    areaScores.forEach((a, i) => {
+      const cx = M + i * (cardW + 3);
+      // Card background
+      doc.setFillColor(...LIGHT);
+      doc.rect(cx, y, cardW, cardH, "F");
+      // Color top border
+      const [cr, cg, cb] = hexToRgb(a.color);
+      doc.setFillColor(cr, cg, cb);
+      doc.rect(cx, y, cardW, 3, "F");
+      // Area name (truncated)
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(7);
+      doc.setTextColor(...GRAY);
+      const shortName = a.name.split(" ")[0];
+      doc.text(shortName, cx + 8, y + 16);
+      // Score
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.setTextColor(...INK);
+      doc.text(String(a.score), cx + 8, y + 36);
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(9);
-      area.dimensions.forEach((d) => {
-        if (y > 780) { doc.addPage(); y = margin; }
-        const st = dims[d.id];
-        const sc = st?.score ?? "—";
-        doc.setFont("helvetica", "bold");
-        doc.text(`• ${d.title}  [peso ${d.peso}/3]  score: ${sc}/4`, margin, y); y += 12;
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(110);
-        doc.text(`  Fonte: ${st?.fonte || "—"}`, margin, y); y += 12;
-        if (st?.note) {
-          const lines = doc.splitTextToSize(`  Note: ${st.note}`, pageW - margin * 2);
-          doc.text(lines, margin, y);
-          y += 12 * lines.length;
-        }
-        doc.setTextColor(0);
-        y += 4;
-      });
-      y += 8;
+      doc.setTextColor(...GRAY);
+      doc.text("/100", cx + 8 + (a.score >= 100 ? 28 : a.score >= 10 ? 22 : 14), y + 36);
+      // Weight
+      doc.setFontSize(6);
+      doc.text(`peso ${Math.round(a.weight * 100)}%`, cx + 8, y + cardH - 6);
     });
+    y += cardH + 24;
+
+    // ── AI ANALYSIS SECTION (on same page if space, else new page) ──
+    if (aiAnalysis) {
+      if (y > pageH - 200) { doc.addPage(); y = M; }
+
+      // Yellow left bar
+      doc.setFillColor(...ACCENT);
+      doc.rect(M, y, 3, 14, "F");
+      // Label
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8);
+      doc.setTextColor(...GRAY);
+      doc.text("INTERPRETAZIONE AI", M + 10, y + 10);
+      y += 22;
+
+      // Divider
+      doc.setDrawColor(220, 220, 220);
+      doc.setLineWidth(0.5);
+      doc.line(M, y, pageW - M, y);
+      y += 12;
+
+      const cleanedAnalysis = aiAnalysis.replace(/\*\*/g, "").replace(/\*/g, "");
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(50, 50, 50);
+      const analysisLines = doc.splitTextToSize(cleanedAnalysis, contentW);
+      analysisLines.forEach((line: string) => {
+        if (y > pageH - 40) { doc.addPage(); y = M; }
+        doc.text(line, M, y);
+        y += 13;
+      });
+      y += 20;
+    }
+
+    // ── AREA DETAIL PAGES ──────────────────────────────────────
+    doc.addPage();
+    y = M;
+
+    AREAS.forEach((area) => {
+      if (y > pageH - 120) { doc.addPage(); y = M; }
+
+      // Area header band
+      doc.setFillColor(...LIGHT);
+      doc.rect(0, y - 4, pageW, 30, "F");
+      // Color left accent
+      const [cr, cg, cb] = hexToRgb(area.color);
+      doc.setFillColor(cr, cg, cb);
+      doc.rect(0, y - 4, 4, 30, "F");
+      // Area name
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.setTextColor(...INK);
+      doc.text(area.name.toUpperCase(), 14, y + 14);
+      // Area score right
+      const aScore = areaScores.find(a => a.id === area.id);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.setTextColor(cr, cg, cb);
+      doc.text(`${aScore?.score ?? 0}/100`, pageW - M, y + 14, { align: "right" });
+      // Subtitle
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(7);
+      doc.setTextColor(...GRAY);
+      y += 30;
+      doc.text(area.subtitle, 14, y);
+      y += 18;
+
+      // Dimensions
+      area.dimensions.forEach((d) => {
+        if (y > pageH - 60) { doc.addPage(); y = M; }
+        const st = dims[d.id];
+
+        // Dim title
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...INK);
+        doc.text(d.title, M, y);
+        // Peso tag
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7);
+        doc.setTextColor(...GRAY);
+        doc.text(`peso ${d.peso}/3`, M + 240, y);
+        // Score on right
+        const sc = st?.score ?? null;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...INK);
+        doc.text(sc !== null ? `${sc}/4` : "—", pageW - M, y, { align: "right" });
+        y += 11;
+
+        // Score bar
+        const barW = 180;
+        const barH = 4;
+        doc.setFillColor(225, 225, 225);
+        doc.rect(M, y, barW, barH, "F");
+        if (sc !== null && sc > 0) {
+          doc.setFillColor(cr, cg, cb);
+          doc.rect(M, y, (barW * sc) / 4, barH, "F");
+        }
+        y += 10;
+
+        // Source + notes
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7);
+        doc.setTextColor(...GRAY);
+        if (st?.fonte) {
+          doc.text(`Fonte: ${st.fonte}`, M, y);
+          y += 10;
+        }
+        if (st?.note) {
+          const noteLines = doc.splitTextToSize(`Note: ${st.note}`, contentW - 20);
+          noteLines.forEach((line: string) => {
+            if (y > pageH - 40) { doc.addPage(); y = M; }
+            doc.text(line, M, y);
+            y += 10;
+          });
+        }
+        // Separator
+        doc.setDrawColor(230, 230, 230);
+        doc.setLineWidth(0.3);
+        doc.line(M, y + 2, pageW - M, y + 2);
+        y += 12;
+      });
+      y += 12;
+    });
+
+    // Footer on every page
+    const totalPages = (doc as any).internal.getNumberOfPages();
+    for (let p = 1; p <= totalPages; p++) {
+      doc.setPage(p);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(7);
+      doc.setTextColor(...GRAY);
+      doc.text(`EX Assessment — ${org || "Venturo"} — ${data}`, M, pageH - 20);
+      doc.text(`${p} / ${totalPages}`, pageW - M, pageH - 20, { align: "right" });
+    }
 
     doc.save(`ex-assessment-${(org || "sessione").toLowerCase().replace(/\s+/g, "-")}-${data}.pdf`);
   };
@@ -374,29 +544,6 @@ const ExAssessment = () => {
               </div>
             </div>
           </div>
-
-          {/* AI ANALYSIS PANEL */}
-          {(aiAnalysis || aiLoading || aiError) && (
-            <div className="mb-10 border-l-4 border-foreground pl-6">
-              <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">
-                Interpretazione AI
-              </p>
-              {aiLoading && (
-                <div className="flex items-center gap-2.5 text-sm text-muted-foreground py-4">
-                  <div className="w-4 h-4 border-2 border-foreground border-t-transparent rounded-full animate-spin flex-shrink-0" />
-                  Lettura in corso…
-                </div>
-              )}
-              {aiError && (
-                <p className="text-sm text-red-500">{aiError}</p>
-              )}
-              {aiAnalysis && !aiLoading && (
-                <div className="prose prose-sm max-w-none text-foreground/90 space-y-4 whitespace-pre-line">
-                  {aiAnalysis}
-                </div>
-              )}
-            </div>
-          )}
 
           {/* RADAR + SCALE */}
           <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 mb-6 rounded-xl border border-border/60 bg-muted/30 p-6 md:p-8">
@@ -556,35 +703,82 @@ const ExAssessment = () => {
           </div>
 
           {/* ACTIONS */}
-          <div className="flex flex-wrap items-center gap-4 mb-16">
-            <Button
-              onClick={handleGenerateAnalysis}
-              disabled={aiLoading || globalScore === 0}
-              size="lg"
-            >
-              {aiLoading ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-background border-t-transparent rounded-full animate-spin mr-2" />
-                  Analisi in corso…
-                </>
-              ) : (
-                <>
+          <div className="mb-16">
+            {/* Pre-generation state */}
+            {!aiAnalysis && !aiLoading && (
+              <div>
+                <Button
+                  onClick={handleElabora}
+                  disabled={globalScore === 0}
+                  size="lg"
+                >
                   <Sparkles className="h-4 w-4 mr-2" />
-                  {aiAnalysis ? "Rigenera analisi AI" : "Genera analisi AI"}
-                </>
-              )}
-            </Button>
-            <Button onClick={handleExportPDF} variant="outline" size="lg">
-              <Download className="h-4 w-4 mr-2" />
-              Esporta PDF
-            </Button>
-            <button
-              onClick={handleReset}
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
-            >
-              <RotateCcw className="h-3.5 w-3.5" />
-              Azzera tutto
-            </button>
+                  Elabora Analisi
+                </Button>
+                <p className="mt-3 text-xs font-mono text-muted-foreground">
+                  L'analisi viene elaborata dall'AI in base ai dati inseriti e inclusa nel PDF.
+                </p>
+              </div>
+            )}
+
+            {/* Loading state */}
+            {aiLoading && (
+              <div className="flex items-center gap-3 py-2">
+                <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin flex-shrink-0" />
+                <span className="text-sm text-muted-foreground">Elaborazione in corso…</span>
+              </div>
+            )}
+
+            {/* Error state */}
+            {aiError && !aiLoading && (
+              <div className="flex flex-wrap items-center gap-4">
+                <p className="text-sm text-red-500">{aiError}</p>
+                <button
+                  onClick={handleElabora}
+                  className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
+                >
+                  Riprova
+                </button>
+              </div>
+            )}
+
+            {/* Success state */}
+            {aiAnalysis && !aiLoading && (
+              <div className="flex flex-wrap items-center gap-6">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-foreground">L'analisi è pronta.</span>
+                </div>
+                <Button onClick={handleExportPDF} size="lg">
+                  <Download className="h-4 w-4 mr-2" />
+                  Scarica il PDF
+                </Button>
+                <button
+                  onClick={handleElabora}
+                  className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
+                >
+                  Rigenera
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  Nuova sessione
+                </button>
+              </div>
+            )}
+
+            {/* Reset when nothing done yet */}
+            {!aiAnalysis && !aiLoading && globalScore > 0 && (
+              <button
+                onClick={handleReset}
+                className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                Azzera tutto
+              </button>
+            )}
           </div>
 
           {/* EXPLAINER */}
