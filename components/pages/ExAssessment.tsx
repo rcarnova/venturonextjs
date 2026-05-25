@@ -39,7 +39,7 @@ const AREAS: Area[] = [
   {
     id: "cultura",
     name: "Cultura organizzativa",
-    subtitle: "Valori, inclusione, riconoscimento, fiducia",
+    subtitle: "Valori, inclusione, riconoscimento, fiducia, ruoli",
     color: "#0D9488",
     weight: 0.30,
     dimensions: [
@@ -50,12 +50,13 @@ const AREAS: Area[] = [
       { id: "c5", title: "Comunicazione aperta e bidirezionale", description: "Flussi di comunicazione tra livelli e qualità dell'ascolto.", peso: 3 },
       { id: "c6", title: "Scopo e significato nel lavoro", description: "Connessione tra attività quotidiane e mission aziendale.", peso: 2 },
       { id: "c7", title: "Work-life balance e flessibilità", description: "Equilibrio reale tra vita personale e professionale.", peso: 2 },
+      { id: "c8", title: "Chiarezza dei ruoli e qualità del lavoro", description: "Responsabilità definite, lavoro sufficientemente stimolante e risorse adeguate per svolgere il ruolo.", peso: 2 },
     ],
   },
   {
     id: "persone",
     name: "Persone & Leadership",
-    subtitle: "Manager, sviluppo, engagement, benessere",
+    subtitle: "Manager, sviluppo, engagement, benessere, retribuzione",
     color: "#7C3AED",
     weight: 0.28,
     dimensions: [
@@ -65,6 +66,8 @@ const AREAS: Area[] = [
       { id: "p4", title: "Engagement e senso di appartenenza", description: "Livello di coinvolgimento e identificazione con l'organizzazione.", peso: 3 },
       { id: "p5", title: "Programmi di mentoring e leadership", description: "Percorsi strutturati di sviluppo della leadership.", peso: 2 },
       { id: "p6", title: "Ascolto attivo e feedback loop", description: "Meccanismi di raccolta e attivazione del feedback.", peso: 3 },
+      { id: "p7", title: "Collaborazione e fiducia tra pari", description: "Qualità della collaborazione orizzontale: fiducia reciproca, clima psicologicamente sicuro, lavoro collettivo efficace.", peso: 2 },
+      { id: "p8", title: "Retribuzione equa e competitiva", description: "Percezione di equità interna e competitività della retribuzione rispetto al mercato.", peso: 2 },
     ],
   },
   {
@@ -158,19 +161,19 @@ const DEMO_DIMS: Record<string, DimState> = {
 };
 const DEMO_ANALYSIS = `**La tensione principale**
 
-C'è una frattura che attraversa questa organizzazione con una coerenza quasi metodica: i numeri più alti si concentrano nelle aree dove il controllo è visibile e misurabile — gli spazi fisici, gli strumenti digitali, la flessibilità operativa. Quelli più bassi cadono dove la cultura deve essere praticata invece che dichiarata: il riconoscimento, la delega reale, l'uscita dignitosa. Non è un'organizzazione che ignora il benessere delle persone. È un'organizzazione che ha investito nell'involucro senza chiedersi cosa ci fosse dentro.
+C'è una frattura che attraversa questa organizzazione con una coerenza quasi metodica: i numeri più alti si concentrano nelle aree dove il controllo è visibile e misurabile — gli spazi fisici, gli strumenti digitali, la flessibilità operativa. Quelli più bassi cadono dove la cultura deve essere praticata invece che dichiarata: il riconoscimento, la delega reale, l'uscita dignitosa. L'organizzazione ha investito nell'involucro senza mai chiedersi cosa ci fosse dentro.
 
 **Tre osservazioni**
 
 La gestione manageriale (2/4, peso 3/3) è il punto dove questa tensione diventa più costosa. L'alta varianza riportata — "alcuni manager eccellenti, altri molto sotto la media" — è la traduzione operativa di una cultura che non ha mai deciso se la leadership sia un comportamento da allenare o un talento che si trova o non si trova. In assenza di questa decisione, ogni manager interpreta il ruolo a modo suo, e i collaboratori imparano che dipendono dal caso più che dall'organizzazione.
 
-Lo sviluppo professionale (1/4) fondato su un budget tagliato del 40% non è solo una scelta economica: è un segnale culturale che i dipendenti decodificano con precisione. Il riconoscimento (1/4), non strutturato e affidato all'informalità, chiude un triangolo: l'organizzazione chiede risultati senza investire nello sviluppo e senza riconoscere il contributo. In questo triangolo la retention diventa una scommessa contro il mercato.
+Lo sviluppo professionale (1/4) poggia su un budget tagliato del 40%: i dipendenti leggono quel dato con precisione e ne traggono le conclusioni culturali che l'organizzazione non ha voluto trarre per prima. Il riconoscimento (1/4), affidato all'informalità dei singoli manager, chiude un triangolo: risultati richiesti, sviluppo non finanziato, contributo non riconosciuto. In questo triangolo la retention diventa una scommessa contro il mercato.
 
-L'onboarding (1/4) — "strutturato solo su carta, non applicato uniformemente" — è il punto dove l'identità organizzativa si gioca più di quanto si pensi. Quello che un nuovo assunto impara nei primi novanta giorni non è scritto nel manuale: è nella distribuzione informale del potere, in chi viene ascoltato, in cosa è permesso dire. Se questa esperienza è incoerente tra un team e l'altro, l'organizzazione sta producendo micro-culture divergenti invece che un'identità comune.
+L'onboarding (1/4) — "strutturato solo su carta, non applicato uniformemente" — è il punto dove l'identità organizzativa si gioca più di quanto si pensi. Quello che un nuovo assunto impara nei primi novanta giorni vive nella distribuzione informale del potere, in chi viene ascoltato, in cosa è permesso dire. Con un'esperienza incoerente tra un team e l'altro, l'organizzazione produce micro-culture divergenti invece che un'identità comune.
 
 **Area prioritaria**
 
-L'Employee Journey (con tre dimensioni critiche su sei) merita attenzione immediata non perché sia la più rotta, ma perché è quella con più leverage. Un turnover al 18% non è un problema di retention: è la conseguenza di tutto il resto letto da chi ha scelto di andarsene. Intervenire sulla retention senza affrontare onboarding, sviluppo e riconoscimento è come ridipingere la porta di una casa senza fondamenta.
+L'Employee Journey (con tre dimensioni critiche su sei) merita attenzione immediata non perché sia la più rotta, ma perché è quella con più leverage. Un turnover al 18% è la conseguenza leggibile di tutto il resto: la lettura di chi ha scelto di andarsene. Intervenire sulla retention senza affrontare onboarding, sviluppo e riconoscimento è come ridipingere la porta di una casa senza fondamenta.
 
 *Cosa sta trattenendo qui le persone che sono rimaste — e per quanto ancora quella ragione sarà sufficiente?*`;
 

@@ -25,7 +25,8 @@ DIVIETI ESPLICITI
 - Nessun consiglio operativo diretto ("dovreste fare X", "è necessario implementare")
 - Non riportare i numeri come lista di statistiche
 - Nessuna chiusura rassicurante tipo "nel complesso la situazione è positiva"
-- Non usare elenchi puntati nell'output — solo prosa`;
+- Non usare elenchi puntati nell'output — solo prosa
+- Vietato il pattern retorico "Non è X: è Y" e varianti ("Non è solo X: è Y", "Non è un problema di X: è la conseguenza di Y"). Non iniziare mai una frase con una negazione di ciò che qualcosa è, per poi ribaltarla in affermativo. È un dispositivo formulaico che rende l'analisi generica. Afferma direttamente.`;
 
 export async function POST(req: NextRequest) {
   try {
