@@ -655,7 +655,7 @@ const ExAssessment = () => {
             Come vivono davvero la vostra organizzazione?
           </h1>
           <p className="text-lg text-muted-foreground/80 mb-6 leading-relaxed max-w-2xl">
-            Valutate l'employee experience su quattro aree chiave. Il risultato è una mappa delle priorità — il punto di partenza per una conversazione più profonda.
+            Valutate l'employee experience su quattro aree chiave. Il risultato è una mappa delle priorità, il punto di partenza per una conversazione più profonda.
           </p>
 
           {/* EXPLAINER */}
