@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Download, Plus, X, ArrowRight } from "lucide-react";
 
 export default function PosterValoriPage() {
@@ -16,82 +16,131 @@ export default function PosterValoriPage() {
   const [textColor, setTextColor] = useState("#1A1A1A");
   const [accentColor, setAccentColor] = useState("#D4FF00");
   const [showBetrayal, setShowBetrayal] = useState(false);
-  const posterRef = useRef<HTMLDivElement>(null);
+  const [generating, setGenerating] = useState(false);
 
   const updateValue = (i: number, v: string) => {
     const next = [...values];
     next[i] = v;
     setValues(next);
   };
+  const addValue = () => { if (values.length < 5) setValues([...values, ""]); };
+  const removeValue = (i: number) => { if (values.length > 4) setValues(values.filter((_, idx) => idx !== i)); };
 
-  const addValue = () => {
-    if (values.length < 5) setValues([...values, ""]);
+  const loadScript = (src: string): Promise<void> =>
+    new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+      const s = document.createElement("script");
+      s.src = src;
+      s.onload = () => resolve();
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+
+  const hex2rgb = (hex: string): [number, number, number] => {
+    const c = hex.replace("#", "").padEnd(6, "0");
+    return [parseInt(c.slice(0, 2), 16), parseInt(c.slice(2, 4), 16), parseInt(c.slice(4, 6), 16)];
   };
 
-  const removeValue = (i: number) => {
-    if (values.length > 4) setValues(values.filter((_, idx) => idx !== i));
+  const handleGenerate = async () => {
+    setGenerating(true);
+    try {
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
+      const { jsPDF } = (window as any).jspdf;
+
+      // A2: 420 × 594 mm
+      const W = 420, H = 594, pX = 30, pY = 28;
+      const doc = new jsPDF({ orientation: "p", unit: "mm", format: "a2" });
+
+      const accentFinal = accentColor.toLowerCase().replace(/\s/g, "") === "#ffffff" ? textColor : accentColor;
+      const [bgR, bgG, bgB] = hex2rgb(bgColor);
+      const [txR, txG, txB] = hex2rgb(textColor);
+      const [acR, acG, acB] = hex2rgb(accentFinal);
+
+      // Sfondo
+      doc.setFillColor(bgR, bgG, bgB);
+      doc.rect(0, 0, W, H, "F");
+
+      // Label in cima
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(txR, txG, txB);
+      doc.text(companyName ? "I VALORI DI" : "I NOSTRI VALORI", pX, pY + 3.5);
+
+      let topY = pY + 14;
+
+      // Nome azienda
+      if (companyName) {
+        doc.setFont("helvetica", "bolditalic");
+        doc.setFontSize(34);
+        doc.text(companyName, pX, topY + 12);
+        topY += 22;
+      }
+
+      // Footer ancorato in basso (calcolo prima, disegno dopo)
+      const footerLineY = H - pY - 13;
+
+      // Valori: centrati nell'area disponibile tra topY e footer
+      const filled = values.filter((v) => v.trim());
+      const rowH = 22; // mm per riga
+      const availH = footerLineY - 8 - (topY + 4);
+      const startY = topY + 4 + (availH - filled.length * rowH) / 2;
+
+      filled.forEach((v, i) => {
+        const rY = startY + i * rowH;
+
+        // Linea sopra ogni riga
+        doc.setDrawColor(txR, txG, txB);
+        doc.setLineWidth(0.2);
+        doc.line(pX, rY, W - pX, rY);
+
+        // Numero
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(20);
+        doc.setTextColor(acR, acG, acB);
+        doc.text(`0${i + 1}`, pX, rY + 13);
+
+        // Valore
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(44);
+        doc.setTextColor(txR, txG, txB);
+        doc.text(v, pX + 20, rY + 15.5);
+      });
+
+      // Linea sotto l'ultimo valore
+      doc.setDrawColor(txR, txG, txB);
+      doc.setLineWidth(0.2);
+      doc.line(pX, startY + filled.length * rowH, W - pX, startY + filled.length * rowH);
+
+      // Footer
+      doc.setLineWidth(0.7);
+      doc.setDrawColor(txR, txG, txB);
+      doc.line(pX, footerLineY, W - pX, footerLineY);
+
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(7);
+      doc.setTextColor(txR, txG, txB);
+      doc.text(
+        "Realizzato con il generatore di poster di Venturo, che di mestiere aiuta le aziende quando i poster non bastano più. venturoconsulting.it",
+        pX,
+        footerLineY + 6,
+        { maxWidth: W - pX * 2 - 32 }
+      );
+
+      // Barra accento
+      doc.setFillColor(acR, acG, acB);
+      doc.rect(W - pX - 26, footerLineY + 3, 26, 5, "F");
+
+      doc.save(`Poster Valori${companyName ? " - " + companyName : ""}.pdf`);
+      setTimeout(() => setShowBetrayal(true), 200);
+    } catch (e) {
+      console.error("PDF error:", e);
+    } finally {
+      setGenerating(false);
+    }
   };
 
-  const handleGenerate = () => {
-    const printWindow = window.open("", "_blank");
-    if (!printWindow) return;
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>Poster Valori - ${companyName || "I tuoi valori"}</title>
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-        <style>
-          @page { size: A2 portrait; margin: 0; }
-          html, body { margin: 0; padding: 0; width: 420mm; height: 594mm; overflow: hidden; }
-          * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .poster-print {
-            position: relative;
-            width: 420mm; height: 594mm; overflow: hidden;
-            background: ${bgColor}; color: ${textColor};
-            padding: 30mm 32mm; box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            display: flex; flex-direction: column;
-          }
-          .label-print { font-size: 12pt; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; margin-bottom: 10mm; flex-shrink: 0; }
-          .company-print { font-family: 'Fraunces', serif; font-size: 40pt; font-weight: 800; line-height: 1; margin-bottom: 16mm; font-style: italic; flex-shrink: 0; }
-          .values-list-print { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; padding-bottom: 22mm; }
-          .value-row-print { display: flex; align-items: baseline; gap: 8mm; border-bottom: 1pt solid ${textColor}33; padding: 6mm 0; }
-          .num-print { font-family: 'Fraunces', serif; font-size: 28pt; font-weight: 600; color: ${accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor}; min-width: 48pt; flex-shrink: 0; }
-          .val-print { font-family: 'Fraunces', serif; font-size: 46pt; font-weight: 800; line-height: 1.05; }
-          .footer-print { position: absolute; bottom: 30mm; left: 32mm; right: 32mm; display: flex; justify-content: space-between; align-items: flex-end; padding-top: 8mm; border-top: 2pt solid ${textColor}; }
-          .footer-text-print { font-size: 8pt; font-style: italic; max-width: 220mm; line-height: 1.4; opacity: 0.7; }
-          .accent-bar-print { width: 28mm; height: 5mm; background: ${accentColor}; flex-shrink: 0; }
-        </style>
-      </head>
-      <body>
-        <div class="poster-print">
-          <div class="label-print">${companyName ? "I valori di" : "I nostri valori"}</div>
-          ${companyName ? `<div class="company-print">${companyName}</div>` : ""}
-          <div class="values-list-print">
-            ${values
-              .filter((v) => v.trim())
-              .map(
-                (v, i) =>
-                  `<div class="value-row-print"><div class="num-print">0${i + 1}</div><div class="val-print">${v}</div></div>`
-              )
-              .join("")}
-          </div>
-          <div class="footer-print">
-            <div class="footer-text-print">Realizzato con il generatore di poster di Venturo, che di mestiere aiuta le aziende quando i poster non bastano più. → venturoconsulting.it</div>
-            <div class="accent-bar-print"></div>
-          </div>
-        </div>
-        <script>document.fonts.ready.then(() => { window.print(); });<\/script>
-      </body>
-      </html>
-    `);
-    printWindow.document.close();
-    setTimeout(() => setShowBetrayal(true), 800);
-  };
-
-  const previewScale = 0.5;
   const filledValues = values.filter((v) => v.trim());
+  const accentPreview = accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor;
 
   return (
     <div className="min-h-screen w-full bg-stone-100 p-6" style={{ fontFamily: "Inter, sans-serif" }}>
@@ -199,10 +248,11 @@ export default function PosterValoriPage() {
 
           <button
             onClick={handleGenerate}
-            disabled={filledValues.length < 4}
+            disabled={filledValues.length < 4 || generating}
             className="w-full bg-stone-900 text-white py-4 px-6 flex items-center justify-center gap-2 hover:bg-stone-700 transition-colors disabled:bg-stone-300 disabled:cursor-not-allowed text-sm uppercase tracking-wider"
           >
-            <Download size={16} /> Genera PDF stampabile A2
+            <Download size={16} />
+            {generating ? "Generazione in corso…" : "Scarica PDF A2"}
           </button>
           {filledValues.length < 4 && (
             <p className="text-xs text-stone-500 mt-2 text-center">Servono almeno 4 valori</p>
@@ -211,63 +261,68 @@ export default function PosterValoriPage() {
 
         {/* PREVIEW */}
         <div>
-          <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-6">Anteprima (formato A2 ridotto)</h2>
+          <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-6">Anteprima (proporzionale A2)</h2>
           <div className="bg-stone-200 p-6 flex items-center justify-center">
             <div
-              ref={posterRef}
-              className="shadow-2xl"
+              className="shadow-2xl flex flex-col"
               style={{
-                width: `${420 * previewScale}px`,
-                height: `${594 * previewScale}px`,
+                width: "210px",
+                height: "297px",
                 background: bgColor,
                 color: textColor,
-                padding: `${40 * previewScale}mm ${35 * previewScale}mm`,
+                padding: "14px 16px",
                 boxSizing: "border-box",
                 position: "relative",
-                display: "flex",
-                flexDirection: "column",
                 fontFamily: "Inter, sans-serif",
               }}
             >
-              <div style={{ fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", fontWeight: 500, marginBottom: "15px" }}>
+              {/* Label */}
+              <div style={{ fontSize: "5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 500, marginBottom: "7px", flexShrink: 0 }}>
                 {companyName ? "I valori di" : "I nostri valori"}
               </div>
+
+              {/* Company name */}
               {companyName && (
-                <div style={{ fontFamily: "Fraunces, serif", fontSize: "28px", fontWeight: 800, lineHeight: 1, marginBottom: "24px", fontStyle: "italic" }}>
+                <div style={{ fontFamily: "Fraunces, serif", fontSize: "14px", fontWeight: 800, lineHeight: 1, marginBottom: "10px", fontStyle: "italic", flexShrink: 0 }}>
                   {companyName}
                 </div>
               )}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: "12px" }}>
+
+              {/* Values — centered */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", minHeight: 0 }}>
                 {filledValues.map((v, i) => (
                   <div
                     key={i}
                     style={{
                       display: "flex",
                       alignItems: "baseline",
-                      gap: "14px",
-                      borderBottom: `1px solid ${textColor}33`,
-                      paddingBottom: "10px",
+                      gap: "6px",
+                      borderTop: `0.5px solid ${textColor}33`,
+                      padding: "4px 0",
                     }}
                   >
-                    <div style={{ fontFamily: "Fraunces, serif", fontSize: "22px", fontWeight: 600, color: accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor, minWidth: "36px" }}>
+                    <div style={{ fontFamily: "Fraunces, serif", fontSize: "9px", fontWeight: 600, color: accentPreview, minWidth: "14px", flexShrink: 0 }}>
                       0{i + 1}
                     </div>
-                    <div style={{ fontFamily: "Fraunces, serif", fontSize: "32px", fontWeight: 800, lineHeight: 1 }}>
+                    <div style={{ fontFamily: "Fraunces, serif", fontSize: "16px", fontWeight: 800, lineHeight: 1 }}>
                       {v}
                     </div>
                   </div>
                 ))}
+                <div style={{ borderTop: `0.5px solid ${textColor}33` }} />
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginTop: "15px", paddingTop: "10px", borderTop: `2px solid ${textColor}` }}>
-                <div style={{ fontSize: "7px", fontStyle: "italic", maxWidth: "140px", lineHeight: 1.4, opacity: 0.7 }}>
-                  Realizzato con il generatore di poster di Venturo, che di mestiere aiuta le aziende quando i poster non bastano più. → venturoconsulting.it
+
+              {/* Footer */}
+              <div style={{ flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginTop: "7px", paddingTop: "5px", borderTop: `1px solid ${textColor}` }}>
+                <div style={{ fontSize: "4px", fontStyle: "italic", maxWidth: "120px", lineHeight: 1.4, opacity: 0.6 }}>
+                  Realizzato con il generatore di poster di Venturo. venturoconsulting.it
                 </div>
-                <div style={{ width: "24px", height: "5px", background: accentColor }}></div>
+                <div style={{ width: "12px", height: "2.5px", background: accentPreview, flexShrink: 0 }} />
               </div>
             </div>
           </div>
           <p className="text-xs text-stone-500 mt-3">
-            Il PDF finale sarà in A2 (420×594mm), stampabile in alta risoluzione. Questa è un&apos;anteprima al 50%.
+            Il PDF sarà in A2 (420×594mm). Il testo nel PDF usa Helvetica Bold — font integrato in jsPDF, vettoriale e nitido a qualsiasi dimensione di stampa.
           </p>
         </div>
       </div>
