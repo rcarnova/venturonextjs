@@ -217,6 +217,10 @@ const ExAssessment = () => {
 
   const globalLevel = getLevel(globalScore);
 
+  const totalDims = AREAS.reduce((sum, a) => sum + a.dimensions.length, 0);
+  const compiledDims = useMemo(() => Object.values(dims).filter((d) => d.score !== null).length, [dims]);
+  const missingDims = totalDims - compiledDims;
+
   const handleReset = () => {
     setDims(initState());
     setAiAnalysis("");
@@ -748,13 +752,31 @@ const ExAssessment = () => {
                             const st = dims[d.id];
                             const points = (st.score ?? 0) * d.peso;
                             return (
-                              <div key={d.id} className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1.3fr_0.8fr] gap-4 p-5 md:p-6">
+                              <div key={d.id} className="grid grid-cols-1 md:grid-cols-[1.4fr_0.8fr_1fr_1.3fr] gap-4 p-5 md:p-6">
                                 <div>
                                   <h3 className="text-sm font-semibold text-foreground mb-1.5">{d.title}</h3>
                                   <p className="text-xs text-muted-foreground leading-relaxed mb-2">{d.description}</p>
                                   <div className="flex items-center gap-1.5 flex-wrap">
                                     <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-muted text-muted-foreground">peso {d.peso}/3</span>
                                   </div>
+                                </div>
+                                <div>
+                                  <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Score</Label>
+                                  <Select value={st.score === null ? "" : String(st.score)} onValueChange={(v) => updateDim(d.id, { score: Number(v) })}>
+                                    <SelectTrigger className="h-9 text-xs">
+                                      <SelectValue placeholder="—" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {SCALE_LEVELS.map(({ n, t }) => (
+                                        <SelectItem key={n} value={String(n)} className="text-xs">
+                                          {n} — {t}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                  <p className="mt-1.5 text-[10px] font-mono text-muted-foreground tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+                                    {points} punti pesati
+                                  </p>
                                 </div>
                                 <div>
                                   <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Fonte del dato</Label>
@@ -776,24 +798,6 @@ const ExAssessment = () => {
                                     className="min-h-[72px] text-xs resize-y"
                                   />
                                 </div>
-                                <div>
-                                  <Label className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1 block">Score</Label>
-                                  <Select value={st.score === null ? "" : String(st.score)} onValueChange={(v) => updateDim(d.id, { score: Number(v) })}>
-                                    <SelectTrigger className="h-9 text-xs">
-                                      <SelectValue placeholder="—" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                      {SCALE_LEVELS.map(({ n, t }) => (
-                                        <SelectItem key={n} value={String(n)} className="text-xs">
-                                          {n} — {t}
-                                        </SelectItem>
-                                      ))}
-                                    </SelectContent>
-                                  </Select>
-                                  <p className="mt-1.5 text-[10px] font-mono text-muted-foreground tabular-nums" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
-                                    {points} punti pesati
-                                  </p>
-                                </div>
                               </div>
                             );
                           })}
@@ -808,6 +812,11 @@ const ExAssessment = () => {
               <div className="mb-16">
                 {!aiAnalysis && !aiLoading && (
                   <div>
+                    {missingDims > 0 && (
+                      <p className="mb-3 text-xs text-amber-600 dark:text-amber-400 font-mono">
+                        {missingDims} {missingDims === 1 ? "dimensione non compilata" : "dimensioni non compilate"} — l'analisi userà i dati disponibili.
+                      </p>
+                    )}
                     <Button onClick={handleElabora} disabled={globalScore === 0} size="lg">
                       <Sparkles className="h-4 w-4 mr-2" />
                       Elabora Analisi
@@ -875,6 +884,47 @@ const ExAssessment = () => {
                     <span className="text-background/50 font-mono">/100</span>
                   </div>
                   <p className="mt-1 text-sm text-background/70">{globalLevel}</p>
+                </div>
+
+                {/* Progress */}
+                <div className="rounded-xl border border-border/60 bg-background p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground">Compilazione</p>
+                    <span className="text-[11px] font-mono tabular-nums text-foreground">{compiledDims}/{totalDims}</span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                    <div className="h-full rounded-full bg-foreground transition-all duration-300" style={{ width: `${(compiledDims / totalDims) * 100}%` }} />
+                  </div>
+                  {missingDims > 0 && (
+                    <p className="mt-2 text-[10px] text-muted-foreground">{missingDims} {missingDims === 1 ? "dimensione non compilata" : "dimensioni non compilate"}</p>
+                  )}
+                </div>
+
+                {/* Sidebar CTA */}
+                <div className="rounded-xl border border-border/60 bg-background p-4 space-y-2">
+                  {!aiAnalysis && !aiLoading && (
+                    <Button onClick={handleElabora} disabled={globalScore === 0} className="w-full" size="sm">
+                      <Sparkles className="h-3.5 w-3.5 mr-2" />
+                      Elabora Analisi
+                    </Button>
+                  )}
+                  {aiLoading && (
+                    <div className="flex items-center gap-2 justify-center py-1">
+                      <div className="w-4 h-4 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
+                      <span className="text-xs text-muted-foreground">Elaborazione…</span>
+                    </div>
+                  )}
+                  {aiAnalysis && !aiLoading && (
+                    <>
+                      <Button onClick={handleExportPDF} className="w-full" size="sm">
+                        <Download className="h-3.5 w-3.5 mr-2" />
+                        Scarica il PDF
+                      </Button>
+                      <button onClick={handleElabora} className="w-full text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors text-center block">
+                        Rigenera analisi
+                      </button>
+                    </>
+                  )}
                 </div>
 
                 {/* Area bars */}
