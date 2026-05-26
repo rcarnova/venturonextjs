@@ -48,7 +48,7 @@ const CasesSection = () => {
 
                 {/* Title */}
                 <h3 className="text-2xl md:text-3xl font-medium leading-tight text-foreground">
-                  Identità di marca per chi seleziona i migliori
+                  EVP costruita dalle persone
                 </h3>
 
                 {/* Body */}
