@@ -231,25 +231,25 @@ export default function PosterValoriPage() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-stone-100 p-6" style={{ fontFamily: "Inter, sans-serif" }}>
+    <div className="min-h-screen w-full bg-stone-100 p-4 sm:p-6" style={{ fontFamily: "Inter, sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
 
-      <div className="max-w-7xl mx-auto mb-8">
+      <div className="max-w-7xl mx-auto mb-6 sm:mb-8">
         <div className="text-xs uppercase tracking-widest text-stone-500 mb-2">Venturo · Tools</div>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight" style={{ fontFamily: "Fraunces, serif" }}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight" style={{ fontFamily: "Fraunces, serif" }}>
           Il generatore di poster<br />
           <span className="italic text-stone-500">che non cambierà la tua cultura aziendale.</span>
         </h1>
-        <p className="mt-4 text-stone-600 max-w-2xl leading-relaxed">
+        <p className="mt-4 text-stone-600 max-w-2xl leading-relaxed text-sm sm:text-base">
           I valori non sono quelli appesi in un poster nei corridoi. Ma se proprio devi appenderne uno, almeno fallo bello.
           Inserisci 4 o 5 valori, scegli i colori, e scarica un PDF stampabile in A2.
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {/* FORM */}
-        <div className="bg-white p-6 rounded-sm border border-stone-200">
-          <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-6">Configura il poster</h2>
+        <div className="bg-white p-4 sm:p-6 rounded-sm border border-stone-200">
+          <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-5 sm:mb-6">Configura il poster</h2>
 
           {/* Layout selector */}
           <div className="mb-6">
@@ -308,16 +308,16 @@ export default function PosterValoriPage() {
           {layout === "essenziale" && (
             <div className="mb-6">
               <label className="block text-xs uppercase tracking-wider text-stone-600 mb-3">Colori</label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
                   { label: "Sfondo", val: bgColor, set: setBgColor },
                   { label: "Testo", val: textColor, set: setTextColor },
                   { label: "Accento", val: accentColor, set: setAccentColor },
                 ].map(({ label, val, set }) => (
-                  <div key={label}>
-                    <div className="text-xs text-stone-500 mb-1">{label}</div>
-                    <div className="flex items-center gap-2">
-                      <input type="color" value={val} onChange={(e) => set(e.target.value)} className="w-10 h-10 border border-stone-300 cursor-pointer" />
+                  <div key={label} className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-0">
+                    <div className="text-xs text-stone-500 w-14 flex-shrink-0 sm:w-auto sm:mb-1">{label}</div>
+                    <div className="flex items-center gap-2 flex-1 sm:flex-auto">
+                      <input type="color" value={val} onChange={(e) => set(e.target.value)} className="w-10 h-10 flex-shrink-0 border border-stone-300 cursor-pointer" />
                       <input type="text" value={val} onChange={(e) => set(e.target.value)} className="flex-1 min-w-0 px-2 py-1 border border-stone-300 text-xs" />
                     </div>
                   </div>
@@ -340,10 +340,10 @@ export default function PosterValoriPage() {
           {layout === "bauhaus" && (
             <div className="mb-6">
               <label className="block text-xs uppercase tracking-wider text-stone-600 mb-2">Sfondo</label>
-              <div className="flex items-center gap-2">
-                <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 border border-stone-300 cursor-pointer" />
-                <input type="text" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-28 px-2 py-1 border border-stone-300 text-xs" />
-                <span className="text-xs text-stone-400">Rosso, blu e giallo sono fissi — stile Bauhaus.</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 flex-shrink-0 border border-stone-300 cursor-pointer" />
+                <input type="text" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-24 px-2 py-1 border border-stone-300 text-xs" />
+                <span className="text-xs text-stone-400">Rosso, blu e giallo fissi.</span>
               </div>
             </div>
           )}
@@ -358,8 +358,9 @@ export default function PosterValoriPage() {
 
         {/* PREVIEW */}
         <div>
-          <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-6">Anteprima — {layout === "bauhaus" ? "Bauhaus" : "Essenziale"}</h2>
-          <div className="bg-stone-200 p-6 flex items-center justify-center">
+          <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-5 sm:mb-6">Anteprima — {layout === "bauhaus" ? "Bauhaus" : "Essenziale"}</h2>
+          <div className="bg-stone-200 p-4 sm:p-6 overflow-x-auto">
+          <div className="flex items-center justify-center" style={{ minWidth: 242 }}>
 
             {layout === "essenziale" ? (
               /* Essenziale preview */
@@ -431,29 +432,30 @@ export default function PosterValoriPage() {
               </div>
             )}
           </div>
+          </div>
           <p className="text-xs text-stone-500 mt-3">
             PDF in A2 (420×594mm), testo vettoriale.
-            {layout === "bauhaus" ? " Palette Bauhaus (rosso, blu, giallo) fissa — stile invariante." : " Colori e font personalizzabili."}
+            {layout === "bauhaus" ? " Palette Bauhaus fissa." : " Colori personalizzabili."}
           </p>
         </div>
       </div>
 
       {/* BETRAYAL SCREEN */}
       {showBetrayal && (
-        <div className="fixed inset-0 bg-stone-900/95 z-50 flex items-center justify-center p-6">
-          <div className="max-w-2xl w-full bg-stone-50 p-12 relative">
+        <div className="fixed inset-0 bg-stone-900/95 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="max-w-2xl w-full bg-stone-50 p-6 sm:p-12 relative max-h-[90vh] overflow-y-auto">
             <button onClick={() => setShowBetrayal(false)} className="absolute top-4 right-4 text-stone-400 hover:text-stone-900"><X size={20} /></button>
-            <div className="text-xs uppercase tracking-widest text-stone-500 mb-6">Una cosa prima di chiudere</div>
-            <h2 className="text-3xl md:text-4xl leading-tight mb-6" style={{ fontFamily: "Fraunces, serif" }}>
+            <div className="text-xs uppercase tracking-widest text-stone-500 mb-4 sm:mb-6">Una cosa prima di chiudere</div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl leading-tight mb-4 sm:mb-6" style={{ fontFamily: "Fraunces, serif" }}>
               Hai appena creato un poster.<br />
               <span className="italic text-stone-500">È la parte facile.</span>
             </h2>
-            <p className="text-lg text-stone-700 leading-relaxed mb-4">La parte difficile è quando una decisione difficile contraddice uno di questi valori e nessuno se ne accorge.</p>
-            <p className="text-lg text-stone-700 leading-relaxed mb-8">Se vuoi capire dove la tua organizzazione dice una cosa e ne fa un&apos;altra, partiamo da una conversazione.</p>
-            <a href="/#contact" className="bg-stone-900 text-white py-4 px-8 inline-flex items-center gap-2 hover:bg-stone-700 transition-colors text-sm uppercase tracking-wider">
+            <p className="text-base sm:text-lg text-stone-700 leading-relaxed mb-3 sm:mb-4">La parte difficile è quando una decisione difficile contraddice uno di questi valori e nessuno se ne accorge.</p>
+            <p className="text-base sm:text-lg text-stone-700 leading-relaxed mb-6 sm:mb-8">Se vuoi capire dove la tua organizzazione dice una cosa e ne fa un&apos;altra, partiamo da una conversazione.</p>
+            <a href="/#contact" className="bg-stone-900 text-white py-3 sm:py-4 px-6 sm:px-8 inline-flex items-center gap-2 hover:bg-stone-700 transition-colors text-xs sm:text-sm uppercase tracking-wider">
               Prenota 30 minuti con Venturo <ArrowRight size={16} />
             </a>
-            <p className="text-xs text-stone-400 mt-6">Nessun obbligo, nessun pitch. Solo una conversazione.</p>
+            <p className="text-xs text-stone-400 mt-4 sm:mt-6">Nessun obbligo, nessun pitch. Solo una conversazione.</p>
           </div>
         </div>
       )}
