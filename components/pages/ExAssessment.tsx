@@ -656,10 +656,10 @@ const ExAssessment = () => {
             </button>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Come vivono davvero la vostra organizzazione?
+            Leggere l'organizzazione dall'interno.
           </h1>
           <p className="text-lg text-muted-foreground/80 mb-6 leading-relaxed max-w-2xl">
-            Valutate l'employee experience su quattro aree chiave. Il risultato è una mappa delle priorità, il punto di partenza per una conversazione più{" "}profonda.
+            Un'analisi strutturata per capire l'esperienza delle persone nella vostra organizzazione.
           </p>
 
           {/* EXPLAINER */}
