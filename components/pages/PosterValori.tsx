@@ -46,6 +46,7 @@ export default function PosterValoriPage() {
           html, body { margin: 0; padding: 0; width: 420mm; height: 594mm; overflow: hidden; }
           * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .poster-print {
+            position: relative;
             width: 420mm; height: 594mm; overflow: hidden;
             background: ${bgColor}; color: ${textColor};
             padding: 30mm 32mm; box-sizing: border-box;
@@ -54,11 +55,11 @@ export default function PosterValoriPage() {
           }
           .label-print { font-size: 12pt; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; margin-bottom: 10mm; flex-shrink: 0; }
           .company-print { font-family: 'Fraunces', serif; font-size: 40pt; font-weight: 800; line-height: 1; margin-bottom: 16mm; font-style: italic; flex-shrink: 0; }
-          .values-list-print { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+          .values-list-print { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; padding-bottom: 22mm; }
           .value-row-print { display: flex; align-items: baseline; gap: 8mm; border-bottom: 1pt solid ${textColor}33; padding: 6mm 0; }
           .num-print { font-family: 'Fraunces', serif; font-size: 28pt; font-weight: 600; color: ${accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor}; min-width: 48pt; flex-shrink: 0; }
           .val-print { font-family: 'Fraunces', serif; font-size: 46pt; font-weight: 800; line-height: 1.05; }
-          .footer-print { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; margin-top: 10mm; padding-top: 8mm; border-top: 2pt solid ${textColor}; }
+          .footer-print { position: absolute; bottom: 30mm; left: 32mm; right: 32mm; display: flex; justify-content: space-between; align-items: flex-end; padding-top: 8mm; border-top: 2pt solid ${textColor}; }
           .footer-text-print { font-size: 8pt; font-style: italic; max-width: 220mm; line-height: 1.4; opacity: 0.7; }
           .accent-bar-print { width: 28mm; height: 5mm; background: ${accentColor}; flex-shrink: 0; }
         </style>
