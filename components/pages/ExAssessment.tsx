@@ -822,7 +822,7 @@ const ExAssessment = () => {
                       Elabora Analisi
                     </Button>
                     <p className="mt-3 text-xs font-mono text-muted-foreground">
-                      L'analisi viene elaborata dall'AI in base ai dati inseriti e inclusa nel PDF.
+                      L'analisi viene generata da Claude in base agli score e alle note, e viene poi rivista da noi prima della consegna.
                     </p>
                   </div>
                 )}
