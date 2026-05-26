@@ -43,23 +43,24 @@ export default function PosterValoriPage() {
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
         <style>
           @page { size: A2 portrait; margin: 0; }
-          body { margin: 0; padding: 0; }
+          html, body { margin: 0; padding: 0; width: 420mm; height: 594mm; overflow: hidden; }
+          * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .poster-print {
-            width: 420mm; height: 594mm;
+            width: 420mm; height: 594mm; overflow: hidden;
             background: ${bgColor}; color: ${textColor};
-            padding: 40mm 35mm; box-sizing: border-box;
-            font-family: 'Inter', sans-serif; position: relative;
+            padding: 30mm 32mm; box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
             display: flex; flex-direction: column;
           }
-          .label-print { font-size: 14pt; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; margin-bottom: 15mm; }
-          .company-print { font-family: 'Fraunces', serif; font-size: 48pt; font-weight: 800; line-height: 1; margin-bottom: 25mm; font-style: italic; }
-          .values-list-print { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12mm; }
-          .value-row-print { display: flex; align-items: baseline; gap: 10mm; border-bottom: 1pt solid ${textColor}33; padding-bottom: 8mm; }
-          .num-print { font-family: 'Fraunces', serif; font-size: 36pt; font-weight: 600; color: ${accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor}; min-width: 60pt; }
-          .val-print { font-family: 'Fraunces', serif; font-size: 54pt; font-weight: 800; line-height: 1; }
-          .footer-print { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 15mm; padding-top: 10mm; border-top: 2pt solid ${textColor}; }
-          .footer-text-print { font-size: 9pt; font-style: italic; max-width: 220mm; line-height: 1.4; opacity: 0.7; }
-          .accent-bar-print { width: 30mm; height: 6mm; background: ${accentColor}; }
+          .label-print { font-size: 12pt; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; margin-bottom: 10mm; flex-shrink: 0; }
+          .company-print { font-family: 'Fraunces', serif; font-size: 40pt; font-weight: 800; line-height: 1; margin-bottom: 16mm; font-style: italic; flex-shrink: 0; }
+          .values-list-print { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+          .value-row-print { display: flex; align-items: baseline; gap: 8mm; border-bottom: 1pt solid ${textColor}33; padding: 6mm 0; }
+          .num-print { font-family: 'Fraunces', serif; font-size: 28pt; font-weight: 600; color: ${accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor}; min-width: 48pt; flex-shrink: 0; }
+          .val-print { font-family: 'Fraunces', serif; font-size: 46pt; font-weight: 800; line-height: 1.05; }
+          .footer-print { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; margin-top: 10mm; padding-top: 8mm; border-top: 2pt solid ${textColor}; }
+          .footer-text-print { font-size: 8pt; font-style: italic; max-width: 220mm; line-height: 1.4; opacity: 0.7; }
+          .accent-bar-print { width: 28mm; height: 5mm; background: ${accentColor}; flex-shrink: 0; }
         </style>
       </head>
       <body>
@@ -80,7 +81,7 @@ export default function PosterValoriPage() {
             <div class="accent-bar-print"></div>
           </div>
         </div>
-        <script>window.onload = () => { setTimeout(() => { window.print(); }, 500); };<\/script>
+        <script>document.fonts.ready.then(() => { window.print(); });<\/script>
       </body>
       </html>
     `);
