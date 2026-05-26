@@ -47,8 +47,8 @@ export default function PosterValoriPage() {
       await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
       const { jsPDF } = (window as any).jspdf;
 
-      // A2: 420 × 594 mm
       const W = 420, H = 594, pX = 30, pY = 28;
+      const mmPerPt = 0.353;
       const doc = new jsPDF({ orientation: "p", unit: "mm", format: "a2" });
 
       const accentFinal = accentColor.toLowerCase().replace(/\s/g, "") === "#ffffff" ? textColor : accentColor;
@@ -60,58 +60,75 @@ export default function PosterValoriPage() {
       doc.setFillColor(bgR, bgG, bgB);
       doc.rect(0, 0, W, H, "F");
 
-      // Label in cima
+      // --- Label ---
+      const labelFS = 9;
+      const labelCapH = labelFS * 0.70 * mmPerPt;
       doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
+      doc.setFontSize(labelFS);
       doc.setTextColor(txR, txG, txB);
-      doc.text(companyName ? "I VALORI DI" : "I NOSTRI VALORI", pX, pY + 3.5);
+      doc.text(companyName ? "I VALORI DI" : "I NOSTRI VALORI", pX, pY + labelCapH);
+      let curY = pY + labelCapH + 10;
 
-      let topY = pY + 14;
-
-      // Nome azienda
+      // --- Nome azienda ---
+      const companyFS = 44;
+      const companyCapH = companyFS * 0.72 * mmPerPt;
       if (companyName) {
         doc.setFont("helvetica", "bolditalic");
-        doc.setFontSize(34);
-        doc.text(companyName, pX, topY + 12);
-        topY += 22;
+        doc.setFontSize(companyFS);
+        doc.text(companyName, pX, curY + companyCapH);
+        curY += companyCapH + 18;
       }
 
-      // Footer ancorato in basso (calcolo prima, disegno dopo)
-      const footerLineY = H - pY - 13;
+      // --- Footer (calcolo posizione, si disegna dopo) ---
+      const footerLineY = H - pY - 14;
 
-      // Valori: centrati nell'area disponibile tra topY e footer
+      // --- Valori: riempiono tutta l'area disponibile ---
       const filled = values.filter((v) => v.trim());
-      const rowH = 22; // mm per riga
-      const availH = footerLineY - 8 - (topY + 4);
-      const startY = topY + 4 + (availH - filled.length * rowH) / 2;
+      const numV = filled.length;
+      const valTop = curY + 6;
+      const valBottom = footerLineY - 10;
+      const valAreaH = valBottom - valTop;
+      const rowH = valAreaH / numV;
+
+      // Font size dinamico: massimo vincolato da altezza riga e lunghezza parola
+      const numColW = 26;
+      const valContentW = W - pX - (pX + numColW); // larghezza area testo valori
+      const longestLen = Math.max(...filled.map((v) => v.length), 1);
+      const fsFromH = (rowH * 0.52) / (0.72 * mmPerPt);       // riempie 52% dell'altezza riga
+      const fsFromW = valContentW / (longestLen * 0.58 * mmPerPt); // non sfora in larghezza
+      const valFS = Math.floor(Math.min(fsFromH, fsFromW));
+      const valCapH = valFS * 0.72 * mmPerPt;
+      const numFS = Math.max(16, Math.floor(valFS * 0.36));
 
       filled.forEach((v, i) => {
-        const rY = startY + i * rowH;
+        const rY = valTop + i * rowH;
+        // Baseline centrata verticalmente nella riga
+        const baselineY = rY + (rowH + valCapH) / 2;
 
-        // Linea sopra ogni riga
+        // Linea separatrice
         doc.setDrawColor(txR, txG, txB);
-        doc.setLineWidth(0.2);
+        doc.setLineWidth(0.25);
         doc.line(pX, rY, W - pX, rY);
 
         // Numero
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(20);
+        doc.setFontSize(numFS);
         doc.setTextColor(acR, acG, acB);
-        doc.text(`0${i + 1}`, pX, rY + 13);
+        doc.text(`0${i + 1}`, pX, baselineY);
 
-        // Valore
+        // Testo valore
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(44);
+        doc.setFontSize(valFS);
         doc.setTextColor(txR, txG, txB);
-        doc.text(v, pX + 20, rY + 15.5);
+        doc.text(v, pX + numColW, baselineY);
       });
 
-      // Linea sotto l'ultimo valore
+      // Linea finale sotto l'ultimo valore
       doc.setDrawColor(txR, txG, txB);
-      doc.setLineWidth(0.2);
-      doc.line(pX, startY + filled.length * rowH, W - pX, startY + filled.length * rowH);
+      doc.setLineWidth(0.25);
+      doc.line(pX, valTop + numV * rowH, W - pX, valTop + numV * rowH);
 
-      // Footer
+      // --- Footer ---
       doc.setLineWidth(0.7);
       doc.setDrawColor(txR, txG, txB);
       doc.line(pX, footerLineY, W - pX, footerLineY);
@@ -126,7 +143,6 @@ export default function PosterValoriPage() {
         { maxWidth: W - pX * 2 - 32 }
       );
 
-      // Barra accento
       doc.setFillColor(acR, acG, acB);
       doc.rect(W - pX - 26, footerLineY + 3, 26, 5, "F");
 
@@ -141,6 +157,13 @@ export default function PosterValoriPage() {
 
   const filledValues = values.filter((v) => v.trim());
   const accentPreview = accentColor === "#FFFFFF" || accentColor === "#ffffff" ? textColor : accentColor;
+  // Preview font size: same logic as PDF but in px (1mm ≈ 3.78px at 96dpi)
+  const previewContentW = 210 - 30 - 26; // preview width minus paddings and num col (px)
+  const longestLen = Math.max(...filledValues.map((v) => v.length), 1);
+  const previewValFS = Math.floor(Math.min(
+    (297 / filledValues.length) * 0.52 * 0.72, // height constraint (px)
+    previewContentW / (longestLen * 0.58 * 0.353 * 3.78) // width constraint (px)
+  ));
 
   return (
     <div className="min-h-screen w-full bg-stone-100 p-6" style={{ fontFamily: "Inter, sans-serif" }}>
@@ -264,57 +287,58 @@ export default function PosterValoriPage() {
           <h2 className="text-sm uppercase tracking-widest text-stone-500 mb-6">Anteprima (proporzionale A2)</h2>
           <div className="bg-stone-200 p-6 flex items-center justify-center">
             <div
-              className="shadow-2xl flex flex-col"
+              className="shadow-2xl"
               style={{
                 width: "210px",
                 height: "297px",
                 background: bgColor,
                 color: textColor,
-                padding: "14px 16px",
+                padding: "14px 15px",
                 boxSizing: "border-box",
-                position: "relative",
+                display: "flex",
+                flexDirection: "column",
                 fontFamily: "Inter, sans-serif",
               }}
             >
               {/* Label */}
-              <div style={{ fontSize: "5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 500, marginBottom: "7px", flexShrink: 0 }}>
+              <div style={{ fontSize: "4.5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 500, marginBottom: "5px", flexShrink: 0 }}>
                 {companyName ? "I valori di" : "I nostri valori"}
               </div>
 
               {/* Company name */}
               {companyName && (
-                <div style={{ fontFamily: "Fraunces, serif", fontSize: "14px", fontWeight: 800, lineHeight: 1, marginBottom: "10px", fontStyle: "italic", flexShrink: 0 }}>
+                <div style={{ fontFamily: "Fraunces, serif", fontSize: "13px", fontWeight: 800, lineHeight: 1, marginBottom: "8px", fontStyle: "italic", flexShrink: 0 }}>
                   {companyName}
                 </div>
               )}
 
-              {/* Values — centered */}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", minHeight: 0 }}>
+              {/* Values — fill remaining space, each row equal height */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0 }}>
                 {filledValues.map((v, i) => (
                   <div
                     key={i}
                     style={{
+                      flex: 1,
                       display: "flex",
-                      alignItems: "baseline",
+                      alignItems: "center",
                       gap: "6px",
-                      borderTop: `0.5px solid ${textColor}33`,
-                      padding: "4px 0",
+                      borderTop: `0.5px solid ${textColor}44`,
                     }}
                   >
-                    <div style={{ fontFamily: "Fraunces, serif", fontSize: "9px", fontWeight: 600, color: accentPreview, minWidth: "14px", flexShrink: 0 }}>
+                    <div style={{ fontFamily: "Fraunces, serif", fontSize: `${Math.max(6, Math.floor(previewValFS * 0.36))}px`, fontWeight: 700, color: accentPreview, minWidth: "13px", flexShrink: 0 }}>
                       0{i + 1}
                     </div>
-                    <div style={{ fontFamily: "Fraunces, serif", fontSize: "16px", fontWeight: 800, lineHeight: 1 }}>
+                    <div style={{ fontFamily: "Fraunces, serif", fontSize: `${previewValFS}px`, fontWeight: 800, lineHeight: 1 }}>
                       {v}
                     </div>
                   </div>
                 ))}
-                <div style={{ borderTop: `0.5px solid ${textColor}33` }} />
+                <div style={{ borderTop: `0.5px solid ${textColor}44` }} />
               </div>
 
               {/* Footer */}
-              <div style={{ flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginTop: "7px", paddingTop: "5px", borderTop: `1px solid ${textColor}` }}>
-                <div style={{ fontSize: "4px", fontStyle: "italic", maxWidth: "120px", lineHeight: 1.4, opacity: 0.6 }}>
+              <div style={{ flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginTop: "6px", paddingTop: "4px", borderTop: `1px solid ${textColor}` }}>
+                <div style={{ fontSize: "3.5px", fontStyle: "italic", maxWidth: "130px", lineHeight: 1.4, opacity: 0.6 }}>
                   Realizzato con il generatore di poster di Venturo. venturoconsulting.it
                 </div>
                 <div style={{ width: "12px", height: "2.5px", background: accentPreview, flexShrink: 0 }} />
