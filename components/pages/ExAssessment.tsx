@@ -654,9 +654,15 @@ const ExAssessment = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Come vivono davvero la vostra organizzazione?
           </h1>
-          <p className="text-lg text-muted-foreground/80 mb-10 leading-relaxed max-w-2xl">
+          <p className="text-lg text-muted-foreground/80 mb-6 leading-relaxed max-w-2xl">
             Valutate l'employee experience su quattro aree chiave. Il risultato è una mappa delle priorità — il punto di partenza per una conversazione più profonda.
           </p>
+
+          {/* EXPLAINER */}
+          <div className="mb-10 p-4 border border-border/50 bg-muted/30 max-w-2xl">
+            <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Come funziona questo assessment</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">Questo tool valuta l'employee experience su quattro aree con pesi diversi. Per ogni dimensione si assegna un punteggio da 0 a 4 e si indica la fonte del dato. Il risultato è un indice per area e un EX Index globale ponderato.</p>
+          </div>
 
           {/* SESSION FIELDS — full width */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
@@ -848,13 +854,8 @@ const ExAssessment = () => {
                 )}
               </div>
 
-              {/* EXPLAINER */}
-              <div className="mt-8 pt-10 border-t border-border/40">
-                <p className="text-xs text-muted-foreground mb-4">Come funziona questo assessment</p>
-                <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-                  <p>Questo tool valuta l'employee experience su quattro aree con pesi diversi. Per ogni dimensione si assegna un punteggio da 0 a 4 e si indica la fonte del dato. Il risultato è un indice per area e un EX Index globale ponderato.</p>
-                </div>
-                <Link href="/lumen" className="inline-block mt-6 text-sm text-primary font-semibold hover:underline transition-colors">
+              <div className="mt-8 pt-6 border-t border-border/40">
+                <Link href="/lumen" className="inline-block text-sm text-primary font-semibold hover:underline transition-colors">
                   Scopri come lavora Lumen →
                 </Link>
               </div>
