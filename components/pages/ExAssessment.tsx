@@ -624,7 +624,7 @@ const ExAssessment = () => {
     { n: 4, t: "Eccellente" },
   ];
 
-  const AREA_LABELS = ["Cultura", "Persone", "Amb. & Tech", "Journey"];
+  const AREA_LABELS = ["Cultura", "Persone", "Journey", "Amb. & Tech"];
 
   return (
     <div className="min-h-screen bg-background">
