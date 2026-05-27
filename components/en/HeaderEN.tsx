@@ -16,8 +16,10 @@ import {
 
 const navLinks = [
   { href: "/en/lumen", label: "Lumen" },
+  { href: "/en/principles", label: "Principles" },
   { href: "/en/case-studies", label: "Case Studies" },
   { href: "/en/magazine", label: "Articles" },
+  { href: "/en/evp-analysis", label: "EVP Analysis" },
   { href: "/en/about", label: "About Us" },
 ];
 
@@ -49,7 +51,7 @@ const HeaderEN = () => {
         <Link
           href="/en"
           className="relative h-6 md:h-8 flex items-center"
-          style={{ minWidth: scrolled ? 28 : 120 }}
+          style={{ width: 120, flexShrink: 0 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
