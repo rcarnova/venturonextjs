@@ -35,6 +35,7 @@ interface CaseStudyLayoutProps {
   caseId: string;
   title: string;
   subtitle: string;
+  credit?: string;
   overview: OverviewItem[];
   challenge: {
     description: string;
@@ -53,6 +54,7 @@ const CaseStudyLayout = ({
   caseId,
   title,
   subtitle,
+  credit,
   overview,
   challenge,
   phases,
@@ -96,6 +98,9 @@ const CaseStudyLayout = ({
               )}
               <h1 className="text-display text-charcoal">{title}</h1>
               <p className="text-subheadline mt-4 max-w-2xl mx-auto">{subtitle}</p>
+              {credit && (
+                <p className="text-sm font-mono text-muted-foreground mt-3">{credit}</p>
+              )}
             </AnimatedSection>
           </div>
         </section>

@@ -10,6 +10,7 @@ import Findomestic from "@/components/pages/cases/Findomestic";
 import RandstadProfessionals from "@/components/pages/cases/RandstadProfessionals";
 import EuPromotions from "@/components/pages/cases/EuPromotions";
 import ComuneVercelli from "@/components/pages/cases/ComuneVercelli";
+import AmcItalia from "@/components/pages/cases/AmcItalia";
 
 type CaseMeta = {
   title: string;
@@ -72,6 +73,12 @@ const cases: Record<string, CaseMeta> = {
     description: "Laboratorio partecipativo nelle scuole superiori di Vercelli, raccolta di testimonianze e reading teatrale al Festival Raccolti.",
     enSlug: "comune-di-vercelli-gender-violence",
     Component: ComuneVercelli,
+  },
+  "amc-italia": {
+    title: "Trasformazione organizzativa partita dagli spazi — AMC Italia — Venturo",
+    description: "12 mesi di co-design con le persone per trasformare un trasferimento di sede in un progetto di cultura organizzativa.",
+    enSlug: "amc-italia",
+    Component: AmcItalia,
   },
 };
 
