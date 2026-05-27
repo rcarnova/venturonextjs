@@ -88,6 +88,14 @@ const cases = [
     hasDetail: true,
     tags: ["CEO / Leadership", "CMO / Marketing"],
   },
+  {
+    company: "AMC Italia",
+    result: "The new headquarters as a lever for cultural change",
+    description: "12 months of co-design with employees to turn a headquarter relocation into an organizational culture project.",
+    slug: "amc-italia",
+    hasDetail: true,
+    tags: ["CEO / Leadership", "CHO / HR"],
+  },
 ];
 
 const CaseStudies = () => {

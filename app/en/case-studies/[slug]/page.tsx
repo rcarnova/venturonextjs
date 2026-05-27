@@ -10,6 +10,7 @@ import FindomesticEN from "@/components/pages/cases-en/Findomestic";
 import RandstadProfessionalsEN from "@/components/pages/cases-en/RandstadProfessionals";
 import EuPromotionsEN from "@/components/pages/cases-en/EuPromotions";
 import ComuneVercelliEN from "@/components/pages/cases-en/ComuneVercelli";
+import AmcItaliaEN from "@/components/pages/cases-en/AmcItalia";
 
 type CaseMeta = {
   title: string;
@@ -72,6 +73,12 @@ const cases: Record<string, CaseMeta> = {
     description: "Participatory workshop in Vercelli's high schools, collection of testimonies and theatrical reading at the Raccolti Festival.",
     itSlug: "comune-di-vercelli-violenza-di-genere",
     Component: ComuneVercelliEN,
+  },
+  "amc-italia": {
+    title: "Organizational transformation starting from office space — AMC Italia — Venturo",
+    description: "12 months of co-design with employees to turn a headquarter relocation into an organizational culture project.",
+    itSlug: "amc-italia",
+    Component: AmcItaliaEN,
   },
 };
 
