@@ -14,6 +14,7 @@ const McCannHealth = () => {
         caseId="mccann-health"
         title="McCann Health"
         subtitle="Ascolto e Envisioning per definire i valori del nuovo ufficio"
+        credit="In collaborazione con Smartworking Srl"
         overview={[
           { label: "Settore", value: "Healthcare / Advertising" },
           { label: "Interlocutore", value: "Board + Organizzazione" },
