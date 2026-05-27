@@ -126,7 +126,7 @@ const HeroSection = () => {
       <footer style={{ marginTop: "clamp(32px, 5vh, 64px)" }}>
         <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555", maxWidth: 420 }}>
           Interveniamo quando l'identità reale di un'organizzazione non emerge
-          nei momenti che contano: recruiting, onboarding, comunicazione interna.
+          nei momenti che contano: cambiamento, onboarding, comunicazione interna.
         </p>
       </footer>
     </section>
