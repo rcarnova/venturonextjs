@@ -66,11 +66,17 @@ const AmcItalia = () => {
             title: "Nuovo spazio",
             description:
               "Layout del nuovo ufficio progettato insieme agli architetti Raffaele Sabbadini e Rachele Storai. Sviluppo di moodboard che ha guidato palette colori e finiture. Fornitura degli arredi aggiudicata a Faram. Lo spazio fisico non è stato il punto di partenza, ma il punto di arrivo di un processo partecipativo.",
-            image: {
-              src: "/images/cases/amc-italia/ufficio-1.jpg",
-              alt: "Il nuovo ufficio AMC Italia dopo la trasformazione",
-              caption: "Il nuovo spazio: punto di arrivo di 12 mesi di co-design",
-            },
+            gallery: [
+              { src: "/images/cases/amc-italia/ufficio-1.jpg", alt: "Nuovo ufficio AMC Italia — area open space" },
+              { src: "/images/cases/amc-italia/ufficio-2.jpg", alt: "Nuovo ufficio AMC Italia — sala riunioni" },
+              { src: "/images/cases/amc-italia/ufficio-3.jpg", alt: "Nuovo ufficio AMC Italia — dettaglio arredi" },
+              { src: "/images/cases/amc-italia/ufficio-4.jpg", alt: "Nuovo ufficio AMC Italia — zona collaborazione" },
+              { src: "/images/cases/amc-italia/ufficio-5.jpg", alt: "Nuovo ufficio AMC Italia — postazioni lavoro" },
+              { src: "/images/cases/amc-italia/ufficio-6.jpg", alt: "Nuovo ufficio AMC Italia — ingresso" },
+              { src: "/images/cases/amc-italia/ufficio-7.jpg", alt: "Nuovo ufficio AMC Italia — corridoio" },
+              { src: "/images/cases/amc-italia/ufficio-8.jpg", alt: "Nuovo ufficio AMC Italia — panoramica" },
+            ],
+            galleryCaption: "Il nuovo spazio: punto di arrivo di 12 mesi di co-design partecipativo",
           },
         ]}
         results={[

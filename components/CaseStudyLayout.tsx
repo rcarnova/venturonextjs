@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Header from "./Header";
@@ -8,10 +9,22 @@ import AnimatedSection from "./AnimatedSection";
 import { Button } from "./ui/button";
 import SuggestedCases from "./SuggestedCases";
 import { allCases } from "@/data/cases";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "./ui/carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface OverviewItem {
   label: string;
   value: string;
+}
+
+interface GalleryImage {
+  src: string;
+  alt: string;
 }
 
 interface Phase {
@@ -22,9 +35,65 @@ interface Phase {
     alt: string;
     caption: string;
   };
+  gallery?: GalleryImage[];
+  galleryCaption?: string;
   videoEmbed?: string;
   videoCaption?: string;
 }
+
+const PhaseGallery = ({ images, caption }: { images: GalleryImage[]; caption?: string }) => {
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(1);
+
+  React.useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap() + 1);
+    api.on("select", () => setCurrent(api.selectedScrollSnap() + 1));
+  }, [api]);
+
+  return (
+    <div className="mt-8">
+      <div className="relative">
+        <Carousel opts={{ loop: true }} setApi={setApi}>
+          <CarouselContent>
+            {images.map((img, i) => (
+              <CarouselItem key={i}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-auto max-h-[480px] object-cover rounded-lg"
+                  loading="lazy"
+                  width={1030}
+                  height={773}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <button
+            onClick={() => api?.scrollPrev()}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/75 transition-colors"
+            aria-label="Slide precedente"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => api?.scrollNext()}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/75 transition-colors"
+            aria-label="Slide successiva"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+          <div className="absolute bottom-3 right-4 z-10 text-xs font-mono text-white bg-black/50 px-2 py-0.5 rounded-full">
+            {current} / {images.length}
+          </div>
+        </Carousel>
+      </div>
+      {caption && (
+        <p className="text-sm text-muted-foreground mt-3 italic">{caption}</p>
+      )}
+    </div>
+  );
+};
 
 interface CaseStudyLayoutProps {
   logo?: string;
@@ -201,6 +270,9 @@ const CaseStudyLayout = ({
                           <p className="text-muted-foreground">{phase.description}</p>
                         </div>
                       </div>
+                    )}
+                    {phase.gallery && phase.gallery.length > 0 && (
+                      <PhaseGallery images={phase.gallery} caption={phase.galleryCaption} />
                     )}
                     {phase.videoEmbed && (
                       <div className="mt-8">
