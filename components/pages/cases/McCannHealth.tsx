@@ -36,6 +36,11 @@ const McCannHealth = () => {
             title: "Interviste strutturate al Board",
             description:
               "Progettazione del protocollo di intervista e conduzione di 6 interviste strutturate ai membri del board. L'obiettivo era capire come il vertice descriveva l'organizzazione — ieri, oggi e domani — raccogliendo le percezioni individuali come base per il successivo allineamento collettivo.",
+            image: {
+              src: "/images/cases/mccann-health/cover.jpg",
+              alt: "Workshop di envisioning McCann Health — team al lavoro con immagini e post-it",
+              caption: "Il gruppo al lavoro durante la sessione di envisioning",
+            },
           },
           {
             title: "Mini-survey all'organizzazione",
@@ -46,11 +51,22 @@ const McCannHealth = () => {
             title: "Workshop di restituzione e Envisioning",
             description:
               "Progettazione e facilitazione di un workshop per restituire quanto emerso dalla fase di ascolto e avviare la fase di envisioning. Il gruppo ha esplorato tre orizzonti temporali — ieri, oggi, domani — attraverso esercizi visivi e narrativi. Le immagini e le parole emerse dal lavoro collettivo hanno definito la direzione valoriale e progettuale.",
+            gallery: [
+              { src: "/images/cases/mccann-health/ieri.jpg", alt: "Board McCann Health — Come descriviamo l'organizzazione IERI" },
+              { src: "/images/cases/mccann-health/oggi.jpg", alt: "Board McCann Health — Come descriviamo l'organizzazione OGGI" },
+              { src: "/images/cases/mccann-health/domani.jpg", alt: "Board McCann Health — Come descriviamo l'organizzazione DOMANI" },
+            ],
+            galleryCaption: "Le tre board di envisioning: IERI, OGGI, DOMANI — output visivi del workshop",
           },
           {
             title: "Sintesi e definizione dei valori",
             description:
               "Elaborazione del report finale con le indicazioni sul modello di ufficio e i valori che lo spazio dovrà trasmettere. Dal lavoro del gruppo sono emerse quattro tensioni guida: Rinascita continua, Combattività e fantasia, Essere team nella diversità, Futuro digitale a misura d'uomo.",
+            image: {
+              src: "/images/cases/mccann-health/sintesi.jpg",
+              alt: "Board di sintesi — cosa contraddistingue McCann Health tra passato, presente e futuro",
+              caption: "La board di sintesi: cosa ci contraddistingue rispetto alla nostra storia, al nostro presente e cosa vogliamo diventare",
+            },
           },
         ]}
         results={[
