@@ -1,16 +1,8 @@
-const routeMap: Record<string, string> = {
+// Static map for routes that differ between IT and EN
+const staticRouteMap: Record<string, string> = {
   "/": "/en",
   "/le-sfide": "/en/challenges",
   "/casi-studio": "/en/case-studies",
-  "/casi-studio/randstad": "/en/case-studies/randstad",
-  "/casi-studio/randstad-professionals": "/en/case-studies/randstad-professionals",
-  "/casi-studio/ricehouse": "/en/case-studies/ricehouse",
-  "/casi-studio/lely": "/en/case-studies/lely",
-  "/casi-studio/cve": "/en/case-studies/cve",
-  "/casi-studio/findomestic": "/en/case-studies/findomestic",
-  "/casi-studio/ufficio-pio": "/en/case-studies/ufficio-pio",
-  "/casi-studio/eupromotions": "/en/case-studies/eupromotions",
-  "/casi-studio/comune-di-vercelli-violenza-di-genere": "/en/case-studies/comune-di-vercelli-gender-violence",
   "/chi-siamo": "/en/about",
   "/magazine": "/en/magazine",
   "/magazine/brand-manuale-reliquia": "/en/magazine/brand-manual-relic",
@@ -30,20 +22,27 @@ const routeMap: Record<string, string> = {
   "/principi": "/en/principles",
   "/privacy": "/en/privacy",
   "/analisi-evp": "/en/evp-analysis",
+  // Case study with different slug
+  "/casi-studio/comune-di-vercelli-violenza-di-genere": "/en/case-studies/comune-di-vercelli-gender-violence",
 };
 
-// Build reverse map (skip identity mappings)
-const reverseMap: Record<string, string> = {};
-for (const [it, en] of Object.entries(routeMap)) {
-  if (it !== en) {
-    reverseMap[en] = it;
-  }
-}
-
-export function getItRoute(currentPath: string): string {
-  return reverseMap[currentPath] || "/";
+const staticReverseMap: Record<string, string> = {};
+for (const [it, en] of Object.entries(staticRouteMap)) {
+  staticReverseMap[en] = it;
 }
 
 export function getEnRoute(currentPath: string): string {
-  return routeMap[currentPath] || "/en";
+  if (staticRouteMap[currentPath]) return staticRouteMap[currentPath];
+  // Dynamic: /casi-studio/{slug} → /en/case-studies/{slug}
+  const caseMatch = currentPath.match(/^\/casi-studio\/(.+)$/);
+  if (caseMatch) return `/en/case-studies/${caseMatch[1]}`;
+  return "/en";
+}
+
+export function getItRoute(currentPath: string): string {
+  if (staticReverseMap[currentPath]) return staticReverseMap[currentPath];
+  // Dynamic: /en/case-studies/{slug} → /casi-studio/{slug}
+  const caseMatch = currentPath.match(/^\/en\/case-studies\/(.+)$/);
+  if (caseMatch) return `/casi-studio/${caseMatch[1]}`;
+  return "/";
 }
