@@ -54,12 +54,6 @@ const McCannHealth = () => {
             title: "Workshop di restituzione e Envisioning",
             description:
               "Progettazione e facilitazione di un workshop per restituire quanto emerso dalla fase di ascolto e avviare la fase di envisioning. Il gruppo ha esplorato tre orizzonti temporali — ieri, oggi, domani — attraverso esercizi visivi e narrativi. Le immagini e le parole emerse dal lavoro collettivo hanno definito la direzione valoriale e progettuale.",
-            gallery: [
-              { src: "/images/cases/mccann-health/ieri.jpg", alt: "Board McCann Health — Come descriviamo l'organizzazione IERI" },
-              { src: "/images/cases/mccann-health/oggi.jpg", alt: "Board McCann Health — Come descriviamo l'organizzazione OGGI" },
-              { src: "/images/cases/mccann-health/domani.jpg", alt: "Board McCann Health — Come descriviamo l'organizzazione DOMANI" },
-            ],
-            galleryCaption: "Le tre board di envisioning: IERI, OGGI, DOMANI — output visivi del workshop",
           },
           {
             title: "Sintesi e definizione dei valori",
