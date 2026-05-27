@@ -11,6 +11,7 @@ import RandstadProfessionals from "@/components/pages/cases/RandstadProfessional
 import EuPromotions from "@/components/pages/cases/EuPromotions";
 import ComuneVercelli from "@/components/pages/cases/ComuneVercelli";
 import AmcItalia from "@/components/pages/cases/AmcItalia";
+import McCannHealth from "@/components/pages/cases/McCannHealth";
 
 type CaseMeta = {
   title: string;
@@ -73,6 +74,12 @@ const cases: Record<string, CaseMeta> = {
     description: "Laboratorio partecipativo nelle scuole superiori di Vercelli, raccolta di testimonianze e reading teatrale al Festival Raccolti.",
     enSlug: "comune-di-vercelli-gender-violence",
     Component: ComuneVercelli,
+  },
+  "mccann-health": {
+    title: "Ascolto e Envisioning per il nuovo ufficio — McCann Health — Venturo",
+    description: "Interviste al board, survey all'organizzazione e workshop di envisioning per definire i valori che il nuovo ufficio McCann Health doveva trasmettere.",
+    enSlug: "mccann-health",
+    Component: McCannHealth,
   },
   "amc-italia": {
     title: "Trasformazione organizzativa partita dagli spazi — AMC Italia — Venturo",

@@ -128,6 +128,16 @@ export const allCases: CaseData[] = [
     showOnHomepage: false,
   },
   {
+    id: "mccann-health",
+    company: "McCann Health",
+    result: "Ascolto e Envisioning per definire i valori del nuovo ufficio",
+    description: "Interviste al board, survey all'organizzazione e workshop di envisioning per definire i valori che il nuovo ufficio doveva trasmettere.",
+    slug: "mccann-health",
+    hasDetail: true,
+    url: "/casi-studio/mccann-health",
+    showOnHomepage: false,
+  },
+  {
     id: "amc-italia",
     company: "AMC Italia",
     result: "La nuova sede come leva di cambiamento culturale",
