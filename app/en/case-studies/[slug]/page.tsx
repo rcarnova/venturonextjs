@@ -11,6 +11,7 @@ import RandstadProfessionalsEN from "@/components/pages/cases-en/RandstadProfess
 import EuPromotionsEN from "@/components/pages/cases-en/EuPromotions";
 import ComuneVercelliEN from "@/components/pages/cases-en/ComuneVercelli";
 import AmcItaliaEN from "@/components/pages/cases-en/AmcItalia";
+import McCannHealthEN from "@/components/pages/cases-en/McCannHealth";
 
 type CaseMeta = {
   title: string;
@@ -79,6 +80,12 @@ const cases: Record<string, CaseMeta> = {
     description: "12 months of co-design with employees to turn a headquarter relocation into an organizational culture project.",
     itSlug: "amc-italia",
     Component: AmcItaliaEN,
+  },
+  "mccann-health": {
+    title: "Listening and Envisioning for the new office — McCann Health — Venturo",
+    description: "Board interviews, organisation-wide survey and envisioning workshop to define the values the new McCann Health office needed to convey.",
+    itSlug: "mccann-health",
+    Component: McCannHealthEN,
   },
 };
 

@@ -18,6 +18,7 @@ const AmcItalia = () => {
         logo="/logos/amc_italia_white.png"
         logoAlt="AMC Italia"
         logoNeedsInvert={false}
+        logoClassName="h-24 md:h-32 w-auto object-contain mx-auto mb-8 bg-charcoal px-6 py-4 rounded-lg"
         overview={[
           { label: "Settore", value: "Consumer / Casalinghi" },
           { label: "Interlocutore", value: "CFO, HR, Management" },

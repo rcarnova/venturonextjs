@@ -19,6 +19,10 @@ const AmcItaliaEN = () => {
         title="AMC Italia"
         subtitle="The new headquarters as a lever for cultural change"
         credit="In collaboration with Smartworking srl"
+        logo="/logos/amc_italia_white.png"
+        logoAlt="AMC Italia"
+        logoNeedsInvert={false}
+        logoClassName="h-24 md:h-32 w-auto object-contain mx-auto mb-8 bg-charcoal px-6 py-4 rounded-lg"
         overview={[
           { label: "Sector", value: "Consumer / Housewares" },
           { label: "Stakeholders", value: "CFO, HR, Management" },
