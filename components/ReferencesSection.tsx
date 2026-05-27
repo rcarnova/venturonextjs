@@ -35,6 +35,16 @@ const slides: CaseSlide[] = [
     photoSide: "right",
   },
   {
+    category: "Cultura Organizzativa / Participatory Design",
+    title: "La nuova sede come leva di cambiamento culturale",
+    body: "AMC Italia doveva trasferire sede. La domanda non era dove mettere le scrivanie, ma come usare il trasloco per cambiare davvero il modo di lavorare. 12 mesi di co-design con le persone: quattro valori emersi dal basso, non imposti dall'alto.",
+    cta: "Leggi il caso completo",
+    link: "/casi-studio/amc-italia",
+    photo: "/images/cases/amc-italia/ufficio-2.jpg",
+    photoAlt: "Il nuovo ufficio AMC Italia — punto di arrivo di 12 mesi di co-design partecipativo",
+    photoSide: "left",
+  },
+  {
     category: "Green Tech / Economia Circolare",
     title: "Dal riso alla bioedilizia: trovare persone che credono nel tuo perché",
     body: "Ricehouse trasforma gli scarti della lavorazione del riso in materiali da costruzione sostenibili. Come attrarre talenti quando lavori con paglia di riso? Employer branding che racconta il perché prima del cosa.",
