@@ -15,6 +15,9 @@ const AmcItalia = () => {
         title="AMC Italia"
         subtitle="La nuova sede come leva di cambiamento culturale"
         credit="In collaborazione con Smartworking srl"
+        logo="/logos/amc_italia_white.png"
+        logoAlt="AMC Italia"
+        logoNeedsInvert={false}
         overview={[
           { label: "Settore", value: "Consumer / Casalinghi" },
           { label: "Interlocutore", value: "CFO, HR, Management" },

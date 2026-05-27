@@ -107,6 +107,8 @@ const cases = [
     description: "Interviste al board, survey all'organizzazione e workshop di envisioning per definire i valori che il nuovo ufficio doveva trasmettere.",
     slug: "mccann-health",
     hasDetail: true,
+    logo: "/logos/mccann_health_white.png",
+    logoScale: 1,
     tags: ["CEO / Leadership", "CHO / HR"],
   },
   {
@@ -115,6 +117,8 @@ const cases = [
     description: "12 mesi di co-design con le persone per trasformare un trasferimento di sede in un progetto di cultura organizzativa.",
     slug: "amc-italia",
     hasDetail: true,
+    logo: "/logos/amc_italia_white.png",
+    logoScale: 1,
     tags: ["CEO / Leadership", "CHO / HR"],
   },
 ];

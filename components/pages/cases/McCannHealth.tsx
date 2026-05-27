@@ -15,6 +15,9 @@ const McCannHealth = () => {
         title="McCann Health"
         subtitle="Ascolto e Envisioning per definire i valori del nuovo ufficio"
         credit="In collaborazione con Smartworking Srl"
+        logo="/logos/mccann_health_white.png"
+        logoAlt="McCann Health"
+        logoNeedsInvert={false}
         overview={[
           { label: "Settore", value: "Healthcare / Advertising" },
           { label: "Interlocutore", value: "Board + Organizzazione" },
@@ -62,11 +65,11 @@ const McCannHealth = () => {
             title: "Sintesi e definizione dei valori",
             description:
               "Elaborazione del report finale con le indicazioni sul modello di ufficio e i valori che lo spazio dovrà trasmettere. Dal lavoro del gruppo sono emerse quattro tensioni guida: Rinascita continua, Combattività e fantasia, Essere team nella diversità, Futuro digitale a misura d'uomo.",
-            image: {
-              src: "/images/cases/mccann-health/sintesi.jpg",
-              alt: "Board di sintesi — cosa contraddistingue McCann Health tra passato, presente e futuro",
-              caption: "La board di sintesi: cosa ci contraddistingue rispetto alla nostra storia, al nostro presente e cosa vogliamo diventare",
-            },
+            gallery: [
+              { src: "/images/cases/mccann-health/sintesi.jpg", alt: "Board di sintesi — cosa contraddistingue McCann Health tra passato, presente e futuro" },
+              { src: "/images/cases/mccann-health/nuova-sede.png", alt: "La nuova sede McCann Health — render architettonico esterno" },
+            ],
+            galleryCaption: "La board di sintesi e il render della nuova sede: dove la cultura diventa spazio",
           },
         ]}
         results={[
