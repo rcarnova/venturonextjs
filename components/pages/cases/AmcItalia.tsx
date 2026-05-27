@@ -13,7 +13,7 @@ const AmcItalia = () => {
       <CaseStudyLayout
         caseId="amc-italia"
         title="AMC Italia"
-        subtitle="Il trasloco come leva di cambiamento culturale"
+        subtitle="La nuova sede come leva di cambiamento culturale"
         credit="In collaborazione con Smartworking srl"
         overview={[
           { label: "Settore", value: "Consumer / Casalinghi" },

@@ -130,7 +130,7 @@ export const allCases: CaseData[] = [
   {
     id: "amc-italia",
     company: "AMC Italia",
-    result: "Il trasloco come leva di cambiamento culturale",
+    result: "La nuova sede come leva di cambiamento culturale",
     description: "12 mesi di co-design con le persone per trasformare un trasferimento di sede in un progetto di cultura organizzativa.",
     slug: "amc-italia",
     hasDetail: true,
