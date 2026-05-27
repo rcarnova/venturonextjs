@@ -1,48 +1,134 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+const ACCENT = "#E6FF3D";
+const INK = "#111111";
+const MONO: React.CSSProperties = {
+  fontFamily: "'IBM Plex Mono', monospace",
+};
+const SERIF_ITALIC: React.CSSProperties = {
+  fontFamily: "'Instrument Serif', Georgia, serif",
+  fontStyle: "italic",
+  fontWeight: 400,
+};
 
 const HeroSectionEN = () => {
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center pt-20 bg-background overflow-x-hidden">
-      <div className="container-wide relative z-10 px-5 md:px-8">
-        <div className="max-w-4xl">
-          <h1 className="text-[36px] md:!text-[80px] font-bold leading-[1.15] tracking-tight">
-            <span
-              className="inline-block animate-[heroFadeUp_0.8s_ease-out_0.1s_both]"
-            >
-              Every organization has a why<span className="text-[75%]">.</span>
-            </span>
-            <br />
-            <span
-              className="inline-block animate-[heroBlurIn_1.2s_ease-out_0.8s_both]"
-            >
-              We make it visible<span className="text-[75%]">.</span>
-            </span>
-          </h1>
-          
-          <p className="text-[20px] leading-[1.65] text-muted-foreground mt-8 max-w-none md:whitespace-nowrap animate-fade-up-delay-2 [animation-delay:1.2s] md:[animation-delay:2.5s]">
-            Cultural challenges always have an inside and an outside.<br className="md:hidden" /> Venturo crosses both.
-          </p>
+    <section
+      style={{
+        backgroundColor: "#ffffff",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        padding: "0 clamp(24px, 6vw, 80px)",
+        paddingTop: 88,
+        paddingBottom: 48,
+      }}
+    >
+      {/* H1 */}
+      <h1
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          margin: 0,
+          lineHeight: 1.03,
+          letterSpacing: "-0.03em",
+          fontWeight: 700,
+          color: INK,
+          fontFamily: "'Space Grotesk', system-ui, sans-serif",
+        }}
+      >
+        {/* Line 1 */}
+        <span style={{ display: "block", fontSize: "clamp(36px, 6.5vw, 88px)", marginBottom: "0.25em" }}>
+          Every organization
+        </span>
 
-          <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-up-delay-2 [animation-delay:1.5s] md:[animation-delay:3s]">
-            <Button onClick={scrollToContact} variant="hero" className="glow-btn">
-              Let's talk about your culture
-            </Button>
-          </div>
-        </div>
-      </div>
+        {/* Line 2 — "has a why." with annotation */}
+        <span
+          style={{
+            display: "block",
+            fontSize: "clamp(36px, 6.5vw, 88px)",
+            position: "relative",
+          }}
+        >
+          has a{" "}
+          <span style={{ position: "relative", display: "inline-block" }}>
+            <em style={SERIF_ITALIC}>why</em>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float z-10">
-        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-white/60 rounded-full animate-bounce" />
-        </div>
-      </div>
+            {/* Dashed arc annotation — xl+ only */}
+            <svg
+              aria-hidden="true"
+              className="hidden xl:block"
+              style={{
+                position: "absolute",
+                top: "-14px",
+                left: "105%",
+                width: 220,
+                height: 90,
+                overflow: "visible",
+                pointerEvents: "none",
+              }}
+              viewBox="0 0 220 90"
+              fill="none"
+            >
+              <path
+                d="M 0 30 C 40 -10 130 -5 180 35"
+                stroke="#888"
+                strokeWidth="0.8"
+                strokeDasharray="3 4"
+                fill="none"
+              />
+              <circle cx="180" cy="35" r="1.5" fill="#888" />
+              <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
+                People don't buy what you do,
+              </text>
+              <text x="188" y="37" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
+                they buy why
+              </text>
+              <text x="188" y="52" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
+                you do it.
+              </text>
+            </svg>
+          </span>
+          .
+        </span>
+
+        {/* Line 3 — right-aligned */}
+        <span
+          style={{
+            display: "block",
+            fontSize: "clamp(36px, 6.5vw, 88px)",
+            textAlign: "right",
+          }}
+        >
+          We make it
+        </span>
+
+        {/* Line 4 — "visible." with yellow fill, right-aligned */}
+        <span style={{ display: "block", textAlign: "right" }}>
+          <span
+            style={{
+              fontSize: "clamp(36px, 6.5vw, 88px)",
+              backgroundColor: ACCENT,
+              color: INK,
+              padding: "0.02em 0.12em",
+              display: "inline-block",
+              lineHeight: 1.05,
+            }}
+          >
+            visible.
+          </span>
+        </span>
+      </h1>
+
+      {/* Footer */}
+      <footer style={{ marginTop: "clamp(32px, 5vh, 64px)" }}>
+        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555", maxWidth: 420 }}>
+          We step in when an organization's real identity doesn't emerge
+          in the moments that matter: change, onboarding, internal communication.
+        </p>
+      </footer>
     </section>
   );
 };
