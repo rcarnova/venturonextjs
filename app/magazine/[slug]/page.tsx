@@ -15,6 +15,7 @@ import RemoteWorkingSpecchio from "@/components/pages/magazine/RemoteWorkingSpec
 import BookishTalenti from "@/components/pages/magazine/BookishTalenti";
 import IdentitaDichiarataVissuta from "@/components/pages/magazine/IdentitaDichiarataVissuta";
 import LinguaggioOpaco from "@/components/pages/magazine/LinguaggioOpaco";
+import MotoreEBenzina from "@/components/pages/magazine/MotoreEBenzina";
 
 type ArticleMeta = {
   title: string;
@@ -108,6 +109,13 @@ const articles: Record<string, ArticleMeta> = {
     enSlug: "bookish-talents-substance",
     datePublished: "2026-04-24",
     Component: BookishTalenti,
+  },
+  "il-motore-e-la-benzina": {
+    title: "Il motore e la benzina. Cosa spinge davvero le organizzazioni.",
+    description: "Ogni azienda investe nel motore: processi, OKR, tool. Ma senza carburante culturale, il motore resta fermo. Il pattern che vediamo nelle aziende che affrontano la prima vera salita.",
+    enSlug: "engine-and-fuel",
+    datePublished: "2026-05-27",
+    Component: MotoreEBenzina,
   },
   "linguaggio-opaco-e-competenza": {
     title: "Le buzzword non sono un problema stilistico. Sono un problema cognitivo.",

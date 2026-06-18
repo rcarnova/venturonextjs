@@ -8,6 +8,17 @@ import ArticleCard from "@/components/ArticleCard";
 const articles = [
   {
     category: "cultura organizzativa",
+    title: "Il motore e la benzina. Cosa spinge davvero le organizzazioni.",
+    excerpt:
+      "Ogni azienda investe nel motore: processi, OKR, tool. Ma senza carburante culturale, il motore resta fermo. Il pattern che vediamo nelle aziende che affrontano la prima vera salita.",
+    date: "27 mag 2026",
+    readTime: "5 min",
+    link: "/magazine/il-motore-e-la-benzina",
+    author: "Rosario",
+    tags: ["cultura organizzativa", "cambiamento"],
+  },
+  {
+    category: "cultura organizzativa",
     title: "Le buzzword non sono un problema stilistico. Sono un problema cognitivo.",
     excerpt:
       "Una ricerca di Cornell conferma ciò che chi lavora nelle organizzazioni sente da anni: chi usa linguaggio aziendale opaco tende ad essere meno competente. Il problema non è stilistico.",
