@@ -64,7 +64,6 @@ const SimulatoreTurnover = () => {
     };
   }, [salary, headcount, turnoverRate, targetRate]);
 
-  const positive = r.netSavings >= 0;
   const showWhatIf = targetRate < turnoverRate && r.leaversDelta > 0;
 
   return (
@@ -198,62 +197,83 @@ const SimulatoreTurnover = () => {
             </div>
           </div>
 
-          {/* Projection card */}
-          <div className="rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 mb-8">
+          {/* ROI per persona — hero card */}
+          <div className="rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 mb-6">
             <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-6">
-              Proiezione annuale — {headcount} dipendenti, {turnoverRate}% di turnover
+              Per ogni persona trattenuta invece di persa
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            {/* Multiplier */}
+            <div className="flex items-baseline gap-3 mb-8">
+              <p
+                className="text-6xl md:text-7xl font-bold leading-none"
+                style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
+              >
+                {(r.attritionPerEmployee / r.retentionPerEmployee).toFixed(1)}
+                <span className="text-3xl text-muted-foreground">x</span>
+              </p>
+              <p className="text-sm text-muted-foreground max-w-[180px] leading-snug">
+                il ritorno sull'investimento in retention
+              </p>
+            </div>
+
+            {/* Visual bar comparison */}
+            <div className="space-y-5 mb-6">
               <div>
-                <p className="text-xs text-muted-foreground mb-1">Costo dell'attrition</p>
-                <p
-                  className="text-3xl font-bold tabular-nums"
-                  style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-                >
-                  {eur(r.totalAttritionCost)}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1.5">
-                  {r.leavers} {r.leavers === 1 ? "persona" : "persone"} × {eur(r.attritionPerEmployee)}
-                </p>
+                <div className="flex justify-between items-baseline mb-2">
+                  <span className="text-xs text-muted-foreground">Investimento retention / anno / persona</span>
+                  <span className="font-mono text-sm font-medium tabular-nums">{eur(r.retentionPerEmployee)}</span>
+                </div>
+                <div className="h-2.5 bg-foreground/8 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${Math.round(r.retentionPerEmployee / r.attritionPerEmployee * 100)}%`,
+                      backgroundColor: "#E1FF00",
+                    }}
+                  />
+                </div>
               </div>
+
               <div>
-                <p className="text-xs text-muted-foreground mb-1">Investimento in retention (tutta l'organizzazione)</p>
-                <p
-                  className="text-3xl font-bold tabular-nums"
-                  style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
-                >
-                  {eur(r.totalRetentionCost)}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1.5">
-                  {headcount} dipendenti × {eur(r.retentionPerEmployee)}/anno
-                </p>
+                <div className="flex justify-between items-baseline mb-2">
+                  <span className="text-xs text-muted-foreground">Costo di sostituzione (se la persona lascia)</span>
+                  <span className="font-mono text-sm font-medium tabular-nums">{eur(r.attritionPerEmployee)}</span>
+                </div>
+                <div className="h-2.5 bg-foreground rounded-full" />
               </div>
             </div>
 
-            {/* Net result — neutral color when negative */}
-            <div
-              className="p-5 rounded-lg"
-              style={{
-                backgroundColor: positive ? "rgba(225, 255, 0, 0.15)" : "rgba(0,0,0,0.04)",
-                borderLeft: `3px solid ${positive ? "#E1FF00" : "rgba(0,0,0,0.2)"}`,
-              }}
-            >
-              <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
-                {positive ? "Risparmio netto investendo in retention" : "Differenza attrition vs retention"}
-              </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Ogni euro investito in retention ne preserva{" "}
+              <strong className="text-foreground">
+                {(r.attritionPerEmployee / r.retentionPerEmployee).toFixed(1)}
+              </strong>{" "}
+              in costi di sostituzione evitati.
+            </p>
+          </div>
+
+          {/* Contesto organizzativo — scala del problema */}
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="rounded-lg border border-border/40 p-4">
+              <p className="text-xs text-muted-foreground mb-1">Persone che lasciano all'anno</p>
               <p
-                className="text-4xl md:text-5xl font-bold tabular-nums"
+                className="text-3xl font-bold tabular-nums"
                 style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
               >
-                {positive ? "+" : ""}{eur(r.netSavings)}
+                {r.leavers}
               </p>
-              <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-                {positive
-                  ? `Con un turnover del ${turnoverRate}%, il programma di retention ripaga interamente e genera un risparmio netto di ${eur(r.netSavings)} all'anno.`
-                  : `Con un turnover del ${turnoverRate}%, il costo diretto della retention supera quello dell'attrition di ${eur(Math.abs(r.netSavings))}. I benefici indiretti — produttività, morale stabile, conoscenza preservata — non sono inclusi in questo calcolo.`
-                }
+              <p className="text-xs text-muted-foreground mt-1">{turnoverRate}% di {headcount} dipendenti</p>
+            </div>
+            <div className="rounded-lg border border-border/40 p-4">
+              <p className="text-xs text-muted-foreground mb-1">Costo totale di sostituzione / anno</p>
+              <p
+                className="text-3xl font-bold tabular-nums"
+                style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
+              >
+                {eur(r.totalAttritionCost)}
               </p>
+              <p className="text-xs text-muted-foreground mt-1">{r.leavers} × {eur(r.attritionPerEmployee)}</p>
             </div>
           </div>
 
@@ -352,10 +372,10 @@ const SimulatoreTurnover = () => {
                 al 50% e l'impatto su morale e conoscenza organizzativa (25% dello stipendio annuo).
               </p>
               <p>
-                Il costo di retention (12,5% dello stipendio annuo) include programmi di sviluppo professionale,
-                iniziative di benessere e adeguamenti salariali. Scala con lo stipendio perché il valore del
-                dipendente — e il costo per trattenerlo — cresce proporzionalmente al ruolo.
-                È una stima conservativa: la cifra reale varia per settore, dimensione e livello del ruolo.
+                Il costo di retention (12,5% dello stipendio annuo — circa {eur(r.retentionPerEmployee)} per questa fascia)
+                include programmi di sviluppo professionale, iniziative di benessere e adeguamenti salariali.
+                Scala con lo stipendio perché il valore del dipendente e il costo per trattenerlo crescono con il ruolo.
+                È una stima conservativa: la cifra reale varia per settore, dimensione e livello.
               </p>
               <p className="text-xs text-muted-foreground/70">
                 Fonti: SHRM "Cost of a Bad Hire", Bersin by Deloitte "The Real Cost of Losing an Employee",
