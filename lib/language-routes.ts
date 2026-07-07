@@ -23,6 +23,7 @@ const staticRouteMap: Record<string, string> = {
   "/principi": "/en/principles",
   "/privacy": "/en/privacy",
   "/analisi-evp": "/en/evp-analysis",
+  "/simulatore-turnover": "/en/turnover-calculator",
   // Case study with different slug
   "/casi-studio/comune-di-vercelli-violenza-di-genere": "/en/case-studies/comune-di-vercelli-gender-violence",
 };

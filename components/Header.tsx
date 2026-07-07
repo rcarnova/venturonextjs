@@ -20,6 +20,7 @@ const navLinks = [
   { href: "/casi-studio", label: "Casi studio" },
   { href: "/magazine", label: "Articoli" },
   { href: "/analisi-evp", label: "Misura EVP" },
+  { href: "/simulatore-turnover", label: "Costo turnover" },
   { href: "/chi-siamo", label: "Chi siamo" },
 ];
 
