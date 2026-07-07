@@ -8,8 +8,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-function eur(n: number) {
-  return n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+// Reliable Italian formatting: "3.600 €" not "3600 €"
+function eur(n: number): string {
+  return Math.round(n).toLocaleString("it-IT") + " €";
 }
 
 function clamp(v: number, min: number, max: number) {
@@ -20,38 +21,51 @@ const SimulatoreTurnover = () => {
   const [salary, setSalary] = useState(24000);
   const [headcount, setHeadcount] = useState(100);
   const [turnoverRate, setTurnoverRate] = useState(10);
+  const [targetRate, setTargetRate] = useState(8);
 
   const r = useMemo(() => {
+    // Per-employee acquisition costs
     const annunci = 500;
     const agenzie = salary * 0.15;
     const selezione = 1000;
     const onboarding = 1000;
     const talentAcquisition = annunci + agenzie + selezione + onboarding;
 
+    // Per-employee attrition costs
     const produttivita = salary * 0.50;
     const morale = salary * 0.25;
     const attritionPerEmployee = talentAcquisition + produttivita + morale;
 
-    const retentionPerEmployee = 3000;
+    // Retention cost scales with salary (12.5% — ratio from reference case: 3.000/24.000)
+    const retentionPerEmployee = salary * 0.125;
 
+    // Current scenario
     const leavers = Math.max(1, Math.round(headcount * (turnoverRate / 100)));
     const totalAttritionCost = leavers * attritionPerEmployee;
     const totalRetentionCost = headcount * retentionPerEmployee;
     const netSavings = totalAttritionCost - totalRetentionCost;
 
-    const breakevenLeavers = totalRetentionCost / attritionPerEmployee;
-    const breakevenRate = (breakevenLeavers / headcount) * 100;
+    // Breakeven
+    const breakevenRate = (totalRetentionCost / attritionPerEmployee / headcount) * 100;
+
+    // What-if scenario
+    const safeTarget = clamp(targetRate, 0, turnoverRate);
+    const targetLeavers = Math.round(headcount * (safeTarget / 100));
+    const leaversDelta = leavers - targetLeavers;
+    const savedByReduction = leaversDelta * attritionPerEmployee;
 
     return {
-      annunci, agenzie, selezione, onboarding, talentAcquisition,
+      annunci, agenzie, selezione, onboarding,
       produttivita, morale, attritionPerEmployee,
       retentionPerEmployee, leavers,
       totalAttritionCost, totalRetentionCost, netSavings,
       breakevenRate,
+      safeTarget, targetLeavers, leaversDelta, savedByReduction,
     };
-  }, [salary, headcount, turnoverRate]);
+  }, [salary, headcount, turnoverRate, targetRate]);
 
   const positive = r.netSavings >= 0;
+  const showWhatIf = targetRate < turnoverRate && r.leaversDelta > 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -101,7 +115,7 @@ const SimulatoreTurnover = () => {
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-2">
-                Il costo dell'agenzia di recruiting (15%) e la perdita di produttività (50%) si calcolano in proporzione.
+                Agenzie (15%), perdita produttività (50%), morale (25%) e costo retention (12,5%) si calcolano in proporzione allo stipendio.
               </p>
             </div>
 
@@ -122,14 +136,18 @@ const SimulatoreTurnover = () => {
 
             <div>
               <Label className="text-foreground font-semibold mb-2 block">
-                Tasso di turnover annuo
+                Tasso di turnover attuale
               </Label>
               <div className="flex items-center gap-3 flex-wrap">
                 <div className="flex items-center gap-2">
                   <Input
                     type="number"
                     value={turnoverRate}
-                    onChange={(e) => setTurnoverRate(clamp(Number(e.target.value), 0, 100))}
+                    onChange={(e) => {
+                      const v = clamp(Number(e.target.value), 0, 100);
+                      setTurnoverRate(v);
+                      if (targetRate >= v) setTargetRate(Math.max(0, v - 1));
+                    }}
                     min={0}
                     max={100}
                     step={1}
@@ -161,7 +179,7 @@ const SimulatoreTurnover = () => {
                 { label: "Processo di selezione", value: r.selezione },
                 { label: "Onboarding e formazione iniziale", value: r.onboarding },
                 { label: "Perdita di produttività (6 mesi al 50%)", value: r.produttivita },
-                { label: "Impatto su morale e conoscenza organizzativa", value: r.morale },
+                { label: "Impatto su morale e conoscenza organizzativa (25%)", value: r.morale },
               ].map((row) => (
                 <div
                   key={row.label}
@@ -213,46 +231,102 @@ const SimulatoreTurnover = () => {
               </div>
             </div>
 
-            {/* Net result */}
+            {/* Net result — neutral color when negative */}
             <div
               className="p-5 rounded-lg"
               style={{
-                backgroundColor: positive ? "rgba(225, 255, 0, 0.15)" : "rgba(255, 0, 110, 0.07)",
-                borderLeft: `3px solid ${positive ? "#E1FF00" : "#FF006E"}`,
+                backgroundColor: positive ? "rgba(225, 255, 0, 0.15)" : "rgba(0,0,0,0.04)",
+                borderLeft: `3px solid ${positive ? "#E1FF00" : "rgba(0,0,0,0.2)"}`,
               }}
             >
               <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
-                {positive ? "Risparmio netto investendo in retention" : "La retention costa più dell'attrition a questo tasso"}
+                {positive ? "Risparmio netto investendo in retention" : "Differenza attrition vs retention"}
               </p>
               <p
                 className="text-4xl md:text-5xl font-bold tabular-nums"
-                style={{
-                  fontFamily: "'Space Grotesk', system-ui, sans-serif",
-                  color: positive ? "#1a1a1a" : "#FF006E",
-                }}
+                style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
               >
                 {positive ? "+" : ""}{eur(r.netSavings)}
               </p>
               <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
                 {positive
                   ? `Con un turnover del ${turnoverRate}%, il programma di retention ripaga interamente e genera un risparmio netto di ${eur(r.netSavings)} all'anno.`
-                  : `Con un turnover del ${turnoverRate}%, il costo complessivo della retention supera quello dell'attrition. Il punto di pareggio è a ${r.breakevenRate.toFixed(1)}% di turnover.`
+                  : `Con un turnover del ${turnoverRate}%, il costo diretto della retention supera quello dell'attrition di ${eur(Math.abs(r.netSavings))}. I benefici indiretti — produttività, morale stabile, conoscenza preservata — non sono inclusi in questo calcolo.`
                 }
               </p>
             </div>
           </div>
 
-          {/* Breakeven */}
+          {/* Breakeven — solo qui, non duplicato nel card */}
           <div className="border-l-[3px] border-foreground/20 pl-5 py-1 mb-14">
             <p className="text-sm text-muted-foreground leading-relaxed">
               <strong className="text-foreground">Punto di pareggio:</strong>{" "}
-              con questa organizzazione, il programma di retention conviene quando il tasso di turnover
-              supera{" "}
+              il programma di retention conviene economicamente quando il turnover supera{" "}
               <strong className="text-foreground">{r.breakevenRate.toFixed(1)}%</strong>{" "}
               ({Math.ceil(headcount * r.breakevenRate / 100)}{" "}
               {Math.ceil(headcount * r.breakevenRate / 100) === 1 ? "persona" : "persone"} all'anno).
-              Sotto quella soglia, il costo è distribuito su troppo pochi uscenti per essere ammortizzato.
+              Sotto quella soglia i costi diretti non si ammortizzano — ma i benefici su engagement e produttività restano reali anche prima.
             </p>
+          </div>
+
+          {/* What-if section */}
+          <div className="mb-14">
+            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-5">
+              Scenario obiettivo
+            </p>
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              Se investiste in retention e riduceste il turnover, quanto risparmiereste solo sui costi diretti di sostituzione?
+            </p>
+
+            <div className="mb-6">
+              <Label className="text-foreground font-semibold mb-2 block">
+                Obiettivo turnover annuo
+              </Label>
+              <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <Input
+                    type="number"
+                    value={targetRate}
+                    onChange={(e) => setTargetRate(clamp(Number(e.target.value), 0, Math.max(0, turnoverRate - 1)))}
+                    min={0}
+                    max={Math.max(0, turnoverRate - 1)}
+                    step={1}
+                    className="w-24"
+                  />
+                  <span className="text-muted-foreground text-sm font-mono">%</span>
+                </div>
+                {showWhatIf && (
+                  <span className="text-sm text-muted-foreground">
+                    = {r.targetLeavers} {r.targetLeavers === 1 ? "persona" : "persone"} che lasciano
+                    {" "}({r.leaversDelta > 0 ? `−${r.leaversDelta}` : "nessuna variazione"})
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {showWhatIf && (
+              <div
+                className="p-5 rounded-lg"
+                style={{
+                  backgroundColor: "rgba(225, 255, 0, 0.12)",
+                  borderLeft: "3px solid #E1FF00",
+                }}
+              >
+                <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                  Risparmio diretto riducendo il turnover da {turnoverRate}% a {r.safeTarget}%
+                </p>
+                <p
+                  className="text-4xl font-bold tabular-nums"
+                  style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
+                >
+                  +{eur(r.savedByReduction)}
+                </p>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                  {r.leaversDelta} {r.leaversDelta === 1 ? "persona in meno" : "persone in meno"} che lasciano all'anno × {eur(r.attritionPerEmployee)} = {eur(r.savedByReduction)} di costi di sostituzione evitati.
+                  Questo non include i benefici su produttività, morale e continuità operativa.
+                </p>
+              </div>
+            )}
           </div>
 
           {/* CTA */}
@@ -273,16 +347,15 @@ const SimulatoreTurnover = () => {
             <p className="text-xs text-muted-foreground mb-4">Come vengono calcolati i costi</p>
             <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
               <p>
-                Il costo di attrition include la sostituzione completa del dipendente (annunci di lavoro,
-                commissione agenzia al 15% dello stipendio annuo, processo di selezione, onboarding e formazione),
-                la perdita di produttività stimata in sei mesi al 50% di capacità, e l'impatto su morale
-                e conoscenza organizzativa stimato al 25% dello stipendio annuo.
+                Il costo di attrition include la sostituzione completa del dipendente (annunci, commissione agenzia al 15%
+                dello stipendio annuo, processo di selezione, onboarding), la perdita di produttività stimata in sei mesi
+                al 50% e l'impatto su morale e conoscenza organizzativa (25% dello stipendio annuo).
               </p>
               <p>
-                Il costo di retention per dipendente (€3.000 annui) include programmi di sviluppo professionale,
-                iniziative di benessere aziendale e adeguamenti salariali. È una stima conservativa: la cifra
-                reale varia significativamente in base al settore, alla dimensione dell'organizzazione e al
-                livello dei ruoli coinvolti.
+                Il costo di retention (12,5% dello stipendio annuo) include programmi di sviluppo professionale,
+                iniziative di benessere e adeguamenti salariali. Scala con lo stipendio perché il valore del
+                dipendente — e il costo per trattenerlo — cresce proporzionalmente al ruolo.
+                È una stima conservativa: la cifra reale varia per settore, dimensione e livello del ruolo.
               </p>
               <p className="text-xs text-muted-foreground/70">
                 Fonti: SHRM "Cost of a Bad Hire", Bersin by Deloitte "The Real Cost of Losing an Employee",
