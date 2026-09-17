@@ -8,6 +8,17 @@ import ArticleCard from "@/components/ArticleCard";
 const articles = [
   {
     category: "cultura organizzativa",
+    title: "La cultura batte i numeri: la lezione di Tim Cook",
+    excerpt:
+      "Quindici anni alla guida di Apple rivelano che i risultati straordinari sono una conseguenza della cultura, non il suo obiettivo.",
+    date: "11 set 2026",
+    readTime: "6 min",
+    link: "/magazine/la-cultura-batte-i-numeri",
+    author: "Rosario",
+    tags: ["cultura organizzativa", "leadership"],
+  },
+  {
+    category: "cultura organizzativa",
     title: "Il motore e la benzina. Cosa spinge davvero le organizzazioni.",
     excerpt:
       "Ogni azienda investe nel motore: processi, OKR, tool. Ma senza carburante culturale, il motore resta fermo. Il pattern che vediamo nelle aziende che affrontano la prima vera salita.",

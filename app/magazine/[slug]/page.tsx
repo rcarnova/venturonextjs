@@ -16,6 +16,7 @@ import BookishTalenti from "@/components/pages/magazine/BookishTalenti";
 import IdentitaDichiarataVissuta from "@/components/pages/magazine/IdentitaDichiarataVissuta";
 import LinguaggioOpaco from "@/components/pages/magazine/LinguaggioOpaco";
 import MotoreEBenzina from "@/components/pages/magazine/MotoreEBenzina";
+import LaCulturaBatteINumeri from "@/components/pages/magazine/LaCulturaBatteINumeri";
 
 type ArticleMeta = {
   title: string;
@@ -109,6 +110,13 @@ const articles: Record<string, ArticleMeta> = {
     enSlug: "bookish-talents-substance",
     datePublished: "2026-04-24",
     Component: BookishTalenti,
+  },
+  "la-cultura-batte-i-numeri": {
+    title: "La cultura batte i numeri: la lezione di Tim Cook",
+    description: "Quindici anni alla guida di Apple rivelano che i risultati straordinari sono una conseguenza della cultura, non il suo obiettivo.",
+    enSlug: "culture-beats-numbers",
+    datePublished: "2026-09-11",
+    Component: LaCulturaBatteINumeri,
   },
   "il-motore-e-la-benzina": {
     title: "Il motore e la benzina. Cosa spinge davvero le organizzazioni.",

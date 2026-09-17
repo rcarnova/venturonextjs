@@ -18,6 +18,7 @@ const staticRouteMap: Record<string, string> = {
   "/magazine/remote-working-specchio": "/en/magazine/remote-work-as-mirror",
   "/magazine/trasparenza-salariale": "/en/magazine/pay-transparency",
   "/magazine/bookish-talenti-sostanza": "/en/magazine/bookish-talents-substance",
+  "/magazine/la-cultura-batte-i-numeri": "/en/magazine",
   "/magazine/il-motore-e-la-benzina": "/en/magazine",
   "/lumen": "/en/lumen",
   "/principi": "/en/principles",
