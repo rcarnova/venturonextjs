@@ -14,14 +14,14 @@ interface Lever {
 
 const levers: Lever[] = [
   {
-    title: "Attrarre e Trattenere i Talenti",
-    description: "I candidati arrivano con aspettative che non corrispondono alla realtà. O non arrivano affatto. Il problema non è l'offerta economica né il settore: è che il brand comunica qualcosa di generico che non racconta chi siete davvero. Le persone giuste non si riconoscono, e quelle sbagliate accettano e se ne vanno dopo un anno.",
-    icon: UserPlus
-  },
-  {
     title: "Coinvolgimento e Appartenenza",
     description: "Le persone fanno quello che devono, niente di più. Le riunioni si svuotano di contributi, le iniziative partono dall'alto e si spengono prima di arrivare in fondo. Il problema non è la motivazione individuale: è che nessuno ha mai coinvolto davvero le persone in quello che si stava costruendo. Lavoriamo con i gruppi, non sui gruppi: chi partecipa alla costruzione si riconosce nel risultato.",
     icon: HeartHandshake
+  },
+  {
+    title: "Attrarre e Trattenere i Talenti",
+    description: "I candidati arrivano con aspettative che non corrispondono alla realtà. O non arrivano affatto. Il problema non è l'offerta economica né il settore: è che il brand comunica qualcosa di generico che non racconta chi siete davvero. Le persone giuste non si riconoscono, e quelle sbagliate accettano e se ne vanno dopo un anno.",
+    icon: UserPlus
   },
   {
     title: "Cultura Interna",
