@@ -127,6 +127,7 @@ const HeroSection = () => {
         <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555", maxWidth: 420 }}>
           Interveniamo quando l'identità reale di un'organizzazione non emerge
           nei momenti che contano: cambiamento, onboarding, comunicazione interna.
+          La facciamo emergere coinvolgendo le persone che la vivono, a tutti i livelli.
         </p>
       </footer>
     </section>

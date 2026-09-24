@@ -29,7 +29,7 @@ const jsonLd = {
   "url": "https://venturoconsulting.it",
   "logo": "https://venturoconsulting.it/logo.png",
   "email": "info@venturoconsulting.it",
-  "description": "Consulenza specializzata in cultura organizzativa ed employer branding. Rendiamo visibile il perché delle organizzazioni.",
+  "description": "Consulenza specializzata in cultura organizzativa ed employer branding. Coinvolgiamo le persone nei percorsi che rendono visibile il perché delle organizzazioni.",
   "areaServed": "IT",
   "knowsLanguage": ["it", "en"],
   "sameAs": ["https://linkedin.com/company/venturo-consulting"],
@@ -48,7 +48,7 @@ const Index = () => {
       
       <SEO
         title="Venturo — Cultura Organizzativa ed Employer Branding"
-        description="Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale per attrarre i talenti giusti."
+        description="Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza."
         canonical="https://venturoconsulting.it/"
         lang="it"
         alternateUrls={{ it: "https://venturoconsulting.it/", en: "https://venturoconsulting.it/en" }}
@@ -67,7 +67,7 @@ const Index = () => {
         </Suspense>
         <div className="flex justify-center px-6 pt-12 pb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-[720px] text-left border-l-[3px] border-foreground pl-5">
-            Venturo è una società di consulenza specializzata in cultura organizzativa, internal ed employer branding. Lavoriamo con aziende che vogliono rendere visibile la propria identità culturale, per attrarre i talenti giusti, allineare comunicazione interna ed esterna, e prendere decisioni coerenti con i propri valori.
+            Venturo è una società di consulenza specializzata in cultura organizzativa, internal ed employer branding. Lavoriamo con aziende che vogliono rendere visibile la propria identità culturale, per attrarre i talenti giusti, allineare comunicazione interna ed esterna, e prendere decisioni coerenti con i propri valori. Lo facciamo coinvolgendo le persone a tutti i livelli, non solo il vertice. L'appartenenza non si comunica: si costruisce partecipando.
           </p>
         </div>
         <Suspense fallback={LazyFallback}>

@@ -29,7 +29,7 @@ const IndexEN = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Venturo — Organizational Culture & Employer Branding Consulting"
-        description="We make your organization's culture visible. Venturo works on employer branding, internal communication and cultural transformation for companies that want to attract and retain the right talent."
+        description="We make your organization's culture visible by involving the people who live it. Venturo works on employer branding, internal communication and programs that build belonging, not just messaging."
         canonical="https://venturoconsulting.it/en"
         lang="en"
         alternateUrls={{ it: "https://venturoconsulting.it/", en: "https://venturoconsulting.it/en" }}
@@ -48,7 +48,7 @@ const IndexEN = () => {
         </Suspense>
         <div className="flex justify-center px-6 pt-12 pb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-[720px] text-left border-l-[3px] border-foreground pl-5">
-            Venturo is a consulting firm specializing in organizational culture, internal and employer branding. We work with companies that want to make their cultural identity visible, to attract the right talent, align internal and external communication, and make decisions that are coherent with their values.
+            Venturo is a consulting firm specializing in organizational culture, internal and employer branding. We work with companies that want to make their cultural identity visible, to attract the right talent, align internal and external communication, and make decisions that are coherent with their values. We do it by involving people at every level, not just the top. Belonging isn't communicated: it's built by taking part.
           </p>
         </div>
         <Suspense fallback={LazyFallback}>

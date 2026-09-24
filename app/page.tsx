@@ -4,7 +4,7 @@ import IndexPage from "@/components/pages/Index";
 export const metadata: Metadata = {
   title: "Venturo — Cultura Organizzativa ed Employer Branding",
   description:
-    "Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale per attrarre i talenti giusti.",
+    "Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza.",
   alternates: {
     canonical: "https://venturoconsulting.it/",
     languages: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Venturo — Cultura Organizzativa ed Employer Branding",
     description:
-      "Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale per attrarre i talenti giusti.",
+      "Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza.",
     url: "https://venturoconsulting.it/",
     siteName: "Venturo",
     locale: "it_IT",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Venturo — Cultura Organizzativa ed Employer Branding",
     description:
-      "Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale per attrarre i talenti giusti.",
+      "Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza.",
     images: ["https://venturoconsulting.it/og-image.png"],
   },
 };

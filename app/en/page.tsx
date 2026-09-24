@@ -4,7 +4,7 @@ import IndexENPage from "@/components/pages/en/Index";
 export const metadata: Metadata = {
   title: "Venturo — Organizational Culture and Employer Branding",
   description:
-    "We make your organization's culture visible. We work on employer branding, internal communication and cultural transformation to attract the right talent.",
+    "We make your organization's culture visible by involving the people who live it. Employer branding, internal communication and programs that build belonging.",
   alternates: {
     canonical: "https://venturoconsulting.it/en",
     languages: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Venturo — Organizational Culture and Employer Branding",
     description:
-      "We make your organization's culture visible. We work on employer branding, internal communication and cultural transformation to attract the right talent.",
+      "We make your organization's culture visible by involving the people who live it. Employer branding, internal communication and programs that build belonging.",
     url: "https://venturoconsulting.it/en",
     siteName: "Venturo",
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Venturo — Organizational Culture and Employer Branding",
     description:
-      "We make your organization's culture visible. We work on employer branding, internal communication and cultural transformation to attract the right talent.",
+      "We make your organization's culture visible by involving the people who live it. Employer branding, internal communication and programs that build belonging.",
     images: ["https://venturoconsulting.it/og-image.png"],
   },
 };

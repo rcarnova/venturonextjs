@@ -127,6 +127,7 @@ const HeroSectionEN = () => {
         <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555", maxWidth: 420 }}>
           We step in when an organization's real identity doesn't emerge
           in the moments that matter: change, onboarding, internal communication.
+          We bring it out by involving the people who live it, at every level.
         </p>
       </footer>
     </section>
