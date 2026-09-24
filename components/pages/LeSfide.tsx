@@ -63,6 +63,14 @@ const challenges: Challenge[] = [
       "Aiutiamo il board e i manager a rispondere a una domanda strategica: cosa significa davvero lavorare smart nella vostra organizzazione? Non come risolvere il lavoro da casa. Come renderlo una leva culturale consapevole.",
     approccio: "Workshop strategico + Facilitazione board",
   },
+  {
+    title: "Le persone ci sono, ma non partecipano",
+    reframing:
+      "Le persone fanno quello che devono, niente di più. Le riunioni si svuotano di contributi veri, le iniziative partono dall'alto e si spengono prima di arrivare in fondo, i progetti di cambiamento incontrano una resistenza che nessuno dichiara. Non è un problema di motivazione individuale né di incentivi: è che nessuno ha mai coinvolto davvero le persone in quello che si stava costruendo.",
+    action:
+      "Lavoriamo con i gruppi, non sui gruppi. Coinvolgiamo le persone nel processo che le riguarda, a tutti i livelli e non solo al vertice: chi partecipa alla costruzione si riconosce nel risultato, e l'appartenenza nasce da lì.",
+    approccio: "Lumen + Leading by Purpose + Workshop partecipativi",
+  },
 ];
 
 const LeSfide = () => {

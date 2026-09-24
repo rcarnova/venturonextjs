@@ -81,13 +81,13 @@ const HeroSection = () => {
               />
               <circle cx="180" cy="35" r="1.5" fill="#888" />
               <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
-                Le persone non acquistano
+                Le persone si riconoscono
               </text>
               <text x="188" y="37" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
-                ciò che fai, acquistano
+                non in ciò che fai,
               </text>
               <text x="188" y="52" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
-                il perché lo fai.
+                ma nel perché lo fai.
               </text>
             </svg>
           </span>

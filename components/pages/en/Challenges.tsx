@@ -63,6 +63,14 @@ const challenges: Challenge[] = [
       "We help the board and managers answer a strategic question: what does working smart truly mean in your organization? Not how to solve working from home. How to make it a conscious cultural lever.",
     approccio: "Strategic workshop + Board facilitation",
   },
+  {
+    title: "People are there, but they don't take part",
+    reframing:
+      "People do what is required, nothing more. Meetings empty out of real contributions, initiatives start at the top and fade before they reach the ground, change projects meet a resistance nobody states out loud. It is not a problem of individual motivation or incentives: nobody ever really involved people in what was being built.",
+    action:
+      "We work with groups, not on groups. We involve people in the process that concerns them, at every level and not only at the top: those who take part in building it recognize themselves in the result, and belonging grows from there.",
+    approccio: "Lumen + Leading by Purpose + Participatory workshops",
+  },
 ];
 
 const Challenges = () => {
