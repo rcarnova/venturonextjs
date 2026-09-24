@@ -21,6 +21,7 @@ const navLinks = [
   { href: "/magazine", label: "Articoli" },
   { href: "/analisi-evp", label: "Misura EVP" },
   { href: "/simulatore-turnover", label: "Costo turnover" },
+  { href: "/venturo-conversation", label: "Venturo Conversation" },
   { href: "/chi-siamo", label: "Chi siamo" },
 ];
 
