@@ -44,6 +44,9 @@ const VenturoConversationLogo = ({
           src="/images/venturo-conversation-logo.png"
           alt="Venturo Conversation"
           className={imgClassName}
+          /* dimensioni intrinseche del file: riservano lo spazio ed evitano il salto di layout */
+          width={880}
+          height={395}
           onError={() => setFailed(true)}
         />
       )}
