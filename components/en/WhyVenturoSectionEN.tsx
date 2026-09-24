@@ -2,7 +2,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 
 const consequences = [
   { n: "01", text: "you hire the wrong people" },
-  { n: "02", text: "you lose the right ones" },
+  { n: "02", text: "you lose the right ones, and those who stay disengage" },
   { n: "03", text: "you make inconsistent decisions" },
   { n: "04", text: "and every HR initiative becomes cosmetic" },
 ];
@@ -33,7 +33,7 @@ const WhyVenturoSectionEN = () => {
               Why Venturo exists
             </h2>
             <p className="text-body text-[#888888] mb-12 md:max-w-[60%]">
-              When it's not clear who you are as an organization, this is what happens:
+              When it's not clear who you are as an organization, and people aren't involved in defining it, this is what happens:
             </p>
           </AnimatedSection>
 
