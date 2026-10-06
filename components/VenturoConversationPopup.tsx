@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
 import { REGISTRATION_URL } from "@/lib/venturo-conversation";
 import {
@@ -84,6 +85,18 @@ const VenturoConversationPopup = () => {
             ISCRIVITI
             <span aria-hidden="true">→</span>
           </a>
+
+          {/* via secondaria per chi non e ancora pronto a iscriversi */}
+          <p className="mt-4">
+            <Link
+              href="/venturo-conversation"
+              onClick={() => dismiss(false)}
+              className="underline underline-offset-4 transition-colors hover:text-black"
+              style={{ color: MUTED, fontSize: 13 }}
+            >
+              oppure scopri il format
+            </Link>
+          </p>
         </div>
       </DialogContent>
     </Dialog>
