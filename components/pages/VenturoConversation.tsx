@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
-import { REGISTRATION_URL, EPISODE_IMAGE } from "@/lib/venturo-conversation";
+import { REGISTRATION_URL, CALENDAR_URL, EPISODE } from "@/lib/venturo-conversation";
 import Footer from "@/components/Footer";
 
 const INK = "#000000";
@@ -12,7 +12,7 @@ const ACCENT = "#EC4899";
 const ACCENT_ON_LIGHT = "#BE185D";
 
 const details = [
-  { label: "SI PARTE", value: "Ottobre 2026" },
+  { label: "SI PARTE", value: EPISODE.dateLabel },
   { label: "RITMO", value: "Circa ogni due settimane" },
   { label: "DURATA", value: "45-50 minuti" },
   { label: "DOVE", value: "Online" },
@@ -38,6 +38,27 @@ const segments = [
     desc: "Una domanda da riportare nella propria organizzazione.",
   },
 ];
+
+/** Freccia di link esterno: segnala che si apre un'altra scheda. */
+const ExternalArrow = () => (
+  <span aria-hidden="true" style={{ fontSize: "0.9em" }}>
+    &#8599;
+  </span>
+);
+
+const SubscribeButton = ({ className = "" }: { className?: string }) => (
+  <a
+    href={REGISTRATION_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`Iscriviti a: ${EPISODE.title} (si apre in una nuova scheda)`}
+    className={`inline-flex items-center gap-2 font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85 ${className}`}
+    style={{ backgroundColor: ACCENT, color: INK }}
+  >
+    ISCRIVITI
+    <ExternalArrow />
+  </a>
+);
 
 const VenturoConversation = () => {
   return (
@@ -77,6 +98,14 @@ const VenturoConversation = () => {
               >
                 Una domanda forte, più punti di vista, nessuna risposta già scritta.
               </p>
+
+              {/* Iscrizione disponibile subito, senza dover scorrere tutta la pagina */}
+              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <SubscribeButton />
+                <span style={{ color: MUTED, fontSize: 14 }}>
+                  Prossima: <strong style={{ color: TEXT }}>{EPISODE.dateLabel}</strong>
+                </span>
+              </div>
             </div>
 
             {/* Colonna destra: 4 colonne (9-12), allineata in basso */}
@@ -180,25 +209,85 @@ const VenturoConversation = () => {
         {/* ───────────── Prossima conversazione ───────────── */}
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={EPISODE_IMAGE.src}
-              alt={EPISODE_IMAGE.alt}
-              width={EPISODE_IMAGE.width}
-              height={EPISODE_IMAGE.height}
-              className="w-full h-auto border border-black"
-            />
+            <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
+              PROSSIMA CONVERSAZIONE
+            </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+            {/* La grafica porta al modulo di iscrizione: e l'elemento piu cliccato a istinto */}
+            <a
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Iscriviti a: ${EPISODE.title} (si apre in una nuova scheda)`}
+              className="block border border-black transition-opacity hover:opacity-90"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={EPISODE.image.src}
+                alt=""
+                width={EPISODE.image.width}
+                height={EPISODE.image.height}
+                className="block w-full h-auto"
+              />
+            </a>
+
+            {/*
+              Gli stessi dati della grafica, come testo vero: dentro l'immagine
+              su telefono scenderebbero a 5px e sarebbero illeggibili.
+            */}
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
+              <div className="lg:col-span-7">
+                <h3
+                  className="font-bold"
+                  style={{
+                    color: INK,
+                    fontSize: "clamp(22px, 2.6vw, 30px)",
+                    lineHeight: 1.2,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {EPISODE.title}
+                </h3>
+                <p className="font-mono text-eyebrow mt-4" style={{ color: ACCENT_ON_LIGHT }}>
+                  {EPISODE.dateLabel} · {EPISODE.duration} · {EPISODE.place}
+                </p>
+              </div>
+
+              <div className="lg:col-span-4 lg:col-start-9">
+                <dl>
+                  <div style={{ borderTop: `1px solid ${INK}` }} className="py-4">
+                    <dt className="font-mono text-eyebrow mb-1" style={{ color: MUTED }}>
+                      NE PARLIAMO CON
+                    </dt>
+                    <dd style={{ color: TEXT, fontSize: 15, lineHeight: 1.5 }}>
+                      <strong style={{ color: INK }}>{EPISODE.guest.name}</strong>
+                      <br />
+                      {EPISODE.guest.role}
+                    </dd>
+                  </div>
+                  <div style={{ borderTop: "1px solid #dcdcdc" }} className="py-4">
+                    <dt className="font-mono text-eyebrow mb-1" style={{ color: MUTED }}>
+                      HOST
+                    </dt>
+                    <dd style={{ color: TEXT, fontSize: 15, lineHeight: 1.5 }}>
+                      {EPISODE.hosts.map((h) => h.name).join(", ")}
+                      <br />
+                      Venturo
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <SubscribeButton />
               <a
-                href={REGISTRATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Iscriviti alla prossima Venturo Conversation (si apre in una nuova scheda)"
-                className="inline-block font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85 self-start"
-                style={{ backgroundColor: ACCENT, color: INK }}
+                href={CALENDAR_URL}
+                download
+                className="font-mono text-eyebrow underline underline-offset-4 transition-colors hover:text-black"
+                style={{ color: MUTED }}
               >
-                ISCRIVITI
+                AGGIUNGI AL CALENDARIO
               </a>
               <a
                 href="mailto:info@venturoconsulting.it?subject=Venturo%20Conversation"

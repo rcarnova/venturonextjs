@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Venturo//Venturo Conversation//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:venturo-conversation-2026-10-20@venturoconsulting.it
+DTSTAMP:20261006T164614Z
+DTSTART:20261020T100000Z
+DTEND:20261020T105000Z
+SUMMARY:Venturo Conversation: Motivazione ed engagement delle persone\, cos
+ a ne pensa un CFO?
+DESCRIPTION:Ne parliamo con Elena Alemanno\, CFO\, Inter Ikea Systems. Host
+ : Rosario Carnovale e Massimo Benedetti\, Venturo.\n\nIscrizione: https://
+ us06web.zoom.us/meeting/register/7k2pPKMQT7yAekG44wpx7A#/registration
+URL:https://us06web.zoom.us/meeting/register/7k2pPKMQT7yAekG44wpx7A#/regist
+ ration
+LOCATION:Online
+END:VEVENT
+END:VCALENDAR
