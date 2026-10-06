@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
+import { REGISTRATION_URL } from "@/lib/venturo-conversation";
 import Footer from "@/components/Footer";
 
 const INK = "#000000";
@@ -207,18 +208,21 @@ const VenturoConversation = () => {
 
               <div className="lg:col-span-4 lg:col-start-9 flex flex-col items-start lg:items-end gap-5">
                 <a
-                  href="mailto:info@venturoconsulting.it"
+                  href={REGISTRATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Iscriviti alla prossima Venturo Conversation (si apre in una nuova scheda)"
+                  className="inline-block font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: ACCENT, color: INK }}
+                >
+                  ISCRIVITI
+                </a>
+                <a
+                  href="mailto:info@venturoconsulting.it?subject=Venturo%20Conversation"
                   className="font-mono transition-colors hover:text-white"
                   style={{ color: MUTED_ON_DARK, fontSize: 14 }}
                 >
                   info@venturoconsulting.it
-                </a>
-                <a
-                  href="mailto:info@venturoconsulting.it?subject=Venturo%20Conversation"
-                  className="inline-block font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: ACCENT, color: INK }}
-                >
-                  SCRIVICI
                 </a>
               </div>
             </div>
