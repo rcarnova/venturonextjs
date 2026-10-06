@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
-import { REGISTRATION_URL } from "@/lib/venturo-conversation";
+import { REGISTRATION_URL, EPISODE_IMAGE } from "@/lib/venturo-conversation";
 import Footer from "@/components/Footer";
 
 const INK = "#000000";
@@ -10,8 +10,6 @@ const SURFACE = "#f4f4f4";
 const ACCENT = "#EC4899";
 // Su bianco #EC4899 da 3.5:1 e non passa AA a 12px: per il testo su fondo chiaro serve piu scuro (6.0:1).
 const ACCENT_ON_LIGHT = "#BE185D";
-// Su fondo nero #666666 darebbe 3.7:1 e non passerebbe AA: qui serve un grigio piu chiaro.
-const MUTED_ON_DARK = "#999999";
 
 const details = [
   { label: "SI PARTE", value: "Ottobre 2026" },
@@ -179,52 +177,36 @@ const VenturoConversation = () => {
           </div>
         </section>
 
-        {/* ───────────── Contatto ───────────── */}
-        <section style={{ backgroundColor: INK }}>
+        {/* ───────────── Prossima conversazione ───────────── */}
+        <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 lg:items-end">
-              <div className="lg:col-span-7">
-                <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT }}>
-                  RESTA AGGIORNATO
-                </p>
-                <h2
-                  className="font-bold text-white"
-                  style={{
-                    fontSize: "clamp(28px, 4vw, 44px)",
-                    lineHeight: 1.15,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  La prima conversazione arriva a ottobre.
-                </h2>
-                <p
-                  className="mt-6 max-w-[560px]"
-                  style={{ color: MUTED_ON_DARK, fontSize: 17, lineHeight: 1.65 }}
-                >
-                  Vuoi sapere quando si parte, o hai una domanda che vorresti vedere al
-                  centro di una conversazione? Scrivici.
-                </p>
-              </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={EPISODE_IMAGE.src}
+              alt={EPISODE_IMAGE.alt}
+              width={EPISODE_IMAGE.width}
+              height={EPISODE_IMAGE.height}
+              className="w-full h-auto border border-black"
+            />
 
-              <div className="lg:col-span-4 lg:col-start-9 flex flex-col items-start lg:items-end gap-5">
-                <a
-                  href={REGISTRATION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Iscriviti alla prossima Venturo Conversation (si apre in una nuova scheda)"
-                  className="inline-block font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: ACCENT, color: INK }}
-                >
-                  ISCRIVITI
-                </a>
-                <a
-                  href="mailto:info@venturoconsulting.it?subject=Venturo%20Conversation"
-                  className="font-mono transition-colors hover:text-white"
-                  style={{ color: MUTED_ON_DARK, fontSize: 14 }}
-                >
-                  info@venturoconsulting.it
-                </a>
-              </div>
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+              <a
+                href={REGISTRATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Iscriviti alla prossima Venturo Conversation (si apre in una nuova scheda)"
+                className="inline-block font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85 self-start"
+                style={{ backgroundColor: ACCENT, color: INK }}
+              >
+                ISCRIVITI
+              </a>
+              <a
+                href="mailto:info@venturoconsulting.it?subject=Venturo%20Conversation"
+                className="font-mono transition-colors hover:text-black"
+                style={{ color: MUTED, fontSize: 14 }}
+              >
+                info@venturoconsulting.it
+              </a>
             </div>
           </div>
         </section>
