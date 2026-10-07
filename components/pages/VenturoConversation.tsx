@@ -99,12 +99,9 @@ const VenturoConversation = () => {
                 Una domanda forte, più punti di vista, nessuna risposta già scritta.
               </p>
 
-              {/* Iscrizione disponibile subito, senza dover scorrere tutta la pagina */}
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              {/* La data non si ripete qui: sta nella lista a fianco e nel box sotto */}
+              <div className="mt-10">
                 <SubscribeButton />
-                <span style={{ color: MUTED, fontSize: 14 }}>
-                  Prossima: <strong style={{ color: TEXT }}>{EPISODE.dateLabel}</strong>
-                </span>
               </div>
             </div>
 
@@ -132,76 +129,6 @@ const VenturoConversation = () => {
                   </div>
                 ))}
               </dl>
-            </div>
-          </div>
-        </section>
-
-        {/* ───────────── Il format ───────────── */}
-        <section style={{ borderTop: `1px solid ${INK}` }}>
-          <div className="container-wide pt-16 pb-16 md:pt-24 md:pb-24">
-            <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
-              IL FORMAT
-            </p>
-            <h2
-              className="font-bold mb-8"
-              style={{
-                color: INK,
-                fontSize: "clamp(28px, 4vw, 44px)",
-                lineHeight: 1.15,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Non è un webinar.
-            </h2>
-            <p
-              className="max-w-[720px]"
-              style={{ color: TEXT, fontSize: 17, lineHeight: 1.65 }}
-            >
-              Ogni puntata nasce da una domanda che mette in tensione due forze con cui
-              le organizzazioni devono convivere. Venturo la apre e facilita il confronto
-              tra gli ospiti, lasciando spazio a chi partecipa. L&apos;obiettivo non è
-              arrivare a una risposta, ma far emergere quello che di solito resta
-              invisibile.
-            </p>
-
-            {/* Tre riquadri */}
-            <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 border border-black">
-              {segments.map((s, i) => (
-                <div
-                  key={s.title}
-                  /* separatore: orizzontale su mobile, verticale da md in su */
-                  className={`p-8 md:p-10 ${
-                    i > 0 ? "border-t border-black md:border-t-0 md:border-l md:border-l-black" : ""
-                  }`}
-                  style={{ backgroundColor: i === 1 ? SURFACE : "transparent" }}
-                >
-                  <p className="flex items-baseline gap-2 mb-6">
-                    <span
-                      className="font-bold"
-                      style={{
-                        color: INK,
-                        fontSize: "clamp(36px, 4.5vw, 52px)",
-                        lineHeight: 1,
-                        letterSpacing: "-0.03em",
-                      }}
-                    >
-                      {s.amount}
-                    </span>
-                    <span className="font-mono text-eyebrow" style={{ color: MUTED }}>
-                      {s.unit}
-                    </span>
-                  </p>
-                  <h3
-                    className="font-semibold mb-3"
-                    style={{ color: INK, fontSize: 20, lineHeight: 1.3 }}
-                  >
-                    {s.title}
-                  </h3>
-                  <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}>
-                    {s.desc}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -296,6 +223,76 @@ const VenturoConversation = () => {
               >
                 info@venturoconsulting.it
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ───────────── Il format ───────────── */}
+        <section style={{ borderTop: `1px solid ${INK}` }}>
+          <div className="container-wide pt-16 pb-16 md:pt-24 md:pb-24">
+            <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
+              IL FORMAT
+            </p>
+            <h2
+              className="font-bold mb-8"
+              style={{
+                color: INK,
+                fontSize: "clamp(28px, 4vw, 44px)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Non è un webinar.
+            </h2>
+            <p
+              className="max-w-[720px]"
+              style={{ color: TEXT, fontSize: 17, lineHeight: 1.65 }}
+            >
+              Ogni puntata nasce da una domanda che mette in tensione due forze con cui
+              le organizzazioni devono convivere. Venturo la apre e facilita il confronto
+              tra gli ospiti, lasciando spazio a chi partecipa. L&apos;obiettivo non è
+              arrivare a una risposta, ma far emergere quello che di solito resta
+              invisibile.
+            </p>
+
+            {/* Tre riquadri */}
+            <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 border border-black">
+              {segments.map((s, i) => (
+                <div
+                  key={s.title}
+                  /* separatore: orizzontale su mobile, verticale da md in su */
+                  className={`p-8 md:p-10 ${
+                    i > 0 ? "border-t border-black md:border-t-0 md:border-l md:border-l-black" : ""
+                  }`}
+                  style={{ backgroundColor: i === 1 ? SURFACE : "transparent" }}
+                >
+                  <p className="flex items-baseline gap-2 mb-6">
+                    <span
+                      className="font-bold"
+                      style={{
+                        color: INK,
+                        fontSize: "clamp(36px, 4.5vw, 52px)",
+                        lineHeight: 1,
+                        letterSpacing: "-0.03em",
+                      }}
+                    >
+                      {s.amount}
+                    </span>
+                    <span className="font-mono text-eyebrow" style={{ color: MUTED }}>
+                      {s.unit}
+                    </span>
+                  </p>
+                  <h3
+                    className="font-semibold mb-3"
+                    style={{ color: INK, fontSize: 20, lineHeight: 1.3 }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}>
+                    {s.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
