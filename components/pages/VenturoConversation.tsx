@@ -12,7 +12,9 @@ const ACCENT = "#EC4899";
 const ACCENT_ON_LIGHT = "#BE185D";
 
 const details = [
-  { label: "SI PARTE", value: EPISODE.dateLabel },
+  // "SI PARTE" valeva prima del debutto. Il format e partito il 20 ottobre,
+  // quindi ora la riga indica la prossima puntata, non l'inizio.
+  { label: "PROSSIMA", value: EPISODE.dateLabel },
   { label: "RITMO", value: "Circa ogni due settimane" },
   { label: "DURATA", value: "45-50 minuti" },
   { label: "DOVE", value: "Online" },

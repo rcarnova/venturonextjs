@@ -75,6 +75,9 @@ const lines = [
   "END:VCALENDAR",
 ];
 
-const out = join(root, "public/venturo-conversation-20-ottobre.ics");
+// il nome del file arriva da CALENDAR_URL: cosi cambiare puntata resta
+// una sola modifica in lib/venturo-conversation.ts
+const calUrl = src.match(/CALENDAR_URL\s*=\s*"([^"]+)"/)[1];
+const out = join(root, "public", calUrl.replace(/^\//, ""));
 writeFileSync(out, lines.join("\r\n") + "\r\n", "utf8");
 console.log(`scritto ${out}`);

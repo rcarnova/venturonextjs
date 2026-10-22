@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Venturo//Venturo Conversation//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:venturo-conversation-2026-11-06@venturoconsulting.it
+DTSTAMP:20261022T081415Z
+DTSTART:20261106T110000Z
+DTEND:20261106T115000Z
+SUMMARY:Venturo Conversation: Motivazione ed engagement delle persone\, cos
+ a ne pensa un Change Agent?
+DESCRIPTION:Ne parliamo con Matteo Lo Bue\, Agile Topic Leader\, Reale Grou
+ p. Host: Rosario Carnovale e Massimo Benedetti\, Venturo.\n\nIscrizione: h
+ ttps://us06web.zoom.us/meeting/register/V4TZo_D3Rk6L9Y6-X5rRnA#/registrati
+ on
+URL:https://us06web.zoom.us/meeting/register/V4TZo_D3Rk6L9Y6-X5rRnA#/regist
+ ration
+LOCATION:Online
+END:VEVENT
+END:VCALENDAR
