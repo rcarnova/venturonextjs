@@ -22,8 +22,8 @@ const details = [
   // quindi ora la riga indica la prossima puntata, non l'inizio.
   { label: "PROSSIMA", value: NEXT_EPISODE.dateLabel },
   { label: "RITMO", value: "Circa ogni due settimane" },
-  { label: "DURATA", value: "45-50 minuti" },
-  { label: "DOVE", value: "Online" },
+  { label: "DURATA", value: NEXT_EPISODE.duration },
+  { label: "DOVE", value: NEXT_EPISODE.place },
 ];
 
 const segments = [
@@ -184,7 +184,7 @@ const VenturoConversation = () => {
                   {NEXT_EPISODE.title}
                 </h3>
                 <p className="font-mono text-eyebrow mt-4" style={{ color: ACCENT_ON_LIGHT }}>
-                  {NEXT_EPISODE.dateLabel} · {NEXT_EPISODE.duration} · {NEXT_EPISODE.place}
+                  {NEXT_EPISODE.dateLabel}
                 </p>
               </div>
 

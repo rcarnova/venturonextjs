@@ -55,6 +55,9 @@ const VideoFacade = ({ videoId, poster, label }: Props) => {
             height={poster.height}
             className="absolute inset-0 w-full h-full object-cover"
           />
+          {/* Velatura: senza, il play cade sul testo della copertina e sembra
+              un elemento capitato li per sbaglio invece di un comando. */}
+          <span className="absolute inset-0 bg-black/30 transition-colors duration-200 group-hover:bg-black/20" />
           <span className="absolute inset-0 flex items-center justify-center">
             <span
               className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
