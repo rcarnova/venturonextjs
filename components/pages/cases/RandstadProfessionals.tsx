@@ -70,7 +70,7 @@ const RandstadProfessionals = () => {
               alt: "Set di produzione video employer branding con ciak per Randstad Professionals",
               caption: "Sul set delle video interviste employer branding",
             },
-            videoEmbed: "https://player.vimeo.com/video/386510579?h=ad05a1a149&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0",
+            videoEmbed: "https://player.vimeo.com/video/386510579?h=ad05a1a149&dnt=1&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0",
             videoCaption: "Video principale Randstad Professionals",
           },
         ]}
