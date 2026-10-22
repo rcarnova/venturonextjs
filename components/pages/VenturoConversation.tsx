@@ -1,6 +1,12 @@
 import Header from "@/components/Header";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
-import { REGISTRATION_URL, CALENDAR_URL, EPISODE } from "@/lib/venturo-conversation";
+import VideoFacade from "@/components/VideoFacade";
+import {
+  REGISTRATION_URL,
+  CALENDAR_URL,
+  NEXT_EPISODE,
+  PAST_EPISODES,
+} from "@/lib/venturo-conversation";
 import Footer from "@/components/Footer";
 
 const INK = "#000000";
@@ -14,7 +20,7 @@ const ACCENT_ON_LIGHT = "#BE185D";
 const details = [
   // "SI PARTE" valeva prima del debutto. Il format e partito il 20 ottobre,
   // quindi ora la riga indica la prossima puntata, non l'inizio.
-  { label: "PROSSIMA", value: EPISODE.dateLabel },
+  { label: "PROSSIMA", value: NEXT_EPISODE.dateLabel },
   { label: "RITMO", value: "Circa ogni due settimane" },
   { label: "DURATA", value: "45-50 minuti" },
   { label: "DOVE", value: "Online" },
@@ -53,7 +59,7 @@ const SubscribeButton = ({ className = "" }: { className?: string }) => (
     href={REGISTRATION_URL}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label={`Iscriviti a: ${EPISODE.title} (si apre in una nuova scheda)`}
+    aria-label={`Iscriviti a: ${NEXT_EPISODE.title} (si apre in una nuova scheda)`}
     className={`inline-flex items-center gap-2 font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85 ${className}`}
     style={{ backgroundColor: ACCENT, color: INK }}
   >
@@ -147,15 +153,15 @@ const VenturoConversation = () => {
               href={REGISTRATION_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Iscriviti a: ${EPISODE.title} (si apre in una nuova scheda)`}
+              aria-label={`Iscriviti a: ${NEXT_EPISODE.title} (si apre in una nuova scheda)`}
               className="block border border-black transition-opacity hover:opacity-90"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={EPISODE.image.src}
+                src={NEXT_EPISODE.image.src}
                 alt=""
-                width={EPISODE.image.width}
-                height={EPISODE.image.height}
+                width={NEXT_EPISODE.image.width}
+                height={NEXT_EPISODE.image.height}
                 className="block w-full h-auto"
               />
             </a>
@@ -175,10 +181,10 @@ const VenturoConversation = () => {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  {EPISODE.title}
+                  {NEXT_EPISODE.title}
                 </h3>
                 <p className="font-mono text-eyebrow mt-4" style={{ color: ACCENT_ON_LIGHT }}>
-                  {EPISODE.dateLabel} · {EPISODE.duration} · {EPISODE.place}
+                  {NEXT_EPISODE.dateLabel} · {NEXT_EPISODE.duration} · {NEXT_EPISODE.place}
                 </p>
               </div>
 
@@ -189,9 +195,9 @@ const VenturoConversation = () => {
                       NE PARLIAMO CON
                     </dt>
                     <dd style={{ color: TEXT, fontSize: 15, lineHeight: 1.5 }}>
-                      <strong style={{ color: INK }}>{EPISODE.guest.name}</strong>
+                      <strong style={{ color: INK }}>{NEXT_EPISODE.guest.name}</strong>
                       <br />
-                      {EPISODE.guest.role}
+                      {NEXT_EPISODE.guest.role}
                     </dd>
                   </div>
                   <div style={{ borderTop: "1px solid #dcdcdc" }} className="py-4">
@@ -199,7 +205,7 @@ const VenturoConversation = () => {
                       HOST
                     </dt>
                     <dd style={{ color: TEXT, fontSize: 15, lineHeight: 1.5 }}>
-                      {EPISODE.hosts.map((h) => h.name).join(", ")}
+                      {NEXT_EPISODE.hosts.map((h) => h.name).join(", ")}
                       <br />
                       Venturo
                     </dd>
@@ -294,6 +300,57 @@ const VenturoConversation = () => {
                     {s.desc}
                   </p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ───────────── Puntate precedenti ───────────── */}
+        <section style={{ borderTop: `1px solid ${INK}` }}>
+          <div className="container-wide py-16 md:py-24">
+            <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
+              RIVEDI LE PUNTATE
+            </p>
+
+            <div className="space-y-16">
+              {PAST_EPISODES.map((ep) => (
+                <article key={ep.videoId}>
+                  <VideoFacade
+                    videoId={ep.videoId}
+                    poster={ep.image}
+                    label={ep.title}
+                  />
+
+                  <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                    <div className="lg:col-span-7">
+                      <h3
+                        className="font-bold"
+                        style={{
+                          color: INK,
+                          fontSize: "clamp(20px, 2.2vw, 26px)",
+                          lineHeight: 1.25,
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {ep.title}
+                      </h3>
+                      <p className="font-mono text-eyebrow mt-3" style={{ color: MUTED }}>
+                        {ep.dateLabel}
+                      </p>
+                    </div>
+
+                    <div className="lg:col-span-4 lg:col-start-9">
+                      <p className="font-mono text-eyebrow mb-1" style={{ color: MUTED }}>
+                        NE ABBIAMO PARLATO CON
+                      </p>
+                      <p style={{ color: TEXT, fontSize: 15, lineHeight: 1.5 }}>
+                        <strong style={{ color: INK }}>{ep.guest.name}</strong>
+                        <br />
+                        {ep.guest.role}
+                      </p>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>

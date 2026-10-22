@@ -1,13 +1,15 @@
 /**
- * Dati della prossima Venturo Conversation.
+ * Dati di Venturo Conversation.
  *
- * Cambiano a ogni puntata: registrazione, grafica, ospite e data sono legati
- * al singolo incontro, non al format.
+ * NEXT_EPISODE e la puntata in arrivo: cambia ogni volta, insieme al link di
+ * registrazione e alla grafica. PAST_EPISODES e l'archivio: una voce in piu
+ * per ogni puntata andata online.
  *
- * Per cambiare puntata:
- *   1. aggiorna le costanti qui sotto
- *   2. metti la nuova grafica in public/images/
- *   3. node scripts/build-ics.mjs   (rigenera il file calendario)
+ * Per pubblicare una nuova puntata:
+ *   1. sposta NEXT_EPISODE in testa a PAST_EPISODES, aggiungendo videoId
+ *   2. aggiorna NEXT_EPISODE e REGISTRATION_URL / CALENDAR_URL
+ *   3. metti la nuova grafica in public/images/
+ *   4. node scripts/build-ics.mjs
  */
 
 export const REGISTRATION_URL =
@@ -15,7 +17,7 @@ export const REGISTRATION_URL =
 
 export const CALENDAR_URL = "/venturo-conversation-6-novembre.ics";
 
-export const EPISODE = {
+export const NEXT_EPISODE = {
   title: "Motivazione ed engagement delle persone, cosa ne pensa un Change Agent?",
 
   dateLabel: "6 novembre, ore 12",
@@ -51,3 +53,23 @@ export const EPISODE = {
     height: 720,
   },
 } as const;
+
+/** Puntate gia andate online, dalla piu recente. */
+export const PAST_EPISODES = [
+  {
+    videoId: "XrSQZ1B_jG4",
+    title: "Motivazione ed engagement delle persone, cosa ne pensa un CFO?",
+    dateLabel: "20 ottobre 2026",
+    guest: {
+      name: "Elena Alemanno",
+      role: "CFO, Inter Ikea Systems",
+    },
+    /** La copertina della puntata fa da anteprima al video: e gia sul nostro
+     *  dominio, quindi nemmeno l'anteprima contatta server esterni. */
+    image: {
+      src: "/images/venturo-conversation-20-ottobre.webp",
+      width: 1280,
+      height: 720,
+    },
+  },
+] as const;

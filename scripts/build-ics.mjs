@@ -15,9 +15,17 @@ import { dirname, join } from "node:path";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const src = readFileSync(join(root, "lib/venturo-conversation.ts"), "utf8");
 
+// Si cerca solo dentro il blocco NEXT_EPISODE: PAST_EPISODES contiene campi
+// con gli stessi nomi (title, name, role) e un match globale prenderebbe
+// quelli della puntata sbagliata senza dare errore.
+const blockStart = src.indexOf("export const NEXT_EPISODE");
+const blockEnd = src.indexOf("export const PAST_EPISODES");
+if (blockStart === -1) throw new Error("NEXT_EPISODE non trovato in lib/venturo-conversation.ts");
+const block = src.slice(blockStart, blockEnd === -1 ? undefined : blockEnd);
+
 const pick = (key) => {
-  const m = src.match(new RegExp(`${key}:\\s*"([^"]+)"`));
-  if (!m) throw new Error(`campo mancante in lib/venturo-conversation.ts: ${key}`);
+  const m = block.match(new RegExp(`${key}:\\s*"([^"]+)"`));
+  if (!m) throw new Error(`campo mancante in NEXT_EPISODE: ${key}`);
   return m[1];
 };
 
