@@ -6,7 +6,7 @@
  * per ogni puntata andata online.
  *
  * Per pubblicare una nuova puntata:
- *   1. sposta NEXT_EPISODE in testa a PAST_EPISODES, aggiungendo videoId
+ *   1. sposta NEXT_EPISODE in testa a PAST_EPISODES, aggiungendo slug e videoId
  *   2. aggiorna NEXT_EPISODE e REGISTRATION_URL / CALENDAR_URL
  *   3. metti la nuova grafica in public/images/
  *   4. node scripts/build-ics.mjs
@@ -57,6 +57,8 @@ export const NEXT_EPISODE = {
 /** Puntate gia andate online, dalla piu recente. */
 export const PAST_EPISODES = [
   {
+    /** Usato per l'indirizzo della pagina dedicata: /venturo-conversation/<slug> */
+    slug: "motivazione-engagement-cfo",
     videoId: "XrSQZ1B_jG4",
     title: "Motivazione ed engagement delle persone, cosa ne pensa un CFO?",
     dateLabel: "20 ottobre 2026",
@@ -71,5 +73,11 @@ export const PAST_EPISODES = [
       width: 1280,
       height: 720,
     },
+    /**
+     * Copia JPEG per l'anteprima social. LinkedIn non gestisce il WebP in modo
+     * affidabile nelle schede og:image, e LinkedIn e il canale dove questi link
+     * finiscono. Il WebP resta per la pagina, che pesa un terzo.
+     */
+    ogImage: "/images/venturo-conversation-20-ottobre-og.jpg",
   },
 ] as const;

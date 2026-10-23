@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
 import VideoFacade from "@/components/VideoFacade";
@@ -332,11 +333,24 @@ const VenturoConversation = () => {
                           letterSpacing: "-0.02em",
                         }}
                       >
-                        {ep.title}
+                        <Link
+                          href={`/venturo-conversation/${ep.slug}`}
+                          className="underline-offset-4 hover:underline"
+                        >
+                          {ep.title}
+                        </Link>
                       </h3>
                       <p className="font-mono text-eyebrow mt-3" style={{ color: MUTED }}>
                         {ep.dateLabel}
                       </p>
+                      {/* indirizzo condivisibile: anteprima social con copertina e ospite */}
+                      <Link
+                        href={`/venturo-conversation/${ep.slug}`}
+                        className="inline-block font-mono text-eyebrow mt-4 underline underline-offset-4 transition-colors hover:text-black"
+                        style={{ color: ACCENT_ON_LIGHT }}
+                      >
+                        PAGINA DELLA PUNTATA →
+                      </Link>
                     </div>
 
                     <div className="lg:col-span-4 lg:col-start-9">
