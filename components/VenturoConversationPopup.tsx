@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
-import { REGISTRATION_URL } from "@/lib/venturo-conversation";
+import { REGISTRATION_URL, NEXT_EPISODE } from "@/lib/venturo-conversation";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,13 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-const STORAGE_KEY = "venturo_conversation_popup_dismissed";
+/**
+ * La chiave porta la data della puntata, cosi chi ha chiuso l'annuncio di una
+ * conversazione rivede quello della successiva. Con una chiave fissa il pop-up
+ * spariva per sempre dopo la prima chiusura, e le puntate nuove non venivano
+ * piu annunciate a chi era gia passato dal sito.
+ */
+const STORAGE_KEY = `venturo_conversation_popup_${NEXT_EPISODE.startsAt.slice(0, 10)}`;
 const DELAY_MS = 3000;
 
 const INK = "#000000";
@@ -67,10 +73,14 @@ const VenturoConversationPopup = () => {
             style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}
           >
             Una domanda forte, più punti di vista, nessuna risposta già scritta.
+            <br />
+            <span style={{ color: INK }}>
+              Ne parliamo con {NEXT_EPISODE.guest.name}, {NEXT_EPISODE.guest.role}.
+            </span>
           </DialogDescription>
 
           <p className="font-mono text-eyebrow mt-8" style={{ color: ACCENT_ON_LIGHT }}>
-            SI PARTE · OTTOBRE 2026
+            PROSSIMA · {NEXT_EPISODE.dateLabel.toUpperCase()}
           </p>
 
           <a
