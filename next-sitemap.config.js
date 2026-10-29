@@ -6,7 +6,10 @@ module.exports = {
   changefreq: "weekly",
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: ["/toolkit/admin", "/en/toolkit/admin"],
+  // Deve restare allineato ai Disallow di public/robots.txt: una pagina
+  // presente in sitemap ma bloccata da robots viene segnalata come errore
+  // in Search Console ("URL inviato bloccato da robots.txt").
+  exclude: ["/toolkit", "/toolkit/*", "/en/toolkit", "/en/toolkit/*"],
   additionalPaths: async (config) => [
     await config.transform(config, "/"),
     await config.transform(config, "/chi-siamo"),
@@ -54,7 +57,12 @@ module.exports = {
       loc: path,
       changefreq: isMagazine ? "monthly" : isCase ? "monthly" : "weekly",
       priority: priorities[path] ?? (isMagazine || isCase ? 0.6 : 0.7),
-      lastmod: new Date().toISOString(),
+      // Niente lastmod: con la data di build ogni deploy dichiarava modificate
+      // tutte e 76 le pagine, anche un articolo di marzo. Un lastmod sempre
+      // pari a "oggi" Google impara a ignorarlo, e si perde la possibilita di
+      // segnalare un aggiornamento vero. Meglio lasciarlo decidere alla
+      // scansione finche non abbiamo date reali per pagina.
+      lastmod: undefined,
     };
   },
 };
