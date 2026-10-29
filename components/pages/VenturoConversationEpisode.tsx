@@ -151,12 +151,12 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                 I MOMENTI
               </h2>
               <p className="mb-10 max-w-[620px]" style={{ color: MUTED, fontSize: 16, lineHeight: 1.6 }}>
-                Tre passaggi brevi, se non hai i cinquanta minuti.
+                Quattro passaggi brevi, se non hai i cinquanta minuti.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {episode.highlights.map((clip, i) => (
-                  <div key={clip.videoId}>
+                  <div key={clip.videoId} id={`clip-${clip.videoId}`} style={{ scrollMarginTop: 96 }}>
                     <VideoFacade
                       videoId={clip.videoId}
                       poster={clip.image}

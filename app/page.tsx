@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import IndexPage from "@/components/pages/Index";
 
 export const metadata: Metadata = {
-  title: "Venturo — Cultura Organizzativa ed Employer Branding",
+  title: "Venturo — Cultura organizzativa ed engagement delle persone",
   description:
-    "Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza.",
+    "Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
   alternates: {
     canonical: "https://venturoconsulting.it/",
     languages: {
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Venturo — Cultura Organizzativa ed Employer Branding",
+    title: "Venturo — Cultura organizzativa ed engagement delle persone",
     description:
-      "Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza.",
+      "Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
     url: "https://venturoconsulting.it/",
     siteName: "Venturo",
     locale: "it_IT",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
         url: "https://venturoconsulting.it/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Venturo — Cultura Organizzativa ed Employer Branding",
+        alt: "Venturo — Cultura organizzativa ed engagement delle persone",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Venturo — Cultura Organizzativa ed Employer Branding",
+    title: "Venturo — Cultura organizzativa ed engagement delle persone",
     description:
-      "Rendiamo visibile la cultura della tua organizzazione coinvolgendo chi la vive. Employer branding, comunicazione interna e percorsi che generano appartenenza.",
+      "Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
     images: ["https://venturoconsulting.it/og-image.png"],
   },
 };

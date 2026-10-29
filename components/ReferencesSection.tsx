@@ -25,16 +25,6 @@ interface CaseSlide {
 
 const slides: CaseSlide[] = [
   {
-    category: "Talent Strategy / Employer Branding",
-    title: "Identità di marca per chi seleziona i migliori",
-    body: "EVP, Talent Personas e video employer branding per la divisione top management di Randstad. Un lavoro che parte dall'interno — dalla cultura del team — per costruire una proposta di valore credibile verso il mercato.",
-    cta: "Leggi il caso completo",
-    link: "/casi-studio/randstad-professionals",
-    photo: "/cases/randstad-professionals-envisioning.webp",
-    photoAlt: "Workshop di envisioning con il team Randstad Professionals",
-    photoSide: "right",
-  },
-  {
     category: "Cultura Organizzativa / Participatory Design",
     title: "La nuova sede come leva di cambiamento culturale",
     body: "AMC Italia doveva trasferire sede. La domanda non era dove mettere le scrivanie, ma come usare il trasloco per cambiare davvero il modo di lavorare. 12 mesi di co-design con le persone: quattro valori emersi dal basso, non imposti dall'alto.",
@@ -43,6 +33,16 @@ const slides: CaseSlide[] = [
     photo: "/images/cases/amc-italia/ufficio-2.jpg",
     photoAlt: "Il nuovo ufficio AMC Italia — punto di arrivo di 12 mesi di co-design partecipativo",
     photoSide: "left",
+  },
+  {
+    category: "Talent Strategy / Employer Branding",
+    title: "Identità di marca per chi seleziona i migliori",
+    body: "EVP, Talent Personas e video employer branding per la divisione top management di Randstad. Un lavoro che parte dall'interno — dalla cultura del team — per costruire una proposta di valore credibile verso il mercato.",
+    cta: "Leggi il caso completo",
+    link: "/casi-studio/randstad-professionals",
+    photo: "/cases/randstad-professionals-envisioning.webp",
+    photoAlt: "Workshop di envisioning con il team Randstad Professionals",
+    photoSide: "right",
   },
   {
     category: "Green Tech / Economia Circolare",
@@ -131,10 +131,10 @@ const ReferencesSection = () => {
         <AnimatedSection>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
-              Casi studio
+              La prova
             </p>
             <GlowTitle className="text-3xl md:text-section text-foreground">
-              Alcuni progetti in cui la cultura è diventata visibile.
+              Cosa è cambiato quando si sono guardati davvero.
             </GlowTitle>
           </div>
         </AnimatedSection>

@@ -63,12 +63,12 @@ const ContactSection = () => {
     <section id="contact" className="pt-[80px] pb-20 md:pb-28 lg:pb-32 bg-charcoal">
       <div className="container-narrow">
         <AnimatedSection>
-          <div className="text-center max-w-xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <GlowTitle className="text-3xl md:text-section text-warm-white md:!text-[40px]" variant="light">
-              Iniziamo a parlare
+              Volete sapere cosa raccontano le vostre persone quando nessuno chiede un punteggio?
             </GlowTitle>
             <p className="text-body text-warm-white/70 mt-4">
-              Raccontaci la tua sfida. Nessun impegno, solo una conversazione per capire se possiamo aiutarti.
+              Una conversazione di 30 minuti. Nessun impegno. Ci raccontate cosa vedete, noi vi diciamo cosa chiederemmo. Funziona meglio se al tavolo ci sono HR, comunicazione e chi gestisce le persone.
             </p>
           </div>
         </AnimatedSection>
