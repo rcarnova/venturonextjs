@@ -12,13 +12,12 @@ const SERIF_ITALIC: React.CSSProperties = {
 
 const LINE: React.CSSProperties = {
   display: "block",
-  fontSize: "clamp(32px, 5.4vw, 76px)",
+  fontSize: "clamp(44px, 8.6vw, 128px)",
 };
 
 /**
- * Hero della home. Parte dal sintomo che il cliente sa nominare (le persone
- * che si allontanano, cioe l'engagement che cala) e lo sposta sulla causa:
- * una storia in cui non si riconoscono.
+ * Hero della home. Parte dal tema che il cliente sa nominare (l'engagement)
+ * e lo sposta sulla causa: un'identita che l'organizzazione non vede.
  */
 const HeroSection = () => {
   return (
@@ -41,20 +40,16 @@ const HeroSection = () => {
           justifyContent: "center",
           margin: 0,
           lineHeight: 1.06,
+          rowGap: "0.08em",
           letterSpacing: "-0.03em",
           fontWeight: 700,
           color: INK,
           fontFamily: "'Space Grotesk', system-ui, sans-serif",
         }}
       >
-        <span style={LINE}>Le persone non si allontanano</span>
-        <span style={{ ...LINE, marginBottom: "0.35em" }}>dall&apos;azienda.</span>
-
-        <span style={{ ...LINE, textAlign: "right" }}>
-          Si allontanano da una <em style={SERIF_ITALIC}>storia</em>
-        </span>
+        <span style={LINE}>Non c&apos;è engagement</span>
         <span style={{ display: "block", textAlign: "right" }}>
-          <span style={{ fontSize: LINE.fontSize }}>in cui </span>
+          <span style={{ fontSize: LINE.fontSize }}>senza </span>
           <span
             style={{
               fontSize: LINE.fontSize,
@@ -65,7 +60,7 @@ const HeroSection = () => {
               lineHeight: 1.05,
             }}
           >
-            non si riconoscono.
+            identità.
           </span>
         </span>
       </h1>
