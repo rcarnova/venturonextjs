@@ -10,7 +10,6 @@ const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 
 const WhyVenturoSection = lazy(() => import("@/components/WhyVenturoSection"));
 const HowWeWorkSection = lazy(() => import("@/components/HowWeWorkSection"));
-const ReferencesSection = lazy(() => import("@/components/ReferencesSection"));
 const LeversSection = lazy(() => import("@/components/LeversSection"));
 const ConversationSection = lazy(() => import("@/components/ConversationSection"));
 
@@ -52,7 +51,7 @@ const Index = () => {
       />
       <Header />
       <main>
-        {/* La catena della home: sintomo, causa, metodo (conversazioni dentro e fuori: Lumen e Venturo Conversation), conseguenze, prova. */}
+        {/* La catena della home: sintomo, causa, metodo (conversazioni dentro e fuori: Lumen e Venturo Conversation), conseguenze. I casi studio stanno in /casi-studio. */}
         <HeroSection />
         <Suspense fallback={LazyFallback}>
           <WhyVenturoSection />
@@ -64,7 +63,6 @@ const Index = () => {
           <HowWeWorkSection />
           <ConversationSection />
           <LeversSection />
-          <ReferencesSection />
           <TeamPreviewSection />
           <LeadMagnetSection />
           <ContactSection />
