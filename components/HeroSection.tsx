@@ -1,16 +1,24 @@
 "use client";
 
+import Link from "next/link";
+
 const ACCENT = "#E6FF3D";
 const INK = "#111111";
-const MONO: React.CSSProperties = {
-  fontFamily: "'IBM Plex Mono', monospace",
-};
 const SERIF_ITALIC: React.CSSProperties = {
   fontFamily: "'Instrument Serif', Georgia, serif",
   fontStyle: "italic",
   fontWeight: 400,
 };
 
+const LINE: React.CSSProperties = {
+  display: "block",
+  fontSize: "clamp(44px, 8.6vw, 128px)",
+};
+
+/**
+ * Hero della home. Parte dal tema che il cliente sa nominare (l'engagement)
+ * e lo sposta sulla causa: un'identita che l'organizzazione non vede.
+ */
 const HeroSection = () => {
   return (
     <section
@@ -24,7 +32,6 @@ const HeroSection = () => {
         paddingBottom: 48,
       }}
     >
-      {/* H1 */}
       <h1
         style={{
           flex: 1,
@@ -32,84 +39,20 @@ const HeroSection = () => {
           flexDirection: "column",
           justifyContent: "center",
           margin: 0,
-          lineHeight: 1.03,
+          lineHeight: 1.06,
+          rowGap: "0.08em",
           letterSpacing: "-0.03em",
           fontWeight: 700,
           color: INK,
           fontFamily: "'Space Grotesk', system-ui, sans-serif",
         }}
       >
-        {/* Line 1 */}
-        <span style={{ display: "block", fontSize: "clamp(36px, 6.5vw, 88px)", marginBottom: "0.25em" }}>
-          Ogni organizzazione
-        </span>
-
-        {/* Line 2 — "ha un perché." with annotation */}
-        <span
-          style={{
-            display: "block",
-            fontSize: "clamp(36px, 6.5vw, 88px)",
-            position: "relative",
-          }}
-        >
-          ha un{" "}
-          <span style={{ position: "relative", display: "inline-block" }}>
-            <em style={SERIF_ITALIC}>perché</em>
-
-            {/* Dashed arc annotation — xl+ only */}
-            <svg
-              aria-hidden="true"
-              className="hidden xl:block"
-              style={{
-                position: "absolute",
-                top: "-14px",
-                left: "105%",
-                width: 220,
-                height: 90,
-                overflow: "visible",
-                pointerEvents: "none",
-              }}
-              viewBox="0 0 220 90"
-              fill="none"
-            >
-              <path
-                d="M 0 30 C 40 -10 130 -5 180 35"
-                stroke="#888"
-                strokeWidth="0.8"
-                strokeDasharray="3 4"
-                fill="none"
-              />
-              <circle cx="180" cy="35" r="1.5" fill="#888" />
-              <text x="188" y="22" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
-                Le persone si riconoscono
-              </text>
-              <text x="188" y="37" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
-                non in ciò che fai,
-              </text>
-              <text x="188" y="52" style={{ ...SERIF_ITALIC, fontSize: 12, fill: "#666" }}>
-                ma nel perché lo fai.
-              </text>
-            </svg>
-          </span>
-          .
-        </span>
-
-        {/* Line 3 — right-aligned */}
-        <span
-          style={{
-            display: "block",
-            fontSize: "clamp(36px, 6.5vw, 88px)",
-            textAlign: "right",
-          }}
-        >
-          Noi lo rendiamo
-        </span>
-
-        {/* Line 4 — "visibile." with yellow fill, right-aligned */}
+        <span style={LINE}>Non c&apos;è engagement</span>
         <span style={{ display: "block", textAlign: "right" }}>
+          <span style={{ fontSize: LINE.fontSize }}>senza </span>
           <span
             style={{
-              fontSize: "clamp(36px, 6.5vw, 88px)",
+              fontSize: LINE.fontSize,
               backgroundColor: ACCENT,
               color: INK,
               padding: "0.02em 0.12em",
@@ -117,18 +60,65 @@ const HeroSection = () => {
               lineHeight: 1.05,
             }}
           >
-            visibile.
+            identità.
           </span>
         </span>
       </h1>
 
-      {/* Footer */}
-      <footer style={{ marginTop: "clamp(32px, 5vh, 64px)" }}>
-        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555", maxWidth: 420 }}>
-          Interveniamo quando l'identità reale di un'organizzazione non emerge
-          nei momenti che contano: cambiamento, onboarding, comunicazione interna.
-          La facciamo emergere coinvolgendo le persone che la vivono, a tutti i livelli.
-        </p>
+      <footer
+        style={{
+          marginTop: "clamp(32px, 5vh, 64px)",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+          gap: 32,
+        }}
+      >
+        <div style={{ maxWidth: 480 }}>
+          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555" }}>
+            Quando l&apos;engagement cala, il problema raramente è nei benefit o nella
+            comunicazione. È in una cultura che l&apos;organizzazione vive ogni giorno
+            ma non riesce a vedere. Noi la facciamo emergere.
+          </p>
+          <p style={{ ...SERIF_ITALIC, margin: "16px 0 0", fontSize: 20, color: INK }}>
+            L&apos;invisibile diventa strategia.
+          </p>
+        </div>
+
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 24 }}>
+          <a
+            href="#contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              backgroundColor: INK,
+              color: "#fff",
+              padding: "14px 28px",
+              fontSize: 14,
+              fontWeight: 600,
+              fontFamily: "'Space Grotesk', system-ui, sans-serif",
+              letterSpacing: "0.02em",
+              textDecoration: "none",
+            }}
+          >
+            Parliamone <span style={{ fontSize: 16 }}>→</span>
+          </a>
+          <Link
+            href="/lumen"
+            style={{
+              color: INK,
+              fontSize: 14,
+              fontWeight: 600,
+              fontFamily: "'Space Grotesk', system-ui, sans-serif",
+              textDecoration: "underline",
+              textUnderlineOffset: 5,
+            }}
+          >
+            Scopri Lumen
+          </Link>
+        </div>
       </footer>
     </section>
   );

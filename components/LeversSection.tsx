@@ -1,130 +1,96 @@
-"use client";
-
-import { useState } from "react";
-import { UserPlus, Users2, Target, HeartHandshake, LucideIcon } from "lucide-react";
+import { HeartHandshake, UserPlus, Target, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "./AnimatedSection";
 import GlowTitle from "./GlowTitle";
 
-interface Lever {
+/**
+ * Le conseguenze. L'engagement e il primo effetto di un'organizzazione che
+ * sa chi e; attrazione dei talenti e coerenza esterna arrivano a cascata.
+ * Tre colonne fisse, non tab: si leggono tutte senza cliccare.
+ * L'ordine e la catena: non va cambiato.
+ */
+interface Effect {
   title: string;
   description: string;
   icon: LucideIcon;
+  link?: { href: string; text: string };
 }
 
-const levers: Lever[] = [
+const effects: Effect[] = [
   {
-    title: "Coinvolgimento e Appartenenza",
-    description: "Le persone fanno quello che devono, niente di più. Le riunioni si svuotano di contributi, le iniziative partono dall'alto e si spengono prima di arrivare in fondo. Il problema non è la motivazione individuale: è che nessuno ha mai coinvolto davvero le persone in quello che si stava costruendo. Lavoriamo con i gruppi, non sui gruppi: chi partecipa alla costruzione si riconosce nel risultato.",
-    icon: HeartHandshake
+    title: "Engagement",
+    description:
+      "Le persone smettono di eseguire e iniziano a contribuire. Non perché qualcuno le ha motivate, ma perché sanno dove stanno andando e perché.",
+    icon: HeartHandshake,
+    link: { href: "/leading-by-purpose", text: "Leading by Purpose, il percorso per i leader" },
   },
   {
-    title: "Attrarre e Trattenere i Talenti",
-    description: "I candidati arrivano con aspettative che non corrispondono alla realtà. O non arrivano affatto. Il problema non è l'offerta economica né il settore: è che il brand comunica qualcosa di generico che non racconta chi siete davvero. Le persone giuste non si riconoscono, e quelle sbagliate accettano e se ne vanno dopo un anno.",
-    icon: UserPlus
+    title: "Attrazione dei talenti",
+    description:
+      "Chi è dentro sa raccontare com'è lavorare qui, e le persone giuste si riconoscono prima di candidarsi. Meno uscite durante il periodo di prova.",
+    icon: UserPlus,
+    link: { href: "/analisi-evp", text: "Analizza la vostra EVP" },
   },
   {
-    title: "Cultura Interna",
-    description: "I senior difendono un modo di fare che ha funzionato. I nuovi arrivati ne portano un altro. Nessuno dei due ha torto, ma non si parlano. Facciamo emergere le culture diverse che convivono nella stessa organizzazione e costruiamo un linguaggio condiviso.",
-    icon: Users2
+    title: "Coerenza esterna",
+    description:
+      "I clienti incontrano la vostra cultura nella persona che hanno davanti. Quando le persone stanno meglio dentro, ciò che dite fuori diventa credibile.",
+    icon: Target,
   },
-  {
-    title: "Marketing & Coerenza Esterna",
-    description: "Il marketing racconta un'azienda che le persone interne non riconoscono. I clienti lo percepiscono. I candidati lo scoprono dopo il primo mese. Il problema non è il messaggio: è che l'identità esterna è stata costruita senza partire da quella interna. Allineiamo chi siete dentro con quello che comunicate fuori. Partendo da dentro, non dall'esterno.",
-    icon: Target
-  }
 ];
 
 const LeversSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const ActiveIcon = levers[activeIndex].icon;
-
   return (
-    <section id="leve" className="section-padding bg-primary">
+    <section id="conseguenze" className="section-padding bg-primary">
       <div className="container-wide">
         <AnimatedSection>
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <p className="font-mono text-eyebrow text-primary-foreground/60 mb-4">Le conseguenze</p>
             <GlowTitle className="text-3xl md:text-section text-primary-foreground" variant="light">
-              Le aree di intervento
+              Quando le persone si riconoscono, cambia tutto il resto.
             </GlowTitle>
             <p className="text-subheadline mt-4 text-primary-foreground/70">
-              Rendere visibile il perché di un'organizzazione non è sempre semplice. Ecco le sfide che riconosciamo più spesso.
+              L&apos;engagement non è un obiettivo a sé. È il primo effetto di
+              un&apos;organizzazione che sa chi è. Gli altri arrivano a cascata.
             </p>
           </div>
         </AnimatedSection>
 
-        {/* Tabs */}
-        <AnimatedSection animation="fade-up" delay={200}>
-          {/* Mobile: single scrollable row */}
-          <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 flex-nowrap scrollbar-hide md:hidden">
-            {levers.map((lever, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`flex-shrink-0 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap glow-yellow ${
-                  index === activeIndex
-                    ? "bg-white text-foreground shadow-lg"
-                    : "bg-transparent text-white border border-white/60 hover:border-white"
-                }`}
-              >
-                {lever.title}
-              </button>
-            ))}
-          </div>
-          {/* Desktop: 2x2 */}
-          <div className="hidden md:grid md:grid-cols-2 gap-3 max-w-3xl mx-auto">
-            {levers.map((lever, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`px-6 py-3 rounded-lg text-base font-medium transition-all duration-200 text-center glow-yellow ${
-                  index === activeIndex
-                    ? "bg-white text-foreground shadow-lg"
-                    : "bg-transparent text-white border border-white/60 hover:border-white"
-                }`}
-              >
-                {lever.title}
-              </button>
-            ))}
-          </div>
+        <AnimatedSection animation="fade-up" delay={150}>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 list-none p-0 m-0">
+            {effects.map((e, i) => {
+              const Icon = e.icon;
+              return (
+                <li
+                  key={e.title}
+                  className="bg-white rounded-xl p-7 md:p-8 border border-black/[0.06] flex flex-col"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <Icon className="w-8 h-8 text-foreground" strokeWidth={1.5} />
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">{e.title}</h3>
+                  <p className="text-body text-muted-foreground m-0 flex-1">{e.description}</p>
+                  {e.link && (
+                    <Link
+                      href={e.link.href}
+                      className="inline-block mt-6 text-sm font-medium text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
+                    >
+                      {e.link.text} →
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
         </AnimatedSection>
 
-        <div className="text-center mt-6">
-          <Link
-            href="/le-sfide"
-            className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-          >
-            Scopri tutte le sfide →
-          </Link>
-        </div>
-
-        {/* Content */}
-        <AnimatedSection animation="fade-up" delay={300}>
-          <div className="mt-10 md:mt-12">
-            <div
-              key={activeIndex}
-              className="bg-white rounded-xl p-8 md:p-12 border border-black/[0.06] shadow-[0_4px_12px_rgba(0,0,0,0.12)] animate-fade-in"
-            >
-              <ActiveIcon className="w-8 h-8 md:w-10 md:h-10 text-foreground mb-6" strokeWidth={1.5} />
-              <h3 className="text-subtitle text-foreground mb-4">
-                {levers[activeIndex].title}
-              </h3>
-              <p className="text-body text-muted-foreground max-w-3xl">
-                {levers[activeIndex].description}
-              </p>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection delay={600}>
-          <div className="text-center mt-16">
-            <Link
-              href="/le-sfide"
-              className="inline-flex items-center text-primary-foreground/90 hover:text-primary-foreground font-medium text-lg underline underline-offset-4 decoration-primary-foreground/40 hover:decoration-primary-foreground transition-all duration-300"
-            >
-              Riconosci una di queste situazioni? Leggi come le affrontiamo.
-            </Link>
-          </div>
+        <AnimatedSection delay={300}>
+          <p className="text-center text-xl md:text-2xl font-semibold text-primary-foreground mt-14">
+            L&apos;identità non è un tema soft. È l&apos;unica strategia che regge.
+          </p>
         </AnimatedSection>
       </div>
     </section>

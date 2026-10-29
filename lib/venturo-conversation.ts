@@ -123,3 +123,46 @@ export const PAST_EPISODES = [
     ],
   },
 ] as const;
+
+/**
+ * I momenti migliori, scelti a mano, da tutte le puntate.
+ *
+ * E la selezione che compare in home (ConversationSection). Ogni voce e il videoId di
+ * un clip che esiste tra gli highlights di una delle PAST_EPISODES: puntata
+ * e ospite si ricavano da li. L'ordine qui e l'ordine in home.
+ *
+ * Quando esce una nuova puntata: aggiungi i suoi clip migliori e togli quelli
+ * che non reggono piu il confronto. Tienine quattro, al massimo otto, e cerca
+ * di non avere tutti i momenti dallo stesso ospite.
+ */
+export const BEST_MOMENTS: ReadonlyArray<string> = [
+  "x-5EpW4a0yQ", // Il premio all'errore più grande, Elena Alemanno
+  "sf6iapyW5ww", // I valori non si vedono, i comportamenti sì, Elena Alemanno
+  "wN0bEE-mlck", // La cultura era già nel catalogo, Elena Alemanno
+  "Q8vjrjqGZkY", // Business & People Together, Elena Alemanno
+];
+
+type Episode = (typeof PAST_EPISODES)[number];
+type Clip = NonNullable<Episode["highlights"]>[number];
+
+export type Moment = {
+  clip: Clip;
+  episode: Episode;
+};
+
+/** Trova un clip per videoId tra tutte le puntate, con la sua puntata. */
+export function findMoment(videoId: string): Moment | undefined {
+  for (const episode of PAST_EPISODES) {
+    const clips: ReadonlyArray<Clip> = episode.highlights ?? [];
+    const clip = clips.find((c) => c.videoId === videoId);
+    if (clip) return { clip, episode };
+  }
+  return undefined;
+}
+
+/** I momenti migliori risolti: scarta in silenzio le voci che non esistono piu. */
+export function getBestMoments(): Moment[] {
+  return BEST_MOMENTS.map((id) => findMoment(id)).filter(
+    (m): m is Moment => m !== undefined,
+  );
+}

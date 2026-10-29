@@ -8,7 +8,7 @@ const PartnersSection = () => {
         <AnimatedSection className="mb-8">
           <p className="text-eyebrow text-muted-foreground mb-3">PARTNER</p>
           <h2 className="text-section text-foreground">
-            La piattaforma di Employer Intelligence basata su AI
+            Il partner per i dati.
           </h2>
         </AnimatedSection>
 
@@ -31,7 +31,7 @@ const PartnersSection = () => {
                 />
               </a>
               <p className="text-[16px] leading-[1.65] text-muted-foreground">
-                Per i progetti che richiedono un ancoraggio ai dati, collaboriamo con Ingaze. Una piattaforma di employer intelligence che dà accesso a insight reali, analisi del sentiment e confronti con i competitor. Per capire dalle recensioni cosa funziona davvero e cosa sta allontanando i talenti dalla vostra organizzazione. Una partnership metodologica che porta dati concreti alla strategia di employer branding e rafforza ciò che Lumen illumina dall'interno.
+                Nei progetti con organizzazioni grandi lavoriamo con Ingaze, piattaforma di employer intelligence: recensioni, sentiment e confronto con i competitor. Ci dice dove guardare prima di entrare.
               </p>
             </div>
             <div className="flex-1 w-full">

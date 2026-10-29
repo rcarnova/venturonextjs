@@ -25,9 +25,26 @@ const TeamPreviewSection = () => {
     <section className="py-16 md:py-24 bg-background">
       <div className="container-wide">
         <AnimatedSection className="text-center mb-12">
-          <h2 className="text-section text-foreground">
-            Le persone dietro Venturo
+          <h2 className="text-section text-foreground max-w-3xl mx-auto">
+            Cultura, storie e linguaggio visivo allo stesso tavolo.
           </h2>
+          <p className="text-body text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Un coach, uno storyteller e un&apos;art director. Perché l&apos;identità di
+            un&apos;organizzazione si vede nei comportamenti, si racconta nelle storie e si
+            riconosce nelle immagini. Servono tutti e tre.
+          </p>
+          <p className="text-sm text-muted-foreground mt-3 max-w-2xl mx-auto">
+            I materiali visivi dei nostri progetti, dai libri aziendali ai video, li produce{" "}
+            <a
+              href="https://www.studiomiller.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground"
+            >
+              Studio Miller
+            </a>
+            , lo studio di branding da cui Venturo è nata.
+          </p>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12">
