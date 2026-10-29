@@ -103,6 +103,11 @@ export const PAST_EPISODES = [
         title: "I valori non si vedono, i comportamenti sì",
         image: { src: "/images/venturo-conversation-clip-03.webp", width: 720, height: 720 },
       },
+      {
+        videoId: "x-5EpW4a0yQ",
+        title: "Il premio all'errore più grande",
+        image: { src: "/images/venturo-conversation-clip-04.webp", width: 720, height: 720 },
+      },
     ],
   },
 ] as const;
