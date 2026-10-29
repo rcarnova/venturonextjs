@@ -17,6 +17,11 @@ type Episode = {
   dateLabel: string;
   guest: { name: string; role: string };
   image: { src: string; width: number; height: number };
+  highlights?: ReadonlyArray<{
+    videoId: string;
+    title: string;
+    image: { src: string; width: number; height: number };
+  }>;
 };
 
 const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
@@ -84,6 +89,42 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
             </div>
           </div>
         </section>
+
+        {episode.highlights && episode.highlights.length > 0 && (
+          <section style={{ borderTop: `1px solid ${INK}` }}>
+            <div className="container-wide py-16 md:py-24">
+              <p className="font-mono text-eyebrow mb-3" style={{ color: ACCENT_ON_LIGHT }}>
+                I MOMENTI
+              </p>
+              <p className="mb-10 max-w-[620px]" style={{ color: MUTED, fontSize: 16, lineHeight: 1.6 }}>
+                Tre passaggi brevi, se non hai i cinquanta minuti.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {episode.highlights.map((clip, i) => (
+                  <div key={clip.videoId}>
+                    <VideoFacade
+                      videoId={clip.videoId}
+                      poster={clip.image}
+                      label={clip.title}
+                      aspect={1}
+                      playSize={56}
+                    />
+                    <p className="font-mono text-eyebrow mt-4" style={{ color: MUTED }}>
+                      CLIP #{String(i + 1).padStart(2, "0")}
+                    </p>
+                    <p
+                      className="font-semibold mt-1"
+                      style={{ color: INK, fontSize: 17, lineHeight: 1.35 }}
+                    >
+                      {clip.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Dalla puntata passata a quella in arrivo */}
         <section style={{ borderTop: `1px solid ${INK}` }}>

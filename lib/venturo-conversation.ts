@@ -79,5 +79,30 @@ export const PAST_EPISODES = [
      * finiscono. Il WebP resta per la pagina, che pesa un terzo.
      */
     ogImage: "/images/venturo-conversation-20-ottobre-og.jpg",
+
+    /**
+     * Clip brevi tratte dalla puntata, pubblicate come Short su YouTube ma
+     * girate in quadrato: da qui l'aspect 1 nel player. Le anteprime sono
+     * scaricate da YouTube e servite dal nostro dominio, come per il video
+     * intero, cosi la pagina non contatta Google finche non si clicca.
+     */
+    highlights: [
+      {
+        videoId: "wN0bEE-mlck",
+        title: "La cultura era già nel catalogo",
+        image: { src: "/images/venturo-conversation-clip-01.webp", width: 720, height: 720 },
+      },
+      {
+        videoId: "Q8vjrjqGZkY",
+        title: "Business & People Together",
+        image: { src: "/images/venturo-conversation-clip-02.webp", width: 720, height: 720 },
+      },
+      {
+        videoId: "sf6iapyW5ww",
+        /** Su YouTube il titolo ha un refuso ("comportamnti"): qui corretto. */
+        title: "I valori non si vedono, i comportamenti sì",
+        image: { src: "/images/venturo-conversation-clip-03.webp", width: 720, height: 720 },
+      },
+    ],
   },
 ] as const;

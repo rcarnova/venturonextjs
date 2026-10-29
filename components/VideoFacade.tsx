@@ -18,18 +18,28 @@ type Props = {
   poster: { src: string; width: number; height: number };
   /** Titolo del video: etichetta del pulsante e title dell'iframe */
   label: string;
+  /** Rapporto larghezza/altezza: 16/9 per la puntata intera, 1 per i clip quadrati */
+  aspect?: number;
+  /** Lato del pulsante play in px: piu piccolo nei clip in griglia */
+  playSize?: number;
 };
 
 const ACCENT = "#EC4899";
 const INK = "#000000";
 
-const VideoFacade = ({ videoId, poster, label }: Props) => {
+const VideoFacade = ({
+  videoId,
+  poster,
+  label,
+  aspect = 16 / 9,
+  playSize = 72,
+}: Props) => {
   const [playing, setPlaying] = useState(false);
 
   return (
     <div
       className="relative w-full border border-black"
-      style={{ paddingTop: "56.25%" }}
+      style={{ paddingTop: `${100 / aspect}%` }}
     >
       {playing ? (
         <iframe
@@ -61,9 +71,14 @@ const VideoFacade = ({ videoId, poster, label }: Props) => {
           <span className="absolute inset-0 flex items-center justify-center">
             <span
               className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
-              style={{ width: 72, height: 72, backgroundColor: ACCENT }}
+              style={{ width: playSize, height: playSize, backgroundColor: ACCENT }}
             >
-              <svg width="22" height="26" viewBox="0 0 22 26" aria-hidden="true">
+              <svg
+                width={playSize * 0.3}
+                height={playSize * 0.36}
+                viewBox="0 0 22 26"
+                aria-hidden="true"
+              >
                 <path d="M0 0 L22 13 L0 26 Z" fill={INK} />
               </svg>
             </span>
