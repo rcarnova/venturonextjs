@@ -13,20 +13,74 @@ const ACCENT_ON_LIGHT = "#BE185D";
 type Episode = {
   slug: string;
   videoId: string;
+  ogImage: string;
   title: string;
   dateLabel: string;
   guest: { name: string; role: string };
   image: { src: string; width: number; height: number };
+  uploadDate?: string;
+  duration?: string;
   highlights?: ReadonlyArray<{
     videoId: string;
     title: string;
+    uploadDate?: string;
+    duration?: string;
     image: { src: string; width: number; height: number };
   }>;
 };
 
 const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
+  const SITE = "https://venturoconsulting.it";
+  const pageUrl = `${SITE}/venturo-conversation/${episode.slug}`;
+
+  /**
+   * Senza questo blocco Google non sa che la pagina contiene video: il player
+   * si monta solo al clic, quindi nell'HTML non esiste ne <video> ne <iframe>.
+   * VideoObject e il modo che Google stesso indica per i player caricati in
+   * differita. Le miniature puntano a JPEG perche per thumbnailUrl il WebP
+   * non e garantito.
+   */
+  const videos = [
+    {
+      "@type": "VideoObject",
+      name: episode.title,
+      description: `Venturo Conversation del ${episode.dateLabel}, con ${episode.guest.name}, ${episode.guest.role}.`,
+      thumbnailUrl: [`${SITE}${episode.ogImage}`],
+      uploadDate: episode.uploadDate,
+      duration: episode.duration,
+      embedUrl: `https://www.youtube.com/embed/${episode.videoId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${episode.videoId}`,
+      publisher: { "@type": "Organization", name: "Venturo", url: SITE },
+      isPartOf: { "@type": "WebPage", "@id": pageUrl },
+    },
+    ...(episode.highlights ?? []).map((c) => ({
+      "@type": "VideoObject",
+      name: c.title,
+      description: `Un momento della Venturo Conversation con ${episode.guest.name}, ${episode.guest.role}.`,
+      thumbnailUrl: [`${SITE}${c.image.src.replace(/\.webp$/, ".jpg")}`],
+      uploadDate: c.uploadDate,
+      duration: c.duration,
+      embedUrl: `https://www.youtube.com/embed/${c.videoId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${c.videoId}`,
+      publisher: { "@type": "Organization", name: "Venturo", url: SITE },
+      isPartOf: { "@type": "WebPage", "@id": pageUrl },
+    })),
+  ];
+
+  // i campi non noti si tolgono: meglio assenti che vuoti nei dati strutturati
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": videos.map((v) =>
+      Object.fromEntries(Object.entries(v).filter(([, x]) => x !== undefined))
+    ),
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       <main>
@@ -93,9 +147,9 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
         {episode.highlights && episode.highlights.length > 0 && (
           <section style={{ borderTop: `1px solid ${INK}` }}>
             <div className="container-wide py-16 md:py-24">
-              <p className="font-mono text-eyebrow mb-3" style={{ color: ACCENT_ON_LIGHT }}>
+              <h2 className="font-mono text-eyebrow mb-3" style={{ color: ACCENT_ON_LIGHT }}>
                 I MOMENTI
-              </p>
+              </h2>
               <p className="mb-10 max-w-[620px]" style={{ color: MUTED, fontSize: 16, lineHeight: 1.6 }}>
                 Tre passaggi brevi, se non hai i cinquanta minuti.
               </p>
@@ -113,12 +167,12 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                     <p className="font-mono text-eyebrow mt-4" style={{ color: MUTED }}>
                       CLIP #{String(i + 1).padStart(2, "0")}
                     </p>
-                    <p
+                    <h3
                       className="font-semibold mt-1"
                       style={{ color: INK, fontSize: 17, lineHeight: 1.35 }}
                     >
                       {clip.title}
-                    </p>
+                    </h3>
                   </div>
                 ))}
               </div>
@@ -129,10 +183,10 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
         {/* Dalla puntata passata a quella in arrivo */}
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
-            <p className="font-mono text-eyebrow mb-5" style={{ color: ACCENT_ON_LIGHT }}>
+            <h2 className="font-mono text-eyebrow mb-5" style={{ color: ACCENT_ON_LIGHT }}>
               LA PROSSIMA CONVERSAZIONE
-            </p>
-            <h2
+            </h2>
+            <h3
               className="font-bold max-w-[760px]"
               style={{
                 color: INK,
@@ -142,7 +196,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
               }}
             >
               {NEXT_EPISODE.title}
-            </h2>
+            </h3>
             <p className="font-mono text-eyebrow mt-4" style={{ color: MUTED }}>
               {NEXT_EPISODE.dateLabel} · {NEXT_EPISODE.guest.name}, {NEXT_EPISODE.guest.role}
             </p>

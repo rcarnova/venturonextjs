@@ -69,9 +69,54 @@ const SubscribeButton = ({ className = "" }: { className?: string }) => (
   </a>
 );
 
+const SITE = "https://venturoconsulting.it";
+
+/**
+ * La prossima puntata e un evento online con data, relatore e iscrizione:
+ * dichiararlo come Event permette a Google di mostrarlo come risultato
+ * arricchito, con la data in evidenza.
+ */
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: NEXT_EPISODE.title,
+  description: `Venturo Conversation: ${NEXT_EPISODE.title} Ne parliamo con ${NEXT_EPISODE.guest.name}, ${NEXT_EPISODE.guest.role}.`,
+  startDate: NEXT_EPISODE.startsAt,
+  endDate: NEXT_EPISODE.endsAt,
+  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  inLanguage: "it",
+  image: [`${SITE}${NEXT_EPISODE.image.src}`],
+  location: {
+    "@type": "VirtualLocation",
+    url: REGISTRATION_URL,
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Venturo",
+    url: SITE,
+  },
+  performer: [
+    { "@type": "Person", name: NEXT_EPISODE.guest.name },
+    ...NEXT_EPISODE.hosts.map((h) => ({ "@type": "Person", name: h.name })),
+  ],
+  offers: {
+    "@type": "Offer",
+    price: 0,
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    url: REGISTRATION_URL,
+    validFrom: "2026-10-01T00:00:00+02:00",
+  },
+};
+
 const VenturoConversation = () => {
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+      />
       <Header />
 
       <main>
@@ -145,9 +190,9 @@ const VenturoConversation = () => {
         {/* ───────────── Prossima conversazione ───────────── */}
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
-            <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
+            <h2 className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
               PROSSIMA CONVERSAZIONE
-            </p>
+            </h2>
 
             {/* La grafica porta al modulo di iscrizione: e l'elemento piu cliccato a istinto */}
             <a
@@ -309,9 +354,9 @@ const VenturoConversation = () => {
         {/* ───────────── Puntate precedenti ───────────── */}
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
-            <p className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
+            <h2 className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
               RIVEDI LE PUNTATE
-            </p>
+            </h2>
 
             <div className="space-y-16">
               {PAST_EPISODES.map((ep) => (

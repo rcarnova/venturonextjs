@@ -60,6 +60,9 @@ export const PAST_EPISODES = [
     /** Usato per l'indirizzo della pagina dedicata: /venturo-conversation/<slug> */
     slug: "motivazione-engagement-cfo",
     videoId: "XrSQZ1B_jG4",
+    /** Letti da YouTube: servono a VideoObject, che senza uploadDate non e valido. */
+    uploadDate: "2026-10-21T06:14:18-07:00",
+    duration: "PT58M53S",
     title: "Motivazione ed engagement delle persone, cosa ne pensa un CFO?",
     dateLabel: "20 ottobre 2026",
     guest: {
@@ -89,22 +92,31 @@ export const PAST_EPISODES = [
     highlights: [
       {
         videoId: "wN0bEE-mlck",
+        /** Data non leggibile da YouTube (pagina di consenso): allineata agli altri
+         *  tre clip, pubblicati lo stesso giorno. Da confermare in YouTube Studio. */
+        uploadDate: "2026-10-29",
         title: "La cultura era già nel catalogo",
         image: { src: "/images/venturo-conversation-clip-01.webp", width: 720, height: 720 },
       },
       {
         videoId: "Q8vjrjqGZkY",
+        uploadDate: "2026-10-29T08:55:44-07:00",
+        duration: "PT1M2S",
         title: "Business & People Together",
         image: { src: "/images/venturo-conversation-clip-02.webp", width: 720, height: 720 },
       },
       {
         videoId: "sf6iapyW5ww",
+        uploadDate: "2026-10-29T08:54:34-07:00",
+        duration: "PT1M13S",
         /** Su YouTube il titolo ha un refuso ("comportamnti"): qui corretto. */
         title: "I valori non si vedono, i comportamenti sì",
         image: { src: "/images/venturo-conversation-clip-03.webp", width: 720, height: 720 },
       },
       {
         videoId: "x-5EpW4a0yQ",
+        uploadDate: "2026-10-29T09:57:11-07:00",
+        duration: "PT1M6S",
         title: "Il premio all'errore più grande",
         image: { src: "/images/venturo-conversation-clip-04.webp", width: 720, height: 720 },
       },
