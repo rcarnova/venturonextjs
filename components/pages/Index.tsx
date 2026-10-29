@@ -14,8 +14,6 @@ const ReferencesSection = lazy(() => import("@/components/ReferencesSection"));
 const LeversSection = lazy(() => import("@/components/LeversSection"));
 const ConversationSection = lazy(() => import("@/components/ConversationSection"));
 
-const LeadingByPurposeSection = lazy(() => import("@/components/LeadingByPurposeSection"));
-const StudioMillerSection = lazy(() => import("@/components/StudioMillerSection"));
 const PartnersSection = lazy(() => import("@/components/PartnersSection"));
 const TeamPreviewSection = lazy(() => import("@/components/TeamPreviewSection"));
 const LeadMagnetSection = lazy(() => import("@/components/LeadMagnetSection"));
@@ -68,9 +66,7 @@ const Index = () => {
           <ConversationSection />
           <LeversSection />
           <ReferencesSection />
-          <LeadingByPurposeSection />
           <TeamPreviewSection />
-          <StudioMillerSection />
           <PartnersSection />
           <LeadMagnetSection />
           <ContactSection />

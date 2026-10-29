@@ -30,6 +30,10 @@ const effects: Effect[] = [
       text: "Da due anni abbiamo istituito un premio: si celebra l'errore più grande che hai fatto. Davanti a tutti racconti cosa hai imparato, e si apre la discussione. È il modo per noi di mantenere viva la cultura.",
       clipId: "x-5EpW4a0yQ",
     },
+    link: {
+      href: "/leading-by-purpose",
+      text: "Per i leader che vogliono mettere engagement e senso al centro dei loro team: Leading by Purpose",
+    },
   },
   {
     title: "Attrazione dei talenti",
