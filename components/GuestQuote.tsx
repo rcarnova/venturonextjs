@@ -1,4 +1,4 @@
-import { PAST_EPISODES } from "@/lib/venturo-conversation";
+import { findMoment } from "@/lib/venturo-conversation";
 
 /**
  * Citazione di un ospite di Venturo Conversation.
@@ -7,6 +7,7 @@ import { PAST_EPISODES } from "@/lib/venturo-conversation";
  * lega le sezioni della home alla sezione Venturo Conversation. Il link
  * scorre al clip dentro la home (#vc-clip-<videoId>, in ConversationSection):
  * chi clicca resta sulla pagina e il video parte solo se lo sceglie.
+ * Usare solo clip presenti in BEST_MOMENTS, altrimenti l'ancora non esiste.
  */
 type Props = {
   quote: string;
@@ -17,7 +18,6 @@ type Props = {
   className?: string;
 };
 
-const EPISODE = PAST_EPISODES[0];
 const ACCENT = "#EC4899";
 // Su bianco il fucsia pieno non passa AA per il testo piccolo.
 const ACCENT_ON_LIGHT = "#BE185D";
@@ -25,6 +25,7 @@ const ACCENT_ON_LIGHT = "#BE185D";
 const GuestQuote = ({ quote, clipId, tone = "light", className = "" }: Props) => {
   const dark = tone === "dark";
   const accentText = dark ? ACCENT : ACCENT_ON_LIGHT;
+  const guest = findMoment(clipId)?.episode.guest;
   return (
     <figure
       className={className}
@@ -75,9 +76,11 @@ const GuestQuote = ({ quote, clipId, tone = "light", className = "" }: Props) =>
           color: dark ? "rgba(255,255,255,0.5)" : "#666",
         }}
       >
-        <span>
-          {EPISODE.guest.name} · {EPISODE.guest.role}
-        </span>
+        {guest && (
+          <span>
+            {guest.name} · {guest.role}
+          </span>
+        )}
         <a
           href={`#vc-clip-${clipId}`}
           style={{ color: accentText, textDecoration: "underline", textUnderlineOffset: 4 }}

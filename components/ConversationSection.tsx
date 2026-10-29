@@ -3,7 +3,7 @@
 import Link from "next/link";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
 import VideoFacade from "@/components/VideoFacade";
-import { NEXT_EPISODE, PAST_EPISODES, REGISTRATION_URL } from "@/lib/venturo-conversation";
+import { NEXT_EPISODE, REGISTRATION_URL, getBestMoments } from "@/lib/venturo-conversation";
 
 /**
  * Venturo Conversation in home, con la grafica del format (bianco, filetti
@@ -21,7 +21,7 @@ const ACCENT = "#EC4899";
 // Su bianco #EC4899 non passa AA per il testo piccolo: per il testo serve piu scuro.
 const ACCENT_ON_LIGHT = "#BE185D";
 
-const EPISODE = PAST_EPISODES[0];
+const MOMENTS = getBestMoments();
 
 const ConversationSection = () => {
   return (
@@ -104,32 +104,29 @@ const ConversationSection = () => {
           </div>
         </div>
 
-        {/* I momenti della puntata passata */}
-        {EPISODE.highlights && EPISODE.highlights.length > 0 && (
+        {/* I momenti migliori, selezionati da tutte le puntate (BEST_MOMENTS) */}
+        {MOMENTS.length > 0 && (
           <div className="mt-16 md:mt-24 pt-10" style={{ borderTop: `1px solid ${INK}` }}>
             <div className="flex flex-wrap items-baseline justify-between gap-4 mb-8">
               <div>
                 <p className="font-mono text-eyebrow" style={{ color: ACCENT_ON_LIGHT }}>
-                  RIVEDI · {EPISODE.dateLabel.toUpperCase()}
+                  I MOMENTI MIGLIORI
                 </p>
                 <h3 className="font-bold mt-2" style={{ color: INK, fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.25, letterSpacing: "-0.02em" }}>
-                  {EPISODE.title}
+                  Un minuto ciascuno, dalle nostre conversazioni.
                 </h3>
-                <p className="mt-1" style={{ color: MUTED, fontSize: 15 }}>
-                  Con {EPISODE.guest.name}, {EPISODE.guest.role}
-                </p>
               </div>
               <Link
-                href={`/venturo-conversation/${EPISODE.slug}`}
+                href="/venturo-conversation"
                 className="font-mono text-eyebrow underline underline-offset-4 hover:text-black"
                 style={{ color: ACCENT_ON_LIGHT }}
               >
-                LA PUNTATA INTERA →
+                TUTTE LE PUNTATE →
               </Link>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8 md:gap-8">
-              {EPISODE.highlights.map((clip, i) => (
+              {MOMENTS.map(({ clip, episode }) => (
                 <div key={clip.videoId} id={`vc-clip-${clip.videoId}`} style={{ scrollMarginTop: 96 }}>
                   <VideoFacade
                     videoId={clip.videoId}
@@ -138,12 +135,19 @@ const ConversationSection = () => {
                     aspect={1}
                     playSize={48}
                   />
-                  <p className="font-mono text-eyebrow mt-4" style={{ color: MUTED }}>
-                    CLIP #{String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h4 className="font-semibold mt-1" style={{ color: INK, fontSize: 16, lineHeight: 1.35 }}>
+                  <h4 className="font-semibold mt-4" style={{ color: INK, fontSize: 16, lineHeight: 1.35 }}>
                     {clip.title}
                   </h4>
+                  <p className="mt-1" style={{ color: MUTED, fontSize: 14, lineHeight: 1.45 }}>
+                    {episode.guest.name}, {episode.guest.role}
+                  </p>
+                  <Link
+                    href={`/venturo-conversation/${episode.slug}`}
+                    className="inline-block font-mono text-eyebrow mt-2 underline underline-offset-4 hover:text-black"
+                    style={{ color: MUTED }}
+                  >
+                    LA PUNTATA →
+                  </Link>
                 </div>
               ))}
             </div>

@@ -5,7 +5,6 @@ import { SEO } from "@/components/SEO";
 
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import VenturoConversationPopup from "@/components/VenturoConversationPopup";
 
 const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 
@@ -80,7 +79,6 @@ const Index = () => {
       <Suspense fallback={LazyFallback}>
         <Footer />
       </Suspense>
-      <VenturoConversationPopup />
     </div>
   );
 };
