@@ -59,7 +59,7 @@ const LeadingByPurposeSection = () => {
                 marginBottom: 20,
               }}
             >
-              Percorso · Top management · Team coaching
+              Percorso per leader · Team coaching
             </span>
 
             <h2
@@ -94,10 +94,12 @@ const LeadingByPurposeSection = () => {
                 margin: 0,
               }}
             >
-              Un percorso di team coaching per il gruppo di leadership. L'obiettivo
-              non è trasmettere valori dall'esterno: è far emergere dal gruppo
-              stesso i principi che già guidano, o dovrebbero guidare, il modo di
-              lavorare. E renderli espliciti, condivisi, agiti.
+              È il nostro percorso per i leader che vogliono mettere engagement e
+              senso al centro di come guidano i loro team. Perché l&apos;engagement
+              si decide lì, nel rapporto quotidiano con chi guida. Non trasmettiamo
+              valori dall&apos;esterno: facciamo emergere dal gruppo i principi che già
+              guidano, o dovrebbero guidare, il suo modo di lavorare. E li rendiamo
+              espliciti, condivisi, agiti.
             </p>
           </div>
 
