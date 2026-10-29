@@ -33,6 +33,16 @@ const HowWeWorkSection = () => {
                   Anche quando usiamo un questionario, è fatto di domande aperte che
                   chiedono storie, non punteggi.
                 </p>
+                <div className="border-l-2 border-[#E6FF3D] pl-5 mb-8">
+                  <span className="text-eyebrow font-mono text-white/40 block mb-2">
+                    Con le organizzazioni grandi
+                  </span>
+                  <p className="text-body text-white/70 m-0">
+                    Partiamo dai numeri: le analisi di Ingaze su recensioni e sentiment,
+                    o una survey costruita su misura per voi. I numeri ci dicono dove
+                    ascoltare. Le conversazioni spiegano perché.
+                  </p>
+                </div>
                 <Link
                   href="/lumen"
                   className="inline-flex items-center gap-2 text-white font-medium underline underline-offset-4 hover:gap-3 transition-all duration-300"
