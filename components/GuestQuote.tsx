@@ -1,12 +1,12 @@
-import Link from "next/link";
 import { PAST_EPISODES } from "@/lib/venturo-conversation";
 
 /**
- * Citazione di un ospite di Venturo Conversation, con il link al clip.
+ * Citazione di un ospite di Venturo Conversation.
  *
- * Il link porta alla pagina della puntata sul nostro sito, non a YouTube:
- * chi clicca resta da noi, e il video parte solo se lo sceglie (VideoFacade).
- * L'ancora #clip-<videoId> e definita nella pagina della puntata.
+ * Porta l'accento fucsia del format, cosi chi legge riconosce il filo che
+ * lega le sezioni della home alla sezione Venturo Conversation. Il link
+ * scorre al clip dentro la home (#vc-clip-<videoId>, in ConversationSection):
+ * chi clicca resta sulla pagina e il video parte solo se lo sceglie.
  */
 type Props = {
   quote: string;
@@ -18,19 +18,35 @@ type Props = {
 };
 
 const EPISODE = PAST_EPISODES[0];
+const ACCENT = "#EC4899";
+// Su bianco il fucsia pieno non passa AA per il testo piccolo.
+const ACCENT_ON_LIGHT = "#BE185D";
 
 const GuestQuote = ({ quote, clipId, tone = "light", className = "" }: Props) => {
   const dark = tone === "dark";
+  const accentText = dark ? ACCENT : ACCENT_ON_LIGHT;
   return (
     <figure
       className={className}
       style={{
         margin: 0,
-        borderLeft: `2px solid ${dark ? "#E6FF3D" : "#111"}`,
+        borderLeft: `3px solid ${ACCENT}`,
         paddingLeft: 24,
         maxWidth: 720,
       }}
     >
+      <p
+        style={{
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: 11,
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          color: accentText,
+          margin: "0 0 12px",
+        }}
+      >
+        Venturo Conversation
+      </p>
       <blockquote style={{ margin: 0 }}>
         <p
           style={{
@@ -62,16 +78,12 @@ const GuestQuote = ({ quote, clipId, tone = "light", className = "" }: Props) =>
         <span>
           {EPISODE.guest.name} · {EPISODE.guest.role}
         </span>
-        <Link
-          href={`/venturo-conversation/${EPISODE.slug}#clip-${clipId}`}
-          style={{
-            color: dark ? "#E6FF3D" : "#111",
-            textDecoration: "underline",
-            textUnderlineOffset: 4,
-          }}
+        <a
+          href={`#vc-clip-${clipId}`}
+          style={{ color: accentText, textDecoration: "underline", textUnderlineOffset: 4 }}
         >
-          Guarda, 1 min →
-        </Link>
+          Guarda il clip, 1 min
+        </a>
       </figcaption>
     </figure>
   );
