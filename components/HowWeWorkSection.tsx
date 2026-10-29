@@ -24,14 +24,10 @@ const HowWeWorkSection = () => {
                 <h2 className="text-section text-white mt-4 mb-5">
                   Lumen. Non misuriamo la cultura. La illuminiamo.
                 </h2>
-                <p className="text-body text-white/70 mb-4">
+                <p className="text-body text-white/70 mb-6">
                   Una survey chiede alle persone quanto sono d&apos;accordo. Noi chiediamo di
                   raccontare. Interviste narrative, domande oblique, workshop di
                   storytelling: nelle storie, la cultura si rivela da sola.
-                </p>
-                <p className="text-body text-white/50 mb-6">
-                  Anche quando usiamo un questionario, è fatto di domande aperte che
-                  chiedono storie, non punteggi.
                 </p>
                 <div className="border-l-2 border-[#E6FF3D] pl-5 mb-8">
                   <span className="text-eyebrow font-mono text-white/40 block mb-2">

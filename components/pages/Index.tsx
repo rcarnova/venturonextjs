@@ -14,7 +14,6 @@ const LeversSection = lazy(() => import("@/components/LeversSection"));
 const ConversationSection = lazy(() => import("@/components/ConversationSection"));
 
 const TeamPreviewSection = lazy(() => import("@/components/TeamPreviewSection"));
-const LeadMagnetSection = lazy(() => import("@/components/LeadMagnetSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -64,7 +63,6 @@ const Index = () => {
           <ConversationSection />
           <LeversSection />
           <TeamPreviewSection />
-          <LeadMagnetSection />
           <ContactSection />
         </Suspense>
       </main>

@@ -127,8 +127,7 @@ export const PAST_EPISODES = [
 /**
  * I momenti migliori, scelti a mano, da tutte le puntate.
  *
- * E la selezione che compare in home (ConversationSection) e a cui puntano
- * le citazioni sparse nella pagina (GuestQuote). Ogni voce e il videoId di
+ * E la selezione che compare in home (ConversationSection). Ogni voce e il videoId di
  * un clip che esiste tra gli highlights di una delle PAST_EPISODES: puntata
  * e ospite si ricavano da li. L'ordine qui e l'ordine in home.
  *

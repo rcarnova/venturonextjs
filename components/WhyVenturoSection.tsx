@@ -1,5 +1,4 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import GuestQuote from "@/components/GuestQuote";
 
 /**
  * Sintomo e causa. Il blocco chiaro accoglie il problema con le parole del
@@ -109,17 +108,6 @@ const WhyVenturoSection = () => {
               secondo e il terzo: tra ciò che l&apos;organizzazione promette e ciò che le
               persone vivono.
             </p>
-            <p className="text-body text-[rgba(255,255,255,0.55)] mt-4 mb-14 md:max-w-[62%]">
-              A volte la causa sta nell&apos;organizzazione del lavoro: turni, carichi,
-              strumenti. Ma anche lì c&apos;è un&apos;assunzione mai detta su cosa valgono le
-              persone e su chi ha diritto di essere ascoltato. Se un piano di engagement
-              non tocca quella, resta cosmetica.
-            </p>
-            <GuestQuote
-              tone="dark"
-              clipId="sf6iapyW5ww"
-              quote="I valori non li vedi. Io non vedo i tuoi valori, ma vedo i tuoi comportamenti. E quando il comportamento non è coerente con il valore, c'è una distonia."
-            />
           </AnimatedSection>
         </div>
       </section>
