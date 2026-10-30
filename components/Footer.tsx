@@ -33,12 +33,16 @@ const Footer = () => {
 
         <div className="mt-6 pt-6 border-t border-border/50 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
+            <Link href="/leadership" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Leadership e manager</Link>
+            <Link href="/comunicazione-interna" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Comunicazione interna</Link>
+            <Link href="/employer-branding" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Employer branding</Link>
             <Link href="/le-sfide" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Le sfide</Link>
             <Link href="/lumen" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Lumen</Link>
             <Link href="/principi" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Principi</Link>
             <Link href="/casi-studio" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Casi studio</Link>
             <Link href="/chi-siamo" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Chi siamo</Link>
             <Link href="/analisi-evp" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Analisi EVP</Link>
+            <Link href="/ex-assessment" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">EX Assessment</Link>
             <Link href="/magazine" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Articoli</Link>
             <Link href="/privacy" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
           </div>

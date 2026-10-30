@@ -5,7 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Globe } from "lucide-react";
+import { Menu, Globe, ChevronDown } from "lucide-react";
+import { DOORS } from "@/lib/doors";
 import { getEnRoute } from "@/lib/language-routes";
 import {
   DropdownMenu,
@@ -14,14 +15,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+/**
+ * Menu: prima "Per chi" (le tre porte, in lib/doors.ts), poi le pagine comuni.
+ * Principi e Analisi EVP sono nel footer; il tool EVP e la porta gratuita
+ * della pagina Employer branding. Costo turnover resta online su
+ * /simulatore-turnover, fuori dai menu.
+ */
+const doorLinks = DOORS.map((d) => ({ href: `/${d.slug}`, label: d.menuLabel }));
+
 const navLinks = [
   { href: "/lumen", label: "Lumen" },
-  { href: "/principi", label: "Principi" },
+  { href: "/venturo-conversation", label: "Venturo Conversation" },
   { href: "/casi-studio", label: "Casi studio" },
   { href: "/magazine", label: "Articoli" },
-  { href: "/analisi-evp", label: "Misura EVP" },
-  // "Costo turnover" nascosto dal menu: la pagina resta online su /simulatore-turnover
-  { href: "/venturo-conversation", label: "Venturo Conversation" },
   { href: "/chi-siamo", label: "Chi siamo" },
 ];
 
@@ -76,6 +82,26 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={`flex items-center gap-1 text-sm font-mono glow-nav outline-none ${
+                doorLinks.some((d) => pathname === d.href)
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Per chi <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[240px]">
+              {doorLinks.map((d) => (
+                <DropdownMenuItem key={d.href} asChild>
+                  <Link href={d.href} className="cursor-pointer font-mono text-sm py-2">
+                    {d.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
             return (
@@ -131,6 +157,19 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] pt-12">
               <nav className="flex flex-col gap-4">
+                <div className="pb-2 border-b border-border">
+                  <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">Per chi</p>
+                  {doorLinks.map((d) => (
+                    <Link
+                      key={d.href}
+                      href={d.href}
+                      onClick={() => setOpen(false)}
+                      className="block text-lg font-mono font-medium text-foreground hover:text-primary transition-colors py-2"
+                    >
+                      {d.label}
+                    </Link>
+                  ))}
+                </div>
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}

@@ -43,11 +43,11 @@ const phases = [
 const faqs = [
   {
     q: "A chi è rivolto Leading by Purpose?",
-    a: "Al gruppo di leadership di un'organizzazione: AD, riporti diretti e HR. Funziona meglio con team tra 6 e 16 persone che si trovano a gestire una fase di cambiamento, crescita o riorganizzazione.",
+    a: "A chi guida persone, a qualsiasi livello: un board, i responsabili di funzione, i capi intermedi che gestiscono i team ogni giorno. Funziona meglio con gruppi tra 6 e 16 persone che condividono una fase di cambiamento, crescita o riorganizzazione.",
   },
   {
     q: "Quanto dura il percorso?",
-    a: "6 giornate distribuite in circa due mesi, organizzate in 3 sessioni da 2 giorni ciascuna. Prima del kick-off sono previste interviste di discovery individuali con AD e HR.",
+    a: "6 giornate distribuite in circa due mesi, organizzate in 3 sessioni da 2 giorni ciascuna. Prima del kick-off sono previste interviste di discovery individuali con chi promuove il percorso e con HR.",
   },
   {
     q: "In cosa è diverso dalla formazione tradizionale?",
@@ -72,8 +72,8 @@ const LeadingByPurposePage = () => {
   return (
     <div style={{ backgroundColor: "#fff", color: INK }}>
       <SEO
-        title="Leading by Purpose — Percorso di Leadership per il Top Management"
-        description="Un percorso di team coaching per il gruppo di leadership. Aiutiamo il top management a costruire una cultura manageriale riconoscibile, capace di ispirare e trattenere i talenti."
+        title="Leading by Purpose — Percorso di leadership per manager"
+        description="Il percorso di team coaching per chi guida persone, dal board ai capi intermedi. Per mettere engagement e senso al centro di come si guidano i team."
         canonical="https://venturoconsulting.it/leading-by-purpose"
         lang="it"
       />
@@ -90,7 +90,7 @@ const LeadingByPurposePage = () => {
         >
           <div style={{ maxWidth: 960, margin: "0 auto" }}>
             <span style={{ ...MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: ACCENT, display: "block", marginBottom: 20 }}>
-              Percorso · Top management · Team coaching
+              Percorso per manager · Team coaching
             </span>
             <h1
               style={{
@@ -114,10 +114,10 @@ const LeadingByPurposePage = () => {
                 margin: "0 0 48px",
               }}
             >
-              Un percorso di team coaching per il gruppo di leadership. Il perché di
-              un'organizzazione non è un poster: è l'unica leva reale per ispirare
-              le persone a crescere e dare il meglio, anche quando nessuno sta
-              guardando.
+              Il percorso di team coaching per chi guida persone, dal comitato di
+              direzione ai capi intermedi. L&apos;engagement si decide nel rapporto
+              quotidiano con chi guida: qui i manager mettono engagement e senso al
+              centro di come guidano i loro team.
             </p>
 
             {/* Counters — flex-wrap per mobile */}
@@ -231,7 +231,7 @@ const LeadingByPurposePage = () => {
               Prima del kick-off
             </span>
             <p style={{ ...SERIF_ITALIC, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.65, color: "rgba(255,255,255,0.88)", margin: 0 }}>
-              Conduciamo interviste individuali con AD e HR per raccogliere visione,
+              Conduciamo interviste individuali con chi promuove il percorso e con HR per raccogliere visione,
               tensioni e aspettative, e progettare un percorso che parta dalla realtà
               della vostra organizzazione, non da un template.
             </p>
@@ -263,7 +263,7 @@ const LeadingByPurposePage = () => {
         <section style={{ backgroundColor: INK, padding: "clamp(64px, 10vh, 100px) clamp(24px, 6vw, 80px)", textAlign: "center" }}>
           <div style={{ maxWidth: 580, margin: "0 auto" }}>
             <h2 style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontSize: "clamp(26px, 4vw, 44px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.025em", color: "#fff", margin: "0 0 20px" }}>
-              Vuoi portare questo percorso nel vostro gruppo di leadership?
+              Vuoi portare questo percorso ai vostri manager?
             </h2>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: "0 0 36px" }}>
               Raccontaci il contesto. Capiamo insieme se Leading by Purpose è lo strumento giusto per voi.
