@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudiesPage from "@/components/pages/en/CaseStudies";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Organizational culture and employer branding projects",
+  title: "Case studies in organizational culture",
   description:
     "Employer branding, internal communication, strategic naming, facilitation. Real projects where organizational culture became visible.",
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Case Studies — Organizational culture and employer branding projects",
+    title: "Case studies in organizational culture",
     description:
       "Employer branding, internal communication, strategic naming, facilitation. Real projects where organizational culture became visible.",
     url: "https://venturoconsulting.it/en/case-studies",

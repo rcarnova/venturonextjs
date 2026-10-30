@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import HtmlLang from "@/components/HtmlLang";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://venturoconsulting.it"),
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s — Venturo",
   },
   description:
-    "Rendiamo visibile la cultura della tua organizzazione. Lavoriamo su employer branding, comunicazione interna e trasformazione culturale.",
+    "Consulenza su cultura organizzativa ed engagement delle persone. Facciamo emergere la cultura reale dell'organizzazione con Lumen: conversazioni, non survey.",
   openGraph: {
     siteName: "Venturo",
     images: ["/og-image.png"],
@@ -32,22 +33,42 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="it">
+    // suppressHydrationWarning: lo script qui sotto può cambiare lang prima che React si agganci
+    <html lang="it" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* Font serviti dal sito: niente richieste a Google, nessun CSS esterno
+            che blocca la prima visualizzazione. Precaricati i due usati sopra
+            la piega; gli altri arrivano con il CSS (app/globals.css). */}
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
+          rel="preload"
+          href="/fonts/space-grotesk-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          href="/fonts/ibm-plex-mono-latin-400-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        {/* Le pagine /en condividono questo layout: la lingua del documento si
+            corregge prima del primo disegno. Il contenuto inglese è comunque
+            dichiarato in HTML da app/en/layout.tsx. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(/^\\/en(\\/|$)/.test(location.pathname))document.documentElement.lang='en'",
+          }}
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <HtmlLang />
+        {children}
+      </body>
     </html>
   );
 }

@@ -57,7 +57,7 @@ const EuPromotions = () => {
             description:
               "A partire dagli output dei workshop, abbiamo definito tono di voce, parole chiave, storie di valore e piano editoriale. Non contenuti generici, ma narrazioni radicate nell'esperienza reale del team e nei risultati concreti dei programmi.",
             image: {
-              src: "/cases/eupromotion-grease.png",
+              src: "/cases/eupromotion-grease.jpg",
               alt: "Slide del workshop: Status quo vs Vision con riferimento al film Grease",
               caption: "Dal workshop: la trasformazione come metafora visiva",
             },

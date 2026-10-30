@@ -54,7 +54,7 @@ const ResponsabilitaNonSiDelega = () => {
                 color: "#666",
               }}
             >
-              <span>Rosario</span>
+              <Link href="/chi-siamo" rel="author" className="underline underline-offset-4 hover:opacity-70">Rosario Carnovale</Link>
               <span>•</span>
               <span>8 mar 2026</span>
               <span>•</span>

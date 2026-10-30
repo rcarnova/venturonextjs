@@ -23,7 +23,15 @@ export type Door = {
   bridgeTitle: string;
   bridge: string[];
   offers: { title: string; text: string; href?: string; external?: boolean; cta?: string }[];
-  tool?: { eyebrow: string; title: string; text: string; href: string; cta: string };
+  tool?: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    href: string;
+    cta: string;
+    /** un secondo strumento, in una riga sotto il primo */
+    more?: { text: string; href: string; label: string };
+  };
   cases?: { title: string; href: string }[];
   /**
    * Momenti di Venturo Conversation che parlano a chi entra da questa porta.
@@ -94,9 +102,9 @@ export const DOORS: Door[] = [
       { slug: "la-responsabilita-non-si-delega", title: "La responsabilità non si delega. Si conquista." },
       { slug: "i-valori-non-sono-poster", title: "I valori non sono poster. Sono promesse." },
     ],
-    seoTitle: "Leadership ed engagement dei dipendenti: percorsi per manager",
+    seoTitle: "Leadership ed engagement dei team: percorsi per manager",
     seoDescription:
-      "Il clima di un team lo fa chi lo guida. Venturo lavora con i manager, dal board ai capi intermedi, per aumentare l'engagement dei dipendenti mettendo identità e senso al centro della guida dei team.",
+      "Il clima di un team lo fa chi lo guida. Lavoriamo con i manager, dal board ai capi intermedi, per mettere identità e senso al centro della guida dei team.",
   },
   {
     slug: "comunicazione-interna",
@@ -150,7 +158,7 @@ export const DOORS: Door[] = [
     ],
     seoTitle: "Comunicazione interna e coinvolgimento dei dipendenti",
     seoDescription:
-      "Comunicazione interna che arriva a tutti, anche a chi non sta alla scrivania. Venturo fa emergere la storia comune dell'organizzazione per aumentare il coinvolgimento dei dipendenti.",
+      "Comunicazione interna che arriva a tutti, anche a chi non sta alla scrivania. Facciamo emergere la storia comune in cui le persone si riconoscono.",
   },
   {
     slug: "employer-branding",
@@ -197,6 +205,11 @@ export const DOORS: Door[] = [
       text: "Incollate la career page o un annuncio. Analizziamo identità, coerenza e profilo motivazionale che la vostra comunicazione attira.",
       href: "/analisi-evp",
       cta: "Analizza la vostra EVP",
+      more: {
+        text: "E quanto costa ogni persona che se ne va?",
+        href: "/simulatore-turnover",
+        label: "Simulatore del costo del turnover",
+      },
     },
     moments: [
       {
@@ -217,7 +230,7 @@ export const DOORS: Door[] = [
     ],
     seoTitle: "Employer branding ed EVP che partono da dentro",
     seoDescription:
-      "Le persone giuste arrivano dove chi è dentro sa raccontare com'è lavorare lì. Venturo costruisce l'employer branding a partire dall'identità reale e dall'engagement delle persone.",
+      "Le persone giuste arrivano dove chi è dentro sa raccontare com'è lavorare lì. Costruiamo l'employer branding dall'identità reale e dall'engagement interno.",
   },
 ];
 

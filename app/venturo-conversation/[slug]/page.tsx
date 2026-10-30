@@ -26,7 +26,8 @@ export async function generateMetadata({
 
   return {
     // `absolute` evita il suffisso del template "%s — Venturo" di app/layout.tsx
-    title: { absolute: `${ep.title} | Venturo Conversation` },
+    // Con il nome del format se ci sta nel risultato di Google, altrimenti solo il titolo
+    title: { absolute: `${ep.title} | Venturo Conversation`.length <= 65 ? `${ep.title} | Venturo Conversation` : ep.title },
     description,
     alternates: { canonical: url },
     openGraph: {

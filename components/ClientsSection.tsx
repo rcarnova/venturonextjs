@@ -9,7 +9,7 @@ const clients = [
   { name: "Sambonet", logo: "/logos/sambonet_white.webp", scale: 1, invert: false, href: "/casi-studio" },
   { name: "Ufficio Pio", logo: "/logos/ufficio_pio_white.webp", scale: 1, invert: false, href: "/casi-studio/ufficio-pio" },
   { name: "Eu.promotions", logo: "/logos/eupromotion_white.webp", scale: 1.1, invert: false, href: "/casi-studio/eupromotions" },
-  { name: "Comune di Vercelli", logo: "/logos/comune_vercelli_white.png", scale: 1.05, invert: false, href: "/casi-studio/comune-di-vercelli-violenza-di-genere" },
+  { name: "Comune di Vercelli", logo: "/logos/comune_vercelli_white.webp", scale: 1, invert: false, href: "/casi-studio/comune-di-vercelli-violenza-di-genere" },
 ];
 
 // Duplicate the array 3 times for seamless infinite scroll

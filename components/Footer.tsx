@@ -36,6 +36,7 @@ const Footer = () => {
             <Link href="/leadership" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Leadership e manager</Link>
             <Link href="/comunicazione-interna" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Comunicazione interna</Link>
             <Link href="/employer-branding" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Employer branding</Link>
+            <Link href="/leading-by-purpose" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Leading by Purpose</Link>
             <Link href="/le-sfide" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Le sfide</Link>
             <Link href="/lumen" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Lumen</Link>
             <Link href="/principi" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Principi</Link>
@@ -43,6 +44,7 @@ const Footer = () => {
             <Link href="/chi-siamo" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Chi siamo</Link>
             <Link href="/analisi-evp" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Analisi EVP</Link>
             <Link href="/ex-assessment" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">EX Assessment</Link>
+            <Link href="/simulatore-turnover" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Simulatore turnover</Link>
             <Link href="/magazine" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Articoli</Link>
             <Link href="/privacy" className="text-[0.85rem] font-mono text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
           </div>

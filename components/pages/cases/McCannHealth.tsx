@@ -61,7 +61,7 @@ const McCannHealth = () => {
             description:
               "Elaborazione del report finale con le indicazioni sul modello di ufficio e i valori che lo spazio dovrà trasmettere. Dal lavoro del gruppo sono emerse quattro tensioni guida: Rinascita continua, Combattività e fantasia, Essere team nella diversità, Futuro digitale a misura d'uomo.",
             image: {
-              src: "/images/cases/mccann-health/nuova-sede.png",
+              src: "/images/cases/mccann-health/nuova-sede.jpg",
               alt: "La nuova sede McCann Health — render architettonico esterno",
               caption: "Il render della nuova sede: dove la cultura diventa spazio",
             },

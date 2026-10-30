@@ -4,7 +4,7 @@ import ChallengesPage from "@/components/pages/en/Challenges";
 export const metadata: Metadata = {
   title: "Organizational culture challenges",
   description:
-    "Talent retention, ineffective internal communication, gap between external brand and internal culture. Do you recognize any of these situations? Here's how we address them.",
+    "People leaving, internal communication that doesn't land, a gap between external brand and internal culture. Do you recognize these? Here's how we address them.",
   alternates: {
     canonical: "https://venturoconsulting.it/en/challenges",
     languages: {

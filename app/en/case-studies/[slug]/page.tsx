@@ -13,84 +13,25 @@ import ComuneVercelliEN from "@/components/pages/cases-en/ComuneVercelli";
 import AmcItaliaEN from "@/components/pages/cases-en/AmcItalia";
 import McCannHealthEN from "@/components/pages/cases-en/McCannHealth";
 
-type CaseMeta = {
-  title: string;
-  description: string;
-  itSlug: string;
-  Component: React.ComponentType;
-};
+import { CASES } from "@/lib/content/cases-en";
+import { SITE_URL } from "@/lib/site";
 
-const cases: Record<string, CaseMeta> = {
-  ricehouse: {
-    title: "Employer branding for a green tech and circular economy startup",
-    description: "How Ricehouse made its cultural identity visible to attract talent who believe in circular economy and bio-construction.",
-    itSlug: "ricehouse",
-    Component: RicehouseEN,
-  },
-  randstad: {
-    title: "Randstad employer branding — Visible culture, aligned candidates",
-    description: "Employer branding campaign that translates Randstad's internal values into concrete messages for the job market.",
-    itSlug: "randstad",
-    Component: RandstadEN,
-  },
-  lely: {
-    title: "Tool for managing people without HR experience — Lely",
-    description: "Practical framework for Lely technical managers who need to lead teams without specific HR experience.",
-    itSlug: "lely",
-    Component: LelyEN,
-  },
-  "ufficio-pio": {
-    title: "Naming that builds culture — Ufficio Pio",
-    description: "Strategic naming project for Ufficio Pio: creating shared language for departments and making the beneficiaries' journey recognizable.",
-    itSlug: "ufficio-pio",
-    Component: UfficioPioEN,
-  },
-  cve: {
-    title: "The First Company Town Hall — CVE",
-    description: "Design and facilitation of CVE's first Company Town Hall: a historic moment for the organization.",
-    itSlug: "cve",
-    Component: CVEEN,
-  },
-  findomestic: {
-    title: "From institutional language to unified conversation — Findomestic",
-    description: "Intensive workshop for Findomestic to unify language between customer service and social media teams.",
-    itSlug: "findomestic",
-    Component: FindomesticEN,
-  },
-  "randstad-professionals": {
-    title: "Brand identity for those who select the best — Randstad Professionals",
-    description: "EVP, Talent Personas and employer branding video for Randstad's top management division.",
-    itSlug: "randstad-professionals",
-    Component: RandstadProfessionalsEN,
-  },
-  eupromotions: {
-    title: "Identity discovered, not invented — Eu.promotions",
-    description: "Brand identity and content strategy for Eu.promotions, an international SME in loyalty & retail marketing.",
-    itSlug: "eupromotions",
-    Component: EuPromotionsEN,
-  },
-  "comune-di-vercelli-gender-violence": {
-    title: "Toxic — Giving voice to youth on gender violence — Comune di Vercelli",
-    description: "Participatory workshop in Vercelli's high schools, collection of testimonies and theatrical reading at the Raccolti Festival.",
-    itSlug: "comune-di-vercelli-violenza-di-genere",
-    Component: ComuneVercelliEN,
-  },
-  "amc-italia": {
-    title: "Organizational transformation starting from office space — AMC Italia",
-    description: "12 months of co-design with employees to turn a headquarter relocation into an organizational culture project.",
-    itSlug: "amc-italia",
-    Component: AmcItaliaEN,
-  },
-  "mccann-health": {
-    title: "Listening and Envisioning for the new office — McCann Health",
-    description: "Board interviews, organisation-wide survey and envisioning workshop to define the values the new McCann Health office needed to convey.",
-    itSlug: "mccann-health",
-    Component: McCannHealthEN,
-  },
+const COMPONENTS: Record<string, React.ComponentType> = {
+  "ricehouse": RicehouseEN,
+  "randstad": RandstadEN,
+  "lely": LelyEN,
+  "ufficio-pio": UfficioPioEN,
+  "cve": CVEEN,
+  "findomestic": FindomesticEN,
+  "randstad-professionals": RandstadProfessionalsEN,
+  "eupromotions": EuPromotionsEN,
+  "comune-di-vercelli-gender-violence": ComuneVercelliEN,
+  "amc-italia": AmcItaliaEN,
+  "mccann-health": McCannHealthEN,
 };
 
 export function generateStaticParams() {
-  return Object.keys(cases).map((slug) => ({ slug }));
+  return Object.keys(CASES).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -99,24 +40,21 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const c = cases[slug];
+  const c = CASES[slug];
   if (!c) return {};
 
+  const url = `${SITE_URL}/en/case-studies/${slug}`;
   return {
-    title: c.title,
+    title: c.seoTitle ?? c.title,
     description: c.description,
     alternates: {
-      canonical: `https://venturoconsulting.it/en/case-studies/${slug}`,
-      languages: {
-        it: `https://venturoconsulting.it/casi-studio/${c.itSlug}`,
-        en: `https://venturoconsulting.it/en/case-studies/${slug}`,
-        "x-default": `https://venturoconsulting.it/casi-studio/${c.itSlug}`,
-      },
+      canonical: url,
+      languages: { it: `${SITE_URL}/casi-studio/${c.itSlug}`, en: url, "x-default": `${SITE_URL}/casi-studio/${c.itSlug}` },
     },
     openGraph: {
       title: c.title,
       description: c.description,
-      url: `https://venturoconsulting.it/en/case-studies/${slug}`,
+      url,
       locale: "en_US",
       alternateLocale: ["it_IT"],
     },
@@ -129,9 +67,8 @@ export default async function CaseStudyPageEN({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const caseData = cases[slug];
-  if (!caseData) notFound();
+  const Component = COMPONENTS[slug];
+  if (!CASES[slug] || !Component) notFound();
 
-  const { Component } = caseData;
   return <Component />;
 }

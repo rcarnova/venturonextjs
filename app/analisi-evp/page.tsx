@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AnalisiEVPPage from "@/components/pages/AnalisiEVP";
 
 export const metadata: Metadata = {
-  title: "Analisi EVP gratuita — Scopri come comunica la tua Employee Value Proposition",
+  title: "Analisi EVP gratuita: come comunica la vostra EVP",
   description:
     "Analizza gratis come la tua azienda comunica la propria Employee Value Proposition. Scopri gap, punti di forza e opportunità di miglioramento.",
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Analisi EVP gratuita — Scopri come comunica la tua Employee Value Proposition",
+    title: "Analisi EVP gratuita: come comunica la vostra EVP",
     description:
       "Analizza gratis come la tua azienda comunica la propria Employee Value Proposition. Scopri gap, punti di forza e opportunità.",
     url: "https://venturoconsulting.it/analisi-evp",

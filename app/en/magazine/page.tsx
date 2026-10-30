@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import MagazineENPage from "@/components/pages/en/Magazine";
 
 export const metadata: Metadata = {
-  title: "WHY — Articles on organizational culture and employer branding",
+  title: "Articles on organizational culture and engagement",
   description:
-    "Every organization has a why. Articles on employer branding, organizational culture, leadership and internal communication.",
+    "Articles on organizational culture, employee engagement, leadership, internal communication and employer branding.",
   alternates: {
     canonical: "https://venturoconsulting.it/en/magazine",
     languages: {
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "WHY — Articles on organizational culture and employer branding",
+    title: "Articles on organizational culture and engagement",
     description:
-      "Every organization has a why. Articles on employer branding, organizational culture, leadership and internal communication.",
+      "Articles on organizational culture, employee engagement, leadership, internal communication and employer branding.",
     url: "https://venturoconsulting.it/en/magazine",
     locale: "en_US",
     alternateLocale: ["it_IT"],
