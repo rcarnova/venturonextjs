@@ -5,16 +5,19 @@ import AnimatedSection from "./AnimatedSection";
 const team = [
   {
     name: "Rosario Carnovale",
+    title: "Coach & Culture Designer",
     image: "/team/rosario.jpg",
     description: "Lavora con i leader e con chi guida i team ogni giorno, dove l'engagement si decide.",
   },
   {
     name: "Massimo Benedetti",
+    title: "Storyteller & Facilitator",
     image: "/team/massimo.jpg",
     description: "Fa parlare le persone e ascolta quello che raccontano. È il cuore di Lumen.",
   },
   {
     name: "Arianna Barisan",
+    title: "Art Director",
     image: "/team/arianna.jpg",
     description: "Rende visibile la cultura, anche a chi in ufficio non c'è mai.",
   },
@@ -66,7 +69,7 @@ const TeamPreviewSection = () => {
                 <div>
                 <h3 className="text-lg md:text-xl font-bold text-foreground">{member.name}</h3>
                 <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mt-1 mb-2 md:mb-3">
-                  Partner
+                  Partner · {member.title}
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-sm max-w-xs md:mx-auto">
                   {member.description}
