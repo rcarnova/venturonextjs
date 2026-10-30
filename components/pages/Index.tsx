@@ -50,18 +50,24 @@ const Index = () => {
       />
       <Header />
       <main>
-        {/* La catena della home: sintomo, causa, metodo (conversazioni dentro e fuori: Lumen e Venturo Conversation), conseguenze. I casi studio stanno in /casi-studio. */}
+        {/*
+          Ordine: tesi, prova (loghi), sintomo e causa, poi la scelta della porta
+          con un invito a scriverci, poi il metodo (Lumen dentro, Venturo
+          Conversation fuori), il team e il contatto. Le porte stanno in alto
+          perche chi entra da Comunicazione o Employer branding sceglie prima di
+          leggere il metodo. I casi studio stanno in /casi-studio.
+        */}
         <HeroSection />
-        <Suspense fallback={LazyFallback}>
-          <WhyVenturoSection />
-        </Suspense>
         <Suspense fallback={LazyFallback}>
           <ClientsSection />
         </Suspense>
         <Suspense fallback={LazyFallback}>
+          <WhyVenturoSection />
+        </Suspense>
+        <Suspense fallback={LazyFallback}>
+          <LeversSection />
           <HowWeWorkSection />
           <ConversationSection />
-          <LeversSection />
           <TeamPreviewSection />
           <ContactSection />
         </Suspense>

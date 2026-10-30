@@ -12,7 +12,7 @@ const SERIF_ITALIC: React.CSSProperties = {
 
 const LINE: React.CSSProperties = {
   display: "block",
-  fontSize: "clamp(44px, 8.6vw, 128px)",
+  fontSize: "clamp(44px, 7.6vw, 112px)",
 };
 
 /**
@@ -29,11 +29,12 @@ const HeroSection = () => {
         backgroundColor: "#ffffff",
         display: "flex",
         flexDirection: "column",
-        padding: "0 clamp(24px, 6vw, 80px)",
         paddingTop: 88,
         paddingBottom: 48,
       }}
     >
+      {/* Stessa griglia del menu (container-wide): titolo e pulsanti allineati al logo. */}
+      <div className="container-wide w-full flex flex-col md:flex-1">
       <h1
         className="md:flex-1 pt-16 md:pt-0"
         style={{
@@ -109,6 +110,7 @@ const HeroSection = () => {
           </a>
           <Link
             href="/lumen"
+            className="inline-block py-3"
             style={{
               color: INK,
               fontSize: 14,
@@ -122,6 +124,7 @@ const HeroSection = () => {
           </Link>
         </div>
       </footer>
+      </div>
     </section>
   );
 };

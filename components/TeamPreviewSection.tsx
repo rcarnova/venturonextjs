@@ -80,7 +80,7 @@ const TeamPreviewSection = () => {
         <AnimatedSection className="text-center">
           <Link
             href="/chi-siamo"
-            className="inline-flex items-center gap-2 text-primary hover:underline font-medium transition-colors"
+            className="inline-flex items-center gap-2 py-3 text-primary hover:underline font-medium transition-colors"
           >
             Scopri chi siamo
             <ArrowRight className="w-4 h-4" />

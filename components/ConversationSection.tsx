@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import VenturoConversationLogo from "@/components/VenturoConversationLogo";
 import VideoFacade from "@/components/VideoFacade";
@@ -23,7 +24,17 @@ const ACCENT_ON_LIGHT = "#BE185D";
 
 const MOMENTS = getBestMoments();
 
+/** Vero finche la prossima puntata non e finita: dopo, il blocco sparisce da solo. */
+const useUpcoming = () => {
+  const [upcoming, setUpcoming] = useState(true);
+  useEffect(() => {
+    setUpcoming(Date.now() < Date.parse(NEXT_EPISODE.endsAt));
+  }, []);
+  return upcoming;
+};
+
 const ConversationSection = () => {
+  const upcoming = useUpcoming();
   return (
     <section id="venturo-conversation" className="bg-white" style={{ borderTop: `1px solid ${INK}` }}>
       <div className="container-wide py-16 md:py-24">
@@ -57,7 +68,9 @@ const ConversationSection = () => {
             </p>
           </div>
 
-          {/* Prossima puntata */}
+          {/* Prossima puntata: nascosta quando la data e passata e NEXT_EPISODE
+              non e ancora stato aggiornato, per non mostrare una data vecchia. */}
+          {upcoming && (
           <div className="lg:col-span-4 lg:col-start-9 lg:self-end">
             <p className="font-mono text-eyebrow mb-4" style={{ color: ACCENT_ON_LIGHT }}>
               PROSSIMA CONVERSAZIONE
@@ -95,13 +108,14 @@ const ConversationSection = () => {
               </a>
               <Link
                 href="/venturo-conversation"
-                className="font-mono text-eyebrow underline underline-offset-4 hover:text-black"
+                className="inline-block py-3 font-mono text-eyebrow underline underline-offset-4 hover:text-black"
                 style={{ color: MUTED }}
               >
                 IL FORMAT
               </Link>
             </div>
           </div>
+          )}
         </div>
 
         {/* I momenti migliori, selezionati da tutte le puntate (BEST_MOMENTS) */}
@@ -118,16 +132,22 @@ const ConversationSection = () => {
               </div>
               <Link
                 href="/venturo-conversation"
-                className="font-mono text-eyebrow underline underline-offset-4 hover:text-black"
+                className="inline-block py-3 font-mono text-eyebrow underline underline-offset-4 hover:text-black"
                 style={{ color: ACCENT_ON_LIGHT }}
               >
-                TUTTE LE PUNTATE →
+                TUTTI I MOMENTI E LE PUNTATE →
               </Link>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8 md:gap-8">
-              {MOMENTS.map(({ clip, episode }) => (
-                <div key={clip.videoId} id={`vc-clip-${clip.videoId}`} style={{ scrollMarginTop: 96 }}>
+              {MOMENTS.map(({ clip, episode }, i) => (
+                /* Su telefono solo i primi due: quattro clip erano piu di due schermate. */
+                <div
+                  key={clip.videoId}
+                  id={`vc-clip-${clip.videoId}`}
+                  className={i >= 2 ? "hidden lg:block" : undefined}
+                  style={{ scrollMarginTop: 96 }}
+                >
                   <VideoFacade
                     videoId={clip.videoId}
                     poster={clip.image}
@@ -144,7 +164,7 @@ const ConversationSection = () => {
                   </p>
                   <Link
                     href={`/venturo-conversation/${episode.slug}`}
-                    className="inline-block font-mono text-eyebrow mt-2 underline underline-offset-4 hover:text-black"
+                    className="inline-block font-mono text-eyebrow mt-1 py-3 underline underline-offset-4 hover:text-black"
                     style={{ color: MUTED }}
                   >
                     LA PUNTATA →
