@@ -15,8 +15,17 @@ const team = [
     title: "Coach & Culture Designer",
     image: "/team/rosario.jpg",
     linkedin: "https://www.linkedin.com/in/rosariocarnovale/",
-    bio: "Grew up as a manager at Oracle for 10 years. In 2016 he co-founded Smartworking Srl — the first consultancy dedicated to hybrid work in Italy. He worked as a coach and consultant on organizational change projects at Maxim Consulting and digital at Telnext (Deloitte Digital). In 2017 he founded Studio Miller with Massimo Benedetti.",
-    bio2: "At Venturo he leads projects on organizational culture and employee engagement. He experienced firsthand the gap between promise and organizational reality in large companies, and turned that experience into proprietary tools like the Smart Working Canvas. He brings one of the strongest track records in Italy on hybrid work and the conviction that culture changes by modifying concrete artifacts: meetings, rituals, language.",
+    bio: "He grew up as a manager at Oracle for 10 years, then in 2016 co-founded Smartworking Srl, Italy's first hybrid work consultancy. He worked as a coach and consultant on organizational change projects at Maxim Consulting and on digital at Telnext (Deloitte Digital). In 2017 he founded Studio Miller with Massimo Benedetti.",
+    bio2: "He works with leaders and with those who guide teams every day: that is where, in the daily relationship, engagement is decided. As a coach he works with many managers, often young ones, and beyond the right questions he gives them concrete tools. He has lived first-hand the gap between what an organization promises and what people experience. He knows culture does not change through top-down policies, but through everyday artifacts: meetings, rituals, language.",
+  },
+  {
+    name: "Massimo Benedetti",
+    role: "Partner",
+    title: "Storyteller & Facilitator",
+    image: "/team/massimo.jpg",
+    linkedin: "https://www.linkedin.com/in/massimobenedetti/",
+    bio: "A graduate of Politecnico di Torino, in 2016 he earned the Corporate Storytelling Specialist qualification at IULM. Since 2017 he has been a trainer at Talent Garden's Innovation School. Co-founder of Studio Miller, he has worked for years on content and narrative for brands such as Randstad, Sambonet, Samsung and Findomestic.",
+    bio2: "He leads Lumen and facilitates the workshops where organizations listen to themselves. His work is getting people to talk: asking the right question, creating the space where the true answer arrives, recognizing in stories what no scored questionnaire can see. Then he gives back what emerged in a form people recognize as their own.",
   },
   {
     name: "Arianna Barisan",
@@ -24,17 +33,8 @@ const team = [
     title: "Art Director",
     image: "/team/arianna.jpg",
     linkedin: "https://www.linkedin.com/in/arianna-barisan/",
-    bio: "Art Director with a trajectory in luxury: Miu Miu, Marco Bicego, Panerai — eight years leading concept, image, and events for international watchmaking and jewelry brands. Since 2019 she works as a freelance consultant on visual strategies, events, and communication processes.",
-    bio2: "At Venturo she translates cultural insights into visual artifacts — not just design but materialized culture. First we understand who the organization truly is (through Lumen), then we create the symbols, colors, and visual languages that reinforce that identity. She brings aesthetic rigor and the conviction that building a brand coincides with building an internal culture.",
-  },
-  {
-    name: "Massimo Benedetti",
-    role: "Partner",
-    title: "Communication & Storytelling Specialist",
-    image: "/team/massimo.jpg",
-    linkedin: "https://www.linkedin.com/in/massimobenedetti/",
-    bio: "Graduated from Politecnico di Torino, in 2016 he earned a Corporate Storytelling Specialist qualification from IULM. Since 2017 he has been a trainer at Talent Garden's Innovation School. Co-founder of Studio Miller, he has years of experience in content strategy and narrative for brands like Randstad, Sambonet, Samsung, Findomestic.",
-    bio2: "At Venturo he leads the Lumen methodology and facilitates workshops where organizations listen to themselves through their own voices. He owns the narrative dimension — Lumen's questions are not surveys but emergence devices that require expertise in facilitating deep conversations. He turns what organizations live through into stories people recognize as their own.",
+    bio: "Art Director with long experience in luxury: for eight years she led concept, image and events for international watch and jewelry brands, including Miu Miu, Marco Bicego and Panerai. Since 2019 she has worked as a consultant on visual strategy, events and communication processes.",
+    bio2: "She makes visible the culture that Lumen brings to the surface: symbols, spaces, objects, visual languages. It is how we reach people who never read a company email, who work shifts, in stores or on the road. She does not come in afterwards, once the culture has been written: she works with Rosario and Massimo while it emerges. From luxury she brings rigor in detail and care for whoever receives each object.",
   },
 ];
 
@@ -91,20 +91,20 @@ const AboutEN = () => {
 
             <AnimatedSection delay={100}>
               <div className="max-w-3xl space-y-6">
-                 <p className="text-body text-background/80">
-                  Venturo was born from the convergence of three competencies that rarely speak to each other.
-                </p>
-                 <p className="text-body text-background/80">
-                  <strong className="text-background">Rosario</strong> brings culture from the inside — he lived in large organizations for 10 years at Oracle and turned that experience into proprietary tools like the Smart Working Canvas. He knows that organizations don't change through top-down policies, but by consciously modifying everyday artifacts.
-                </p>
-                 <p className="text-body text-background/80">
-                  <strong className="text-background">Massimo</strong> brings narrative as method — he knows that stories reveal more than numbers, and that facilitating deep conversations is a specific competency. <Link href="/en/lumen" className="text-background hover:underline">Lumen</Link>'s questions are not surveys — they are narrative emergence devices.
-                </p>
-                 <p className="text-body text-background/80">
-                  <strong className="text-background">Arianna</strong> brings design as materialization — she translates cultural insights into visual artifacts that communicate and reinforce deep meanings. She doesn't "design the logo after the culture has been defined" — she works simultaneously on culture and identity.
+                <p className="text-body text-background/80">
+                  Venturo was born from the meeting of three crafts that rarely work together: coaching, storytelling and art direction.
                 </p>
                 <p className="text-body text-background/80">
-                  This combination allows us to do something few others do: work on culture as the infrastructure of the brand promise — what makes every external communication, every hire, every client proposal credible or false.
+                  <strong className="text-background">Rosario</strong> works with leaders and with those who guide teams every day, because that is where engagement is decided.
+                </p>
+                <p className="text-body text-background/80">
+                  <strong className="text-background">Massimo</strong> gets people talking and listens to what they say. He is the heart of <Link href="/en/lumen" className="text-background hover:underline">Lumen</Link>.
+                </p>
+                <p className="text-body text-background/80">
+                  <strong className="text-background">Arianna</strong> makes culture visible, even to people who are never in the office.
+                </p>
+                <p className="text-body text-background/80">
+                  Together we do one thing: bring out an organization&apos;s real identity, so people can recognize themselves in what they do. There is no engagement without identity.
                 </p>
               </div>
             </AnimatedSection>
@@ -161,7 +161,7 @@ const AboutEN = () => {
                         </a>
                       </div>
                       <p className="text-sm font-mono uppercase tracking-widest text-primary">
-                        {member.role}
+                        {member.role} · {member.title}
                       </p>
                       <p className="text-base text-muted-foreground leading-relaxed mt-3">
                         {member.bio}
