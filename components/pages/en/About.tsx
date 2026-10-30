@@ -12,11 +12,11 @@ const team = [
   {
     name: "Rosario Carnovale",
     role: "Partner",
-    title: "Business Coach & Brand Strategist",
+    title: "Culture & Innovation Designer",
     image: "/team/rosario.jpg",
     linkedin: "https://www.linkedin.com/in/rosariocarnovale/",
     bio: "Grew up as a manager at Oracle for 10 years. In 2016 he co-founded Smartworking Srl — the first consultancy dedicated to hybrid work in Italy. He worked as a coach and consultant on organizational change projects at Maxim Consulting and digital at Telnext (Deloitte Digital). In 2017 he founded Studio Miller with Massimo Benedetti.",
-    bio2: "At Venturo he leads cultural transformation and strategic employer branding projects. He experienced firsthand the gap between promise and organizational reality in large companies, and turned that experience into proprietary tools like the Smart Working Canvas. He brings one of the strongest track records in Italy on hybrid work and the conviction that culture changes by modifying concrete artifacts — meetings, rituals, language.",
+    bio2: "At Venturo he leads projects on organizational culture and employee engagement. He experienced firsthand the gap between promise and organizational reality in large companies, and turned that experience into proprietary tools like the Smart Working Canvas. He brings one of the strongest track records in Italy on hybrid work and the conviction that culture changes by modifying concrete artifacts: meetings, rituals, language.",
   },
   {
     name: "Arianna Barisan",
