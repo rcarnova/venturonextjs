@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrinciplesPage from "@/components/pages/en/Principles";
 
 export const metadata: Metadata = {
-  title: "Venturo's principles — How we work — Venturo",
+  title: "Venturo's principles — How we work",
   description:
     "The principles that guide Venturo's work on organizational culture and employer branding. How we work, what we believe and why.",
   alternates: {

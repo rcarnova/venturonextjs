@@ -4,7 +4,7 @@ import IndexPage from "@/components/pages/Index";
 export const metadata: Metadata = {
   title: "Venturo — Cultura organizzativa ed engagement delle persone",
   description:
-    "Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
+    "Quando l'engagement dei dipendenti cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
   alternates: {
     canonical: "https://venturoconsulting.it/",
     languages: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Venturo — Cultura organizzativa ed engagement delle persone",
     description:
-      "Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
+      "Quando l'engagement dei dipendenti cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
     url: "https://venturoconsulting.it/",
     siteName: "Venturo",
     locale: "it_IT",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Venturo — Cultura organizzativa ed engagement delle persone",
     description:
-      "Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
+      "Quando l'engagement dei dipendenti cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey.",
     images: ["https://venturoconsulting.it/og-image.png"],
   },
 };

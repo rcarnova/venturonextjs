@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LumenPage from "@/components/pages/Lumen";
 
 export const metadata: Metadata = {
-  title: "Lumen — Scopri i valori reali della tua organizzazione — Venturo",
+  title: "Lumen — Scopri i valori reali della tua organizzazione",
   description:
     "Lumen è lo strumento di Venturo per far emergere l'identità culturale reale di un'organizzazione attraverso conversazioni profonde e artefatti visivi.",
   alternates: {

@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { gradientForSlug } from "@/lib/article-covers";
+import { ARTICLE_DOOR, getDoor } from "@/lib/doors";
 
 interface ArticleLayoutProps {
   category: string;
@@ -30,6 +31,9 @@ const ArticleLayout = ({
 }: ArticleLayoutProps) => {
   const pathname = usePathname();
   const heroGradient = gradientForSlug(pathname);
+  const articleSlug = pathname.split("/").filter(Boolean).pop() ?? "";
+  const doorSlug = ARTICLE_DOOR[articleSlug];
+  const door = doorSlug ? getDoor(doorSlug) : undefined;
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -192,6 +196,24 @@ const ArticleLayout = ({
                 {content}
               </ReactMarkdown>
             </div>
+
+            {/* Per approfondire: la porta del sito a cui appartiene l'articolo */}
+            {door && (
+              <Link
+                href={`/${door.slug}`}
+                className="mt-16 flex items-center justify-between gap-4 border-y border-border py-6 hover:opacity-70 transition-opacity"
+              >
+                <span>
+                  <span className="block text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                    Per approfondire · {door.menuLabel}
+                  </span>
+                  <span className="block text-lg md:text-xl font-semibold" style={{ color: "#1a1a1a" }}>
+                    {door.title}
+                  </span>
+                </span>
+                <span aria-hidden="true" className="text-xl">→</span>
+              </Link>
+            )}
 
             {/* CTA Section */}
             <div

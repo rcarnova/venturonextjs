@@ -43,7 +43,7 @@ const Index = () => {
       
       <SEO
         title="Venturo — Cultura organizzativa ed engagement delle persone"
-        description="Quando l'engagement cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey."
+        description="Quando l'engagement dei dipendenti cala, il problema è in una cultura che l'organizzazione non riesce a vedere. Venturo la fa emergere con Lumen: conversazioni, non survey."
         canonical="https://venturoconsulting.it/"
         lang="it"
         alternateUrls={{ it: "https://venturoconsulting.it/", en: "https://venturoconsulting.it/en" }}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CasiStudioPage from "@/components/pages/CasiStudio";
 
 export const metadata: Metadata = {
-  title: "Casi studio — Progetti di cultura organizzativa ed employer branding — Venturo",
+  title: "Casi studio — Progetti di cultura organizzativa ed employer branding",
   description:
     "Employer branding, comunicazione interna, naming strategico, facilitazione. Progetti reali in cui la cultura organizzativa è diventata visibile.",
   alternates: {

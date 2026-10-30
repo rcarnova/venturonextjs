@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SimulatoreTurnoverPage from "@/components/pages/SimulatoreTurnover";
 
 export const metadata: Metadata = {
-  title: "Simulatore costo turnover — Venturo",
+  title: "Simulatore costo turnover",
   description:
     "Calcola il costo reale del turnover nella tua azienda. Confronta attrition e retention per capire dove conviene investire.",
   alternates: {

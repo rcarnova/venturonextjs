@@ -16,7 +16,7 @@ export type Door = {
   /** Riquadro in home: chi siete, in seconda persona plurale */
   homeLabel: string;
   homeText: string;
-  /** Pagina */
+  /** Pagina. eyebrow = la parola chiave della pagina: sta dentro l'H1, sopra lo slogan. */
   eyebrow: string;
   title: string;
   intro: string[];
@@ -30,6 +30,10 @@ export type Door = {
    * videoId = un clip presente negli highlights di PAST_EPISODES.
    */
   moments?: { videoId: string; quote: string; lead: string }[];
+  /** Articoli del magazine da leggere (slug in app/magazine/[slug]/page.tsx) */
+  readings?: { slug: string; title: string }[];
+  /** Nome del servizio per i dati strutturati (schema.org Service) */
+  serviceName: string;
   seoTitle: string;
   seoDescription: string;
 };
@@ -41,7 +45,8 @@ export const DOORS: Door[] = [
     homeLabel: "Se guidate persone",
     homeText:
       "Il clima di un team lo fa chi lo guida. Lavoriamo con i manager, a ogni livello, perché è lì che l'engagement si decide.",
-    eyebrow: "Per chi guida persone",
+    eyebrow: "Leadership ed engagement dei team",
+    serviceName: "Percorsi di leadership ed engagement dei dipendenti",
     title: "Il clima di un team lo fa chi lo guida.",
     intro: [
       "La survey di engagement misura un'azienda intera. Le persone, però, vivono un capo, un team, una giornata. È nel rapporto quotidiano con chi guida che l'engagement cresce o si spegne.",
@@ -84,9 +89,14 @@ export const DOORS: Door[] = [
       href: "/ex-assessment",
       cta: "Fai l'EX Assessment",
     },
-    seoTitle: "Leadership ed engagement dei team — Venturo",
+    readings: [
+      { slug: "il-costo-del-non-detto", title: "Il costo del non detto. Perché il 70% dei dipendenti non c'è davvero." },
+      { slug: "la-responsabilita-non-si-delega", title: "La responsabilità non si delega. Si conquista." },
+      { slug: "i-valori-non-sono-poster", title: "I valori non sono poster. Sono promesse." },
+    ],
+    seoTitle: "Leadership ed engagement dei dipendenti: percorsi per manager",
     seoDescription:
-      "Il clima di un team lo fa chi lo guida. Venturo lavora con i manager, dal board ai capi intermedi, per mettere engagement e senso al centro della guida dei team.",
+      "Il clima di un team lo fa chi lo guida. Venturo lavora con i manager, dal board ai capi intermedi, per aumentare l'engagement dei dipendenti mettendo identità e senso al centro della guida dei team.",
   },
   {
     slug: "comunicazione-interna",
@@ -94,7 +104,8 @@ export const DOORS: Door[] = [
     homeLabel: "Se curate la comunicazione interna",
     homeText:
       "Le persone credono a ciò che vedono succedere, non a ciò che leggono. Diamo alla comunicazione una storia in cui riconoscersi.",
-    eyebrow: "Per chi cura la comunicazione interna",
+    eyebrow: "Comunicazione interna ed engagement",
+    serviceName: "Comunicazione interna e coinvolgimento dei dipendenti",
     title: "Le persone credono a ciò che vedono succedere, non a ciò che leggono.",
     intro: [
       "Newsletter, intranet, eventi. I canali ci sono, ma molte persone non li leggono, e chi li legge spesso non ci si riconosce. Non è un problema di canali: manca una storia comune in cui riconoscersi.",
@@ -132,9 +143,14 @@ export const DOORS: Door[] = [
         lead: "Un rituale comunica più di cento newsletter. Le persone ricordano ciò che succede davanti a loro, non ciò che ricevono via mail.",
       },
     ],
-    seoTitle: "Comunicazione interna ed engagement — Venturo",
+    readings: [
+      { slug: "linguaggio-opaco-e-competenza", title: "Le buzzword non sono un problema stilistico. Sono un problema cognitivo." },
+      { slug: "identita-dichiarata-vissuta", title: "L'identità dichiarata e l'identità vissuta: il cortocircuito silenzioso." },
+      { slug: "brand-manuale-reliquia", title: "Il manuale di brand è una reliquia. L'identità è cultura." },
+    ],
+    seoTitle: "Comunicazione interna e coinvolgimento dei dipendenti",
     seoDescription:
-      "Le persone credono a ciò che vedono succedere, non a ciò che leggono. Venturo fa emergere la storia comune dell'organizzazione e le dà una forma che arriva a tutti.",
+      "Comunicazione interna che arriva a tutti, anche a chi non sta alla scrivania. Venturo fa emergere la storia comune dell'organizzazione per aumentare il coinvolgimento dei dipendenti.",
   },
   {
     slug: "employer-branding",
@@ -142,7 +158,8 @@ export const DOORS: Door[] = [
     homeLabel: "Se dovete attrarre talenti",
     homeText:
       "L'employer branding che regge parte da dentro. Le persone giuste arrivano dove chi lavora sa raccontare com'è lavorare lì.",
-    eyebrow: "Per chi attrae talenti",
+    eyebrow: "Employer branding ed engagement",
+    serviceName: "Employer branding ed employer value proposition",
     title: "L'employer branding che regge parte da dentro.",
     intro: [
       "I candidati arrivano con aspettative che non corrispondono alla realtà, oppure non arrivano. E chi entra se ne va nei primi mesi, a volte prima della fine del periodo di prova. Il problema raramente è la campagna.",
@@ -193,11 +210,21 @@ export const DOORS: Door[] = [
       { title: "Ricehouse: trovare persone che credono nel tuo perché", href: "/casi-studio/ricehouse" },
       { title: "eu.promotions: identità scoperta, non inventata", href: "/casi-studio/eupromotions" },
     ],
-    seoTitle: "Employer branding che parte da dentro — Venturo",
+    readings: [
+      { slug: "presenza-identita", title: "Chi è davvero presente? Identità, leadership ed employer branding." },
+      { slug: "bookish-talenti-sostanza", title: "I bookish influencer e la nuova fame di sostanza dei talenti." },
+      { slug: "trasparenza-salariale", title: "Trasparenza salariale: lo specchio che le aziende non possono più evitare." },
+    ],
+    seoTitle: "Employer branding ed EVP che partono da dentro",
     seoDescription:
       "Le persone giuste arrivano dove chi è dentro sa raccontare com'è lavorare lì. Venturo costruisce l'employer branding a partire dall'identità reale e dall'engagement delle persone.",
   },
 ];
+
+/** Articolo del magazine -> porta a cui rimanda (link "Per approfondire"). */
+export const ARTICLE_DOOR: Record<string, DoorSlug> = Object.fromEntries(
+  DOORS.flatMap((d) => (d.readings ?? []).map((r) => [r.slug, d.slug])),
+) as Record<string, DoorSlug>;
 
 export const getDoor = (slug: DoorSlug): Door => {
   const door = DOORS.find((d) => d.slug === slug);

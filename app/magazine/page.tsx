@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import MagazinePage from "@/components/pages/Magazine";
 
 export const metadata: Metadata = {
-  title: "WHY — Articoli su cultura organizzativa ed employer branding — Venturo",
+  title: "Articoli su cultura organizzativa ed engagement",
   description:
-    "Ogni organizzazione ha un perché. Articoli su employer branding, cultura organizzativa, leadership e comunicazione interna.",
+    "Articoli su cultura organizzativa, engagement dei dipendenti, leadership, comunicazione interna ed employer branding.",
   alternates: {
     canonical: "https://venturoconsulting.it/magazine",
     languages: {
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "WHY — Articoli su cultura organizzativa ed employer branding",
+    title: "Articoli su cultura organizzativa ed engagement",
     description:
-      "Ogni organizzazione ha un perché. Articoli su employer branding, cultura organizzativa, leadership e comunicazione interna.",
+      "Articoli su cultura organizzativa, engagement dei dipendenti, leadership, comunicazione interna ed employer branding.",
     url: "https://venturoconsulting.it/magazine",
     locale: "it_IT",
     alternateLocale: ["en_US"],

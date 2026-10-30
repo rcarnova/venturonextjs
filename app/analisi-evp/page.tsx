@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AnalisiEVPPage from "@/components/pages/AnalisiEVP";
 
 export const metadata: Metadata = {
-  title: "Analisi EVP gratuita — Scopri come comunica la tua Employee Value Proposition — Venturo",
+  title: "Analisi EVP gratuita — Scopri come comunica la tua Employee Value Proposition",
   description:
     "Analizza gratis come la tua azienda comunica la propria Employee Value Proposition. Scopri gap, punti di forza e opportunità di miglioramento.",
   alternates: {

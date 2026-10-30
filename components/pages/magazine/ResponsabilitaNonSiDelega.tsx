@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getDoor } from "@/lib/doors";
 
 const ResponsabilitaNonSiDelega = () => {
   return (
@@ -122,6 +123,22 @@ const ResponsabilitaNonSiDelega = () => {
 
               <p>Quella è la domanda che vale la pena fare.</p>
             </div>
+
+            {/* Per approfondire: porta Leadership (vedi readings in lib/doors.ts) */}
+            <Link
+              href="/leadership"
+              className="mt-16 flex items-center justify-between gap-4 border-y border-border py-6 hover:opacity-70 transition-opacity"
+            >
+              <span>
+                <span className="block text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                  Per approfondire · {getDoor("leadership").menuLabel}
+                </span>
+                <span className="block text-lg md:text-xl font-semibold" style={{ color: "#1a1a1a" }}>
+                  {getDoor("leadership").title}
+                </span>
+              </span>
+              <span aria-hidden="true" className="text-xl">→</span>
+            </Link>
 
             {/* CTA Section */}
             <div
