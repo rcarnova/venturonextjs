@@ -16,7 +16,7 @@ const team = [
     image: "/team/rosario.jpg",
     linkedin: "https://www.linkedin.com/in/rosariocarnovale/",
     bio: "Grew up as a manager at Oracle for 10 years. In 2016 he co-founded Smartworking Srl — the first consultancy dedicated to hybrid work in Italy. He worked as a coach and consultant on organizational change projects at Maxim Consulting and digital at Telnext (Deloitte Digital). In 2017 he founded Studio Miller with Massimo Benedetti.",
-    bio2: "At Venturo he leads cultural transformation and strategic employer branding projects. He experienced firsthand the gap between promise and organizational reality in large companies, and methodized that experience into proprietary tools like the Smart Working Canvas. He brings one of the strongest track records in Italy on hybrid work and the conviction that culture changes by modifying concrete artifacts — meetings, rituals, language.",
+    bio2: "At Venturo he leads cultural transformation and strategic employer branding projects. He experienced firsthand the gap between promise and organizational reality in large companies, and turned that experience into proprietary tools like the Smart Working Canvas. He brings one of the strongest track records in Italy on hybrid work and the conviction that culture changes by modifying concrete artifacts — meetings, rituals, language.",
   },
   {
     name: "Arianna Barisan",
@@ -95,7 +95,7 @@ const AboutEN = () => {
                   Venturo was born from the convergence of three competencies that rarely speak to each other.
                 </p>
                  <p className="text-body text-background/80">
-                  <strong className="text-background">Rosario</strong> brings culture from the inside — he lived in large organizations for 10 years at Oracle and methodized that experience into proprietary tools like the Smart Working Canvas. He knows that organizations don't change through top-down policies, but by consciously modifying everyday artifacts.
+                  <strong className="text-background">Rosario</strong> brings culture from the inside — he lived in large organizations for 10 years at Oracle and turned that experience into proprietary tools like the Smart Working Canvas. He knows that organizations don't change through top-down policies, but by consciously modifying everyday artifacts.
                 </p>
                  <p className="text-body text-background/80">
                   <strong className="text-background">Massimo</strong> brings narrative as method — he knows that stories reveal more than numbers, and that facilitating deep conversations is a specific competency. <Link href="/en/lumen" className="text-background hover:underline">Lumen</Link>'s questions are not surveys — they are narrative emergence devices.
