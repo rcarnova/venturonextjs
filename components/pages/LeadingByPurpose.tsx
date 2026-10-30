@@ -43,7 +43,7 @@ const phases = [
 const faqs = [
   {
     q: "A chi è rivolto Leading by Purpose?",
-    a: "A chi guida persone, a qualsiasi livello: un comitato di direzione, i responsabili di funzione, i capi intermedi che gestiscono i team ogni giorno. Funziona meglio con gruppi tra 6 e 16 persone che condividono una fase di cambiamento, crescita o riorganizzazione.",
+    a: "A chi guida persone, a qualsiasi livello: un board, i responsabili di funzione, i capi intermedi che gestiscono i team ogni giorno. Funziona meglio con gruppi tra 6 e 16 persone che condividono una fase di cambiamento, crescita o riorganizzazione.",
   },
   {
     q: "Quanto dura il percorso?",
@@ -73,7 +73,7 @@ const LeadingByPurposePage = () => {
     <div style={{ backgroundColor: "#fff", color: INK }}>
       <SEO
         title="Leading by Purpose — Percorso di leadership per manager"
-        description="Il percorso di team coaching per chi guida persone, dal comitato di direzione ai capi intermedi. Per mettere engagement e senso al centro di come si guidano i team."
+        description="Il percorso di team coaching per chi guida persone, dal board ai capi intermedi. Per mettere engagement e senso al centro di come si guidano i team."
         canonical="https://venturoconsulting.it/leading-by-purpose"
         lang="it"
       />

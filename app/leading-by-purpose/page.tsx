@@ -4,7 +4,7 @@ import LeadingByPurposePage from "@/components/pages/LeadingByPurpose";
 export const metadata: Metadata = {
   title: "Leading by Purpose — Percorso di leadership per manager",
   description:
-    "Il percorso di team coaching per chi guida persone, dal comitato di direzione ai capi intermedi. Per mettere engagement e senso al centro di come si guidano i team. 6 giornate, 3 sessioni, 2 facilitatori.",
+    "Il percorso di team coaching per chi guida persone, dal board ai capi intermedi. Per mettere engagement e senso al centro di come si guidano i team. 6 giornate, 3 sessioni, 2 facilitatori.",
   alternates: {
     canonical: "https://venturoconsulting.it/leading-by-purpose",
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Leading by Purpose — Percorso di leadership per manager",
     description:
-      "Team coaching per chi guida persone, dal comitato di direzione ai capi intermedi. Il gruppo costruisce la propria identità collettiva, non riceve contenuti dall'esterno.",
+      "Team coaching per chi guida persone, dal board ai capi intermedi. Il gruppo costruisce la propria identità collettiva, non riceve contenuti dall'esterno.",
     images: ["https://venturoconsulting.it/og-image.png"],
   },
 };

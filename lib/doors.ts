@@ -48,7 +48,7 @@ export const DOORS: Door[] = [
     ],
     bridgeTitle: "Lavoriamo con i manager, a ogni livello.",
     bridge: [
-      "Dal comitato di direzione ai capi intermedi. Non per insegnare un modello di leadership preso da un libro, ma per far emergere i principi che già guidano il loro modo di lavorare, e renderli espliciti, condivisi, agiti.",
+      "Dal board ai capi intermedi. Non per insegnare un modello di leadership preso da un libro, ma per far emergere i principi che già guidano il loro modo di lavorare, e renderli espliciti, condivisi, agiti.",
       "Quando chi guida sa dove sta andando e perché, le persone smettono di eseguire e iniziano a contribuire.",
     ],
     offers: [
@@ -86,7 +86,7 @@ export const DOORS: Door[] = [
     },
     seoTitle: "Leadership ed engagement dei team — Venturo",
     seoDescription:
-      "Il clima di un team lo fa chi lo guida. Venturo lavora con i manager, dal comitato di direzione ai capi intermedi, per mettere engagement e senso al centro della guida dei team.",
+      "Il clima di un team lo fa chi lo guida. Venturo lavora con i manager, dal board ai capi intermedi, per mettere engagement e senso al centro della guida dei team.",
   },
   {
     slug: "comunicazione-interna",
