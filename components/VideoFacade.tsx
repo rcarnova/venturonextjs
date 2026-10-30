@@ -22,6 +22,12 @@ type Props = {
   aspect?: number;
   /** Lato del pulsante play in px: piu piccolo nei clip in griglia */
   playSize?: number;
+  /**
+   * Intensita della velatura sulla copertina. "light" per le copertine dei
+   * clip, che hanno gia un'area vuota al centro per il play: con la velatura
+   * piena i colori del format (fucsia, giallo) si spengono.
+   */
+  veil?: "normal" | "light";
 };
 
 const ACCENT = "#EC4899";
@@ -33,6 +39,7 @@ const VideoFacade = ({
   label,
   aspect = 16 / 9,
   playSize = 72,
+  veil = "normal",
 }: Props) => {
   const [playing, setPlaying] = useState(false);
 
@@ -67,7 +74,11 @@ const VideoFacade = ({
           />
           {/* Velatura: senza, il play cade sul testo della copertina e sembra
               un elemento capitato li per sbaglio invece di un comando. */}
-          <span className="absolute inset-0 bg-black/30 transition-colors duration-200 group-hover:bg-black/20" />
+          <span
+            className={`absolute inset-0 transition-colors duration-200 ${
+              veil === "light" ? "bg-black/[0.06] group-hover:bg-transparent" : "bg-black/30 group-hover:bg-black/20"
+            }`}
+          />
           <span className="absolute inset-0 flex items-center justify-center">
             <span
               className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
