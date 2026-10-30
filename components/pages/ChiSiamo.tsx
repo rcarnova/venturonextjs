@@ -12,7 +12,7 @@ const team = [
   {
     name: "Rosario Carnovale",
     role: "Partner",
-    title: "Culture & Innovation Designer",
+    title: "Coach & Culture Designer",
     image: "/team/rosario.jpg",
     linkedin: "https://www.linkedin.com/in/rosariocarnovale/",
     bio: "Cresciuto come manager in Oracle per 10 anni, nel 2016 ha cofondato Smartworking Srl — la prima società di consulenza sul lavoro ibrido in Italia. Ha lavorato come coach e consulente su progetti di cambiamento organizzativo in Maxim Consulting e digital in Telnext (Deloitte Digital). Nel 2017 fonda Studio Miller con Massimo Benedetti.",
