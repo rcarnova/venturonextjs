@@ -78,7 +78,7 @@ const LeversSection = () => {
                       href={e.link.href}
                       className="inline-block mt-6 text-sm font-medium text-foreground underline underline-offset-4 hover:opacity-70 transition-opacity"
                     >
-                      {e.link.text} →
+                      {e.link.text}&nbsp;→
                     </Link>
                   )}
                 </li>

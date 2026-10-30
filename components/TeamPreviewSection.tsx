@@ -47,11 +47,13 @@ const TeamPreviewSection = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mb-12">
           {team.map((member, index) => (
             <AnimatedSection key={member.name} delay={index * 100}>
-              <div className="text-center">
-                <div className="aspect-square overflow-hidden rounded-lg mb-5 bg-muted max-w-[280px] mx-auto">
+              {/* Su mobile foto piccola con il testo a fianco: tre foto a tutta larghezza
+                  occupavano piu di uno schermo e mezzo prima del contatto. */}
+              <div className="flex items-center gap-5 text-left md:block md:text-center">
+                <div className="aspect-square overflow-hidden rounded-lg bg-muted w-24 shrink-0 md:w-auto md:max-w-[280px] md:mx-auto md:mb-5">
                   <img
                     src={member.image}
                     alt={`${member.name} - Partner Venturo, consulenza cultura organizzativa`}
@@ -61,13 +63,15 @@ const TeamPreviewSection = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">{member.name}</h3>
-                <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mt-1 mb-3">
+                <div>
+                <h3 className="text-lg md:text-xl font-bold text-foreground">{member.name}</h3>
+                <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mt-1 mb-2 md:mb-3">
                   Partner
                 </p>
-                <p className="text-muted-foreground leading-relaxed text-sm max-w-xs mx-auto">
+                <p className="text-muted-foreground leading-relaxed text-sm max-w-xs md:mx-auto">
                   {member.description}
                 </p>
+                </div>
               </div>
             </AnimatedSection>
           ))}

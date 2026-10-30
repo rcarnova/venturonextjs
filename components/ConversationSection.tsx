@@ -134,6 +134,7 @@ const ConversationSection = () => {
                     label={clip.title}
                     aspect={1}
                     playSize={48}
+                    veil="light"
                   />
                   <h4 className="font-semibold mt-4" style={{ color: INK, fontSize: 16, lineHeight: 1.35 }}>
                     {clip.title}

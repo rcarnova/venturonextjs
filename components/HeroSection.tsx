@@ -22,9 +22,11 @@ const LINE: React.CSSProperties = {
 const HeroSection = () => {
   return (
     <section
+      /* A tutta altezza solo da tablet in su: su telefono lasciava un vuoto che
+         spingeva il pulsante Parliamone in fondo allo schermo. */
+      className="md:min-h-screen"
       style={{
         backgroundColor: "#ffffff",
-        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         padding: "0 clamp(24px, 6vw, 80px)",
@@ -33,8 +35,8 @@ const HeroSection = () => {
       }}
     >
       <h1
+        className="md:flex-1 pt-16 md:pt-0"
         style={{
-          flex: 1,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
