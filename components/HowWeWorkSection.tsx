@@ -41,7 +41,7 @@ const HowWeWorkSection = () => {
                 </div>
                 <Link
                   href="/lumen"
-                  className="inline-flex items-center gap-2 text-white font-medium underline underline-offset-4 hover:gap-3 transition-all duration-300"
+                  className="inline-flex items-center gap-2 py-3 text-white font-medium underline underline-offset-4 hover:gap-3 transition-all duration-300"
                 >
                   Scopri come funziona Lumen
                   <ArrowRight className="w-4 h-4" />

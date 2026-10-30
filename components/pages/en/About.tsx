@@ -43,7 +43,7 @@ const AboutEN = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="About Us — Venturo, Organizational Culture Consulting Italy"
-        description="Venturo is founded by professionals with backgrounds in HR, marketing and communication. We work with Italian companies to make organizational culture visible."
+        description="Venturo is a boutique consultancy on organizational culture and employee engagement. We bring out an organization's real identity, so people can recognize themselves in what they do."
         canonical="https://venturoconsulting.it/en/about"
         lang="en"
         alternateUrls={{ it: "https://venturoconsulting.it/chi-siamo", en: "https://venturoconsulting.it/en/about" }}
@@ -59,7 +59,7 @@ const AboutEN = () => {
                   About us
                 </p>
               <h1 className="text-hero text-foreground">
-                Organizational culture is the most important promise a company makes.<br /> To the market and to its people.
+                People engage with what they recognize themselves in.<br /> We bring it to the surface.
                 </h1>
               </div>
             </AnimatedSection>
@@ -67,10 +67,10 @@ const AboutEN = () => {
             <AnimatedSection delay={100}>
               <div className="max-w-3xl space-y-6">
                  <p className="text-body text-muted-foreground">
-                  Venturo was born from a conviction forged in the field: organizations that don't make their culture visible eventually struggle on two fronts. Externally, with a brand that fails to attract the right people. Internally, with people who struggle to recognize themselves in the values they live every day.
+                  Venturo was born from a conviction forged in the field: when people do not recognize themselves in the organization they work for, engagement drops. Benefits do not bring it back, and neither do campaigns. What brings it back is an identity people see lived every day, starting with those who lead them.
                 </p>
                 <p className="text-body text-muted-foreground">
-                  We come from both worlds. We know how organizational culture works and we know how to communicate it. Working on both dimensions together is not a strategic choice. It's the only way it makes sense.
+                  That is why we start from the inside. We listen to how people tell the story of their organization, we work with the managers who lead teams, and only then do we shape what gets communicated, inside and out.
                 </p>
               </div>
             </AnimatedSection>

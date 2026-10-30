@@ -43,7 +43,7 @@ const ChiSiamo = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Chi siamo — Venturo, consulenza cultura organizzativa Italia"
-        description="Venturo è fondato da professionisti con background in HR, marketing e comunicazione. Lavoriamo con aziende italiane per rendere visibile la cultura organizzativa."
+        description="Venturo è una boutique di consulenza su cultura organizzativa ed engagement delle persone. Facciamo emergere l'identità reale dell'organizzazione, perché le persone possano riconoscersi in ciò che fanno."
         canonical="https://venturoconsulting.it/chi-siamo"
         lang="it"
         alternateUrls={{ it: "https://venturoconsulting.it/chi-siamo", en: "https://venturoconsulting.it/en/about" }}
@@ -59,7 +59,7 @@ const ChiSiamo = () => {
                   Chi siamo
                 </p>
               <h1 className="text-hero text-foreground">
-                La cultura organizzativa è la promessa più importante che un'azienda fa.<br /> Al mercato e alle sue persone.
+                Le persone si coinvolgono in ciò in cui si riconoscono.<br /> Noi lo facciamo emergere.
                 </h1>
               </div>
             </AnimatedSection>
@@ -67,10 +67,10 @@ const ChiSiamo = () => {
             <AnimatedSection delay={100}>
               <div className="max-w-3xl space-y-6">
                  <p className="text-body text-muted-foreground">
-                  Venturo nasce da una convinzione maturata sul campo: le organizzazioni che non rendono visibile la propria cultura si trovano prima o poi in difficoltà su due fronti. Fuori, con un brand che fatica ad attrarre le persone giuste. Dentro, con persone che faticano a riconoscersi nei valori che vivono ogni giorno.
+                  Venturo nasce da una convinzione maturata sul campo: quando le persone non si riconoscono nell&apos;organizzazione in cui lavorano, l&apos;engagement cala. Non lo riportano su i benefit, né le campagne. Lo riporta un&apos;identità che le persone vedono vissuta ogni giorno, a partire da chi le guida.
                 </p>
                 <p className="text-body text-muted-foreground">
-                  Noi veniamo da entrambi i mondi. Sappiamo come funziona la cultura organizzativa e sappiamo come si comunica. Lavorare su entrambe le dimensioni insieme non è una scelta strategica. È l'unico modo in cui ha senso farlo.
+                  Per questo partiamo da dentro. Ascoltiamo come le persone raccontano l&apos;organizzazione, lavoriamo con i manager che guidano i team, e solo dopo diamo forma a ciò che si comunica, dentro e fuori.
                 </p>
               </div>
             </AnimatedSection>

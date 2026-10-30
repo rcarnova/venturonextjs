@@ -59,6 +59,15 @@ const LeversSection = () => {
           <p className="text-center text-xl md:text-2xl font-semibold text-primary-foreground mt-14">
             L&apos;identità non è un tema soft. È l&apos;unica strategia che regge.
           </p>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+            <span className="text-primary-foreground/70">Riconoscete la vostra situazione?</span>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 bg-white text-foreground font-semibold text-sm px-7 py-3.5 hover:opacity-90 transition-opacity"
+            >
+              Parliamone <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </AnimatedSection>
       </div>
     </section>

@@ -4,7 +4,7 @@ import AboutPage from "@/components/pages/en/About";
 export const metadata: Metadata = {
   title: "About Us — Venturo, organizational culture consulting Italy",
   description:
-    "Venturo is founded by professionals with backgrounds in HR, marketing and communication. We work with Italian and international companies to make organizational culture visible.",
+    "Venturo is a boutique consultancy on organizational culture and employee engagement. We bring out an organization's real identity, so people can recognize themselves in what they do.",
   alternates: {
     canonical: "https://venturoconsulting.it/en/about",
     languages: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Us — Venturo, organizational culture consulting",
     description:
-      "Venturo is founded by professionals with backgrounds in HR, marketing and communication. We make organizational culture visible.",
+      "Venturo is a boutique consultancy on organizational culture and employee engagement.",
     url: "https://venturoconsulting.it/en/about",
     locale: "en_US",
     alternateLocale: ["it_IT"],
