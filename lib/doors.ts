@@ -25,6 +25,11 @@ export type Door = {
   offers: { title: string; text: string; href?: string; external?: boolean; cta?: string }[];
   tool?: { eyebrow: string; title: string; text: string; href: string; cta: string };
   cases?: { title: string; href: string }[];
+  /**
+   * Momenti di Venturo Conversation che parlano a chi entra da questa porta.
+   * videoId = un clip presente negli highlights di PAST_EPISODES.
+   */
+  moments?: { videoId: string; quote: string; lead: string }[];
   seoTitle: string;
   seoDescription: string;
 };
@@ -58,6 +63,18 @@ export const DOORS: Door[] = [
         text: "Ascoltiamo come le persone vivono i loro team. Nelle organizzazioni grandi partiamo dai numeri, con Ingaze o con una survey su misura, per capire dove il clima si decide.",
         href: "/lumen",
         cta: "Come funziona Lumen",
+      },
+    ],
+    moments: [
+      {
+        videoId: "sf6iapyW5ww",
+        quote: "Io non vedo i tuoi valori, ma vedo i tuoi comportamenti. E quando il comportamento non è coerente con il valore, c'è una distonia.",
+        lead: "Per chi guida un team, i valori si giocano nei comportamenti di ogni giorno. È lì che le persone decidono se crederci.",
+      },
+      {
+        videoId: "Q8vjrjqGZkY",
+        quote: "Il tema non è HR o non HR. È business and people together.",
+        lead: "Detto da una CFO. L'engagement non è un progetto delle risorse umane: è il modo in cui l'azienda fa business.",
       },
     ],
     tool: {
@@ -108,6 +125,13 @@ export const DOORS: Door[] = [
         cta: "Le puntate",
       },
     ],
+    moments: [
+      {
+        videoId: "x-5EpW4a0yQ",
+        quote: "Da due anni abbiamo istituito un premio: si celebra l'errore più grande che hai fatto. È il modo per noi di mantenere viva la cultura.",
+        lead: "Un rituale comunica più di cento newsletter. Le persone ricordano ciò che succede davanti a loro, non ciò che ricevono via mail.",
+      },
+    ],
     seoTitle: "Comunicazione interna ed engagement — Venturo",
     seoDescription:
       "Le persone credono a ciò che vedono succedere, non a ciò che leggono. Venturo fa emergere la storia comune dell'organizzazione e le dà una forma che arriva a tutti.",
@@ -121,12 +145,12 @@ export const DOORS: Door[] = [
     eyebrow: "Per chi attrae talenti",
     title: "L'employer branding che regge parte da dentro.",
     intro: [
-      "I candidati arrivano con aspettative che non corrispondono alla realtà, oppure non arrivano. E chi entra se ne va nei primi mesi. Il problema raramente è la campagna.",
+      "I candidati arrivano con aspettative che non corrispondono alla realtà, oppure non arrivano. E chi entra se ne va nei primi mesi, a volte prima della fine del periodo di prova. Il problema raramente è la campagna.",
     ],
     bridgeTitle: "Prima l'identità, poi il racconto.",
     bridge: [
       "Le persone giuste arrivano dove chi è dentro sa raccontare com'è lavorare lì. Per questo, per noi, l'employer branding è una conseguenza dell'engagement.",
-      "Prima facciamo emergere l'identità reale dell'organizzazione, poi la rendiamo leggibile dal primo contatto. Così le persone giuste si riconoscono, e quelle sbagliate si autoselezionano.",
+      "Prima facciamo emergere l'identità reale dell'organizzazione, poi la rendiamo leggibile dal primo contatto. Così le persone giuste si riconoscono, quelle sbagliate si autoselezionano, e meno persone se ne vanno nei primi mesi.",
     ],
     offers: [
       {
@@ -157,6 +181,13 @@ export const DOORS: Door[] = [
       href: "/analisi-evp",
       cta: "Analizza la vostra EVP",
     },
+    moments: [
+      {
+        videoId: "wN0bEE-mlck",
+        quote: "Col senno di poi, quello che l'azienda vendeva l'ho ritrovato anche all'interno, nei valori.",
+        lead: "IKEA non ha fatto employer branding. Ha mandato sé stessa: il catalogo raccontava la stessa semplicità che si viveva dentro.",
+      },
+    ],
     cases: [
       { title: "Randstad Professionals: identità di marca per chi seleziona i migliori", href: "/casi-studio/randstad-professionals" },
       { title: "Ricehouse: trovare persone che credono nel tuo perché", href: "/casi-studio/ricehouse" },

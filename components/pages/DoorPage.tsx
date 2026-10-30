@@ -8,6 +8,8 @@ import ContactSection from "@/components/ContactSection";
 import AnimatedSection from "@/components/AnimatedSection";
 import { DOORS, getDoor } from "@/lib/doors";
 import { challenges, type DoorSlug } from "@/lib/challenges";
+import { findMoment } from "@/lib/venturo-conversation";
+import VideoFacade from "@/components/VideoFacade";
 
 /**
  * Pagina porta: stessa struttura per le tre porte del sito.
@@ -102,6 +104,51 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
             </AnimatedSection>
           </div>
         </section>
+
+        {/* Dalle nostre conversazioni: grafica di Venturo Conversation */}
+        {door.moments && door.moments.length > 0 && (
+          <section className="bg-white" style={{ borderTop: "1px solid #000" }}>
+            <div className="container-wide py-14 md:py-20">
+              <p className={`${MONO} mb-8`} style={{ color: "#BE185D" }}>
+                Dalle nostre conversazioni · Venturo Conversation
+              </p>
+              <div className="space-y-12">
+                {door.moments.map((m) => {
+                  const found = findMoment(m.videoId);
+                  if (!found) return null;
+                  return (
+                    <div key={m.videoId} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center">
+                      <div className="md:col-span-4 max-w-[320px]">
+                        <VideoFacade
+                          videoId={found.clip.videoId}
+                          poster={found.clip.image}
+                          label={found.clip.title}
+                          aspect={1}
+                          playSize={48}
+                          veil="light"
+                        />
+                      </div>
+                      <div className="md:col-span-8">
+                        <blockquote className="m-0" style={{ borderLeft: "3px solid #EC4899", paddingLeft: 24 }}>
+                          <p
+                            className="m-0 text-foreground"
+                            style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 2.2vw, 28px)", lineHeight: 1.4 }}
+                          >
+                            &ldquo;{m.quote}&rdquo;
+                          </p>
+                          <footer className="font-mono text-eyebrow mt-3" style={{ color: "#666" }}>
+                            {found.episode.guest.name} · {found.episode.guest.role}
+                          </footer>
+                        </blockquote>
+                        <p className="text-body text-muted-foreground mt-6 mb-0 max-w-xl">{m.lead}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Strumento gratuito */}
         {door.tool && (
