@@ -6,17 +6,17 @@ const team = [
   {
     name: "Rosario Carnovale",
     image: "/team/rosario.jpg",
-    description: "Consulente e coach con un'ossessione: rendere concreto ciò che nelle organizzazioni resta invisibile.",
+    description: "Lavora con i leader e con chi guida i team ogni giorno, dove l'engagement si decide.",
   },
   {
     name: "Massimo Benedetti",
     image: "/team/massimo.jpg",
-    description: "Sa che le storie rivelano più dei numeri. Facilita le conversazioni in cui le organizzazioni si ascoltano davvero.",
+    description: "Fa parlare le persone e ascolta quello che raccontano. È il cuore di Lumen.",
   },
   {
     name: "Arianna Barisan",
     image: "/team/arianna.jpg",
-    description: "Art Director che lavora sulla cultura prima che sull'estetica. I suoi visual raccontano la lingua madre dell'organizzazione.",
+    description: "Rende visibile la cultura, anche a chi in ufficio non c'è mai.",
   },
 ];
 

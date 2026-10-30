@@ -6,17 +6,17 @@ const team = [
   {
     name: "Rosario Carnovale",
     image: "/team/rosario.jpg",
-    description: "Consultant and coach with an obsession: making visible what remains invisible in organizations.",
+    description: "Works with leaders and with those who guide teams every day, where engagement is decided.",
   },
   {
     name: "Massimo Benedetti",
     image: "/team/massimo.jpg",
-    description: "Knows that stories reveal more than numbers. He facilitates the conversations where organizations truly listen to themselves.",
+    description: "Gets people talking and listens to what they say. He is the heart of Lumen.",
   },
   {
     name: "Arianna Barisan",
     image: "/team/arianna.jpg",
-    description: "Art Director who works on culture before aesthetics. Her visuals speak the organization's native language.",
+    description: "Makes culture visible, even to people who are never in the office.",
   },
 ];
 
