@@ -189,7 +189,7 @@ const Magazine = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="WHY — Articoli su cultura organizzativa ed employer branding"
-        description="Ogni organizzazione ha un perché. Articoli su employer branding, cultura organizzativa, leadership e comunicazione interna."
+        description="Articoli su cultura organizzativa, engagement dei dipendenti, leadership, comunicazione interna ed employer branding."
         canonical="https://venturoconsulting.it/magazine"
         lang="it"
         alternateUrls={{

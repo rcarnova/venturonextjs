@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrivacyPage from "@/components/pages/Privacy";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Venturo",
+  title: "Privacy Policy",
   description:
     "Informativa sulla privacy di Venturo. Come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
   alternates: {

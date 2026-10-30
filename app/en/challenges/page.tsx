@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ChallengesPage from "@/components/pages/en/Challenges";
 
 export const metadata: Metadata = {
-  title: "Organizational culture challenges — Venturo",
+  title: "Organizational culture challenges",
   description:
     "Talent retention, ineffective internal communication, gap between external brand and internal culture. Do you recognize any of these situations? Here's how we address them.",
   alternates: {

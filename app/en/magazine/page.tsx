@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import MagazineENPage from "@/components/pages/en/Magazine";
 
 export const metadata: Metadata = {
-  title: "WHY — Articles on organizational culture and employer branding — Venturo",
+  title: "WHY — Articles on organizational culture and employer branding",
   description:
     "Every organization has a why. Articles on employer branding, organizational culture, leadership and internal communication.",
   alternates: {

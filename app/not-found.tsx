@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Pagina non trovata — Venturo",
+  title: "Pagina non trovata",
   robots: {
     index: false,
     follow: false,

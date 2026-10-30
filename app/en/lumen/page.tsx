@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LumenENPage from "@/components/pages/en/Lumen";
 
 export const metadata: Metadata = {
-  title: "Lumen — Discover the real values of your organization — Venturo",
+  title: "Lumen — Discover the real values of your organization",
   description:
     "Lumen is Venturo's methodology for surfacing an organization's real cultural identity through deep conversations and visual artefacts.",
   alternates: {

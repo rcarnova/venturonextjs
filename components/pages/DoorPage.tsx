@@ -26,8 +26,31 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
   const related = challenges.filter((c) => c.door === slug);
   const others = DOORS.filter((d) => d.slug !== slug);
 
+  const url = `https://venturoconsulting.it/${door.slug}`;
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: door.serviceName,
+    serviceType: door.serviceName,
+    description: door.seoDescription,
+    url,
+    areaServed: "IT",
+    inLanguage: "it",
+    provider: { "@type": "ProfessionalService", name: "Venturo", url: "https://venturoconsulting.it" },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Venturo", item: "https://venturoconsulting.it/" },
+      { "@type": "ListItem", position: 2, name: door.menuLabel, item: url },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Header />
 
       <main>
@@ -35,12 +58,16 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
         <section className="bg-white pt-32 md:pt-44 pb-16 md:pb-24">
           <div className="container-wide">
             <AnimatedSection>
-              <p className={`${MONO} text-muted-foreground mb-6`}>{door.eyebrow}</p>
-              <h1
-                className="font-bold text-foreground max-w-4xl"
-                style={{ fontSize: "clamp(36px, 5.6vw, 72px)", lineHeight: 1.05, letterSpacing: "-0.03em" }}
-              >
-                {door.title}
+              {/* La parola chiave sta dentro l'H1, sopra lo slogan: per chi legge
+                  resta un'etichetta, per Google dichiara il tema della pagina. */}
+              <h1 className="font-bold text-foreground max-w-4xl m-0">
+                <span className={`${MONO} block text-muted-foreground font-normal mb-6`}>{door.eyebrow}</span>
+                <span
+                  className="block"
+                  style={{ fontSize: "clamp(36px, 5.6vw, 72px)", lineHeight: 1.05, letterSpacing: "-0.03em" }}
+                >
+                  {door.title}
+                </span>
               </h1>
               {door.intro.map((p) => (
                 <p key={p} className="text-body text-[#555] mt-8 max-w-2xl">
@@ -211,6 +238,25 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
                   <li key={c.href} className="border-t border-border">
                     <Link href={c.href} className="flex items-center justify-between gap-4 py-5 text-foreground hover:opacity-70">
                       <span className="text-lg font-medium">{c.title}</span>
+                      <ArrowRight className="w-4 h-4 flex-shrink-0" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Da leggere: articoli del magazine sul tema della porta */}
+        {door.readings && door.readings.length > 0 && (
+          <section className="py-14 md:py-20 bg-white border-t border-border">
+            <div className="container-narrow">
+              <p className={`${MONO} text-muted-foreground mb-6`}>Da leggere</p>
+              <ul className="list-none p-0 m-0">
+                {door.readings.map((r) => (
+                  <li key={r.slug} className="border-t border-border">
+                    <Link href={`/magazine/${r.slug}`} className="flex items-center justify-between gap-4 py-5 text-foreground hover:opacity-70">
+                      <span className="text-lg font-medium">{r.title}</span>
                       <ArrowRight className="w-4 h-4 flex-shrink-0" />
                     </Link>
                   </li>

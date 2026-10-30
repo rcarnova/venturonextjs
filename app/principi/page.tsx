@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrincipiPage from "@/components/pages/Principi";
 
 export const metadata: Metadata = {
-  title: "I principi di Venturo — Come lavoriamo — Venturo",
+  title: "I principi di Venturo — Come lavoriamo",
   description:
     "I principi che guidano il lavoro di Venturo sulla cultura organizzativa e l'employer branding. Come lavoriamo, cosa crediamo e perché.",
   alternates: {

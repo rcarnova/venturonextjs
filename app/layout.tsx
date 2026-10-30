@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://venturoconsulting.it"),
   title: {
-    default: "Venturo — Cultura Organizzativa ed Employer Branding",
+    default: "Venturo — Cultura organizzativa ed engagement delle persone",
     template: "%s — Venturo",
   },
   description:
