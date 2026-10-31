@@ -63,12 +63,107 @@ export const PAST_EPISODES = [
     /** Letti da YouTube: servono a VideoObject, che senza uploadDate non e valido. */
     uploadDate: "2026-10-21T06:14:18-07:00",
     duration: "PT58M53S",
-    title: "Motivazione ed engagement delle persone, cosa ne pensa un CFO?",
+    /** Allineato al titolo attuale su YouTube */
+    title: "Motivazione, engagement e cultura, cosa ne pensa una CFO?",
     dateLabel: "20 ottobre 2026",
     guest: {
       name: "Elena Alemanno",
-      role: "CFO, Inter Ikea Systems",
+      role: "CFO, Inter IKEA Systems",
     },
+    /** Descrizione per Google, entro 160 caratteri */
+    seoDescription:
+      "Elena Alemanno, CFO di Inter IKEA Systems, su valori, comportamenti, diritto di sbagliare e leadership diffusa. Sintesi e video della prima puntata.",
+
+    /**
+     * Sintesi scritta della puntata, dalla trascrizione. "at" e il secondo del
+     * video da cui parte il capitolo: diventa un link a YouTube e un momento
+     * chiave per Google (Clip nei dati strutturati).
+     */
+    summary: {
+      intro: [
+        "Elena Alemanno lavora in IKEA da 36 anni. Ha cominciato nel reparto lampade, scaricando camion con una laurea in economia in tasca. Oggi è CFO di Inter IKEA Systems, la società che detiene il concept IKEA, e guida il business steering del gruppo.",
+        "Le abbiamo chiesto cosa vede chi guarda i numeri quando in azienda si parla di motivazione ed engagement. Di solito ne parliamo con le risorse umane. Questa volta volevamo il punto di vista del business.",
+      ],
+      chapters: [
+        {
+          at: 540,
+          title: "La motivazione è una questione di affinità",
+          text: [
+            "Per Elena la motivazione nasce quando i valori di una persona e quelli che l'azienda dichiara si somigliano. Allora le decisioni diventano più semplici, anche davanti a situazioni mai viste: la risposta si trova con il gruppo, a partire da valori comuni.",
+            "La responsabilità però non è di una parte sola. L'azienda deve dichiarare i valori e poi agirli. La persona deve sapere che cosa è importante per sé, che cosa è disposta ad accettare e che cosa no.",
+          ],
+          quote: "La responsabilità va da entrambe le parti: l'azienda deve dichiarare i valori, ma deve anche agirli.",
+        },
+        {
+          at: 900,
+          title: "La cultura era già nel catalogo",
+          text: [
+            "Fine anni Ottanta, IKEA arriva in Italia. Elena studia in Bocconi e trova il catalogo nella buca delle lettere: si innamora della semplicità delle linee e dei prezzi. Quando arriva il momento di scegliere tra Fiat, IBM, una banca e quell'azienda sconosciuta, sceglie la quarta.",
+            "Quella semplicità l'ha ritrovata dentro, nei valori. IKEA non ha fatto employer branding: ha mandato sé stessa. Quando l'identità è chiara, comunica da sola.",
+          ],
+          quote: "Quello che l'azienda vendeva l'ho ritrovato anche all'interno, nei valori.",
+        },
+        {
+          at: 1320,
+          title: "Da dove vengono i valori",
+          text: [
+            "La cultura di IKEA viene dallo Småland, dove è nato il fondatore Ingvar Kamprad: campi pieni di sassi da togliere a mano, possibile solo aiutandosi tra vicini. I muretti a secco sono il simbolo della togetherness. Pochi mezzi, quindi attenzione ai costi: nessuno vola in prima classe, CEO e CFO compresi.",
+            "Dalla Svezia del dopoguerra arriva anche l'idea che il bello sia per tutti, e un modo di decidere basato sul consenso. È più lento, ammette Elena, ma crea fiducia: nessuno si sente giudicato per quello che dice.",
+          ],
+          quote: "Quando si passa all'implementazione c'è l'engagement, perché tutti hanno partecipato alla decisione.",
+        },
+        {
+          at: 1800,
+          title: "I valori non si vedono, i comportamenti sì",
+          text: [
+            "La cultura di un'organizzazione è la somma dei valori delle persone che la compongono. Ma i valori sono invisibili: si vedono solo i comportamenti. Quando un comportamento non è coerente con un valore dichiarato, si crea una distonia, e prima o poi qualcuno la nomina.",
+            "Per questo la leadership non coincide con il ruolo. Elena non si presenta come la CFO, ma come una persona accessibile, che spiega e cerca di portare chiarezza.",
+          ],
+          quote: "La cultura è il modo in cui facciamo le cose quando nessuno ci guarda.",
+        },
+        {
+          at: 2400,
+          title: "Business & People Together",
+          text: [
+            "Alla domanda su che cosa la tenga legata all'azienda dopo 36 anni, Elena risponde con la visione: creare una vita migliore per la maggioranza delle persone. E con tre domande che guidano ogni scelta: è buono per i clienti? È buono per le persone che ci lavorano? È buono per il pianeta?",
+            "Il tema non è HR o non HR. Business e persone vanno tenuti insieme, e le persone sono anche i fornitori, i clienti e quelli che clienti non lo sono ancora.",
+          ],
+          quote: "L'azienda siamo noi. Non mi aspetto che siano altri a darmi la motivazione.",
+        },
+        {
+          at: 2550,
+          title: "Il diritto di sbagliare",
+          text: [
+            "Tra i motivi per cui le piace lavorare lì, Elena mette la possibilità di sbagliare. Il mondo va troppo veloce per avere tutte le risposte: bisogna sbagliare in fretta, capire dove, riparare. Funziona solo dove ci si sente al sicuro.",
+          ],
+          quote: "Lo puoi fare solo se ti prendi la responsabilità e se non sei punito quando sbagli.",
+        },
+        {
+          at: 2670,
+          title: "Una leadership di tutti",
+          text: [
+            "Elena non crede più nei modelli gerarchici: un leader con persone che si limitano a seguirlo è uno spreco. Meglio una responsabilità distribuita, più inclusiva, con più attenzione al benessere delle persone. Senza perdere la performance: a un certo punto si decide, e da lì ognuno risponde della sua parte.",
+          ],
+          quote: "Avere solo persone che ti seguono è uno spreco.",
+        },
+        {
+          at: 2970,
+          title: "Come si tiene viva una cultura",
+          text: [
+            "Il suo gruppo, circa 80 persone tra Olanda e Svezia, si incontra tre volte l'anno. In ogni incontro c'è una sessione su leadership e valori, e da due anni un premio per l'errore più grande: chi lo racconta spiega che cosa ha imparato, e la discussione continua in piccoli gruppi. Il premio è una borraccia del Museo IKEA.",
+            "Quando si notano comportamenti lontani dai valori se ne parla in gruppi di lavoro, senza fare nomi. Il feedback va anche dal gruppo verso il manager. Per i casi seri c'è una Trust Line con una commissione indipendente.",
+            "Massimo racconta delle aziende che vogliono scrivere i valori una volta sola, per appenderli e non toccarli per vent'anni. Per Elena la cultura è una palestra: va allenata di continuo.",
+          ],
+          quote: "Se vivi secondo valori diversi da quelli che dichiari, stai creando un'altra cultura.",
+        },
+      ],
+      takeaways: [
+        "L'engagement non si chiede alle persone: si vede quando i comportamenti di chi guida coincidono con i valori dichiarati.",
+        "Quando l'identità è chiara, l'employer branding diventa quasi superfluo. IKEA ha mandato sé stessa, ed Elena l'ha riconosciuta.",
+        "Un premio all'errore più grande tiene viva la cultura più di qualsiasi manifesto appeso in sala riunioni.",
+      ],
+    },
+
     /** La copertina della puntata fa da anteprima al video: e gia sul nostro
      *  dominio, quindi nemmeno l'anteprima contatta server esterni. */
     image: {
