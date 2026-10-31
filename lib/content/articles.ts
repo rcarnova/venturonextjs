@@ -16,6 +16,14 @@ export type ArticleMeta = {
 };
 
 export const ARTICLES: Record<string, ArticleMeta> = {
+  "i-valori-non-si-vedono": {
+    title: "I valori non si vedono. I comportamenti sì.",
+    seoTitle: "Valori e comportamenti: la lezione di una CFO di IKEA",
+    description: "Una CFO di IKEA su engagement, coerenza tra valori e comportamenti e diritto di sbagliare. Cosa ci siamo portati a casa dalla prima Venturo Conversation.",
+    enSlug: "values-are-invisible",
+    datePublished: "2026-10-31",
+    author: "rosario",
+  },
   "la-responsabilita-non-si-delega": {
     title: "La responsabilità non si delega. Si conquista.",
     description: "Nelle organizzazioni sane le persone non aspettano che qualcuno assegni loro responsabilità. Le pretendono.",

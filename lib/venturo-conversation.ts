@@ -162,6 +162,7 @@ export const PAST_EPISODES = [
         "Quando l'identità è chiara, l'employer branding diventa quasi superfluo. IKEA ha mandato sé stessa, ed Elena l'ha riconosciuta.",
         "Un premio all'errore più grande tiene viva la cultura più di qualsiasi manifesto appeso in sala riunioni.",
       ],
+      related: { href: "/magazine/i-valori-non-si-vedono", title: "I valori non si vedono. I comportamenti sì." },
     },
 
     /** La copertina della puntata fa da anteprima al video: e gia sul nostro

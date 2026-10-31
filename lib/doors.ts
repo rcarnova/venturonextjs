@@ -98,6 +98,7 @@ export const DOORS: Door[] = [
       cta: "Fai l'EX Assessment",
     },
     readings: [
+      { slug: "i-valori-non-si-vedono", title: "I valori non si vedono. I comportamenti sì." },
       { slug: "il-costo-del-non-detto", title: "Il costo del non detto. Perché il 70% dei dipendenti non c'è davvero." },
       { slug: "la-responsabilita-non-si-delega", title: "La responsabilità non si delega. Si conquista." },
       { slug: "i-valori-non-sono-poster", title: "I valori non sono poster. Sono promesse." },

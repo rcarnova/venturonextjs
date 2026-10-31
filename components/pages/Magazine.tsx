@@ -8,6 +8,17 @@ import ArticleCard from "@/components/ArticleCard";
 const articles = [
   {
     category: "cultura organizzativa",
+    title: "I valori non si vedono. I comportamenti sì.",
+    excerpt:
+      "Cosa ci ha insegnato una CFO di IKEA su engagement, coerenza e diritto di sbagliare, nella prima Venturo Conversation.",
+    date: "31 ott 2026",
+    readTime: "5 min",
+    link: "/magazine/i-valori-non-si-vedono",
+    author: "Rosario",
+    tags: ["cultura organizzativa", "leadership"],
+  },
+  {
+    category: "cultura organizzativa",
     title: "La cultura batte i numeri: la lezione di Tim Cook",
     excerpt:
       "Quindici anni alla guida di Apple rivelano che i risultati straordinari sono una conseguenza della cultura, non il suo obiettivo.",
