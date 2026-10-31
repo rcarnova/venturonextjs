@@ -227,7 +227,7 @@ const Magazine = () => {
                 letterSpacing: "0.08em",
               }}
             >
-              ogni organizzazione ha un perché.
+              il senso che tiene le persone.
             </p>
           </div>
         </section>

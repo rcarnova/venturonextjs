@@ -167,7 +167,7 @@ const MagazineEN = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="WHY — Articles on organizational culture and employer branding"
-        description="Every organization has a why. Articles on employer branding, organizational culture, leadership and internal communication."
+        description="The meaning that keeps people. Articles on employer branding, organizational culture, leadership and internal communication."
         canonical="https://venturoconsulting.it/en/magazine"
         lang="en"
         alternateUrls={{
@@ -193,7 +193,7 @@ const MagazineEN = () => {
                 letterSpacing: "0.08em",
               }}
             >
-              every organization has a why.
+              the meaning that keeps people.
             </p>
           </div>
         </section>
