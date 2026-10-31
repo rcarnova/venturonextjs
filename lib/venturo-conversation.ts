@@ -70,6 +70,13 @@ export const PAST_EPISODES = [
       name: "Elena Alemanno",
       role: "CFO, Inter IKEA Systems",
     },
+    /**
+     * Audio della puntata servito dal sito (mono 48 kbps). La webcam di Elena
+     * non funzionava: il video mostra solo Zoom, quindi in pagina si ascolta.
+     * Allineato al video di YouTube: i minuti dei capitoli valgono per entrambi.
+     */
+    audio: { src: "/audio/venturo-conversation-01-elena-alemanno.mp3", duration: 3565 },
+
     /** Descrizione per Google, entro 160 caratteri */
     seoDescription:
       "Elena Alemanno, CFO di Inter IKEA Systems, su valori, comportamenti, diritto di sbagliare e leadership diffusa. Sintesi e video della prima puntata.",

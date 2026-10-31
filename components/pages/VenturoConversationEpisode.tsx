@@ -2,6 +2,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VideoFacade from "@/components/VideoFacade";
+import EpisodeAudio, { ListenFrom } from "@/components/EpisodeAudio";
 import { NEXT_EPISODE, REGISTRATION_URL } from "@/lib/venturo-conversation";
 
 const INK = "#000000";
@@ -21,6 +22,7 @@ type Episode = {
   uploadDate?: string;
   duration?: string;
   seoDescription?: string;
+  audio?: { src: string; duration: number };
   summary?: {
     intro: ReadonlyArray<string>;
     chapters: ReadonlyArray<{ at: number; title: string; text: ReadonlyArray<string>; quote?: string }>;
@@ -79,6 +81,23 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
       publisher: { "@type": "Organization", name: "Venturo", url: SITE },
       isPartOf: { "@type": "WebPage", "@id": pageUrl },
     },
+    // L'audio servito dal sito, ascoltabile in pagina
+    ...(episode.audio
+      ? [
+          {
+            "@type": "AudioObject",
+            name: episode.title,
+            description: episode.seoDescription,
+            contentUrl: `${SITE}${episode.audio.src}`,
+            encodingFormat: "audio/mpeg",
+            duration: episode.duration,
+            uploadDate: episode.uploadDate,
+            inLanguage: "it",
+            publisher: { "@type": "Organization", name: "Venturo", url: SITE },
+            isPartOf: { "@type": "WebPage", "@id": pageUrl },
+          },
+        ]
+      : []),
     ...(episode.highlights ?? []).map((c) => ({
       "@type": "VideoObject",
       name: c.title,
@@ -139,11 +158,21 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
           </h1>
 
           <div className="mt-10 md:mt-14">
-            <VideoFacade
-              videoId={episode.videoId}
-              poster={episode.image}
-              label={episode.title}
-            />
+            {episode.audio ? (
+              <EpisodeAudio
+                src={episode.audio.src}
+                duration={episode.audio.duration}
+                title={episode.title}
+                guest={`${episode.guest.name}, ${episode.guest.role}`}
+                youtubeUrl={`https://www.youtube.com/watch?v=${episode.videoId}`}
+              />
+            ) : (
+              <VideoFacade
+                videoId={episode.videoId}
+                poster={episode.image}
+                label={episode.title}
+              />
+            )}
           </div>
 
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -186,16 +215,20 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
 
                 {episode.summary.chapters.map((c) => (
                   <div key={c.at} className="mt-14">
-                    <a
-                      href={`https://www.youtube.com/watch?v=${episode.videoId}&t=${c.at}s`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-eyebrow underline underline-offset-4 transition-colors hover:text-black"
-                      style={{ color: MUTED }}
-                      aria-label={`Guarda da ${clock(c.at)} su YouTube (si apre in una nuova scheda)`}
-                    >
-                      DAL MINUTO {clock(c.at)} ↗
-                    </a>
+                    {episode.audio ? (
+                      <ListenFrom at={c.at} />
+                    ) : (
+                      <a
+                        href={`https://www.youtube.com/watch?v=${episode.videoId}&t=${c.at}s`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-eyebrow underline underline-offset-4 transition-colors hover:text-black"
+                        style={{ color: MUTED }}
+                        aria-label={`Guarda da ${clock(c.at)} su YouTube (si apre in una nuova scheda)`}
+                      >
+                        DAL MINUTO {clock(c.at)} ↗
+                      </a>
+                    )}
                     <h3
                       className="font-bold mt-3 mb-4"
                       style={{ color: INK, fontSize: "clamp(22px, 2.6vw, 28px)", lineHeight: 1.2, letterSpacing: "-0.01em" }}
