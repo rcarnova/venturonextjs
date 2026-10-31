@@ -79,7 +79,7 @@ export const PAST_EPISODES = [
 
     /** Descrizione per Google, entro 160 caratteri */
     seoDescription:
-      "Elena Alemanno, CFO di Inter IKEA Systems, su valori, comportamenti, diritto di sbagliare e leadership diffusa. Sintesi e video della prima puntata.",
+      "Elena Alemanno, CFO di Inter IKEA Systems, su valori, comportamenti, diritto di sbagliare e leadership diffusa. Sintesi e audio della prima puntata.",
 
     /**
      * Sintesi scritta della puntata, dalla trascrizione. "at" e il secondo del

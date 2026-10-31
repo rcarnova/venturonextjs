@@ -36,7 +36,7 @@ export async function generateMetadata({
       title: ep.title,
       description,
       url,
-      type: "video.other",
+      type: "article",
       locale: "it_IT",
       // La copertina della puntata e gia 16:9: funziona come anteprima social
       // senza doverne produrre un'altra.
