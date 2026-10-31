@@ -22,7 +22,9 @@ export async function generateMetadata({
   if (!ep) return {};
 
   const url = `${SITE}/venturo-conversation/${ep.slug}`;
-  const description = `Venturo Conversation del ${ep.dateLabel}, con ${ep.guest.name}, ${ep.guest.role}. Guarda la registrazione.`;
+  const description =
+    ("seoDescription" in ep && ep.seoDescription) ||
+    `Venturo Conversation del ${ep.dateLabel}, con ${ep.guest.name}, ${ep.guest.role}. Guarda la registrazione.`;
 
   return {
     // `absolute` evita il suffisso del template "%s — Venturo" di app/layout.tsx

@@ -20,6 +20,12 @@ type Episode = {
   image: { src: string; width: number; height: number };
   uploadDate?: string;
   duration?: string;
+  seoDescription?: string;
+  summary?: {
+    intro: ReadonlyArray<string>;
+    chapters: ReadonlyArray<{ at: number; title: string; text: ReadonlyArray<string>; quote?: string }>;
+    takeaways: ReadonlyArray<string>;
+  };
   highlights?: ReadonlyArray<{
     videoId: string;
     title: string;
@@ -27,6 +33,15 @@ type Episode = {
     duration?: string;
     image: { src: string; width: number; height: number };
   }>;
+};
+
+/** 2550 -> "42:30" */
+const clock = (sec: number) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+
+/** "PT58M53S" -> secondi, per chiudere l'ultimo capitolo */
+const isoSeconds = (iso?: string) => {
+  const m = iso?.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  return m ? Number(m[1] ?? 0) * 3600 + Number(m[2] ?? 0) * 60 + Number(m[3] ?? 0) : undefined;
 };
 
 const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
@@ -44,8 +59,18 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
     {
       "@type": "VideoObject",
       name: episode.title,
-      description: `Venturo Conversation del ${episode.dateLabel}, con ${episode.guest.name}, ${episode.guest.role}.`,
+      description:
+        episode.seoDescription ??
+        `Venturo Conversation del ${episode.dateLabel}, con ${episode.guest.name}, ${episode.guest.role}.`,
       thumbnailUrl: [`${SITE}${episode.ogImage}`],
+      // I capitoli della sintesi come momenti chiave del video
+      hasPart: episode.summary?.chapters.map((c, i, all) => ({
+        "@type": "Clip",
+        name: c.title,
+        startOffset: c.at,
+        endOffset: all[i + 1]?.at ?? isoSeconds(episode.duration),
+        url: `https://www.youtube.com/watch?v=${episode.videoId}&t=${c.at}s`,
+      })),
       uploadDate: episode.uploadDate,
       duration: episode.duration,
       embedUrl: `https://www.youtube.com/embed/${episode.videoId}`,
@@ -143,6 +168,82 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
             </div>
           </div>
         </section>
+
+        {/* La conversazione per chi legge: sintesi dalla trascrizione, a capitoli */}
+        {episode.summary && (
+          <section style={{ borderTop: `1px solid ${INK}` }}>
+            <div className="container-wide py-16 md:py-24">
+              <h2 className="font-mono text-eyebrow mb-8" style={{ color: ACCENT_ON_LIGHT }}>
+                LA CONVERSAZIONE, IN SINTESI
+              </h2>
+              <div className="max-w-[720px]">
+                {episode.summary.intro.map((p) => (
+                  <p key={p} className="mb-5" style={{ color: TEXT, fontSize: 18, lineHeight: 1.65 }}>
+                    {p}
+                  </p>
+                ))}
+
+                {episode.summary.chapters.map((c) => (
+                  <div key={c.at} className="mt-14">
+                    <a
+                      href={`https://www.youtube.com/watch?v=${episode.videoId}&t=${c.at}s`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-eyebrow underline underline-offset-4 transition-colors hover:text-black"
+                      style={{ color: MUTED }}
+                      aria-label={`Guarda da ${clock(c.at)} su YouTube (si apre in una nuova scheda)`}
+                    >
+                      DAL MINUTO {clock(c.at)} ↗
+                    </a>
+                    <h3
+                      className="font-bold mt-3 mb-4"
+                      style={{ color: INK, fontSize: "clamp(22px, 2.6vw, 28px)", lineHeight: 1.2, letterSpacing: "-0.01em" }}
+                    >
+                      {c.title}
+                    </h3>
+                    {c.text.map((p) => (
+                      <p key={p} className="mb-4" style={{ color: TEXT, fontSize: 17, lineHeight: 1.65 }}>
+                        {p}
+                      </p>
+                    ))}
+                    {c.quote && (
+                      <blockquote className="mt-6 mb-0" style={{ borderLeft: `3px solid ${ACCENT}`, paddingLeft: 24 }}>
+                        <p
+                          className="m-0"
+                          style={{ color: INK, fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 2.2vw, 26px)", lineHeight: 1.4 }}
+                        >
+                          &ldquo;{c.quote}&rdquo;
+                        </p>
+                        <footer className="font-mono text-eyebrow mt-3" style={{ color: MUTED }}>
+                          {episode.guest.name}
+                        </footer>
+                      </blockquote>
+                    )}
+                  </div>
+                ))}
+
+                <div className="mt-16 p-8" style={{ backgroundColor: "#F5F5F5" }}>
+                  <h3 className="font-mono text-eyebrow mb-5" style={{ color: ACCENT_ON_LIGHT }}>
+                    COSA CI PORTIAMO A CASA
+                  </h3>
+                  <ul className="m-0 p-0 list-none space-y-4">
+                    {episode.summary.takeaways.map((t) => (
+                      <li key={t} style={{ color: INK, fontSize: 17, lineHeight: 1.55 }}>
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-6 mb-0" style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}>
+                    Ne abbiamo scritto anche in{" "}
+                    <Link href="/magazine/i-valori-non-sono-poster" className="underline underline-offset-4 hover:text-black">
+                      I valori non sono poster. Sono promesse.
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {episode.highlights && episode.highlights.length > 0 && (
           <section style={{ borderTop: `1px solid ${INK}` }}>
