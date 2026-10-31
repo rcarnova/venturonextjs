@@ -27,16 +27,16 @@ const TeamPreviewSection = () => {
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container-wide">
-        <AnimatedSection className="text-center mb-12">
-          <h2 className="text-section text-foreground max-w-3xl mx-auto">
+        <AnimatedSection className="md:text-center mb-12">
+          <h2 className="text-section text-foreground max-w-3xl md:mx-auto">
             Cultura, storie e linguaggio visivo allo stesso tavolo.
           </h2>
-          <p className="text-body text-muted-foreground mt-4 max-w-2xl mx-auto">
+          <p className="text-body text-muted-foreground mt-4 max-w-2xl md:mx-auto">
             Un coach, uno storyteller e un&apos;art director. Perché l&apos;identità di
             un&apos;organizzazione si vede nei comportamenti, si racconta nelle storie e si
             riconosce nelle immagini. Servono tutti e tre.
           </p>
-          <p className="text-sm text-muted-foreground mt-3 max-w-2xl mx-auto">
+          <p className="text-sm text-muted-foreground mt-3 max-w-2xl md:mx-auto">
             I materiali visivi dei nostri progetti, dai libri aziendali ai video, li produce{" "}
             <a
               href="https://www.studiomiller.it"
@@ -80,7 +80,7 @@ const TeamPreviewSection = () => {
           ))}
         </div>
 
-        <AnimatedSection className="text-center">
+        <AnimatedSection className="md:text-center">
           <Link
             href="/chi-siamo"
             className="inline-flex items-center gap-2 py-3 text-primary hover:underline font-medium transition-colors"

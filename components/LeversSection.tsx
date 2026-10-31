@@ -21,7 +21,7 @@ const LeversSection = () => {
     <section id="da-dove-partite" className="section-padding bg-primary">
       <div className="container-wide">
         <AnimatedSection>
-          <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+          <div className="md:text-center max-w-2xl md:mx-auto mb-12 md:mb-16">
             <p className="font-mono text-eyebrow text-primary-foreground/60 mb-4">Da dove partite?</p>
             <GlowTitle className="text-3xl md:text-section text-primary-foreground" variant="light">
               Tre porte, lo stesso centro.
@@ -56,10 +56,10 @@ const LeversSection = () => {
         </AnimatedSection>
 
         <AnimatedSection delay={300}>
-          <p className="text-center text-xl md:text-2xl font-semibold text-primary-foreground mt-14">
+          <p className="md:text-center text-xl md:text-2xl font-semibold text-primary-foreground mt-14">
             L&apos;identità non è un tema soft. È l&apos;unica strategia che regge.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center sm:justify-center gap-4 sm:text-center">
             <span className="text-primary-foreground/70">Riconoscete la vostra situazione?</span>
             <a
               href="#contact"

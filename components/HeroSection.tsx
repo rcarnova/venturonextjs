@@ -51,7 +51,8 @@ const HeroSection = () => {
         }}
       >
         <span style={LINE}>Non c&apos;è engagement</span>
-        <span style={{ display: "block", textAlign: "right" }}>
+        {/* A destra solo da tablet in su: su telefono il rientro sembrava un errore */}
+        <span className="block md:text-right">
           <span style={{ fontSize: LINE.fontSize }}>senza </span>
           <span
             style={{
@@ -79,7 +80,7 @@ const HeroSection = () => {
         }}
       >
         <div style={{ maxWidth: 480 }}>
-          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "#555" }}>
+          <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: "#3a3a3a" }}>
             Quando l&apos;engagement cala, il problema raramente è nei benefit o nella
             comunicazione. È in una cultura che l&apos;organizzazione vive ogni giorno
             ma non riesce a vedere. Noi la facciamo emergere.
