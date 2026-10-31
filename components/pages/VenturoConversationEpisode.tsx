@@ -59,7 +59,9 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
    * non e garantito.
    */
   const videos = [
-    {
+    // Il video principale si dichiara solo se è in pagina: con l'audio al suo
+    // posto Google lo vedrebbe come video dichiarato ma assente.
+    ...(episode.audio ? [] : [{
       "@type": "VideoObject",
       name: episode.title,
       description:
@@ -80,7 +82,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
       contentUrl: `https://www.youtube.com/watch?v=${episode.videoId}`,
       publisher: { "@type": "Organization", name: "Venturo", url: SITE },
       isPartOf: { "@type": "WebPage", "@id": pageUrl },
-    },
+    }]),
     // L'audio servito dal sito, ascoltabile in pagina
     ...(episode.audio
       ? [
