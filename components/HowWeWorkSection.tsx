@@ -34,8 +34,8 @@ const HowWeWorkSection = () => {
                     Con le organizzazioni grandi
                   </span>
                   <p className="text-body text-white/70 m-0">
-                    Partiamo dai numeri: le analisi di Ingaze su recensioni e sentiment,
-                    o una survey costruita su misura per voi. I numeri ci dicono dove
+                    Partiamo dai numeri: l&apos;analisi di recensioni e sentiment, o una
+                    survey costruita su misura per voi. I numeri ci dicono dove
                     ascoltare. Le conversazioni spiegano perché.
                   </p>
                 </div>
