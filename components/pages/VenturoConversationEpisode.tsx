@@ -25,6 +25,7 @@ type Episode = {
     intro: ReadonlyArray<string>;
     chapters: ReadonlyArray<{ at: number; title: string; text: ReadonlyArray<string>; quote?: string }>;
     takeaways: ReadonlyArray<string>;
+    related?: { href: string; title: string };
   };
   highlights?: ReadonlyArray<{
     videoId: string;
@@ -233,12 +234,14 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-6 mb-0" style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}>
-                    Ne abbiamo scritto anche in{" "}
-                    <Link href="/magazine/i-valori-non-sono-poster" className="underline underline-offset-4 hover:text-black">
-                      I valori non sono poster. Sono promesse.
-                    </Link>
-                  </p>
+                  {episode.summary.related && (
+                    <p className="mt-6 mb-0" style={{ color: MUTED, fontSize: 15, lineHeight: 1.6 }}>
+                      Ne abbiamo scritto anche in{" "}
+                      <Link href={episode.summary.related.href} className="underline underline-offset-4 hover:text-black">
+                        {episode.summary.related.title}
+                      </Link>
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
