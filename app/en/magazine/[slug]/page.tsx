@@ -15,110 +15,28 @@ import DeclaredVsLivedIdentity from "@/components/pages/magazine-en/DeclaredVsLi
 import RemoteWorkAsMirror from "@/components/pages/magazine-en/RemoteWorkAsMirror";
 import PayTransparency from "@/components/pages/magazine-en/PayTransparency";
 
-type ArticleMeta = {
-  title: string;
-  description: string;
-  itSlug: string;
-  datePublished: string;
-  Component: React.ComponentType;
-};
+import JsonLd from "@/components/JsonLd";
+import { ARTICLES } from "@/lib/content/articles-en";
+import { LOGO_URL, PEOPLE, SITE_URL, WEBSITE_ID, orgRef, personLd } from "@/lib/site";
 
-const articles: Record<string, ArticleMeta> = {
-  "responsibility-is-claimed": {
-    title: "Responsibility is claimed. Not delegated.",
-    description: "In healthy organizations, people don't wait for someone to assign them responsibility. They demand it.",
-    itSlug: "la-responsabilita-non-si-delega",
-    datePublished: "2026-03-08",
-    Component: ResponsibilityIsClaimed,
-  },
-  "values-are-promises": {
-    title: "Values are promises. Not posters.",
-    description: "Companies make promises constantly. But as we learned as children: promises must be kept.",
-    itSlug: "i-valori-non-sono-poster",
-    datePublished: "2026-03-01",
-    Component: ValuesArePromises,
-  },
-  "culture-is-never-wrong": {
-    title: "Culture is never wrong. It's just culture.",
-    description: "I've seen many companies give up. Not talking about business. Talking about culture.",
-    itSlug: "la-cultura-non-e-mai-sbagliata",
-    datePublished: "2026-03-15",
-    Component: CultureIsNeverWrong,
-  },
-  "ai-listening": {
-    title: "AI will give us more listening. But listening is something else.",
-    description: "How new sentiment analysis tools risk repeating the survey error: collecting data without changing anything.",
-    itSlug: "ai-ascolto",
-    datePublished: "2026-03-22",
-    Component: AIListening,
-  },
-  "cost-of-the-unsaid": {
-    title: "The cost of the unsaid. Why 70% of employees aren't really there.",
-    description: "Employee disengagement doesn't come from nowhere: it comes from the unsaid that accumulates, layer by layer, until it becomes culture.",
-    itSlug: "il-costo-del-non-detto",
-    datePublished: "2026-03-29",
-    Component: CostOfTheUnsaid,
-  },
-  "ai-skills-culture": {
-    title: "It's not (just) a skills problem. AI and organizational culture.",
-    description: "AI projects don't stall in data centers, but in meetings and conversations that don't happen. Adoption is first and foremost a matter of identity.",
-    itSlug: "competenze-ai-cultura",
-    datePublished: "2026-04-05",
-    Component: AISkillsCulture,
-  },
-  "presence-intentionality": {
-    title: "Closeness comes from intentionality, not technology.",
-    description: "It's not remote vs office. It's present vs elsewhere. The quality of attention you bring to a room matters more than where that room is.",
-    itSlug: "presenza-intenzionalita",
-    datePublished: "2026-04-12",
-    Component: PresenceIntentionality,
-  },
-  "presence-identity": {
-    title: "Who is truly present? Identity, leadership and employer branding.",
-    description: "Organizations that don't attract talent don't have a strategy or budget problem: they have a presence problem.",
-    itSlug: "presenza-identita",
-    datePublished: "2026-04-19",
-    Component: PresenceIdentity,
-  },
-  "brand-manual-relic": {
-    title: "The brand manual is a relic. Identity is culture.",
-    description: "A strong identity isn't measured by the thickness of the manual, but by how deeply it has entered into people.",
-    itSlug: "brand-manuale-reliquia",
-    datePublished: "2026-04-14",
-    Component: BrandManualRelic,
-  },
-  "pay-transparency": {
-    title: "Pay transparency: the mirror companies can no longer avoid.",
-    description: "EU Directive 2023/970 isn't just compliance. It's an opportunity to understand how your organization really thinks.",
-    itSlug: "trasparenza-salariale",
-    datePublished: "2026-04-17",
-    Component: PayTransparency,
-  },
-  "remote-work-as-mirror": {
-    title: "Remote work isn't an environmental problem. It's a mirror.",
-    description: "Banca d'Italia measures the emissions of hybrid work. The result is clear. The interesting question is another: remote doesn't create problems, it reveals them.",
-    itSlug: "remote-working-specchio",
-    datePublished: "2026-04-21",
-    Component: RemoteWorkAsMirror,
-  },
-  "bookish-talents-substance": {
-    title: "Bookish influencers and talent's new hunger for substance.",
-    description: "Millennials and Gen Z follow those who read, not those who show off. Talents seek environments where real thinking happens.",
-    itSlug: "bookish-talenti-sostanza",
-    datePublished: "2026-04-24",
-    Component: BookishTalents,
-  },
-  "declared-vs-lived-identity": {
-    title: "Declared identity vs lived identity: the silent short circuit.",
-    description: "72% of employees don't understand their company's strategy. It's not a communication problem: it's the distance between what an organization claims to be and what people live every day.",
-    itSlug: "identita-dichiarata-vissuta",
-    datePublished: "2026-04-27",
-    Component: DeclaredVsLivedIdentity,
-  },
+const COMPONENTS: Record<string, React.ComponentType> = {
+  "responsibility-is-claimed": ResponsibilityIsClaimed,
+  "values-are-promises": ValuesArePromises,
+  "culture-is-never-wrong": CultureIsNeverWrong,
+  "ai-listening": AIListening,
+  "cost-of-the-unsaid": CostOfTheUnsaid,
+  "ai-skills-culture": AISkillsCulture,
+  "presence-intentionality": PresenceIntentionality,
+  "presence-identity": PresenceIdentity,
+  "brand-manual-relic": BrandManualRelic,
+  "pay-transparency": PayTransparency,
+  "remote-work-as-mirror": RemoteWorkAsMirror,
+  "bookish-talents-substance": BookishTalents,
+  "declared-vs-lived-identity": DeclaredVsLivedIdentity,
 };
 
 export function generateStaticParams() {
-  return Object.keys(articles).map((slug) => ({ slug }));
+  return Object.keys(ARTICLES).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -127,28 +45,28 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles[slug];
+  const article = ARTICLES[slug];
   if (!article) return {};
 
+  const url = `${SITE_URL}/en/magazine/${slug}`;
+  const itUrl = `${SITE_URL}/magazine/${article.itSlug}`;
+
   return {
-    title: article.title,
+    title: article.seoTitle ?? article.title,
     description: article.description,
     alternates: {
-      canonical: `https://venturoconsulting.it/en/magazine/${slug}`,
-      languages: {
-        it: `https://venturoconsulting.it/magazine/${article.itSlug}`,
-        en: `https://venturoconsulting.it/en/magazine/${slug}`,
-        "x-default": `https://venturoconsulting.it/magazine/${article.itSlug}`,
-      },
+      canonical: url,
+      languages: { it: itUrl, en: url, "x-default": itUrl },
     },
     openGraph: {
       title: article.title,
       description: article.description,
-      url: `https://venturoconsulting.it/en/magazine/${slug}`,
+      url,
       locale: "en_US",
       alternateLocale: ["it_IT"],
       type: "article",
       publishedTime: article.datePublished,
+      authors: [PEOPLE[article.author].name],
     },
   };
 }
@@ -159,9 +77,41 @@ export default async function ArticlePageEN({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = articles[slug];
-  if (!article) notFound();
+  const article = ARTICLES[slug];
+  const Component = COMPONENTS[slug];
+  if (!article || !Component) notFound();
 
-  const { Component } = article;
-  return <Component />;
+  const url = `${SITE_URL}/en/magazine/${slug}`;
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@type": "BlogPosting",
+            "@id": `${url}#article`,
+            headline: article.title,
+            description: article.description,
+            datePublished: article.datePublished,
+            dateModified: article.datePublished,
+            inLanguage: "en",
+            url,
+            mainEntityOfPage: url,
+            image: `${url}/opengraph-image`,
+            author: personLd(article.author),
+            publisher: { ...orgRef, logo: { "@type": "ImageObject", url: LOGO_URL } },
+            isPartOf: { "@id": WEBSITE_ID },
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Venturo", item: `${SITE_URL}/en` },
+              { "@type": "ListItem", position: 2, name: "Magazine", item: `${SITE_URL}/en/magazine` },
+              { "@type": "ListItem", position: 3, name: article.title, item: url },
+            ],
+          },
+        ]}
+      />
+      <Component />
+    </>
+  );
 }

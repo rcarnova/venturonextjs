@@ -18,131 +18,32 @@ import LinguaggioOpaco from "@/components/pages/magazine/LinguaggioOpaco";
 import MotoreEBenzina from "@/components/pages/magazine/MotoreEBenzina";
 import LaCulturaBatteINumeri from "@/components/pages/magazine/LaCulturaBatteINumeri";
 
-type ArticleMeta = {
-  title: string;
-  description: string;
-  enSlug: string;
-  datePublished: string;
-  Component: React.ComponentType;
-};
+import JsonLd from "@/components/JsonLd";
+import { ARTICLES } from "@/lib/content/articles";
+import { ARTICLES as ARTICLES_EN } from "@/lib/content/articles-en";
+import { LOGO_URL, PEOPLE, SITE_URL, WEBSITE_ID, orgRef, personLd } from "@/lib/site";
 
-const articles: Record<string, ArticleMeta> = {
-  "la-responsabilita-non-si-delega": {
-    title: "La responsabilità non si delega. Si conquista.",
-    description: "Nelle organizzazioni sane le persone non aspettano che qualcuno assegni loro responsabilità. Le pretendono.",
-    enSlug: "responsibility-is-claimed",
-    datePublished: "2026-03-08",
-    Component: ResponsabilitaNonSiDelega,
-  },
-  "i-valori-non-sono-poster": {
-    title: "I valori non sono poster. Sono promesse.",
-    description: "Le aziende fanno promesse continuamente. Ma come ci hanno insegnato da bambini: le promesse vanno mantenute.",
-    enSlug: "values-are-promises",
-    datePublished: "2026-03-01",
-    Component: ValoriNonSonoPoster,
-  },
-  "la-cultura-non-e-mai-sbagliata": {
-    title: "La cultura non è mai sbagliata. È solo cultura.",
-    description: "Ho visto molte aziende arrendersi. Non parlo di business. Parlo di cultura.",
-    enSlug: "culture-is-never-wrong",
-    datePublished: "2026-03-15",
-    Component: LaCulturaNonEMaiSbagliata,
-  },
-  "ai-ascolto": {
-    title: "L'AI ci darà più ascolto. Ma ascolto è un'altra cosa.",
-    description: "Come i nuovi strumenti di analisi del sentiment rischiano di ripetere l'errore delle survey: raccogliere dati senza cambiar nulla.",
-    enSlug: "ai-listening",
-    datePublished: "2026-03-22",
-    Component: AIAscolto,
-  },
-  "il-costo-del-non-detto": {
-    title: "Il costo del non detto. Perché il 70% dei dipendenti non c'è davvero.",
-    description: "Il distacco dei dipendenti non nasce dal nulla: nasce dal non detto che si accumula, strato dopo strato, fino a diventare cultura.",
-    enSlug: "cost-of-the-unsaid",
-    datePublished: "2026-03-29",
-    Component: CostoNonDetto,
-  },
-  "competenze-ai-cultura": {
-    title: "Non è (solo) un problema di competenze. L'AI e la cultura organizzativa.",
-    description: "I progetti AI non si arenano nei datacenter, ma nelle riunioni e nelle conversazioni che non avvengono.",
-    enSlug: "ai-skills-culture",
-    datePublished: "2026-04-05",
-    Component: CompetenzeAI,
-  },
-  "presenza-intenzionalita": {
-    title: "La vicinanza nasce dall'intenzionalità, non dalla tecnologia.",
-    description: "Non è remoto vs ufficio. È presenti vs altrove. La qualità dell'attenzione che porti in una stanza vale più di dove quella stanza si trova.",
-    enSlug: "presence-intentionality",
-    datePublished: "2026-04-12",
-    Component: PresenzaTerzani,
-  },
-  "presenza-identita": {
-    title: "Chi è davvero presente? Identità, leadership ed employer branding.",
-    description: "Le organizzazioni che non attraggono talenti non hanno un problema di strategia o budget: hanno un problema di presenza.",
-    enSlug: "presence-identity",
-    datePublished: "2026-04-19",
-    Component: PresenzaIdentita,
-  },
-  "brand-manuale-reliquia": {
-    title: "Il manuale di brand è una reliquia. L'identità è cultura.",
-    description: "Un'identità forte non si misura dallo spessore del manuale, ma da quanto profondamente è entrata nelle persone.",
-    enSlug: "brand-manual-relic",
-    datePublished: "2026-04-14",
-    Component: BrandManualeReliquia,
-  },
-  "trasparenza-salariale": {
-    title: "Trasparenza salariale: lo specchio che le aziende non possono più evitare.",
-    description: "La Direttiva UE 2023/970 non è solo compliance. È un'occasione per capire come pensa davvero la vostra organizzazione.",
-    enSlug: "pay-transparency",
-    datePublished: "2026-04-17",
-    Component: TrasparenzaSalariale,
-  },
-  "remote-working-specchio": {
-    title: "Il remote working non è un problema ambientale. È uno specchio.",
-    description: "La Banca d'Italia misura le emissioni del lavoro ibrido. Il risultato è chiaro. La domanda interessante è un'altra: il remote non crea problemi, li rivela.",
-    enSlug: "remote-work-as-mirror",
-    datePublished: "2026-04-21",
-    Component: RemoteWorkingSpecchio,
-  },
-  "bookish-talenti-sostanza": {
-    title: "I bookish influencer e la nuova fame di sostanza dei talenti.",
-    description: "Millennial e Gen Z seguono chi legge, non chi mostra. I talenti cercano ambienti in cui si pensa davvero.",
-    enSlug: "bookish-talents-substance",
-    datePublished: "2026-04-24",
-    Component: BookishTalenti,
-  },
-  "la-cultura-batte-i-numeri": {
-    title: "La cultura batte i numeri: la lezione di Tim Cook",
-    description: "Quindici anni alla guida di Apple rivelano che i risultati straordinari sono una conseguenza della cultura, non il suo obiettivo.",
-    enSlug: "culture-beats-numbers",
-    datePublished: "2026-09-11",
-    Component: LaCulturaBatteINumeri,
-  },
-  "il-motore-e-la-benzina": {
-    title: "Il motore e la benzina. Cosa spinge davvero le organizzazioni.",
-    description: "Ogni azienda investe nel motore: processi, OKR, tool. Ma senza carburante culturale, il motore resta fermo. Il pattern che vediamo nelle aziende che affrontano la prima vera salita.",
-    enSlug: "engine-and-fuel",
-    datePublished: "2026-05-27",
-    Component: MotoreEBenzina,
-  },
-  "linguaggio-opaco-e-competenza": {
-    title: "Le buzzword non sono un problema stilistico. Sono un problema cognitivo.",
-    description: "Una ricerca di Cornell conferma ciò che chi lavora nelle organizzazioni sente da anni: chi usa linguaggio aziendale opaco tende ad essere meno competente. Il problema non è stilistico.",
-    enSlug: "corporate-jargon-and-competence",
-    datePublished: "2026-05-14",
-    Component: LinguaggioOpaco,
-  },
-  "identita-dichiarata-vissuta": {
-    title: "L'identità dichiarata e l'identità vissuta: il cortocircuito silenzioso.",
-    description: "Il 72% dei dipendenti non capisce la strategia della propria azienda. Non è un problema di comunicazione: è la distanza tra ciò che un'organizzazione dichiara di essere e ciò che le persone vivono ogni giorno.",
-    enSlug: "declared-vs-lived-identity",
-    datePublished: "2026-04-27",
-    Component: IdentitaDichiarataVissuta,
-  },
+const COMPONENTS: Record<string, React.ComponentType> = {
+  "la-responsabilita-non-si-delega": ResponsabilitaNonSiDelega,
+  "i-valori-non-sono-poster": ValoriNonSonoPoster,
+  "la-cultura-non-e-mai-sbagliata": LaCulturaNonEMaiSbagliata,
+  "ai-ascolto": AIAscolto,
+  "il-costo-del-non-detto": CostoNonDetto,
+  "competenze-ai-cultura": CompetenzeAI,
+  "presenza-intenzionalita": PresenzaTerzani,
+  "presenza-identita": PresenzaIdentita,
+  "brand-manuale-reliquia": BrandManualeReliquia,
+  "trasparenza-salariale": TrasparenzaSalariale,
+  "remote-working-specchio": RemoteWorkingSpecchio,
+  "bookish-talenti-sostanza": BookishTalenti,
+  "la-cultura-batte-i-numeri": LaCulturaBatteINumeri,
+  "il-motore-e-la-benzina": MotoreEBenzina,
+  "linguaggio-opaco-e-competenza": LinguaggioOpaco,
+  "identita-dichiarata-vissuta": IdentitaDichiarataVissuta,
 };
 
 export function generateStaticParams() {
-  return Object.keys(articles).map((slug) => ({ slug }));
+  return Object.keys(ARTICLES).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -151,28 +52,31 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles[slug];
+  const article = ARTICLES[slug];
   if (!article) return {};
 
+  const url = `${SITE_URL}/magazine/${slug}`;
+  // L'alternativa inglese solo se l'articolo è tradotto: un hreflang verso
+  // una pagina che non esiste è un errore per Google.
+  const enUrl = article.enSlug in ARTICLES_EN ? `${SITE_URL}/en/magazine/${article.enSlug}` : undefined;
+
   return {
-    title: article.title,
+    // Su Google il titolo breve, sui social il titolo intero dell'articolo
+    title: article.seoTitle ?? article.title,
     description: article.description,
     alternates: {
-      canonical: `https://venturoconsulting.it/magazine/${slug}`,
-      languages: {
-        it: `https://venturoconsulting.it/magazine/${slug}`,
-        en: `https://venturoconsulting.it/en/magazine/${article.enSlug}`,
-        "x-default": `https://venturoconsulting.it/magazine/${slug}`,
-      },
+      canonical: url,
+      ...(enUrl && { languages: { it: url, en: enUrl, "x-default": url } }),
     },
     openGraph: {
       title: article.title,
       description: article.description,
-      url: `https://venturoconsulting.it/magazine/${slug}`,
+      url,
       locale: "it_IT",
-      alternateLocale: ["en_US"],
+      ...(enUrl && { alternateLocale: ["en_US"] }),
       type: "article",
       publishedTime: article.datePublished,
+      authors: [PEOPLE[article.author].name],
     },
   };
 }
@@ -183,9 +87,41 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = articles[slug];
-  if (!article) notFound();
+  const article = ARTICLES[slug];
+  const Component = COMPONENTS[slug];
+  if (!article || !Component) notFound();
 
-  const { Component } = article;
-  return <Component />;
+  const url = `${SITE_URL}/magazine/${slug}`;
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@type": "BlogPosting",
+            "@id": `${url}#article`,
+            headline: article.title,
+            description: article.description,
+            datePublished: article.datePublished,
+            dateModified: article.datePublished,
+            inLanguage: "it-IT",
+            url,
+            mainEntityOfPage: url,
+            image: `${url}/opengraph-image`,
+            author: personLd(article.author),
+            publisher: { ...orgRef, logo: { "@type": "ImageObject", url: LOGO_URL } },
+            isPartOf: { "@id": WEBSITE_ID },
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Venturo", item: `${SITE_URL}/` },
+              { "@type": "ListItem", position: 2, name: "Articoli", item: `${SITE_URL}/magazine` },
+              { "@type": "ListItem", position: 3, name: article.title, item: url },
+            ],
+          },
+        ]}
+      />
+      <Component />
+    </>
+  );
 }

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import ChiSiamoPage from "@/components/pages/ChiSiamo";
+import JsonLd from "@/components/JsonLd";
+import { ORG_ID, SITE_URL, WEBSITE_ID, personLd } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Chi siamo — Venturo, consulenza cultura organizzativa Italia",
+  title: "Chi siamo: la boutique di cultura organizzativa",
   description:
-    "Venturo è una boutique di consulenza su cultura organizzativa ed engagement delle persone. Facciamo emergere l'identità reale dell'organizzazione, perché le persone possano riconoscersi in ciò che fanno.",
+    "Tre partner, tre mestieri: coaching, storytelling, art direction. Facciamo emergere la cultura reale delle organizzazioni, perché le persone vi si riconoscano.",
   alternates: {
     canonical: "https://venturoconsulting.it/chi-siamo",
     languages: {
@@ -14,9 +16,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Chi siamo — Venturo, consulenza cultura organizzativa Italia",
+    title: "Chi siamo: la boutique di cultura organizzativa",
     description:
-      "Venturo è una boutique di consulenza su cultura organizzativa ed engagement delle persone. Facciamo emergere l'identità reale dell'organizzazione, perché le persone possano riconoscersi in ciò che fanno.",
+      "Tre partner, tre mestieri: coaching, storytelling, art direction. Facciamo emergere la cultura reale delle organizzazioni, perché le persone vi si riconoscano.",
     url: "https://venturoconsulting.it/chi-siamo",
     locale: "it_IT",
     alternateLocale: ["en_US"],
@@ -24,5 +26,25 @@ export const metadata: Metadata = {
 };
 
 export default function ChiSiamo() {
-  return <ChiSiamoPage />;
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@type": "AboutPage",
+            "@id": `${SITE_URL}/chi-siamo#page`,
+            url: `${SITE_URL}/chi-siamo`,
+            name: "Chi siamo",
+            inLanguage: "it-IT",
+            about: { "@id": ORG_ID },
+            isPartOf: { "@id": WEBSITE_ID },
+          },
+          personLd("rosario"),
+          personLd("massimo"),
+          personLd("arianna"),
+        ]}
+      />
+      <ChiSiamoPage />
+    </>
+  );
 }

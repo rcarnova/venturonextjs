@@ -134,7 +134,7 @@ const ChiSiamo = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
               {team.map((member, index) => (
                 <AnimatedSection key={member.name} delay={index * 100}>
-                  <div className="group">
+                  <div className="group scroll-mt-28" id={member.name.toLowerCase().replace(/\s+/g, "-")}>
                     <div className="aspect-square overflow-hidden rounded-lg mb-6 bg-muted">
                       <img
                         src={member.image}

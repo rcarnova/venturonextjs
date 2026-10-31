@@ -8,6 +8,8 @@ import FooterEN from "@/components/en/FooterEN";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { gradientForSlug } from "@/lib/article-covers";
+import { ARTICLES } from "@/lib/content/articles-en";
+import { PEOPLE } from "@/lib/site";
 
 interface ArticleLayoutENProps {
   category: string;
@@ -30,6 +32,8 @@ const ArticleLayoutEN = ({
 }: ArticleLayoutENProps) => {
   const pathname = usePathname();
   const heroGradient = gradientForSlug(pathname);
+  const meta = ARTICLES[pathname.split("/").filter(Boolean).pop() ?? ""];
+  const author = meta ? PEOPLE[meta.author] : undefined;
   return (
     <div className="min-h-screen bg-background">
       <HeaderEN />
@@ -90,6 +94,20 @@ const ArticleLayoutEN = ({
             </p>
 
             <div className="text-[0.9rem] mb-12" style={{ color: "#666" }}>
+              {/* Byline: the author, linked to their page */}
+              {author && (
+                <>
+                  <Link
+                    href="/en/about"
+                    rel="author"
+                    className="font-medium underline underline-offset-4 hover:opacity-70"
+                    style={{ color: "#1a1a1a" }}
+                  >
+                    {author.name}
+                  </Link>
+                  {" • "}
+                </>
+              )}
               {date} • {readTime}
             </div>
 

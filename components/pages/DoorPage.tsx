@@ -10,6 +10,7 @@ import { DOORS, getDoor } from "@/lib/doors";
 import { challenges, type DoorSlug } from "@/lib/challenges";
 import { findMoment } from "@/lib/venturo-conversation";
 import VideoFacade from "@/components/VideoFacade";
+import { ORG_ID } from "@/lib/site";
 
 /**
  * Pagina porta: stessa struttura per le tre porte del sito.
@@ -36,7 +37,8 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
     url,
     areaServed: "IT",
     inLanguage: "it",
-    provider: { "@type": "ProfessionalService", name: "Venturo", url: "https://venturoconsulting.it" },
+    // stessa organizzazione descritta in home (lib/site.ts)
+    provider: { "@type": "Organization", "@id": ORG_ID, name: "Venturo", url: "https://venturoconsulting.it/" },
   };
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -189,6 +191,14 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
                     </p>
                     <h2 className="text-section text-white mb-4">{door.tool.title}</h2>
                     <p className="text-body text-white/65 m-0">{door.tool.text}</p>
+                    {door.tool.more && (
+                      <p className="text-sm text-white/65 mt-5 mb-0">
+                        {door.tool.more.text}{" "}
+                        <Link href={door.tool.more.href} className="text-white underline underline-offset-4 hover:opacity-80">
+                          {door.tool.more.label}&nbsp;→
+                        </Link>
+                      </p>
+                    )}
                   </div>
                   <div className="md:col-span-2 md:text-right">
                     <Link

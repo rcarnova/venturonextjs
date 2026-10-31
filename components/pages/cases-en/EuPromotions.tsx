@@ -57,7 +57,7 @@ const EuPromotionsEN = () => {
             description:
               "Starting from the workshop outputs, we defined tone of voice, keywords, value stories and editorial plan. Not generic content, but narratives rooted in the team's real experience and the concrete results of their programs.",
             image: {
-              src: "/cases/eupromotion-grease.png",
+              src: "/cases/eupromotion-grease.jpg",
               alt: "Workshop slide: Status quo vs Vision with Grease movie reference",
               caption: "From the workshop: transformation as a visual metaphor",
             },

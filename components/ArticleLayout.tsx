@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { gradientForSlug } from "@/lib/article-covers";
 import { ARTICLE_DOOR, getDoor } from "@/lib/doors";
+import { ARTICLES } from "@/lib/content/articles";
+import { PEOPLE } from "@/lib/site";
 
 interface ArticleLayoutProps {
   category: string;
@@ -34,6 +36,8 @@ const ArticleLayout = ({
   const articleSlug = pathname.split("/").filter(Boolean).pop() ?? "";
   const doorSlug = ARTICLE_DOOR[articleSlug];
   const door = doorSlug ? getDoor(doorSlug) : undefined;
+  const meta = ARTICLES[articleSlug];
+  const author = meta ? PEOPLE[meta.author] : undefined;
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -120,6 +124,20 @@ const ArticleLayout = ({
               className="text-[0.9rem] mb-12"
               style={{ color: "#666" }}
             >
+              {/* Firma: chi scrive, collegato alla sua pagina (conta per Google) */}
+              {author && (
+                <>
+                  <Link
+                    href="/chi-siamo"
+                    rel="author"
+                    className="font-medium underline underline-offset-4 hover:opacity-70"
+                    style={{ color: "#1a1a1a" }}
+                  >
+                    {author.name}
+                  </Link>
+                  {" • "}
+                </>
+              )}
               {date} • {readTime}
             </div>
 

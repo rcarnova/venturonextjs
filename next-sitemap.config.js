@@ -9,7 +9,8 @@ module.exports = {
   // Deve restare allineato ai Disallow di public/robots.txt: una pagina
   // presente in sitemap ma bloccata da robots viene segnalata come errore
   // in Search Console ("URL inviato bloccato da robots.txt").
-  exclude: ["/toolkit", "/toolkit/*", "/en/toolkit", "/en/toolkit/*"],
+  // Le immagini di anteprima (opengraph-image) sono file, non pagine.
+  exclude: ["/toolkit", "/toolkit/*", "/en/toolkit", "/en/toolkit/*", "*/opengraph-image*", "/poster-valori"],
   additionalPaths: async (config) => [
     await config.transform(config, "/"),
     await config.transform(config, "/chi-siamo"),

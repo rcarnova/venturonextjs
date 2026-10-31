@@ -4,7 +4,7 @@ import LeSfidePage from "@/components/pages/LeSfide";
 export const metadata: Metadata = {
   title: "Le sfide culturali delle organizzazioni",
   description:
-    "Persone che non partecipano, comunicazione interna che non arriva, talenti che non si riconoscono nel brand. Le situazioni che riconosciamo più spesso, e come le affrontiamo.",
+    "Persone che non partecipano, comunicazione interna che non arriva, talenti che non si riconoscono nel brand. Le situazioni più frequenti e come le affrontiamo.",
   alternates: {
     canonical: "https://venturoconsulting.it/le-sfide",
     languages: {

@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     siteName: "Venturo",
     locale: "it_IT",
     type: "website",
-    images: [{ url: "https://venturoconsulting.it/og-image.png", width: 1200, height: 630, alt: door.seoTitle }],
   },
 };
 

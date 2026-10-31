@@ -65,7 +65,7 @@ const McCannHealthEN = () => {
             description:
               "Drafting of the final report with guidance on the office model and the values the space should convey. Four guiding tensions emerged from the group's work: Continuous rebirth, Fighting spirit and imagination, Being a team in diversity, Human-scale digital future.",
             image: {
-              src: "/images/cases/mccann-health/nuova-sede.png",
+              src: "/images/cases/mccann-health/nuova-sede.jpg",
               alt: "New McCann Health headquarters — architectural render exterior",
               caption: "The new headquarters render: where culture becomes space",
             },

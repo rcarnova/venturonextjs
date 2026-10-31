@@ -6,13 +6,13 @@ const description =
 
 export const metadata: Metadata = {
   // `absolute` evita il suffisso del template "%s — Venturo" definito in app/layout.tsx
-  title: { absolute: "Venturo Conversation | Venturo" },
+  title: { absolute: "Venturo Conversation: dialoghi su engagement e cultura" },
   description,
   alternates: {
     canonical: "https://venturoconsulting.it/venturo-conversation",
   },
   openGraph: {
-    title: "Venturo Conversation | Venturo",
+    title: "Venturo Conversation: dialoghi su engagement e cultura",
     description,
     url: "https://venturoconsulting.it/venturo-conversation",
     locale: "it_IT",
