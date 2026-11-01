@@ -197,7 +197,9 @@ export const PAST_EPISODES = [
         videoId: "wN0bEE-mlck",
         /** Data non leggibile da YouTube (pagina di consenso): allineata agli altri
          *  tre clip, pubblicati lo stesso giorno. Da confermare in YouTube Studio. */
-        uploadDate: "2026-10-29",
+        // Ora indicativa (stessa sessione di caricamento degli altri clip): Google
+        // vuole data e ora con fuso orario. Da confermare in YouTube Studio.
+        uploadDate: "2026-10-29T08:50:00-07:00",
         title: "La cultura era già nel catalogo",
         image: { src: "/images/venturo-conversation-clip-01.webp", width: 720, height: 720 },
       },

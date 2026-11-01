@@ -47,6 +47,9 @@ const isoSeconds = (iso?: string) => {
   return m ? Number(m[1] ?? 0) * 3600 + Number(m[2] ?? 0) * 60 + Number(m[3] ?? 0) : undefined;
 };
 
+/** Google rifiuta uploadDate senza ora e fuso: una data sola diventa mezzogiorno italiano */
+const withZone = (d?: string) => (d && /^\d{4}-\d{2}-\d{2}$/.test(d) ? `${d}T12:00:00+01:00` : d);
+
 const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
   const SITE = "https://venturoconsulting.it";
   const pageUrl = `${SITE}/venturo-conversation/${episode.slug}`;
@@ -76,7 +79,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
         endOffset: all[i + 1]?.at ?? isoSeconds(episode.duration),
         url: `https://www.youtube.com/watch?v=${episode.videoId}&t=${c.at}s`,
       })),
-      uploadDate: episode.uploadDate,
+      uploadDate: withZone(episode.uploadDate),
       duration: episode.duration,
       embedUrl: `https://www.youtube.com/embed/${episode.videoId}`,
       contentUrl: `https://www.youtube.com/watch?v=${episode.videoId}`,
@@ -93,7 +96,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
             contentUrl: `${SITE}${episode.audio.src}`,
             encodingFormat: "audio/mpeg",
             duration: episode.duration,
-            uploadDate: episode.uploadDate,
+            uploadDate: withZone(episode.uploadDate),
             inLanguage: "it",
             publisher: { "@type": "Organization", name: "Venturo", url: SITE },
             isPartOf: { "@type": "WebPage", "@id": pageUrl },
@@ -105,7 +108,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
       name: c.title,
       description: `Un momento della Venturo Conversation con ${episode.guest.name}, ${episode.guest.role}.`,
       thumbnailUrl: [`${SITE}${c.image.src.replace(/\.webp$/, ".jpg")}`],
-      uploadDate: c.uploadDate,
+      uploadDate: withZone(c.uploadDate),
       duration: c.duration,
       embedUrl: `https://www.youtube.com/embed/${c.videoId}`,
       contentUrl: `https://www.youtube.com/watch?v=${c.videoId}`,
