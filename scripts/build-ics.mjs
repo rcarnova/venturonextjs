@@ -61,7 +61,7 @@ const NL = "\u0000";
 const description = esc(
   `Ne parliamo con ${guest.name}, ${guest.role}. ` +
   `Host: Rosario Carnovale e Massimo Benedetti, Venturo.${NL}${NL}` +
-  `Iscrizione: ${regUrl}`
+  `Partecipa su Google Meet: ${regUrl}`
 ).split(NL).join("\\n");
 
 const lines = [
@@ -78,7 +78,9 @@ const lines = [
   fold(`SUMMARY:Venturo Conversation: ${esc(title)}`),
   fold(`DESCRIPTION:${description}`),
   fold(`URL:${regUrl}`),
-  `LOCATION:${esc(place)}`,
+  // la stanza Meet come luogo: i calendari la mostrano come link per entrare
+  fold(`LOCATION:${regUrl}`),
+  "SEQUENCE:1",
   "END:VEVENT",
   "END:VCALENDAR",
 ];

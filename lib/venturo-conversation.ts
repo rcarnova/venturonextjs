@@ -12,8 +12,11 @@
  *   4. node scripts/build-ics.mjs
  */
 
-export const REGISTRATION_URL =
-  "https://us06web.zoom.us/meeting/register/V4TZo_D3Rk6L9Y6-X5rRnA#/registration";
+/**
+ * Link per partecipare alla prossima puntata. Dal 6 novembre 2026 è una
+ * stanza Google Meet (Zoom dava problemi): non c'è iscrizione, si entra e basta.
+ */
+export const REGISTRATION_URL = "https://meet.google.com/vrw-ryte-siy";
 
 export const CALENDAR_URL = "/venturo-conversation-6-novembre.ics";
 

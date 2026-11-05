@@ -87,12 +87,12 @@ const VenturoConversationPopup = () => {
             href={REGISTRATION_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Iscriviti alla prossima Venturo Conversation (si apre in una nuova scheda)"
+            aria-label="Partecipa alla prossima Venturo Conversation su Google Meet (si apre in una nuova scheda)"
             onClick={() => dismiss(false)}
             className="mt-8 inline-flex items-center gap-2 font-mono text-eyebrow px-6 py-4 transition-opacity hover:opacity-85"
             style={{ backgroundColor: ACCENT, color: INK }}
           >
-            ISCRIVITI
+            PARTECIPA
             <span aria-hidden="true">→</span>
           </a>
 
