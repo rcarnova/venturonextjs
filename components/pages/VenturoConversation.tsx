@@ -355,17 +355,44 @@ const VenturoConversation = () => {
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
             <h2 className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
-              RIVEDI LE PUNTATE
+              RIVEDI E RIASCOLTA LE PUNTATE
             </h2>
 
             <div className="space-y-16">
               {PAST_EPISODES.map((ep) => (
-                <article key={ep.videoId}>
-                  <VideoFacade
-                    videoId={ep.videoId}
-                    poster={ep.image}
-                    label={ep.title}
-                  />
+                <article key={ep.slug}>
+                  {"videoId" in ep && ep.videoId ? (
+                    <VideoFacade
+                      videoId={ep.videoId}
+                      poster={ep.image}
+                      label={ep.title}
+                    />
+                  ) : (
+                    // Puntata senza video: la copertina porta alla pagina, dove si ascolta
+                    <Link
+                      href={`/venturo-conversation/${ep.slug}#ascolta`}
+                      aria-label={`Ascolta: ${ep.title}`}
+                      className="group relative block overflow-hidden"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={ep.image.src}
+                        alt=""
+                        width={ep.image.width}
+                        height={ep.image.height}
+                        loading="lazy"
+                        decoding="async"
+                        className="block w-full h-auto"
+                      />
+                      <span
+                        className="absolute left-4 bottom-4 md:left-6 md:bottom-6 inline-flex items-center gap-3 font-mono text-eyebrow px-5 py-3 transition-transform group-hover:scale-105"
+                        style={{ backgroundColor: "#EC4899", color: INK }}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9-15 9z" fill="currentColor" /></svg>
+                        ASCOLTA LA PUNTATA
+                      </span>
+                    </Link>
+                  )}
 
                   <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
                     <div className="lg:col-span-7">

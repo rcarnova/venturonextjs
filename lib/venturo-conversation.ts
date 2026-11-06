@@ -7,6 +7,7 @@
  *
  * Per pubblicare una nuova puntata:
  *   1. sposta NEXT_EPISODE in testa a PAST_EPISODES, aggiungendo slug e videoId
+ *      (o audio, se la puntata si ascolta solo dal sito)
  *   2. aggiorna NEXT_EPISODE e REGISTRATION_URL / CALENDAR_URL
  *   3. metti la nuova grafica in public/images/
  *   4. node scripts/build-ics.mjs
@@ -59,6 +60,133 @@ export const NEXT_EPISODE = {
 
 /** Puntate gia andate online, dalla piu recente. */
 export const PAST_EPISODES = [
+  {
+    slug: "change-agent-reale-group",
+    /**
+     * Niente video su YouTube per ora: la puntata si ascolta dal sito.
+     * Quando ci sara il video, aggiungi qui videoId.
+     */
+    /** Data di pubblicazione della registrazione sul sito, con fuso */
+    uploadDate: "2026-11-06T18:00:00+01:00",
+    duration: "PT1H2M19S",
+    title: "Motivazione ed engagement delle persone, cosa ne pensa un Change Agent?",
+    /** Titolo per Google, entro 65 caratteri */
+    seoTitle: "Motivazione ed engagement, cosa ne pensa un Change Agent?",
+    dateLabel: "6 novembre 2026",
+    guest: {
+      name: "Matteo Lo Bue",
+      role: "Agile Topic Leader, Reale Group",
+    },
+    audio: { src: "/audio/venturo-conversation-02-matteo-lo-bue.mp3", duration: 3739 },
+
+    seoDescription:
+      "Matteo Lo Bue, Agile Topic Leader di Reale Group, su change management, autonomia dei team e il nodo della misurazione. Sintesi e audio della puntata.",
+
+    /**
+     * Sintesi dalle note della registrazione. I minuti dei capitoli sono
+     * ricavati dalle note, con un margine di qualche secondo: partono
+     * leggermente prima del tema, mai dopo. Niente citazioni testuali,
+     * perche le note non sono una trascrizione parola per parola.
+     */
+    summary: {
+      intro: [
+        "Matteo Lo Bue si occupa di change management in Reale Group da circa cinque anni, dentro un percorso di quindici in azienda. Reale Group, conosciuta soprattutto come Reale Mutua, lavora in Italia, Cile, Spagna e Grecia, tra assicurazioni, banca e servizi di assistenza. È una mutua: al posto degli azionisti ci sono i soci.",
+        "Dopo lo sguardo di una CFO nella prima puntata, volevamo quello di chi il cambiamento lo accompagna ogni giorno. Gli abbiamo chiesto che cosa voglia dire engagement in un'organizzazione che sta adottando il modello agile.",
+      ],
+      chapters: [
+        {
+          at: 180,
+          title: "Un ruolo che non sta in un titolo",
+          text: [
+            "Matteo non ama definire il suo lavoro con un'etichetta formale. Preferisce raccontarlo per quello che fa: sostenere, abilitare, facilitare i processi di cambiamento.",
+          ],
+        },
+        {
+          at: 625,
+          title: "Un'Academy che non fosse un corsificio",
+          text: [
+            "L'Academy di Reale Group nasce nel 2010. Fin dall'inizio non doveva limitarsi a rispondere alle richieste di formazione: doveva essere un punto di innovazione, uno strumento per far durare la cultura dell'azienda portandoci dentro ossigeno nuovo.",
+          ],
+        },
+        {
+          at: 940,
+          title: "Dal pronto intervento al 10% di ogni progetto",
+          text: [
+            "All'inizio il change management arrivava alla fine, quando un progetto creava attriti e qualcuno doveva sistemarli. Poi la scelta: ogni iniziativa rilevante dedica una quota di tempo e budget, intorno al 10%, ad ascolto, supporto e apprendimento.",
+            "Per Matteo coinvolgere le persone significa costruire cornici e modi di lavorare in cui responsabilità e autonomia possano emergere. Estrarre un potenziale nascosto, dall'alto, in una relazione asimmetrica, non funziona.",
+          ],
+        },
+        {
+          at: 1180,
+          title: "Una mutua ha già qualcosa di agile",
+          text: [
+            "Una mutua ragiona su sostenibilità e durata. Non nasce per essere venduta per miliardi. Ne abbiamo parlato con Matteo: questi principi sono molto coerenti con quelli del modello agile.",
+            "La cultura di tutti i giorni però fa i conti con decenni di organizzazione tradizionale. Il modo di pensare agile sta entrando piano piano nei momenti chiave, come la pianificazione strategica e la definizione del budget. Lì i comportamenti da silos si riducono e le persone tornano a parlarsi e ad accordarsi direttamente.",
+          ],
+        },
+        {
+          at: 1715,
+          title: "Misurare i segnali, non solo i risultati",
+          text: [
+            "Su stimolo del top management, l'azienda ha lavorato due anni a una dashboard costruita sui marcatori del cambiamento. I risultati non si possono prevedere, i segnali che il cambiamento sta avvenendo sì.",
+            "Anche il performance management si è spostato: guarda ai team, non più solo ai risultati economici individuali.",
+          ],
+        },
+        {
+          at: 1990,
+          title: "Persone in carne e ossa",
+          text: [
+            "Con Massimo, Matteo racconta il posizionamento di Reale Group: una rete di agenti in carne e ossa e la relazione personale con i soci. Anche nei momenti più delicati del mestiere assicurativo, come la gestione dei sinistri.",
+          ],
+        },
+        {
+          at: 2350,
+          title: "Raccontare la fatica, non solo il risultato",
+          text: [
+            "Il ruolo di chi facilita il cambiamento evolve verso il coaching, con percorsi di certificazione in corso. Gli Scrum Master lavorano come facilitatori, e design thinking e service design sono ormai di casa nei grandi progetti.",
+            "Academy e comunicazione interna sono entrate nell'area di change management. L'obiettivo è umanizzare: un linguaggio più inclusivo, le fatiche e i team veri dietro i progetti, e lo spazio per la vulnerabilità di chi ha un ruolo manageriale.",
+          ],
+        },
+        {
+          at: 2635,
+          title: "Autonomia vuol dire accettare l'imprevisto",
+          text: [
+            "Dare autonomia a un team significa accettare risultati che non ti aspettavi. Matteo distingue il fallimento che nasce da errori di gestione da quello che arriva da fuori, da fattori dirompenti come l'arrivo di ChatGPT.",
+            "Dal pubblico è arrivato un richiamo alla natura neurobiologica della fiducia. Dove la relazione è solida, c'è spazio per creatività e impegno.",
+          ],
+        },
+        {
+          at: 2760,
+          title: "Il manager che non gestisce i numeri",
+          text: [
+            "Nel modello agile di Reale Group gli obiettivi commerciali e numerici sono dei team autonomi. I manager si occupano d'altro: benessere, crescita, staffing e competenze delle persone.",
+            "Per capire se funziona, l'azienda usa l'indagine Great Place to Work, dove le aree agili mostrano risultati migliori di quelle tradizionali, e micro-survey periodiche su soddisfazione e salute dei team. Nel mondo agile oggi lavorano circa 800 persone su 4.000.",
+          ],
+        },
+        {
+          at: 3320,
+          title: "La domanda ancora aperta",
+          text: [
+            "Resta il nodo di performance e retribuzione. I livelli di inquadramento frenano la crescita orizzontale: fare carriera coincide quasi sempre con diventare manager. Come si riconosce il contributo di un professionista senza dargli per forza un'area da guidare?",
+            "Matteo lo dice apertamente: una risposta soddisfacente sulla misurazione non c'è ancora. Rosario la chiama il conflitto eterno tra il bisogno di controllo, che serve a migliorare, e i principi di autonomia e fiducia, che con la misurazione sistematica faticano a stare insieme.",
+            "Con Matteo ci rivedremo in una seconda puntata, per raccontare come è nato il progetto.",
+          ],
+        },
+      ],
+      takeaways: [
+        "L'engagement non si estrae dalle persone. Si costruiscono le cornici in cui responsabilità e autonomia possono emergere.",
+        "Il cambiamento costa meno quando entra nel progetto dal primo giorno: in Reale Group vale circa il 10% del tempo e del budget di ogni iniziativa.",
+        "Autonomia dei team e misurazione tradizionale non stanno insieme facilmente. Anche chi è più avanti lo considera un problema aperto.",
+      ],
+    },
+
+    image: {
+      src: "/images/venturo-conversation-6-novembre.webp",
+      width: 1280,
+      height: 720,
+    },
+    ogImage: "/images/venturo-conversation-6-novembre-og.jpg",
+  },
   {
     /** Usato per l'indirizzo della pagina dedicata: /venturo-conversation/<slug> */
     slug: "motivazione-engagement-cfo",
@@ -251,7 +379,8 @@ export const BEST_MOMENTS: ReadonlyArray<string> = [
 ];
 
 type Episode = (typeof PAST_EPISODES)[number];
-type Clip = NonNullable<Episode["highlights"]>[number];
+/** Le puntate senza clip non hanno il campo highlights: si prende il tipo da quelle che ce l'hanno */
+type Clip = NonNullable<Extract<Episode, { highlights: unknown }>["highlights"]>[number];
 
 export type Moment = {
   clip: Clip;
@@ -261,7 +390,7 @@ export type Moment = {
 /** Trova un clip per videoId tra tutte le puntate, con la sua puntata. */
 export function findMoment(videoId: string): Moment | undefined {
   for (const episode of PAST_EPISODES) {
-    const clips: ReadonlyArray<Clip> = episode.highlights ?? [];
+    const clips: ReadonlyArray<Clip> = "highlights" in episode ? episode.highlights : [];
     const clip = clips.find((c) => c.videoId === videoId);
     if (clip) return { clip, episode };
   }

@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
  * Lettore audio di una puntata di Venturo Conversation.
- * Nella prima puntata la webcam dell'ospite non funzionava: il video mostrava
- * solo lo schermo di Zoom. Qui si ascolta e basta, restando sul sito.
+ * Nella prima puntata la webcam dell'ospite non funzionava; la seconda non ha
+ * un video pubblicato. Qui si ascolta restando sul sito.
  * L'audio si scarica solo quando si preme play (preload="none").
  * I capitoli della sintesi lo comandano con <ListenFrom at={secondi} />.
  */
@@ -31,7 +31,8 @@ type Props = {
   duration: number;
   title: string;
   guest: string;
-  youtubeUrl: string;
+  /** Link al video, se esiste */
+  youtubeUrl?: string;
 };
 
 export default function EpisodeAudio({ src, duration, title, guest, youtubeUrl }: Props) {
@@ -130,10 +131,15 @@ export default function EpisodeAudio({ src, duration, title, guest, youtubeUrl }
       </div>
 
       <p className="mt-5 mb-0 text-sm" style={{ color: MUTED }}>
-        Con {guest}. Preferisci il video?{" "}
-        <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black">
-          Guardalo su YouTube ↗
-        </a>
+        Con {guest}.
+        {youtubeUrl && (
+          <>
+            {" "}Preferisci il video?{" "}
+            <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black">
+              Guardalo su YouTube ↗
+            </a>
+          </>
+        )}
       </p>
     </div>
   );

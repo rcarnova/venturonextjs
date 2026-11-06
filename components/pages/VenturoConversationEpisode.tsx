@@ -13,7 +13,8 @@ const ACCENT_ON_LIGHT = "#BE185D";
 
 type Episode = {
   slug: string;
-  videoId: string;
+  /** Assente quando la puntata esiste solo come audio sul sito */
+  videoId?: string;
   ogImage: string;
   title: string;
   dateLabel: string;
@@ -64,7 +65,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
   const videos = [
     // Il video principale si dichiara solo se è in pagina: con l'audio al suo
     // posto Google lo vedrebbe come video dichiarato ma assente.
-    ...(episode.audio ? [] : [{
+    ...(episode.audio || !episode.videoId ? [] : [{
       "@type": "VideoObject",
       name: episode.title,
       description:
@@ -169,15 +170,15 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                 duration={episode.audio.duration}
                 title={episode.title}
                 guest={`${episode.guest.name}, ${episode.guest.role}`}
-                youtubeUrl={`https://www.youtube.com/watch?v=${episode.videoId}`}
+                youtubeUrl={episode.videoId ? `https://www.youtube.com/watch?v=${episode.videoId}` : undefined}
               />
-            ) : (
+            ) : episode.videoId ? (
               <VideoFacade
                 videoId={episode.videoId}
                 poster={episode.image}
                 label={episode.title}
               />
-            )}
+            ) : null}
           </div>
 
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -222,7 +223,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                   <div key={c.at} className="mt-14">
                     {episode.audio ? (
                       <ListenFrom at={c.at} />
-                    ) : (
+                    ) : episode.videoId ? (
                       <a
                         href={`https://www.youtube.com/watch?v=${episode.videoId}&t=${c.at}s`}
                         target="_blank"
@@ -233,7 +234,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                       >
                         DAL MINUTO {clock(c.at)} ↗
                       </a>
-                    )}
+                    ) : null}
                     <h3
                       className="font-bold mt-3 mb-4"
                       style={{ color: INK, fontSize: "clamp(22px, 2.6vw, 28px)", lineHeight: 1.2, letterSpacing: "-0.01em" }}
@@ -322,7 +323,9 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
           </section>
         )}
 
-        {/* Dalla puntata passata a quella in arrivo */}
+        {/* Dalla puntata passata a quella in arrivo. Se NEXT_EPISODE e gia
+            andata in onda (o e questa stessa puntata) non la si propone. */}
+        {Date.now() < Date.parse(NEXT_EPISODE.endsAt) && (
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
             <h2 className="font-mono text-eyebrow mb-5" style={{ color: ACCENT_ON_LIGHT }}>
@@ -367,6 +370,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
             </div>
           </div>
         </section>
+        )}
       </main>
 
       <Footer />
