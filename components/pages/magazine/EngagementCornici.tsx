@@ -18,7 +18,7 @@ La prospettiva di Matteo sposta la domanda. Invece di chiedersi come ottenere pi
 
 ## Il cambiamento ha un budget
 
-In Reale Group il change management è nato come pronto intervento. Arrivava alla fine dei progetti, quando qualcosa si inceppava e le persone opponevano resistenza. Poi l'azienda ha cambiato regola: ogni iniziativa rilevante dedica circa il 10% del tempo e del budget ad ascolto, supporto e apprendimento.
+In Reale Group il change management è nato come pronto intervento. Arrivava alla fine dei progetti, quando qualcosa si inceppava e le persone opponevano resistenza. Poi l'azienda ha cambiato regola: ogni iniziativa rilevante dedica una quota di tempo e budget ad ascolto, supporto e apprendimento, che può arrivare anche al 10%.
 
 Sembra un dettaglio organizzativo. È una presa di posizione. Dice che il lato umano di un progetto non è un costo imprevisto da coprire quando le cose vanno male, ma una parte del lavoro da pianificare dal primo giorno. E dice che ascoltare costa meno prima che dopo.
 
@@ -28,7 +28,7 @@ Vale la pena guardare i propri progetti con questa lente. Quanto del budget dell
 
 ## Il manager che non gestisce i numeri
 
-Nel modello agile di Reale Group, che oggi coinvolge circa 800 persone su 4.000, gli obiettivi commerciali e numerici sono dei team autonomi. I manager si occupano d'altro: benessere, crescita, staffing e competenze delle persone.
+Nel modello agile di Reale Group, che oggi coinvolge circa 800 persone su 4.000, gli obiettivi commerciali e numerici sono dei team autonomi. Gli agile people manager si occupano d'altro: benessere, crescita, staffing e competenze delle persone.
 
 È una separazione che fa discutere, e ne abbiamo parlato a lungo. Il manager tradizionale tiene insieme risultati e persone, e chi ha avuto questo ruolo sa quanto sia difficile: quando le due cose entrano in conflitto, quasi sempre vincono i numeri. Separarle toglie al manager il conflitto di interessi più grande. Gli lascia un mestiere che molte aziende dicono di volere e poche misurano: far crescere le persone.
 
@@ -38,9 +38,9 @@ Accanto a questo, Reale Group ha lavorato due anni a una dashboard che osserva i
 
 ## La domanda che resta aperta
 
-La parte più onesta della conversazione è arrivata alla fine. Se i team sono autonomi e i manager si occupano delle persone, come si misura la performance? E come si paga?
+La parte più onesta della conversazione è arrivata alla fine. Se i team sono autonomi e gli agile people manager si occupano delle persone, come si misura la performance? E come si paga?
 
-Matteo non ha una risposta pronta, e lo dice. I livelli di inquadramento frenano la crescita orizzontale: fare carriera coincide quasi sempre con diventare manager. Riconoscere il contributo di un professionista senza dargli un'area da guidare resta difficile, anche per chi è più avanti di molti.
+Matteo non ha una risposta pronta, e lo dice. I livelli di inquadramento frenano la crescita orizzontale in organizzazioni dove fare carriera coincideva quasi sempre con il diventare manager. Riconoscere il contributo di un professionista senza dargli un'area da guidare resta difficile, anche per chi è più avanti di molti.
 
 Per me qui c'è il conflitto eterno tra il bisogno di controllo, che nasce dal voler migliorare, e i principi di autonomia e fiducia. Misurare tutto toglie spazio alla fiducia. Non misurare niente toglie strumenti a chi deve decidere. Non credo esista una formula. Credo però che la domanda vada fatta ad alta voce, come ha fatto Matteo, invece di nasconderla dietro un sistema di valutazione che nessuno sente suo.
 
