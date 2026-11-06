@@ -90,7 +90,7 @@ export const PAST_EPISODES = [
      */
     summary: {
       intro: [
-        "Matteo Lo Bue si occupa di change management in Reale Group da circa cinque anni, dentro un percorso di quindici in azienda. Reale Group, conosciuta soprattutto come Reale Mutua, lavora in Italia, Cile, Spagna e Grecia, tra assicurazioni, banca e servizi di assistenza. È una mutua: al posto degli azionisti ci sono i soci.",
+        "Matteo Lo Bue si occupa di change management in Reale Group da circa cinque anni, dentro un percorso di quindici in azienda. Reale Group, conosciuta soprattutto per Reale Mutua, lavora in Italia, Cile, Spagna e Grecia, tra assicurazioni, banca e servizi di assistenza. È una mutua: al posto degli azionisti ci sono i soci.",
         "Dopo lo sguardo di una CFO nella prima puntata, volevamo quello di chi il cambiamento lo accompagna ogni giorno. Gli abbiamo chiesto che cosa voglia dire engagement in un'organizzazione che sta adottando il modello agile.",
       ],
       chapters: [
@@ -110,9 +110,9 @@ export const PAST_EPISODES = [
         },
         {
           at: 940,
-          title: "Dal pronto intervento al 10% di ogni progetto",
+          title: "Dal pronto intervento al progetto",
           text: [
-            "All'inizio il change management arrivava alla fine, quando un progetto creava attriti e qualcuno doveva sistemarli. Poi la scelta: ogni iniziativa rilevante dedica una quota di tempo e budget, intorno al 10%, ad ascolto, supporto e apprendimento.",
+            "All'inizio il change management arrivava alla fine, quando un progetto creava attriti e qualcuno doveva sistemarli. Poi la scelta: ogni iniziativa rilevante dedica una quota di tempo e budget ad ascolto, supporto e apprendimento.",
             "Per Matteo coinvolgere le persone significa costruire cornici e modi di lavorare in cui responsabilità e autonomia possano emergere. Estrarre un potenziale nascosto, dall'alto, in una relazione asimmetrica, non funziona.",
           ],
         },
@@ -120,7 +120,7 @@ export const PAST_EPISODES = [
           at: 1180,
           title: "Una mutua ha già qualcosa di agile",
           text: [
-            "Una mutua ragiona su sostenibilità e durata. Non nasce per essere venduta per miliardi. Ne abbiamo parlato con Matteo: questi principi sono molto coerenti con quelli del modello agile.",
+            "Una mutua ragiona su sostenibilità e durata. Non nasce per crescere indefinitamente, essere spremuta e venduta per miliardi. Ne abbiamo parlato con Matteo: questi principi sono molto coerenti con quelli del modello agile.",
             "La cultura di tutti i giorni però fa i conti con decenni di organizzazione tradizionale. Il modo di pensare agile sta entrando piano piano nei momenti chiave, come la pianificazione strategica e la definizione del budget. Lì i comportamenti da silos si riducono e le persone tornano a parlarsi e ad accordarsi direttamente.",
           ],
         },
@@ -159,15 +159,15 @@ export const PAST_EPISODES = [
           at: 2760,
           title: "Il manager che non gestisce i numeri",
           text: [
-            "Nel modello agile di Reale Group gli obiettivi commerciali e numerici sono dei team autonomi. I manager si occupano d'altro: benessere, crescita, staffing e competenze delle persone.",
-            "Per capire se funziona, l'azienda usa l'indagine Great Place to Work, dove le aree agili mostrano risultati migliori di quelle tradizionali, e micro-survey periodiche su soddisfazione e salute dei team. Nel mondo agile oggi lavorano circa 800 persone su 4.000.",
+            "Nel modello agile di Reale Group gli obiettivi commerciali e numerici sono dei team autonomi. Gli agile people manager si occupano d'altro: benessere, crescita, staffing e competenze delle persone.",
+            "Per capire se funziona, l'azienda guarda ai dati dell'indagine Great Place to Work, dove le aree agili mostrano risultati in miglioramento rispetto a quelle tradizionali, e propone survey periodiche su soddisfazione degli stakeholder e salute dei team. Nel mondo agile oggi lavorano circa 800 persone su 4.000.",
           ],
         },
         {
           at: 3320,
           title: "La domanda ancora aperta",
           text: [
-            "Resta il nodo di performance e retribuzione. I livelli di inquadramento frenano la crescita orizzontale: fare carriera coincide quasi sempre con diventare manager. Come si riconosce il contributo di un professionista senza dargli per forza un'area da guidare?",
+            "Resta il nodo di performance e retribuzione. I livelli di inquadramento frenano la crescita orizzontale in organizzazioni dove fare carriera coincideva quasi sempre con il diventare manager. Come si riconosce il contributo di un professionista senza dargli per forza un'area da guidare?",
             "Matteo lo dice apertamente: una risposta soddisfacente sulla misurazione non c'è ancora. Rosario la chiama il conflitto eterno tra il bisogno di controllo, che serve a migliorare, e i principi di autonomia e fiducia, che con la misurazione sistematica faticano a stare insieme.",
             "Con Matteo ci rivedremo in una seconda puntata, per raccontare come è nato il progetto.",
           ],
@@ -175,7 +175,7 @@ export const PAST_EPISODES = [
       ],
       takeaways: [
         "L'engagement non si estrae dalle persone. Si costruiscono le cornici in cui responsabilità e autonomia possono emergere.",
-        "Il cambiamento costa meno quando entra nel progetto dal primo giorno: in Reale Group vale circa il 10% del tempo e del budget di ogni iniziativa.",
+        "Il cambiamento costa meno quando entra nel progetto dal primo giorno: in Reale Group può valere anche il 10% del tempo e del budget di un'iniziativa.",
         "Autonomia dei team e misurazione tradizionale non stanno insieme facilmente. Anche chi è più avanti lo considera un problema aperto.",
       ],
       related: { href: "/magazine/l-engagement-non-si-estrae", title: "L'engagement non si estrae. Si costruisce la cornice." },
