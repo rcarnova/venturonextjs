@@ -20,6 +20,7 @@ const articles = [
   {
     category: "cultura organizzativa",
     title: "I valori non si vedono. I comportamenti sì.",
+    coverTitle: "I valori non si vedono.\nI comportamenti sì.",
     excerpt:
       "Cosa ci ha insegnato una CFO di IKEA su engagement, coerenza e diritto di sbagliare, nella prima Venturo Conversation.",
     date: "31 ott 2026",
