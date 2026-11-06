@@ -24,12 +24,15 @@ export async function generateMetadata({
   const url = `${SITE}/venturo-conversation/${ep.slug}`;
   const description =
     ("seoDescription" in ep && ep.seoDescription) ||
-    `Venturo Conversation del ${ep.dateLabel}, con ${ep.guest.name}, ${ep.guest.role}. Guarda la registrazione.`;
+    `Venturo Conversation del ${ep.dateLabel}, con ${ep.guest.name}, ${ep.guest.role}. Ascolta la registrazione.`;
 
   return {
     // `absolute` evita il suffisso del template "%s — Venturo" di app/layout.tsx
     // Con il nome del format se ci sta nel risultato di Google, altrimenti solo il titolo
-    title: { absolute: `${ep.title} | Venturo Conversation`.length <= 65 ? `${ep.title} | Venturo Conversation` : ep.title },
+    title: (() => {
+      const t = ("seoTitle" in ep && ep.seoTitle) || ep.title;
+      return { absolute: `${t} | Venturo Conversation`.length <= 65 ? `${t} | Venturo Conversation` : t };
+    })(),
     description,
     alternates: { canonical: url },
     openGraph: {
