@@ -216,7 +216,21 @@ const ArticleLayout = ({
             </div>
 
             {/* Per approfondire: la porta del sito a cui appartiene l'articolo */}
-            {door && (
+            {door?.articleTool ? (
+              <Link
+                href={door.articleTool.href}
+                className="mt-16 flex items-center justify-between gap-4 px-6 py-6 md:px-8 hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#0A0A0A", color: "#fff" }}
+              >
+                <span>
+                  <span className="block text-xs font-mono uppercase tracking-widest mb-2" style={{ color: "#E1FF00" }}>
+                    {door.articleTool.eyebrow}
+                  </span>
+                  <span className="block text-lg md:text-xl font-semibold">{door.articleTool.title}</span>
+                </span>
+                <span aria-hidden="true" className="text-xl">→</span>
+              </Link>
+            ) : door && (
               <Link
                 href={`/${door.slug}`}
                 className="mt-16 flex items-center justify-between gap-4 border-y border-border py-6 hover:opacity-70 transition-opacity"

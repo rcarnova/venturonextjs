@@ -32,6 +32,10 @@ export type Door = {
     /** un secondo strumento, in una riga sotto il primo */
     more?: { text: string; href: string; label: string };
   };
+  /** Riga sotto la card della porta nella home, verso lo strumento gratuito */
+  homeTool?: { href: string; label: string };
+  /** Invito allo strumento in fondo agli articoli di questa porta, al posto del rimando alla porta */
+  articleTool?: { eyebrow: string; title: string; href: string };
   cases?: { title: string; href: string }[];
   /**
    * Momenti di Venturo Conversation che parlano a chi entra da questa porta.
@@ -201,6 +205,12 @@ export const DOORS: Door[] = [
         cta: "Il lavoro di Studio Miller",
       },
     ],
+    homeTool: { href: "/analisi-evp", label: "Oppure provate l'Analisi EVP gratuita" },
+    articleTool: {
+      eyebrow: "Strumento gratuito · Analisi EVP",
+      title: "Cosa vede chi legge la vostra career page? Analizzatela gratis.",
+      href: "/analisi-evp",
+    },
     tool: {
       eyebrow: "Strumento gratuito · Analisi EVP",
       title: "Cosa vede chi si candida?",

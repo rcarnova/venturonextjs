@@ -38,18 +38,30 @@ const LeversSection = () => {
             {DOORS.map((d) => {
               const Icon = ICONS[d.slug];
               return (
-                <Link
+                // Tutta la card porta alla pagina (link esteso); la riga dello strumento sta sopra
+                <div
                   key={d.slug}
-                  href={`/${d.slug}`}
-                  className="group bg-white rounded-xl p-7 md:p-8 border border-black/[0.06] flex flex-col transition-transform duration-200 hover:-translate-y-1"
+                  className="group relative bg-white rounded-xl p-7 md:p-8 border border-black/[0.06] flex flex-col transition-transform duration-200 hover:-translate-y-1"
                 >
                   <Icon className="w-8 h-8 text-foreground mb-6" strokeWidth={1.5} />
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{d.homeLabel}</h3>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    <Link href={`/${d.slug}`} className="after:absolute after:inset-0 after:rounded-xl focus:outline-none">
+                      {d.homeLabel}
+                    </Link>
+                  </h3>
                   <p className="text-body text-muted-foreground m-0 flex-1">{d.homeText}</p>
                   <span className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-foreground underline underline-offset-4">
                     {d.menuLabel} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </span>
-                </Link>
+                  {d.homeTool && (
+                    <Link
+                      href={d.homeTool.href}
+                      className="relative z-10 mt-4 pt-4 border-t border-black/[0.08] text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {d.homeTool.label} →
+                    </Link>
+                  )}
+                </div>
               );
             })}
           </div>
