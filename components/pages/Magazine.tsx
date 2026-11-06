@@ -8,6 +8,17 @@ import ArticleCard from "@/components/ArticleCard";
 const articles = [
   {
     category: "cultura organizzativa",
+    title: "L'engagement non si estrae. Si costruisce la cornice.",
+    excerpt:
+      "Cosa ci ha insegnato un Change Agent di Reale Group su autonomia, change management e il nodo della misurazione, nella seconda Venturo Conversation.",
+    date: "6 nov 2026",
+    readTime: "5 min",
+    link: "/magazine/l-engagement-non-si-estrae",
+    author: "Rosario",
+    tags: ["cultura organizzativa", "cambiamento"],
+  },
+  {
+    category: "cultura organizzativa",
     title: "I valori non si vedono. I comportamenti sì.",
     excerpt:
       "Cosa ci ha insegnato una CFO di IKEA su engagement, coerenza e diritto di sbagliare, nella prima Venturo Conversation.",
