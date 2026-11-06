@@ -346,13 +346,11 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
               <a
                 href={REGISTRATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Partecipa su Google Meet a: ${NEXT_EPISODE.title} (si apre in una nuova scheda)`}
+                aria-label={`Iscriviti a: ${NEXT_EPISODE.title}`}
                 className="inline-flex items-center gap-2 font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85"
                 style={{ backgroundColor: ACCENT, color: INK }}
               >
-                PARTECIPA
+                ISCRIVITI
                 <span aria-hidden="true" style={{ fontSize: "0.9em" }}>
                   &#8599;
                 </span>

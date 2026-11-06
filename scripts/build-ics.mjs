@@ -33,7 +33,7 @@ const title    = pick("title");
 const startsAt = pick("startsAt");
 const endsAt   = pick("endsAt");
 const place    = pick("place");
-const regUrl   = src.match(/REGISTRATION_URL\s*=\s*\n?\s*"([^"]+)"/)[1];
+const regUrl   = "https://venturoconsulting.it" + src.match(/REGISTRATION_URL\s*=\s*\n?\s*"([^"]+)"/)[1];
 const guest    = { name: pick("name"), role: pick("role") };
 
 const utc = (iso) =>
@@ -61,7 +61,7 @@ const NL = "\u0000";
 const description = esc(
   `Ne parliamo con ${guest.name}, ${guest.role}. ` +
   `Host: Rosario Carnovale e Massimo Benedetti, Venturo.${NL}${NL}` +
-  `Partecipa su Google Meet: ${regUrl}`
+  `Iscriviti per ricevere il link di Google Meet: ${regUrl}`
 ).split(NL).join("\\n");
 
 const lines = [

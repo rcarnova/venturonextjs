@@ -58,13 +58,11 @@ const ExternalArrow = () => (
 const SubscribeButton = ({ className = "" }: { className?: string }) => (
   <a
     href={REGISTRATION_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={`Partecipa su Google Meet a: ${NEXT_EPISODE.title} (si apre in una nuova scheda)`}
+    aria-label={`Iscriviti a: ${NEXT_EPISODE.title}`}
     className={`inline-flex items-center gap-2 font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85 ${className}`}
     style={{ backgroundColor: ACCENT, color: INK }}
   >
-    PARTECIPA
+    ISCRIVITI
     <ExternalArrow />
   </a>
 );
@@ -89,7 +87,7 @@ const eventJsonLd = {
   image: [`${SITE}${NEXT_EPISODE.image.src}`],
   location: {
     "@type": "VirtualLocation",
-    url: REGISTRATION_URL,
+    url: `${SITE}${REGISTRATION_URL}`,
   },
   organizer: {
     "@type": "Organization",
@@ -105,7 +103,7 @@ const eventJsonLd = {
     price: 0,
     priceCurrency: "EUR",
     availability: "https://schema.org/InStock",
-    url: REGISTRATION_URL,
+    url: `${SITE}${REGISTRATION_URL}`,
     validFrom: "2026-10-01T00:00:00+02:00",
   },
 };
@@ -194,12 +192,10 @@ const VenturoConversation = () => {
               PROSSIMA CONVERSAZIONE
             </h2>
 
-            {/* La grafica porta alla stanza Google Meet: e l'elemento piu cliccato a istinto */}
+            {/* La grafica porta alla pagina di iscrizione: e l'elemento piu cliccato a istinto */}
             <a
               href={REGISTRATION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Partecipa su Google Meet a: ${NEXT_EPISODE.title} (si apre in una nuova scheda)`}
+              aria-label={`Iscriviti a: ${NEXT_EPISODE.title}`}
               className="block border border-black transition-opacity hover:opacity-90"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

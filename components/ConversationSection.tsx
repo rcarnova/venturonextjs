@@ -98,13 +98,11 @@ const ConversationSection = () => {
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a
                 href={REGISTRATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Partecipa su Google Meet a: ${NEXT_EPISODE.title} (si apre in una nuova scheda)`}
+                aria-label={`Iscriviti a: ${NEXT_EPISODE.title}`}
                 className="inline-flex items-center gap-2 font-mono text-eyebrow px-7 py-4 transition-opacity hover:opacity-85"
                 style={{ backgroundColor: ACCENT, color: INK }}
               >
-                PARTECIPA <span aria-hidden="true">&#8599;</span>
+                ISCRIVITI
               </a>
               <Link
                 href="/venturo-conversation"

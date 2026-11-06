@@ -13,10 +13,11 @@
  */
 
 /**
- * Link per partecipare alla prossima puntata. Dal 6 novembre 2026 è una
- * stanza Google Meet (Zoom dava problemi): non c'è iscrizione, si entra e basta.
+ * Pagina di iscrizione alla prossima puntata: chi si iscrive riceve per mail
+ * il link di Google Meet e l'invito per il calendario (app/api/vc-iscrizione).
+ * Il link della stanza sta in lib/vc-calendar.ts, non nelle pagine pubbliche.
  */
-export const REGISTRATION_URL = "https://meet.google.com/vrw-ryte-siy";
+export const REGISTRATION_URL = "/venturo-conversation/iscriviti";
 
 export const CALENDAR_URL = "/venturo-conversation-6-novembre.ics";
 
