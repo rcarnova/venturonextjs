@@ -16,6 +16,14 @@ export type ArticleMeta = {
 };
 
 export const ARTICLES: Record<string, ArticleMeta> = {
+  "l-engagement-non-si-estrae": {
+    title: "L'engagement non si estrae. Si costruisce la cornice.",
+    seoTitle: "Engagement e autonomia: la lezione di un Change Agent",
+    description: "Un Change Agent di Reale Group su engagement, change management e autonomia dei team. Cosa ci siamo portati a casa dalla seconda Venturo Conversation.",
+    enSlug: "engagement-is-not-extracted",
+    datePublished: "2026-11-06",
+    author: "rosario",
+  },
   "i-valori-non-si-vedono": {
     title: "I valori non si vedono. I comportamenti sì.",
     seoTitle: "Valori e comportamenti: la lezione di una CFO di IKEA",

@@ -178,6 +178,7 @@ export const PAST_EPISODES = [
         "Il cambiamento costa meno quando entra nel progetto dal primo giorno: in Reale Group vale circa il 10% del tempo e del budget di ogni iniziativa.",
         "Autonomia dei team e misurazione tradizionale non stanno insieme facilmente. Anche chi è più avanti lo considera un problema aperto.",
       ],
+      related: { href: "/magazine/l-engagement-non-si-estrae", title: "L'engagement non si estrae. Si costruisce la cornice." },
     },
 
     image: {

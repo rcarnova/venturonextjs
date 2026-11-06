@@ -18,6 +18,7 @@ import LinguaggioOpaco from "@/components/pages/magazine/LinguaggioOpaco";
 import MotoreEBenzina from "@/components/pages/magazine/MotoreEBenzina";
 import LaCulturaBatteINumeri from "@/components/pages/magazine/LaCulturaBatteINumeri";
 import ValoriComportamenti from "@/components/pages/magazine/ValoriComportamenti";
+import EngagementCornici from "@/components/pages/magazine/EngagementCornici";
 
 import JsonLd from "@/components/JsonLd";
 import { ARTICLES } from "@/lib/content/articles";
@@ -25,6 +26,7 @@ import { ARTICLES as ARTICLES_EN } from "@/lib/content/articles-en";
 import { LOGO_URL, PEOPLE, SITE_URL, WEBSITE_ID, orgRef, personLd } from "@/lib/site";
 
 const COMPONENTS: Record<string, React.ComponentType> = {
+  "l-engagement-non-si-estrae": EngagementCornici,
   "i-valori-non-si-vedono": ValoriComportamenti,
   "la-responsabilita-non-si-delega": ResponsabilitaNonSiDelega,
   "i-valori-non-sono-poster": ValoriNonSonoPoster,
