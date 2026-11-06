@@ -33,7 +33,17 @@ export const COVER_BACKGROUNDS: string[] = [
 
 // Stable hash from a slug so each article keeps the same gradient
 // in the index card and on its own page.
+// Copertine scelte a mano, al posto di quella calcolata dallo slug.
+// Valore: indice in COVER_BACKGROUNDS. Le chiavi sono i percorsi
+// (/magazine/<slug>), come li passano card e layout.
+const COVER_OVERRIDES: Record<string, number> = {
+  // Giallo e fucsia, i colori di Venturo, come "I valori non si vedono"
+  "/magazine/l-engagement-non-si-estrae": 7,
+};
+
 export function gradientForSlug(slug: string): string {
+  const fixed = COVER_OVERRIDES[slug];
+  if (fixed !== undefined) return COVER_BACKGROUNDS[fixed];
   let h = 0;
   for (let i = 0; i < slug.length; i++) {
     h = (h * 31 + slug.charCodeAt(i)) >>> 0;
