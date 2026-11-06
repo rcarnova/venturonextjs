@@ -13,7 +13,8 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-const FUNCTION_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/evp-analysis`;
+/** Passa dal server del sito, che avvisa info@ a ogni analisi */
+const FUNCTION_URL = "/api/evp-analysis";
 
 const EVPAnalysis = () => {
   const [careerPage, setCareerPage] = useState("");
@@ -52,9 +53,8 @@ const EVPAnalysis = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify({ careerPage, jobPost, email: email.trim() || undefined }),
+        body: JSON.stringify({ careerPage, jobPost, email: email.trim() || undefined, lang: "en" }),
       });
 
       const data = await res.json();
