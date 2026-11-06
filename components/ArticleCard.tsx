@@ -6,6 +6,8 @@ import { gradientForSlug } from "@/lib/article-covers";
 interface ArticleCardProps {
   category: string;
   title: string;
+  /** Titolo della copertina con a capo forzati (\n), se diverso dal titolo */
+  coverTitle?: string;
   excerpt: string;
   date: string;
   readTime: string;
@@ -19,6 +21,7 @@ interface ArticleCardProps {
 const ArticleCard = ({
   category,
   title,
+  coverTitle,
   excerpt,
   date,
   readTime,
@@ -68,9 +71,10 @@ const ArticleCard = ({
               WebkitLineClamp: 4,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
+              whiteSpace: "pre-line",
             }}
           >
-            {title}
+            {coverTitle ?? title}
           </span>
         </div>
 
