@@ -10,7 +10,7 @@ import { JOIN_URL, googleCalendarUrl, inviteIcs, outlookCalendarUrl } from "@/li
  */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const NOTIFY_TO = ["rosario.carnovale@gmail.com"];
+const NOTIFY_TO = ["info@venturoconsulting.it"];
 
 const html = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 
