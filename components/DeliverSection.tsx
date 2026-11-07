@@ -56,7 +56,9 @@ const DeliverSection = () => {
           <div className="max-w-3xl mb-10 md:mb-14">
             <span className="text-eyebrow font-mono text-muted-foreground">Dopo l&apos;ascolto</span>
             <h2 className="text-section text-foreground mt-4 mb-5">
-              Prima facciamo emergere. Poi diamo forma.
+              Prima facciamo emergere.
+              <br />
+              Poi diamo forma.
             </h2>
             <p className="text-body text-muted-foreground m-0">
               Lo stesso team che vi ascolta progetta e realizza. Quello che emerge con Lumen
