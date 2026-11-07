@@ -37,7 +37,7 @@ const TeamPreviewSection = () => {
             riconosce nelle immagini. Servono tutti e tre.
           </p>
           <p className="text-sm text-muted-foreground mt-3 max-w-2xl md:mx-auto">
-            I materiali visivi dei nostri progetti, dai libri aziendali ai video, li produce{" "}
+            I materiali visivi dei nostri progetti, dai libri aziendali ai video, li realizziamo noi, con{" "}
             <a
               href="https://www.studiomiller.it"
               target="_blank"
