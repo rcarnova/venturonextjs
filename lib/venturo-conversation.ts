@@ -62,10 +62,8 @@ export const NEXT_EPISODE = {
 export const PAST_EPISODES = [
   {
     slug: "change-agent-reale-group",
-    /**
-     * Niente video su YouTube per ora: la puntata si ascolta dal sito.
-     * Quando ci sara il video, aggiungi qui videoId.
-     */
+    /** Video su YouTube (dal 7 novembre). La pagina resta audio, con il link al video. */
+    videoId: "iiXo-tHpm9M",
     /** Data di pubblicazione della registrazione sul sito, con fuso */
     uploadDate: "2026-11-06T18:00:00+01:00",
     duration: "PT1H2M19S",
