@@ -10,6 +10,7 @@ const ClientsSection = lazy(() => import("@/components/ClientsSection"));
 
 const WhyVenturoSection = lazy(() => import("@/components/WhyVenturoSection"));
 const HowWeWorkSection = lazy(() => import("@/components/HowWeWorkSection"));
+const DeliverSection = lazy(() => import("@/components/DeliverSection"));
 const LeversSection = lazy(() => import("@/components/LeversSection"));
 const ConversationSection = lazy(() => import("@/components/ConversationSection"));
 
@@ -49,6 +50,7 @@ const Index = () => {
         <Suspense fallback={LazyFallback}>
           <LeversSection />
           <HowWeWorkSection />
+          <DeliverSection />
           <ConversationSection />
           <TeamPreviewSection />
           <ContactSection />

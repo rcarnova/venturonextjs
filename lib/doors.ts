@@ -138,7 +138,7 @@ export const DOORS: Door[] = [
       },
       {
         title: "Linguaggio, rituali, artefatti",
-        text: "Glossari condivisi, tone of voice che nasce da dentro, rituali ridisegnati, oggetti e spazi. I materiali visivi li produce Studio Miller, con standard da agenzia.",
+        text: "Glossari condivisi, tone of voice che nasce da dentro, rituali ridisegnati, oggetti e spazi. I materiali visivi li realizziamo noi, con Studio Miller e con standard da agenzia.",
         href: "https://www.studiomiller.it",
         external: true,
         cta: "Il lavoro di Studio Miller",
@@ -199,7 +199,7 @@ export const DOORS: Door[] = [
       },
       {
         title: "I contenuti, con Studio Miller",
-        text: "Video, career page, materiali di selezione. Prodotti con standard da agenzia, a partire da ciò che è emerso.",
+        text: "Video, career page, materiali di selezione. Li realizziamo noi, con standard da agenzia, a partire da ciò che è emerso.",
         href: "https://www.studiomiller.it",
         external: true,
         cta: "Il lavoro di Studio Miller",
