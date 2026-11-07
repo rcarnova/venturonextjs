@@ -171,6 +171,7 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                 title={episode.title}
                 guest={`${episode.guest.name}, ${episode.guest.role}`}
                 youtubeUrl={episode.videoId ? `https://www.youtube.com/watch?v=${episode.videoId}` : undefined}
+                cover={episode.image}
               />
             ) : episode.videoId ? (
               <VideoFacade

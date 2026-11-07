@@ -180,11 +180,11 @@ export const PAST_EPISODES = [
     },
 
     image: {
-      src: "/images/venturo-conversation-6-novembre.webp",
+      src: "/images/venturo-conversation-02-matteo-lo-bue.webp",
       width: 1280,
       height: 720,
     },
-    ogImage: "/images/venturo-conversation-6-novembre-og.jpg",
+    ogImage: "/images/venturo-conversation-02-matteo-lo-bue-og.jpg",
   },
   {
     /** Usato per l'indirizzo della pagina dedicata: /venturo-conversation/<slug> */
@@ -305,7 +305,7 @@ export const PAST_EPISODES = [
     /** La copertina della puntata fa da anteprima al video: e gia sul nostro
      *  dominio, quindi nemmeno l'anteprima contatta server esterni. */
     image: {
-      src: "/images/venturo-conversation-20-ottobre.webp",
+      src: "/images/venturo-conversation-01-elena-alemanno.webp",
       width: 1280,
       height: 720,
     },
@@ -314,7 +314,7 @@ export const PAST_EPISODES = [
      * affidabile nelle schede og:image, e LinkedIn e il canale dove questi link
      * finiscono. Il WebP resta per la pagina, che pesa un terzo.
      */
-    ogImage: "/images/venturo-conversation-20-ottobre-og.jpg",
+    ogImage: "/images/venturo-conversation-01-elena-alemanno-og.jpg",
 
     /**
      * Clip brevi tratte dalla puntata, pubblicate come Short su YouTube ma
