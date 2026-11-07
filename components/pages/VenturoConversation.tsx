@@ -18,10 +18,18 @@ const ACCENT = "#EC4899";
 // Su bianco #EC4899 da 3.5:1 e non passa AA a 12px: per il testo su fondo chiaro serve piu scuro (6.0:1).
 const ACCENT_ON_LIGHT = "#BE185D";
 
-const details = [
+/**
+ * La prossima puntata si mostra solo finché non è andata in onda.
+ * La pagina è statica: il controllo vale alla pubblicazione, quindi quando
+ * NEXT_EPISODE passa si rinasconde al primo deploy successivo.
+ * Per annunciare la nuova puntata basta aggiornare NEXT_EPISODE.
+ */
+const upcoming = () => Date.now() < Date.parse(NEXT_EPISODE.endsAt);
+
+const details = () => [
   // "SI PARTE" valeva prima del debutto. Il format e partito il 20 ottobre,
   // quindi ora la riga indica la prossima puntata, non l'inizio.
-  { label: "PROSSIMA", value: NEXT_EPISODE.dateLabel },
+  { label: "PROSSIMA", value: upcoming() ? NEXT_EPISODE.dateLabel : "Data in arrivo" },
   { label: "RITMO", value: "Circa ogni due settimane" },
   { label: "DURATA", value: NEXT_EPISODE.duration },
   { label: "DOVE", value: NEXT_EPISODE.place },
@@ -113,10 +121,12 @@ const eventJsonLd = {
 const VenturoConversation = () => {
   return (
     <div className="min-h-screen bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
-      />
+      {upcoming() && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+        />
+      )}
       <Header />
 
       <main>
@@ -155,14 +165,24 @@ const VenturoConversation = () => {
 
               {/* La data non si ripete qui: sta nella lista a fianco e nel box sotto */}
               <div className="mt-10">
-                <SubscribeButton />
+                {upcoming() ? (
+                  <SubscribeButton />
+                ) : (
+                  <a
+                    href="#puntate"
+                    className="inline-flex items-center gap-2 font-mono text-eyebrow px-8 py-4 transition-opacity hover:opacity-85"
+                    style={{ backgroundColor: ACCENT, color: INK }}
+                  >
+                    ASCOLTA LE PUNTATE <span aria-hidden="true">&#8595;</span>
+                  </a>
+                )}
               </div>
             </div>
 
             {/* Colonna destra: 4 colonne (9-12), allineata in basso */}
             <div className="lg:col-span-4 lg:col-start-9 lg:self-end">
               <dl style={{ borderTop: `1px solid ${INK}` }}>
-                {details.map((d) => (
+                {details().map((d) => (
                   <div
                     key={d.label}
                     className="flex items-baseline justify-between gap-4 py-4"
@@ -187,7 +207,8 @@ const VenturoConversation = () => {
           </div>
         </section>
 
-        {/* ───────────── Prossima conversazione ───────────── */}
+        {/* ───────────── Prossima conversazione (solo se non è ancora andata in onda) ───────────── */}
+        {upcoming() && (
         <section style={{ borderTop: `1px solid ${INK}` }}>
           <div className="container-wide py-16 md:py-24">
             <h2 className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
@@ -280,6 +301,7 @@ const VenturoConversation = () => {
             </div>
           </div>
         </section>
+        )}
 
         {/* ───────────── Il format ───────────── */}
         <section style={{ borderTop: `1px solid ${INK}` }}>
@@ -352,7 +374,7 @@ const VenturoConversation = () => {
         </section>
 
         {/* ───────────── Puntate precedenti ───────────── */}
-        <section style={{ borderTop: `1px solid ${INK}` }}>
+        <section id="puntate" style={{ borderTop: `1px solid ${INK}`, scrollMarginTop: 80 }}>
           <div className="container-wide py-16 md:py-24">
             <h2 className="font-mono text-eyebrow mb-6" style={{ color: ACCENT_ON_LIGHT }}>
               RIVEDI E RIASCOLTA LE PUNTATE

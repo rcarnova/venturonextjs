@@ -33,9 +33,11 @@ type Props = {
   guest: string;
   /** Link al video, se esiste */
   youtubeUrl?: string;
+  /** Copertina della puntata: cliccandola parte l'audio */
+  cover?: { src: string; width: number; height: number };
 };
 
-export default function EpisodeAudio({ src, duration, title, guest, youtubeUrl }: Props) {
+export default function EpisodeAudio({ src, duration, title, guest, youtubeUrl, cover }: Props) {
   const audio = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
@@ -82,6 +84,32 @@ export default function EpisodeAudio({ src, duration, title, guest, youtubeUrl }
         onPause={() => setPlaying(false)}
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
       />
+      <div className={cover ? "md:grid md:grid-cols-2 md:gap-10 md:items-center" : undefined}>
+      {cover && (
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={playing ? "Metti in pausa" : `Ascolta: ${title}`}
+          className="group relative block w-full mb-6 md:mb-0 overflow-hidden"
+          style={{ border: `1px solid ${INK}` }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={cover.src} alt="" width={cover.width} height={cover.height} className="block w-full h-auto" />
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 flex items-center justify-center transition-colors"
+            style={{ backgroundColor: playing ? "rgba(0,0,0,0)" : "rgba(0,0,0,0.08)" }}
+          >
+            <span
+              className="flex items-center justify-center rounded-full shadow-lg transition-transform group-hover:scale-110 w-14 h-14 md:w-20 md:h-20"
+              style={{ backgroundColor: ACCENT, color: INK, opacity: playing ? 0 : 1 }}
+            >
+              <svg width="30" height="30" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor" /></svg>
+            </span>
+          </span>
+        </button>
+      )}
+      <div>
       <p className="font-mono text-eyebrow mb-4" style={{ color: "#BE185D" }}>
         ASCOLTA LA PUNTATA
       </p>
@@ -141,6 +169,8 @@ export default function EpisodeAudio({ src, duration, title, guest, youtubeUrl }
           </>
         )}
       </p>
+      </div>
+      </div>
     </div>
   );
 }
