@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import GuideDownload from "@/components/GuideDownload";
 
 /**
  * Simulatore del costo del turnover (IT /simulatore-turnover, EN /en/turnover-calculator).
@@ -340,6 +341,9 @@ export default function SimulatoreTurnover({ lang = "it" }: { lang?: Lang }) {
               </div>
             )}
           </div>
+
+          {/* Lead magnet: la guida c'è solo in italiano */}
+          {lang === "it" && <GuideDownload />}
 
           {/* CTA */}
           <div className="mb-16">

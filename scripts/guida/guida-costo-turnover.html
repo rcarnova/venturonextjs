@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Quanto vi costa perdere una persona. Una guida onesta per fare il conto. Venturo</title>
+<style>
+  @font-face { font-family: "SG"; src: url("file:///home/claude/venturonextjs/public/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; }
+  @font-face { font-family: "SG"; src: url("file:///home/claude/venturonextjs/public/fonts/space-grotesk-latin-ext-wght-normal.woff2") format("woff2"); font-weight: 300 700; unicode-range: U+0100-024F, U+20AC; }
+  @font-face { font-family: "Mono"; src: url("file:///home/claude/venturonextjs/public/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Mono"; src: url("file:///home/claude/venturonextjs/public/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "Serif"; src: url("file:///home/claude/venturonextjs/public/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); font-style: italic; }
+
+  @page { size: A4; margin: 0; }
+  :root { --ink: #0A0A0A; --muted: #555; --line: #DADADA; --pink: #FF006E; --lime: #E1FF00; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "SG", system-ui, sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page { width: 210mm; height: 297mm; padding: 22mm 22mm 20mm; position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  .folio { position: absolute; bottom: 12mm; left: 22mm; right: 22mm; display: flex; justify-content: space-between; font-family: "Mono"; font-size: 7.5pt; letter-spacing: .08em; color: #999; text-transform: uppercase; }
+
+  .eyebrow { font-family: "Mono"; font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 6mm; }
+  h1 { font-size: 34pt; line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8mm; }
+  h2 { font-size: 21pt; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6mm; }
+  h3 { font-size: 12pt; font-weight: 700; margin: 7mm 0 2mm; }
+  p { margin: 0 0 3.2mm; }
+  .lead { font-size: 13pt; line-height: 1.5; color: #333; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8.5pt; }
+  .num { font-family: "Mono"; font-size: 9pt; color: var(--pink); letter-spacing: .1em; }
+  em.serif { font-family: "Serif"; font-style: italic; font-size: 1.15em; }
+
+  /* Copertina */
+  .cover { background: var(--ink); color: #fff; display: flex; flex-direction: column; padding: 24mm 22mm; }
+  .cover .glow { position: absolute; width: 140mm; height: 140mm; border-radius: 50%; filter: blur(30mm); opacity: .55; }
+  .cover .g1 { background: var(--pink); left: -40mm; bottom: -50mm; }
+  .cover .g2 { background: var(--lime); right: -60mm; top: -60mm; opacity: .35; }
+  .cover > * { position: relative; }
+  .cover .brand { font-family: "SG"; font-weight: 700; font-size: 18pt; letter-spacing: -0.01em; }
+  .cover .eyebrow { color: #bbb; margin-top: auto; }
+  .cover h1 { font-size: 44pt; color: #fff; }
+  .cover .sub { font-size: 14pt; color: #ddd; max-width: 140mm; }
+  .cover .foot { margin-top: 18mm; font-family: "Mono"; font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; color: #aaa; }
+
+  .rule { border-top: 1.5pt solid var(--ink); margin: 6mm 0; }
+  .box { border-left: 3pt solid var(--lime); background: rgba(225,255,0,.14); padding: 4mm 5mm; margin: 5mm 0; }
+  .box.pink { border-left-color: var(--pink); background: rgba(255,0,110,.06); }
+  .formula { font-family: "Mono"; font-size: 10pt; background: #F4F4F2; padding: 4mm 5mm; margin: 4mm 0; line-height: 1.7; }
+  table { width: 100%; border-collapse: collapse; margin: 4mm 0; font-size: 9.5pt; }
+  th { text-align: left; font-family: "Mono"; font-weight: 500; font-size: 7.5pt; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border-bottom: 1.5pt solid var(--ink); padding: 2mm 2mm 2mm 0; }
+  td { border-bottom: .5pt solid var(--line); padding: 2.4mm 2mm 2.4mm 0; vertical-align: top; }
+  td.r, th.r { text-align: right; }
+  tr.total td { border-top: 1.5pt solid var(--ink); border-bottom: none; font-weight: 700; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5mm; margin: 5mm 0; }
+  .card { border: .75pt solid var(--line); padding: 4mm; }
+  .card.hi { border: none; background: rgba(225,255,0,.16); border-left: 3pt solid var(--lime); }
+  .card .t { font-family: "Mono"; font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 2mm; }
+  .card .v { font-size: 15pt; font-weight: 700; margin-bottom: 2mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+  li { margin-bottom: 1.6mm; }
+  .fill td { height: 9mm; }
+  .fill td.blank { border-bottom: .75pt solid #999; }
+  a { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- 1. Copertina -->
+<section class="page cover">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="brand">Venturo</div>
+  <p class="eyebrow">Guida pratica · Turnover</p>
+  <h1>Quanto vi costa davvero perdere una persona.</h1>
+  <p class="sub">Una guida onesta per fare il conto con i vostri numeri, senza gonfiarlo e senza farvi raccontare favole.</p>
+  <p class="foot">venturoconsulting.it · Novembre 2026</p>
+</section>
+
+<!-- 2. Perché onesta -->
+<section class="page">
+  <p class="eyebrow">Prima di cominciare</p>
+  <h2>Perché una guida onesta</h2>
+  <p class="lead">Online si trovano calcolatori che dicono che ogni dimissione costa il 150% o il 200% dello stipendio. A volte è vero. Spesso è un numero scelto per spaventare.</p>
+  <p>Il problema di un numero gonfiato non è che sia sbagliato. È che non serve. Lo portate in direzione, il CFO chiede da dove viene, e la conversazione finisce lì. Un numero più basso che sapete difendere voce per voce vale molto di più.</p>
+  <p>Questa guida segue tre regole.</p>
+  <h3>1. Separare quello che sapete da quello che stimate</h3>
+  <p>Una fattura dell'agenzia di selezione è un dato. Il valore del lavoro che non viene fatto mentre il posto è scoperto è una stima. Vanno tenuti distinti, sempre.</p>
+  <h3>2. Dichiarare ogni ipotesi</h3>
+  <p>Otto settimane di posto scoperto? Tre mesi per arrivare a piena produttività? Scrivetelo. Chi legge può non essere d'accordo, ma almeno sa su cosa discutere.</p>
+  <h3>3. Dare tre numeri, non uno</h3>
+  <p>Uno scenario conservativo, che nessuno può contestare. Uno realistico, da usare nelle decisioni. Uno completo, che dice fin dove può arrivare il costo quando escono le persone sbagliate.</p>
+  <div class="box">
+    <strong>Cosa vi serve:</strong> l'elenco delle uscite dell'ultimo anno, la RAL dei ruoli che si sono svuotati, le fatture di selezione e formazione, e una conversazione di mezz'ora con due o tre manager. Niente di più.
+  </div>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>2</span></div>
+</section>
+
+<!-- 3. Passo 1: il tasso -->
+<section class="page">
+  <p class="num">PASSO 1</p>
+  <h2>Contate le uscite giuste</h2>
+  <p>Il tasso di turnover si calcola sull'organico medio dell'anno, non su quello di oggi.</p>
+  <div class="formula">
+    Organico medio = (dipendenti a inizio anno + dipendenti a fine anno) / 2<br>
+    Tasso di turnover = uscite nell'anno / organico medio × 100
+  </div>
+  <p class="muted small">Esempio: 10 uscite su un organico medio di 100 persone sono un turnover del 10%.</p>
+
+  <h3>Non tutte le uscite contano allo stesso modo</h3>
+  <p>Se volete capire quanto vi costa perdere talenti, non mettete tutto nello stesso numero. Dividete le uscite in tre gruppi:</p>
+  <table>
+    <tr><th>Gruppo</th><th>Esempi</th><th>Nel calcolo</th></tr>
+    <tr><td><strong>Volontarie evitabili</strong></td><td>Dimissioni per un'altra offerta, per il clima, per un manager, per mancanza di crescita o flessibilità</td><td>Sì. È il costo su cui potete agire.</td></tr>
+    <tr><td><strong>Volontarie non evitabili</strong></td><td>Trasferimento in un'altra città, motivi di salute, cambio di vita</td><td>Sì nel costo, ma tenetele separate.</td></tr>
+    <tr><td><strong>Non volontarie o previste</strong></td><td>Pensionamenti, fine contratto previsto, licenziamenti</td><td>No, o in un conto a parte.</td></tr>
+  </table>
+  <p>Il confine tra evitabile e non evitabile è discutibile, ed è proprio questa discussione che vale la pena fare. Spesso "ha trovato un'offerta migliore" vuol dire "non aveva motivi per restare".</p>
+
+  <h3>Guardate dove si concentrano</h3>
+  <ul>
+    <li><strong>Per area o team:</strong> se un reparto perde il doppio degli altri, il problema raramente è lo stipendio.</li>
+    <li><strong>Per anzianità:</strong> le uscite entro il primo anno dicono qualcosa sulla selezione e sull'inserimento, non sul mercato.</li>
+    <li><strong>Per ruolo:</strong> dieci uscite di operatori e due di responsabili hanno costi molto diversi. Fate il conto per gruppi di ruoli simili.</li>
+  </ul>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>3</span></div>
+</section>
+
+<!-- 4. Passo 2: le voci -->
+<section class="page">
+  <p class="num">PASSO 2</p>
+  <h2>Il costo di una singola uscita</h2>
+  <p>Ogni uscita ha cinque voci. Le prime tre arrivano in contabilità, le ultime due no. Ed è lì che quasi tutte le aziende sottostimano.</p>
+  <table>
+    <tr><th style="width:24%">Voce</th><th>Cosa comprende</th><th style="width:30%">Dove trovate il dato</th></tr>
+    <tr><td><strong>Separazione</strong></td><td>Pratiche di cessazione, ore di HR e manager per l'uscita, ferie e permessi non goduti, eventuale indennità</td><td>Ufficio del personale, cedolino finale</td></tr>
+    <tr><td><strong>Recruiting</strong></td><td>Annunci, eventuale agenzia, screening, colloqui, assessment, ore di HR e dei manager che selezionano</td><td>Fatture, sistema di selezione, ore × costo orario</td></tr>
+    <tr><td><strong>Onboarding</strong></td><td>Attrezzature, accessi, corsi, affiancamento, tempo dei colleghi che fanno da tutor</td><td>Fatture, piano di inserimento, stima delle ore</td></tr>
+    <tr><td><strong>Posto scoperto</strong></td><td>Il lavoro che non viene fatto, o viene fatto da altri con straordinari, mentre il ruolo è vuoto</td><td>Date di uscita e di ingresso</td></tr>
+    <tr><td><strong>Inserimento</strong></td><td>La produttività che manca mentre il nuovo arrivato impara il ruolo</td><td>Conversazione con il manager</td></tr>
+  </table>
+
+  <h3>Come stimare le due voci invisibili</h3>
+  <p>Il valore di una settimana di lavoro, in prima approssimazione, è la RAL divisa per 52.</p>
+  <div class="formula">
+    Posto scoperto = RAL / 52 × settimane senza nessuno nel ruolo<br>
+    Inserimento = RAL / 52 × settimane di rampa × quota di produttività che manca
+  </div>
+  <p>Per le settimane di rampa e la produttività chiedete ai manager, non ai benchmark. "Dopo quanto tempo il nuovo arrivato lavorava come chi c'era prima? E nel frattempo, quanto rendeva, la metà?" Sono domande a cui un manager risponde in due minuti.</p>
+  <div class="box pink">
+    <strong>Perché usiamo la RAL.</strong> Il valore di quello che una persona produce di solito è più alto del suo costo, e il costo aziendale è più alto della RAL per via dei contributi. Usare la RAL vuol dire stare dalla parte prudente. Se qualcuno vi dice che il numero è gonfiato, potete rispondere che è il contrario.
+  </div>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>4</span></div>
+</section>
+
+<!-- 5. Passo 3: esempio -->
+<section class="page">
+  <p class="num">PASSO 3</p>
+  <h2>Un esempio con i numeri</h2>
+  <p>Un ruolo di staff con queste caratteristiche:</p>
+  <table>
+    <tr><th>Ipotesi</th><th class="r">Valore</th></tr>
+    <tr><td>RAL</td><td class="r">36.000 €</td></tr>
+    <tr><td>Recruiting, selezione e onboarding</td><td class="r">15% della RAL</td></tr>
+    <tr><td>Posto scoperto</td><td class="r">8 settimane</td></tr>
+    <tr><td>Settimane per arrivare a piena produttività</td><td class="r">12</td></tr>
+    <tr><td>Produttività media durante l'inserimento</td><td class="r">50%</td></tr>
+  </table>
+  <h3>Il calcolo</h3>
+  <table>
+    <tr><th>Voce</th><th>Conto</th><th class="r">Costo</th></tr>
+    <tr><td>Recruiting e onboarding</td><td>36.000 × 15%</td><td class="r">5.400 €</td></tr>
+    <tr><td>Posto scoperto</td><td>36.000 / 52 × 8</td><td class="r">5.538 €</td></tr>
+    <tr><td>Inserimento</td><td>36.000 / 52 × 12 × 50%</td><td class="r">4.154 €</td></tr>
+    <tr class="total"><td>Costo per uscita</td><td>41,9% della RAL</td><td class="r">15.092 €</td></tr>
+  </table>
+  <p>Con sei uscite l'anno su ruoli simili il costo annuo è circa <strong>90.500 €</strong>. Con dieci, circa <strong>151.000 €</strong>.</p>
+
+  <h3>Se non avete ancora i dati</h3>
+  <p>Partite da una stima: per ruoli operativi e di staff, circa il 40–50% della RAL per uscita. È un ordine di grandezza coerente con le stime italiane, che collocano il costo reale tra il 30% e il 50% della RAL. Secondo Adecco e Jobpricing, la sola vacancy pesa in media il 26% della RAL.</p>
+  <p>Poi sostituite la stima con i vostri dati appena li avete. Un numero vostro, anche imperfetto, convince più di qualunque benchmark.</p>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>5</span></div>
+</section>
+
+<!-- 6. Passo 4: tre scenari -->
+<section class="page">
+  <p class="num">PASSO 4</p>
+  <h2>Tre scenari, non un numero</h2>
+  <p>Presentate sempre il costo in tre versioni. Ognuna risponde a una domanda diversa.</p>
+  <div class="cols">
+    <div class="card">
+      <div class="t">Conservativo</div>
+      <div class="v">5.400 €</div>
+      <p class="small">Solo recruiting, onboarding e pratiche: quello che ha una fattura o un'ora registrata.</p>
+      <p class="small muted">Risponde a: qual è il minimo che nessuno può contestare?</p>
+    </div>
+    <div class="card hi">
+      <div class="t">Realistico</div>
+      <div class="v">15.092 €</div>
+      <p class="small">Il conservativo più il posto scoperto e l'inserimento.</p>
+      <p class="small muted">Risponde a: quanto ci costa davvero? È il numero da usare nelle decisioni.</p>
+    </div>
+    <div class="card">
+      <div class="t">Completo</div>
+      <div class="v">fino al 100–150% della RAL</div>
+      <p class="small">Il realistico più tutto quello che non si misura bene, nella prossima pagina.</p>
+      <p class="small muted">Risponde a: quanto può costare quando esce una persona chiave?</p>
+    </div>
+  </div>
+  <p class="small muted">Valori per uscita, sull'esempio della pagina precedente.</p>
+
+  <h3>Come usarli</h3>
+  <ul>
+    <li><strong>In direzione</strong> partite dal conservativo e arrivate al realistico, mostrando le ipotesi. Lo scenario completo serve per dire "e questo è il minimo".</li>
+    <li><strong>Per un ruolo chiave</strong>, un responsabile, un tecnico raro, un commerciale con il portafoglio clienti, partite invece dallo scenario completo e argomentatelo con esempi concreti.</li>
+    <li><strong>Per decidere un investimento</strong>, dividete il budget per il costo realistico di un'uscita. Ottenete quante uscite deve evitare in un anno per ripagarsi.</li>
+  </ul>
+  <div class="formula">
+    Uscite da evitare per ripagare un progetto = budget del progetto / costo realistico per uscita<br>
+    Esempio: 25.000 € / 15.092 € = meno di 2 uscite in un anno
+  </div>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>6</span></div>
+</section>
+
+<!-- 7. Quello che non si misura -->
+<section class="page">
+  <p class="eyebrow">Onestamente</p>
+  <h2>Quello che non saprete misurare, e va bene così</h2>
+  <p>Alcuni costi sono reali ma non hanno un numero affidabile. Non inventatelo. Descriveteli con un esempio concreto: in direzione un episodio vale più di una percentuale.</p>
+  <table>
+    <tr><th style="width:28%">Costo</th><th>Come raccontarlo senza inventare numeri</th></tr>
+    <tr><td><strong>Know-how perso</strong></td><td>Cosa sapeva fare solo quella persona? Quanto tempo è servito per ricostruirlo? C'è stato un errore o un ritardo che prima non sarebbe successo?</td></tr>
+    <tr><td><strong>Carico sui colleghi</strong></td><td>Chi ha coperto il ruolo? Quante ore di straordinario? Quei colleghi oggi come stanno?</td></tr>
+    <tr><td><strong>Effetto contagio</strong></td><td>Dopo un'uscita importante, nei mesi successivi è uscito qualcun altro dallo stesso team? Spesso la seconda dimissione è figlia della prima.</td></tr>
+    <tr><td><strong>Clienti e qualità</strong></td><td>Un cliente ha notato il cambio? Una relazione si è raffreddata? Un progetto ha rallentato?</td></tr>
+    <tr><td><strong>Tempo dei manager</strong></td><td>Quante settimane un responsabile ha passato a selezionare e inserire invece di guidare il team?</td></tr>
+  </table>
+
+  <h3>Gli errori più comuni</h3>
+  <ol>
+    <li><strong>Usare una percentuale fissa presa da un benchmark americano.</strong> Il mercato del lavoro, i tempi di selezione e i contratti italiani sono diversi.</li>
+    <li><strong>Mettere tutte le uscite nello stesso conto.</strong> I pensionamenti non dicono niente sulla vostra capacità di trattenere le persone.</li>
+    <li><strong>Mescolare ruoli diversi in una sola media.</strong> Un costo medio su operatori e dirigenti non descrive nessuno dei due.</li>
+    <li><strong>Dimenticare posto scoperto e inserimento.</strong> Sono le voci più pesanti e le uniche che non arrivano in fattura.</li>
+    <li><strong>Fermarsi al numero.</strong> Il costo vi dice quanto. Non vi dice perché.</li>
+  </ol>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>7</span></div>
+</section>
+
+<!-- 8. Dal costo alla causa -->
+<section class="page">
+  <p class="eyebrow">Dopo il conto</p>
+  <h2>Dal costo alla causa</h2>
+  <p class="lead">Il numero serve ad aprire la conversazione. Non la chiude.</p>
+  <p>Quando avete il costo, la domanda successiva è sempre la stessa: perché queste persone se ne sono andate? E qui i dati che avete di solito aiutano poco.</p>
+  <p>L'exit interview arriva quando la decisione è presa, e la persona che esce non ha motivo di dire tutto. Il motivo scritto è spesso il più facile da dire, lo stipendio o un'offerta migliore, non il più vero. Le survey misurano bene gli effetti, l'engagement che cala, ma raramente arrivano alle cause, perché le cause si raccontano, non si spuntano su una scala da uno a cinque.</p>
+  <p>Le dimissioni evitabili quasi sempre si sentono prima di arrivare. Il manager che non ascolta, il carico che cresce solo per alcuni, la flessibilità che è un favore e non una regola, il riconoscimento che non arriva. Nei team lo sanno tutti. Manca nei report.</p>
+
+  <h3>Tre domande da farvi, prima di qualunque piano di retention</h3>
+  <ul>
+    <li>Nei team che perdono più persone, cosa hanno in comune i manager?</li>
+    <li>Le persone che sono uscite nell'ultimo anno, sei mesi prima, che segnali davano? Qualcuno li ha visti?</li>
+    <li>Se chiedeste a chi resta perché resta, cosa vi risponderebbe? E vi piacerebbe la risposta?</li>
+  </ul>
+
+  <div class="box">
+    <p style="margin:0 0 2mm"><strong>Come lavoriamo noi.</strong> Con Lumen facciamo emergere la cultura reale di un'organizzazione attraverso conversazioni, non questionari: quello che le persone fanno, dicono e danno per scontato. È lì che di solito si trova il perché del turnover.</p>
+    <p style="margin:0">Se il conto vi ha fatto venire qualche domanda, scriveteci: <strong>info@venturoconsulting.it</strong></p>
+  </div>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>8</span></div>
+</section>
+
+<!-- 9. Scheda di lavoro -->
+<section class="page">
+  <p class="eyebrow">Scheda di lavoro</p>
+  <h2>Il vostro conto</h2>
+  <p class="muted">Stampatela e compilatela per un gruppo di ruoli simili. Oppure usate il simulatore: <strong>venturoconsulting.it/simulatore-turnover</strong></p>
+
+  <h3>Il tasso</h3>
+  <table class="fill">
+    <tr><td style="width:60%">Dipendenti a inizio anno</td><td class="blank"></td></tr>
+    <tr><td>Dipendenti a fine anno</td><td class="blank"></td></tr>
+    <tr><td>Organico medio (somma / 2)</td><td class="blank"></td></tr>
+    <tr><td>Uscite volontarie nell'anno</td><td class="blank"></td></tr>
+    <tr><td>Tasso di turnover volontario (uscite / organico medio × 100)</td><td class="blank"></td></tr>
+  </table>
+
+  <h3>Il costo per uscita</h3>
+  <table class="fill">
+    <tr><td style="width:60%">RAL media dei ruoli usciti (A)</td><td class="blank"></td></tr>
+    <tr><td>Recruiting, selezione, onboarding, separazione (B)</td><td class="blank"></td></tr>
+    <tr><td>Settimane di posto scoperto (C)</td><td class="blank"></td></tr>
+    <tr><td>Settimane di inserimento (D) e produttività media nel periodo (E, in %)</td><td class="blank"></td></tr>
+    <tr><td>Posto scoperto: A / 52 × C</td><td class="blank"></td></tr>
+    <tr><td>Inserimento: A / 52 × D × (100% − E)</td><td class="blank"></td></tr>
+    <tr><td><strong>Conservativo: B</strong></td><td class="blank"></td></tr>
+    <tr><td><strong>Realistico: B + posto scoperto + inserimento</strong></td><td class="blank"></td></tr>
+  </table>
+
+  <h3>Il costo in un anno</h3>
+  <table class="fill">
+    <tr><td style="width:60%">Realistico per uscita × numero di uscite</td><td class="blank"></td></tr>
+    <tr><td>Un costo che non sapete misurare, raccontato con un esempio</td><td class="blank"></td></tr>
+  </table>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>9</span></div>
+</section>
+
+<!-- 10. Fonti -->
+<section class="page">
+  <p class="eyebrow">Fonti e note</p>
+  <h2>Da dove vengono i numeri</h2>
+  <ul>
+    <li><strong>Formule del tasso e del costo per uscita:</strong> metodo standard di calcolo del turnover, con la RAL come misura prudente del valore del lavoro.</li>
+    <li><strong>Costo reale per uscita tra il 30% e il 50% della RAL</strong> per ruoli operativi e di staff, fino al 100–150% per profili qualificati e manageriali: stime ricorrenti nella letteratura HR italiana.</li>
+    <li><strong>Vacancy al 26% della RAL in media, circa 15.000 euro:</strong> ricerca Adecco Group e Jobpricing sul costo delle posizioni scoperte.</li>
+    <li><strong>Engagement in Italia:</strong> Gallup, State of the Global Workplace 2026. L'11% dei lavoratori italiani è pienamente coinvolto, il 25% attivamente disimpegnato (media degli ultimi tre anni).</li>
+    <li><strong>Motivi delle dimissioni dei genitori:</strong> Ispettorato Nazionale del Lavoro, Relazione sulle convalide delle dimissioni 2025.</li>
+  </ul>
+  <p class="muted small" style="margin-top:6mm">Le cifre di esempio sono illustrative. Il costo reale dipende dal settore, dal ruolo e dall'organizzazione: per questo la guida vi chiede di usare i vostri dati.</p>
+
+  <div style="position:absolute; left:22mm; right:22mm; bottom:34mm">
+    <div class="rule"></div>
+    <p style="font-size:16pt; font-weight:700; line-height:1.25; margin:0 0 4mm">L'invisibile diventa strategia.</p>
+    <p class="muted" style="margin:0">Venturo fa emergere la cultura reale delle organizzazioni, così che ogni decisione, comunicazione e assunzione parta da lì.</p>
+    <p style="margin:4mm 0 0; font-family:Mono; font-size:8.5pt; letter-spacing:.08em">VENTUROCONSULTING.IT · INFO@VENTUROCONSULTING.IT</p>
+  </div>
+  <div class="folio"><span>Venturo · Il costo del turnover</span><span>10</span></div>
+</section>
+
+</body>
+</html>
