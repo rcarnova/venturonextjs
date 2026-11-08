@@ -30,6 +30,8 @@ export async function POST(req: NextRequest) {
     const azienda = String(body.azienda ?? "").trim().slice(0, 120);
     const consenso = body.consenso === true;
     const aggiornamenti = body.aggiornamenti === true;
+    const pagina = String(body.pagina ?? "").slice(0, 120);
+    const da = String(body.da ?? "").slice(0, 60);
 
     if (!EMAIL_RE.test(email)) return NextResponse.json({ error: "Serve un indirizzo email valido." }, { status: 400 });
     if (!consenso) return NextResponse.json({ error: "Serve il consenso all'informativa privacy." }, { status: 400 });
@@ -64,6 +66,7 @@ export async function POST(req: NextRequest) {
         html: `<p><strong>${html(nome || "-")}</strong> &lt;${html(email)}&gt;</p>
                <p>Azienda: ${html(azienda || "-")}</p>
                <p>Accetta altri contenuti di Venturo: <strong>${aggiornamenti ? "sì" : "no"}</strong></p>
+               <p>Scaricata da: ${html(pagina || "-")}${da ? ` · arrivata da: <strong>${html(da)}</strong>` : ""}</p>
                <p style="color:#888">Rispondendo a questa mail scrivi direttamente a ${html(email)}.</p>`,
       });
     } catch (e) {

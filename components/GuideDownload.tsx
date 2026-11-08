@@ -7,7 +7,12 @@ import Link from "next/link";
  * Lead magnet del simulatore turnover: la guida in PDF in cambio dell'email.
  * Dopo l'invio mostra subito il link al PDF; la stessa cosa arriva per mail.
  */
-export default function GuideDownload() {
+/**
+ * compact: solo il modulo, senza titolo e testo (per la pagina dedicata).
+ * Al server arrivano anche la pagina di partenza e il parametro ?da= del link
+ * (es. ?da=linkedin), che finiscono nell'avviso a info@.
+ */
+export default function GuideDownload({ compact = false }: { compact?: boolean }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [azienda, setAzienda] = useState("");
@@ -27,7 +32,16 @@ export default function GuideDownload() {
       const res = await fetch("/api/guida-turnover", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ nome, email, azienda, consenso, aggiornamenti, website }),
+        body: JSON.stringify({
+          nome,
+          email,
+          azienda,
+          consenso,
+          aggiornamenti,
+          website,
+          pagina: window.location.pathname,
+          da: new URLSearchParams(window.location.search).get("da") ?? "",
+        }),
       });
       const json = await res.json();
       if (!res.ok || json.error) throw new Error(json.error || "Invio non riuscito.");
@@ -42,15 +56,23 @@ export default function GuideDownload() {
   const field = "w-full h-10 rounded-md border border-input bg-background px-3 text-base md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
   return (
-    <div id="guida" className="rounded-xl p-6 md:p-8 mb-14" style={{ backgroundColor: "#0A0A0A", color: "#fff", scrollMarginTop: 96 }}>
-      <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "#E1FF00" }}>
-        Guida gratuita · PDF, 10 pagine
-      </p>
-      <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">Fate il conto per bene, con i vostri numeri.</h2>
-      <p className="text-sm leading-relaxed mb-6" style={{ color: "#cfcfcf" }}>
-        Una guida onesta: quali uscite contare, le cinque voci di costo e dove trovare i dati, i tre scenari da portare in direzione,
-        cosa non si può misurare e come raccontarlo. Con una scheda da compilare.
-      </p>
+    <div id="guida" className={`rounded-xl p-6 md:p-8 ${compact ? "" : "mb-14"}`} style={{ backgroundColor: "#0A0A0A", color: "#fff", scrollMarginTop: 96 }}>
+      {compact ? (
+        <p className="text-xs font-mono uppercase tracking-widest mb-5" style={{ color: "#E1FF00" }}>
+          Ricevi la guida · PDF, 10 pagine
+        </p>
+      ) : (
+        <>
+          <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "#E1FF00" }}>
+            Guida gratuita · PDF, 10 pagine
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">Quanto costa perdere un talento in azienda.</h2>
+          <p className="text-sm leading-relaxed mb-6" style={{ color: "#cfcfcf" }}>
+            Una guida pratica per fare il conto con i vostri numeri: quali uscite contare, le cinque voci di costo e dove trovare i
+            dati, i tre scenari da portare in direzione, cosa non si può misurare e come raccontarlo. Con una scheda da compilare.
+          </p>
+        </>
+      )}
 
       {url ? (
         <div role="status">

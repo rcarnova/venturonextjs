@@ -1,4 +1,5 @@
 import ArticleLayout from "@/components/ArticleLayout";
+import GuideDownload from "@/components/GuideDownload";
 
 const content = `In Italia solo l'11% dei lavoratori è pienamente coinvolto nel proprio lavoro. Uno su quattro è attivamente disimpegnato, cioè lavora contro, non solo senza entusiasmo. Sono i dati Gallup del rapporto 2026, una media degli ultimi tre anni: l'Italia sta sotto la media europea, che è già la più bassa del mondo.
 
@@ -40,7 +41,7 @@ Il turnover sembra un costo HR. In realtà pesa sulla produzione. Per ogni perso
 
 Facciamo un esempio. Una persona con 36.000 euro di RAL, otto settimane di posto scoperto, tre mesi di inserimento al 50%: la sua uscita costa circa 15.000 euro, il 42% della RAL. Con dieci uscite l'anno su ruoli simili sono 150.000 euro. Per profili qualificati o manageriali le stime arrivano al 100–150% della RAL per ogni uscita.
 
-Abbiamo costruito un [simulatore del costo del turnover](/simulatore-turnover) per fare questo conto con i vostri numeri. Le ipotesi sono tutte modificabili, e alla fine vi dice quante uscite in meno servono per ripagare un progetto. Se volete fare il conto per bene, lì trovate anche la [guida gratuita](/simulatore-turnover#guida): quali uscite contare, dove trovare i dati, come presentarli in direzione.
+Abbiamo costruito un [simulatore del costo del turnover](/simulatore-turnover) per fare questo conto con i vostri numeri. Le ipotesi sono tutte modificabili, e alla fine vi dice quante uscite in meno servono per ripagare un progetto.
 
 ---
 
@@ -70,6 +71,7 @@ const DimissioniSiSentono = () => {
       date="8 nov 2026"
       readTime="5 min"
       content={content}
+      after={<GuideDownload />}
     />
   );
 };
