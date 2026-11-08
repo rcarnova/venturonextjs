@@ -13,7 +13,7 @@ const DESCRIPTION =
   "Guida gratuita in PDF per calcolare il costo del turnover con i vostri numeri: uscite da contare, cinque voci di costo, tre scenari e una scheda da compilare.";
 
 export const metadata: Metadata = {
-  title: "Guida: quanto costa perdere un talento in azienda",
+  title: "Costo del turnover: guida pratica per calcolarlo",
   description: DESCRIPTION,
   alternates: { canonical: "https://venturoconsulting.it/guida-costo-turnover" },
   openGraph: {

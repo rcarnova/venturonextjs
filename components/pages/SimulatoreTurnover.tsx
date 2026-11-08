@@ -23,7 +23,7 @@ type Lang = "it" | "en";
 
 const T = {
   it: {
-    eyebrow: "Strumento gratuito",
+    eyebrow: "Simulatore gratuito · Costo del turnover",
     h1: "Quanto costa davvero perdere una persona?",
     lead: "Inserite i vostri dati e cambiate le ipotesi quando le conoscete meglio di noi. Il simulatore mostra il costo del turnover in tre scenari, dal più prudente al più completo.",
     data: "I vostri dati",
@@ -81,7 +81,7 @@ const T = {
     sources: "Fonti: Adecco Group e Jobpricing, stime su costo della vacancy e del turnover in Italia; letteratura HR su costi diretti, vacancy e curva di inserimento.",
   },
   en: {
-    eyebrow: "Free tool",
+    eyebrow: "Free calculator · Turnover cost",
     h1: "What does losing one person really cost?",
     lead: "Enter your data and change the assumptions when you know them better than we do. The calculator shows the cost of turnover in three scenarios, from the most prudent to the most complete.",
     data: "Your data",
@@ -240,8 +240,23 @@ export default function SimulatoreTurnover({ lang = "it" }: { lang?: Lang }) {
 
   const big = { fontFamily: "'Space Grotesk', system-ui, sans-serif" };
 
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: lang === "it" ? "Simulatore del costo del turnover" : "Turnover cost calculator",
+    url: lang === "it" ? "https://venturoconsulting.it/simulatore-turnover" : "https://venturoconsulting.it/en/turnover-calculator",
+    description: t.lead,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    inLanguage: lang === "it" ? "it-IT" : "en",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    publisher: { "@id": "https://venturoconsulting.it/#organization" },
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <Header />
 
       <main className="pt-28 pb-20 px-4">

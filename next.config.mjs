@@ -8,6 +8,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Il PDF della guida non va indicizzato: in Google deve comparire la pagina
+  // /guida-costo-turnover, dove c'è il modulo, non il file scaricabile.
+  async headers() {
+    return [{ source: "/guide/:file*.pdf", headers: [{ key: "X-Robots-Tag", value: "noindex" }] }];
+  },
   webpack: (config) => {
     config.resolve.alias["react-helmet-async"] = path.resolve(
       __dirname,

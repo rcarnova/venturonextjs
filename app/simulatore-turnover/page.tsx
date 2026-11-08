@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SimulatoreTurnoverPage from "@/components/pages/SimulatoreTurnover";
 
 export const metadata: Metadata = {
-  title: "Simulatore del costo del turnover",
+  title: "Calcolo del costo del turnover: simulatore gratuito",
   description:
     "Quanto vi costa ogni persona che se ne va? Recruiting, posto scoperto e inserimento in tre scenari, con ipotesi che potete cambiare.",
   alternates: {
