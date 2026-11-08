@@ -8,6 +8,17 @@ import ArticleCard from "@/components/ArticleCard";
 const articles = [
   {
     category: "cultura organizzativa",
+    title: "Le dimissioni si sentono prima di arrivare.",
+    excerpt:
+      "Perché in Italia le persone lasciano il lavoro, quanto costa ogni uscita e dove si trovano i segnali che i report non registrano.",
+    date: "8 nov 2026",
+    readTime: "5 min",
+    link: "/magazine/le-dimissioni-si-sentono-prima",
+    author: "Rosario",
+    tags: ["cultura organizzativa", "retention"],
+  },
+  {
+    category: "cultura organizzativa",
     title: "L'engagement non si estrae. Si costruisce la cornice.",
     excerpt:
       "Cosa ci ha insegnato un Change Agent di Reale Group su autonomia, change management e il nodo della misurazione, nella seconda Venturo Conversation.",

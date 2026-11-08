@@ -19,6 +19,7 @@ import MotoreEBenzina from "@/components/pages/magazine/MotoreEBenzina";
 import LaCulturaBatteINumeri from "@/components/pages/magazine/LaCulturaBatteINumeri";
 import ValoriComportamenti from "@/components/pages/magazine/ValoriComportamenti";
 import EngagementCornici from "@/components/pages/magazine/EngagementCornici";
+import DimissioniSiSentono from "@/components/pages/magazine/DimissioniSiSentono";
 
 import JsonLd from "@/components/JsonLd";
 import { ARTICLES } from "@/lib/content/articles";
@@ -26,6 +27,7 @@ import { ARTICLES as ARTICLES_EN } from "@/lib/content/articles-en";
 import { LOGO_URL, PEOPLE, SITE_URL, WEBSITE_ID, orgRef, personLd } from "@/lib/site";
 
 const COMPONENTS: Record<string, React.ComponentType> = {
+  "le-dimissioni-si-sentono-prima": DimissioniSiSentono,
   "l-engagement-non-si-estrae": EngagementCornici,
   "i-valori-non-si-vedono": ValoriComportamenti,
   "la-responsabilita-non-si-delega": ResponsabilitaNonSiDelega,
