@@ -20,6 +20,8 @@ interface ArticleLayoutProps {
   readTime: string;
   heroImage?: string;
   content: string;
+  /** Blocco dopo il testo (es. modulo della guida), prima del rimando alla porta */
+  after?: React.ReactNode;
 }
 
 const ArticleLayout = ({
@@ -30,6 +32,7 @@ const ArticleLayout = ({
   readTime,
   heroImage,
   content,
+  after,
 }: ArticleLayoutProps) => {
   const pathname = usePathname();
   const heroGradient = gradientForSlug(pathname);
@@ -214,6 +217,7 @@ const ArticleLayout = ({
                 {content}
               </ReactMarkdown>
             </div>
+            {after && <div className="mt-12">{after}</div>}
 
             {/* Per approfondire: la porta del sito a cui appartiene l'articolo */}
             {door?.articleTool ? (

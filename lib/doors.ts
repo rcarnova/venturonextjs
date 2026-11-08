@@ -30,7 +30,7 @@ export type Door = {
     href: string;
     cta: string;
     /** un secondo strumento, in una riga sotto il primo */
-    more?: { text: string; href: string; label: string };
+    more?: { text: string; href: string; label: string; extra?: { href: string; label: string } };
   };
   /** Riga sotto la card della porta nella home, verso lo strumento gratuito */
   homeTool?: { href: string; label: string };
@@ -221,6 +221,7 @@ export const DOORS: Door[] = [
         text: "E quanto costa ogni persona che se ne va?",
         href: "/simulatore-turnover",
         label: "Simulatore del costo del turnover",
+        extra: { href: "/guida-costo-turnover", label: "Scarica la guida per fare il conto" },
       },
     },
     moments: [

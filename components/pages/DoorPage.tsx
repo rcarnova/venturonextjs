@@ -197,6 +197,14 @@ const DoorPage = ({ slug }: { slug: DoorSlug }) => {
                         <Link href={door.tool.more.href} className="text-white underline underline-offset-4 hover:opacity-80">
                           {door.tool.more.label}&nbsp;→
                         </Link>
+                        {door.tool.more.extra && (
+                          <>
+                            <br />
+                            <Link href={door.tool.more.extra.href} className="inline-block mt-2 text-white underline underline-offset-4 hover:opacity-80">
+                              {door.tool.more.extra.label}&nbsp;→
+                            </Link>
+                          </>
+                        )}
                       </p>
                     )}
                   </div>

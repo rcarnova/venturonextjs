@@ -1,4 +1,5 @@
 import ArticleLayout from "@/components/ArticleLayout";
+import GuideDownload from "@/components/GuideDownload";
 
 const content = `In Italia solo l'11% dei lavoratori è pienamente coinvolto nel proprio lavoro. Uno su quattro è attivamente disimpegnato, cioè lavora contro, non solo senza entusiasmo. Sono i dati Gallup del rapporto 2026, una media degli ultimi tre anni: l'Italia sta sotto la media europea, che è già la più bassa del mondo.
 
@@ -70,6 +71,7 @@ const DimissioniSiSentono = () => {
       date="8 nov 2026"
       readTime="5 min"
       content={content}
+      after={<GuideDownload />}
     />
   );
 };
