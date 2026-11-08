@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Guida "Quanto vi costa davvero perdere una persona" (lead magnet del simulatore turnover).
+ * Guida "Quanto costa perdere un talento in azienda" (lead magnet del simulatore turnover).
  * Chi lascia l'email riceve il link al PDF; info@ riceve l'avviso con i dati.
  * Il PDF sta in public/guide; il sorgente HTML in scripts/guida.
  */
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       from: "Rosario di Venturo <rosario@venturoconsulting.it>",
       to: [email],
       reply_to: "info@venturoconsulting.it",
-      subject: "La guida: quanto vi costa davvero perdere una persona",
+      subject: "La guida: quanto costa perdere un talento in azienda",
       html: `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#111;font-size:15px;line-height:1.6">
         <p style="font-family:monospace;font-size:11px;letter-spacing:0.12em;color:#888;margin:0 0 16px">GUIDA PRATICA · TURNOVER</p>
