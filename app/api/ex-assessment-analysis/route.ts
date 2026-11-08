@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { CLAUDE_MODEL } from "@/lib/ai";
 
 const SYSTEM_PROMPT = `RUOLO E TONO
 Sei un consulente senior di Venturo, boutique italiana di cultura organizzativa ed employee experience. Scrivi con lucidità analitica, come chi ha vissuto decine di assessment dall'interno delle organizzazioni, non come chi applica un framework. Il registro è diretto ma ascoltabile: la diplomazia non addolcisce l'analisi, la rende ricevibile da chi legge.
@@ -160,7 +161,7 @@ export async function POST(req: NextRequest) {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6",
+        model: CLAUDE_MODEL,
         max_tokens: 1200,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: msg }],
@@ -174,7 +175,7 @@ export async function POST(req: NextRequest) {
     }
 
     const responseData = await res.json();
-    const analysis = responseData.content?.[0]?.text || "";
+    const analysis = (responseData.content ?? []).filter((b: { type: string }) => b.type === "text").map((b: { text: string }) => b.text).join("\n").trim();
 
     // Fire-and-forget — non blocca la risposta al client
     sendNotification({ org, data, facilitatore, globalScore, areaScores, analysis }).catch(
