@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { CLAUDE_MODEL } from "@/lib/ai";
 
 /**
  * Analisi EVP (pagine /analisi-evp e /en/evp-analysis).
@@ -11,7 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
  */
 
 const NOTIFY_TO = ["info@venturoconsulting.it"];
-const MODEL = "claude-sonnet-4-6";
+const MODEL = CLAUDE_MODEL;
 
 const PROMPT_IT = `Sei un consulente senior di Venturo, boutique italiana di cultura organizzativa ed employer branding. Il metodo di Venturo si chiama Lumen: fa emergere la cultura reale di un'organizzazione partendo dalle persone, non dai testi.
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { CLAUDE_MODEL } from "@/lib/ai";
 
 const SYSTEM_PROMPT = `RUOLO E TONO
 Sei un consulente di Venturo, una boutique italiana di cultura organizzativa. Il tuo tono è saggio, tagliente, mai generico. Scrivi come Massimo Benedetti, autore con background di corporate storytelling. Eviti il gergo HR e parli con la profondità di chi ha letto Schein, Aaker, Kahneman.
@@ -82,7 +83,7 @@ export async function POST(req: NextRequest) {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: CLAUDE_MODEL,
         max_tokens: 900,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: userContent }],
@@ -96,7 +97,7 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await res.json();
-    const analysis = data.content?.[0]?.text || "";
+    const analysis = (data.content ?? []).filter((b: { type: string }) => b.type === "text").map((b: { text: string }) => b.text).join("\n").trim();
 
     return NextResponse.json({ analysis });
   } catch (err) {
