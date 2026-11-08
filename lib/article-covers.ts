@@ -39,6 +39,7 @@ export const COVER_BACKGROUNDS: string[] = [
 const COVER_OVERRIDES: Record<string, number> = {
   // Giallo e fucsia, i colori di Venturo, come "I valori non si vedono"
   "/magazine/l-engagement-non-si-estrae": 7,
+  "/magazine/le-dimissioni-si-sentono-prima": 7,
 };
 
 export function gradientForSlug(slug: string): string {

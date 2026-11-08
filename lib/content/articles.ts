@@ -16,6 +16,14 @@ export type ArticleMeta = {
 };
 
 export const ARTICLES: Record<string, ArticleMeta> = {
+  "le-dimissioni-si-sentono-prima": {
+    title: "Le dimissioni si sentono prima di arrivare.",
+    seoTitle: "Dimissioni in Italia: perché le persone se ne vanno",
+    description: "Stipendio, conciliazione, organizzazione del lavoro: perché in Italia le persone lasciano il lavoro, quanto costa ogni uscita e dove ascoltare i segnali.",
+    enSlug: "resignations-can-be-heard-early",
+    datePublished: "2026-11-08",
+    author: "rosario",
+  },
   "l-engagement-non-si-estrae": {
     title: "L'engagement non si estrae. Si costruisce la cornice.",
     seoTitle: "Engagement e autonomia: la lezione di un Change Agent",

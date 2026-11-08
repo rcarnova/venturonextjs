@@ -70,6 +70,7 @@ const T = {
     cta: "I numeri dicono dove guardare. Perché le persone se ne vanno lo dicono le persone.",
     ctaLink: "Parliamone →",
     ctaHref: "/#contact",
+    read: { text: "Perché in Italia le persone lasciano il lavoro:", label: "Le dimissioni si sentono prima di arrivare", href: "/magazine/le-dimissioni-si-sentono-prima" } as { text: string; label: string; href: string } | null,
     method: "Come vengono calcolati i costi",
     methodText: [
       "Il costo di una settimana di lavoro è la RAL divisa per 52. Il posto scoperto vale le settimane senza nessuno nel ruolo. L'inserimento vale le settimane di rampa per la quota di produttività che manca. Recruiting e onboarding sono una percentuale della RAL.",
@@ -127,6 +128,7 @@ const T = {
     cta: "Numbers show where to look. Why people leave, only people can tell.",
     ctaLink: "Let's talk →",
     ctaHref: "/en#contact",
+    read: null as { text: string; label: string; href: string } | null,
     method: "How the costs are calculated",
     methodText: [
       "One week of work is the annual salary divided by 52. Vacancy is the weeks with nobody in the role. Onboarding is the ramp-up weeks times the share of productivity that is missing. Recruiting and onboarding are a percentage of salary.",
@@ -345,6 +347,14 @@ export default function SimulatoreTurnover({ lang = "it" }: { lang?: Lang }) {
             <Link href={t.ctaHref} className="inline-block mt-2 text-sm text-primary font-semibold hover:underline transition-colors">
               {t.ctaLink}
             </Link>
+            {t.read && (
+              <p className="text-sm text-muted-foreground mt-6">
+                {t.read.text}{" "}
+                <Link href={t.read.href} className="underline underline-offset-4 text-foreground hover:opacity-70">
+                  {t.read.label}
+                </Link>
+              </p>
+            )}
           </div>
 
           {/* Metodo */}
