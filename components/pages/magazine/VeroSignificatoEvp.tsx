@@ -54,6 +54,8 @@ Il valore proposto ai candidati non era una promessa nuova. Era il modo in cui q
 
 Il punto del caso è questo. Un'EVP che nasce dall'ascolto delle esperienze reali di chi lavora in azienda è una promessa già provata: chi entra trova quello che gli è stato raccontato, perché qualcuno lo stava già vivendo. Un'EVP scritta a tavolino, invece, va prima sostenuta con le campagne e poi pagata in turnover, quando le persone scoprono che dentro è un'altra cosa.
 
+[Leggi il caso studio completo di Randstad Professionals →](/casi-studio/randstad-professionals)
+
 ---
 
 ## Il vero significato

@@ -114,6 +114,17 @@ const ArticleLayoutEN = ({
             <div className="article-content">
               <ReactMarkdown
                 components={{
+                  // Link nel testo: sottolineati e nel rosa di Venturo, altrimenti non si vedono
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      className="underline underline-offset-4 decoration-2 hover:opacity-70 transition-opacity"
+                      style={{ color: "#1a1a1a", textDecorationColor: "#FF006E" }}
+                      {...(href?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {children}
+                    </a>
+                  ),
                   h2: ({ children }) => (
                     <h2 className="text-2xl md:text-[2rem] font-bold mt-12 mb-4" style={{ color: "#1a1a1a" }}>
                       {children}
