@@ -17,14 +17,14 @@
  * Link per partecipare alla prossima puntata. Dal 6 novembre 2026 è una
  * stanza Google Meet (Zoom dava problemi): non c'è iscrizione, si entra e basta.
  */
-export const REGISTRATION_URL = "https://meet.google.com/vrw-ryte-siy";
+export const REGISTRATION_URL = "https://meet.google.com/dwa-pqwt-iyq";
 
-export const CALENDAR_URL = "/venturo-conversation-6-novembre.ics";
+export const CALENDAR_URL = "/venturo-conversation-27-novembre.ics";
 
 export const NEXT_EPISODE = {
-  title: "Motivazione ed engagement delle persone, cosa ne pensa un Change Agent?",
+  title: "Motivazione ed engagement delle persone, cosa ne pensa un Welfare Manager?",
 
-  dateLabel: "6 novembre, ore 12",
+  dateLabel: "27 novembre, ore 12",
   duration: "45-50 minuti",
   place: "Online",
 
@@ -33,12 +33,12 @@ export const NEXT_EPISODE = {
    * 2026, quindi novembre e CET (+01:00) mentre ottobre era CEST (+02:00).
    * Sbagliare l'offset sposta l'evento di un'ora nei calendari.
    */
-  startsAt: "2026-11-06T12:00:00+01:00",
-  endsAt: "2026-11-06T12:50:00+01:00",
+  startsAt: "2026-11-27T12:00:00+01:00",
+  endsAt: "2026-11-27T12:50:00+01:00",
 
   guest: {
-    name: "Matteo Lo Bue",
-    role: "Agile Topic Leader, Reale Group",
+    name: "Edoardo Zaccardi",
+    role: "Welfare & Social Dynamics, Edison",
   },
 
   hosts: [
@@ -52,7 +52,7 @@ export const NEXT_EPISODE = {
    * volte agli screen reader. Il nome accessibile sta sul link che la avvolge.
    */
   image: {
-    src: "/images/venturo-conversation-6-novembre.webp",
+    src: "/images/venturo-conversation-27-novembre.webp",
     width: 1280,
     height: 720,
   },
