@@ -7,6 +7,17 @@ import ArticleCard from "@/components/ArticleCard";
 
 const articles = [
   {
+    category: "employer branding",
+    title: "Il vero significato di EVP.",
+    excerpt:
+      "Perché un'azienda dovrebbe produrre valore per le persone che già paga. E che cosa propone davvero, oltre lo stipendio: il caso Randstad Professionals.",
+    date: "19 nov 2026",
+    readTime: "5 min",
+    link: "/magazine/il-vero-significato-di-evp",
+    author: "Rosario",
+    tags: ["employer branding", "evp"],
+  },
+  {
     category: "cultura organizzativa",
     title: "Le dimissioni si sentono prima di arrivare.",
     excerpt:

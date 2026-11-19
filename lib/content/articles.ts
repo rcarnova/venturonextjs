@@ -16,6 +16,14 @@ export type ArticleMeta = {
 };
 
 export const ARTICLES: Record<string, ArticleMeta> = {
+  "il-vero-significato-di-evp": {
+    title: "Il vero significato di EVP.",
+    seoTitle: "EVP: cosa significa Employer Value Proposition",
+    description: "EVP sta per Employer Value Proposition: il valore che un'azienda produce per chi assume, oltre lo stipendio. Il caso Randstad Professionals.",
+    enSlug: "the-real-meaning-of-evp",
+    datePublished: "2026-11-19",
+    author: "rosario",
+  },
   "le-dimissioni-si-sentono-prima": {
     title: "Le dimissioni si sentono prima di arrivare.",
     seoTitle: "Dimissioni in Italia: perché le persone se ne vanno",
