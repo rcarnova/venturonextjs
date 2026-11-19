@@ -1,6 +1,6 @@
 import ArticleLayout from "@/components/ArticleLayout";
 
-const content = `Tutti sappiamo che EVP sta per Employee Value Proposition. Molti la scrivono Employer Value Proposition, e non è solo una svista: in quella parola sbagliata c'è il punto di vista con cui spesso la si costruisce. Employer mette al centro chi offre. Employee mette al centro chi riceve. Il vero significato sta nella seconda.
+const content = `Tutti sappiamo che EVP sta per Employee Value Proposition. Meno persone saprebbero dire che cosa significa davvero.
 
 Il concetto arriva dal marketing: l'idea di employer brand nasce nel 1996 da due studiosi di marketing, Tim Ambler e Simon Barrow. Una value proposition è il valore che un prodotto crea per chi lo compra: non quello che il prodotto è, ma quello che cambia nella vita del cliente. Portata nel mondo del lavoro, la domanda diventa: che valore produce un'azienda per le persone che assume?
 
