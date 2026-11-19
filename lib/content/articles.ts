@@ -18,8 +18,8 @@ export type ArticleMeta = {
 export const ARTICLES: Record<string, ArticleMeta> = {
   "il-vero-significato-di-evp": {
     title: "Il vero significato di EVP.",
-    seoTitle: "EVP: cosa significa Employer Value Proposition",
-    description: "EVP sta per Employer Value Proposition: il valore che un'azienda produce per chi assume, oltre lo stipendio. Il caso Randstad Professionals.",
+    seoTitle: "EVP: cosa significa Employee Value Proposition",
+    description: "EVP sta per Employee Value Proposition: il valore che un'azienda produce per chi assume. Perché nasce dall'ascolto, con il caso Randstad Professionals.",
     enSlug: "the-real-meaning-of-evp",
     datePublished: "2026-11-19",
     author: "rosario",

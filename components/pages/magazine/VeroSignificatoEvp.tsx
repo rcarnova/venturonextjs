@@ -1,8 +1,8 @@
 import ArticleLayout from "@/components/ArticleLayout";
 
-const content = `Tutti sappiamo che EVP sta per Employer Value Proposition. Meno persone saprebbero dire che cosa significa davvero.
+const content = `Tutti sappiamo che EVP sta per Employee Value Proposition. Molti la scrivono Employer Value Proposition, e non è solo una svista: in quella parola sbagliata c'è il punto di vista con cui spesso la si costruisce. Employer mette al centro chi offre. Employee mette al centro chi riceve. Il vero significato sta nella seconda.
 
-Il concetto arriva dal marketing. Una value proposition è il valore che un prodotto crea per chi lo compra: non quello che il prodotto è, ma quello che cambia nella vita del cliente. Portata nel mondo del lavoro, la domanda diventa: che valore produce un'azienda per le persone che assume?
+Il concetto arriva dal marketing: l'idea di employer brand nasce nel 1996 da due studiosi di marketing, Tim Ambler e Simon Barrow. Una value proposition è il valore che un prodotto crea per chi lo compra: non quello che il prodotto è, ma quello che cambia nella vita del cliente. Portata nel mondo del lavoro, la domanda diventa: che valore produce un'azienda per le persone che assume?
 
 ---
 
@@ -18,7 +18,7 @@ Per molto tempo la risposta implicita è stata sì. Lo stipendio era il valore, 
 
 ## Perché lo stipendio non basta più
 
-Negli ultimi anni il rapporto tra il talento e l'organizzazione per cui lavora è diventato più complesso. Non che prima fosse lineare: la cosiddetta guerra dei talenti esiste da quando esiste il lavoro. Ma oggi è diventata una disciplina, e una disciplina che fa ancora fatica a trovare la sua sede nelle organizzazioni. Sta un po' in HR, un po' nel marketing, un po' nella comunicazione. Spesso, in nessuno dei tre.
+Negli ultimi anni il rapporto tra il talento e l'organizzazione per cui lavora è diventato più complesso. Non che prima fosse lineare: la competizione per le persone migliori esiste da quando esiste il lavoro, e il nome di guerra dei talenti glielo ha dato McKinsey nel 1997. Ma oggi è diventata una disciplina, e una disciplina che fa ancora fatica a trovare la sua sede nelle organizzazioni. Sta un po' in HR, un po' nel marketing, un po' nella comunicazione. Spesso, in nessuno dei tre.
 
 Lo stipendio resta il primo motivo per cui le persone cambiano lavoro, ma [quasi mai è l'unico](/magazine/le-dimissioni-si-sentono-prima). Le persone se ne vanno per come si lavora, per chi le guida, per quanto possono crescere. E scelgono un'azienda per le stesse ragioni.
 
@@ -26,7 +26,7 @@ Lo stipendio resta il primo motivo per cui le persone cambiano lavoro, ma [quasi
 
 ## Che cosa propone davvero un'azienda
 
-Oltre lo stipendio, il valore che un'azienda propone è fatto principalmente di due cose.
+Lo stipendio porta le persone al tavolo, ed è parte della proposta. Ma tra due aziende che pagano in modo simile, la differenza si gioca su due cose.
 
 La prima è **come si lavora lì**. Come si prendono le decisioni, come si tratta un errore, quanta autonomia c'è, che cosa viene riconosciuto e che cosa no.
 
@@ -52,6 +52,8 @@ I valori emersi, empatia, competenza, ambizione, etica, non li aveva scritti nes
 
 Il valore proposto ai candidati non era una promessa nuova. Era il modo in cui quelle persone lavoravano già, raccontato da loro.
 
+Il punto del caso è questo. Un'EVP che nasce dall'ascolto delle esperienze reali di chi lavora in azienda è una promessa già provata: chi entra trova quello che gli è stato raccontato, perché qualcuno lo stava già vivendo. Un'EVP scritta a tavolino, invece, va prima sostenuta con le campagne e poi pagata in turnover, quando le persone scoprono che dentro è un'altra cosa.
+
 ---
 
 ## Il vero significato
@@ -60,15 +62,15 @@ Ecco allora il paradosso risolto. Un'azienda non produce valore per le persone c
 
 Un'EVP vera somiglia più a una descrizione onesta che a uno slogan: dice come si lavora in un posto, abbastanza bene da attrarre le persone giuste e da far capire alle altre che quello non è il loro posto.
 
-E ha una prova semplice: chi entra deve ritrovarla nei primi tre mesi. Se non la ritrova, non era una proposta di valore. Era pubblicità, e la pagate due volte, prima in campagne e poi in [turnover](/simulatore-turnover).
+E ha una prova semplice: chi entra deve ritrovarla nei primi tre mesi. Se non la ritrova, non era una proposta di valore. Era pubblicità, e la pagate due volte, prima in campagne e poi in [turnover](/simulatore-turnover). Per questo si parte dall'ascolto, non dallo slogan.
 
 ---
 
 ## In sintesi, per chi deve decidere
 
-- EVP vuol dire il valore che l'azienda produce per le persone che assume, oltre lo stipendio.
-- Quel valore è fatto soprattutto di come si lavora e di quanto una persona può esprimere talento e valori.
-- Non si inventa: si fa emergere da chi lavora già lì, e solo dopo si racconta.
+- EVP vuol dire Employee Value Proposition: il valore che l'azienda produce per le persone che assume.
+- Lo stipendio è parte della proposta, ma la differenza si gioca su come si lavora e su quanto una persona può esprimere talento e valori.
+- Un'EVP nata dall'ascolto delle esperienze reali è una promessa già provata. Una scritta a tavolino si paga in campagne e poi in turnover.
 - Un'EVP vera attrae le persone giuste e allontana quelle sbagliate. Se piace a tutti, probabilmente non dice niente.
 - La prova è nei primi mesi: chi entra deve ritrovare quello che gli è stato raccontato.
 
