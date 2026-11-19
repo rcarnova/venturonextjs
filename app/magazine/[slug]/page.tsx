@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import ResponsabilitaNonSiDelega from "@/components/pages/magazine/ResponsabilitaNonSiDelega";
+import VeroSignificatoEvp from "@/components/pages/magazine/VeroSignificatoEvp";
 import ValoriNonSonoPoster from "@/components/pages/magazine/ValoriNonSonoPoster";
 import LaCulturaNonEMaiSbagliata from "@/components/pages/magazine/LaCulturaNonEMaiSbagliata";
 import AIAscolto from "@/components/pages/magazine/AIAscolto";
@@ -27,6 +28,7 @@ import { ARTICLES as ARTICLES_EN } from "@/lib/content/articles-en";
 import { LOGO_URL, PEOPLE, SITE_URL, WEBSITE_ID, orgRef, personLd } from "@/lib/site";
 
 const COMPONENTS: Record<string, React.ComponentType> = {
+  "il-vero-significato-di-evp": VeroSignificatoEvp,
   "le-dimissioni-si-sentono-prima": DimissioniSiSentono,
   "l-engagement-non-si-estrae": EngagementCornici,
   "i-valori-non-si-vedono": ValoriComportamenti,

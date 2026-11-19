@@ -237,6 +237,7 @@ export const DOORS: Door[] = [
       { title: "eu.promotions: identità scoperta, non inventata", href: "/casi-studio/eupromotions" },
     ],
     readings: [
+      { slug: "il-vero-significato-di-evp", title: "Il vero significato di EVP." },
       { slug: "presenza-identita", title: "Chi è davvero presente? Identità, leadership ed employer branding." },
       { slug: "bookish-talenti-sostanza", title: "I bookish influencer e la nuova fame di sostanza dei talenti." },
       { slug: "trasparenza-salariale", title: "Trasparenza salariale: lo specchio che le aziende non possono più evitare." },
