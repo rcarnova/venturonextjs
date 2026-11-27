@@ -62,13 +62,15 @@ export const NEXT_EPISODE = {
 export const PAST_EPISODES = [
   {
     slug: "welfare-manager-edison",
+    /** Video su YouTube dal 27 novembre. La pagina resta audio, con il link al video. */
+    videoId: "ldykuYhb9VQ",
     /**
-     * Pubblicata con la sola sintesi: audio e video arrivano dopo. I minuti dei
-     * capitoli sono ricavati dalla trascrizione (registrazione dalle 00:25:23
-     * dell'orologio di Meet): da riallineare sull'audio quando c'e.
+     * I minuti dei capitoli sono ricavati dalla trascrizione (registrazione
+     * dalle 00:25:23 dell'orologio di Meet). Audio e video durano uguale
+     * (58:57) e coprono la stessa registrazione.
      */
-    uploadDate: "2026-11-27T18:00:00+01:00",
-    duration: "PT58M",
+    uploadDate: "2026-11-27T16:00:00+01:00",
+    duration: "PT58M57S",
     title: "Motivazione ed engagement delle persone, cosa ne pensa un Welfare Manager?",
     /** Titolo per Google, entro 65 caratteri */
     seoTitle: "Motivazione ed engagement, cosa ne pensa un Welfare Manager?",
@@ -77,9 +79,10 @@ export const PAST_EPISODES = [
       name: "Edoardo Zaccardi",
       role: "Welfare & Social Dynamics, Edison",
     },
+    audio: { src: "/audio/venturo-conversation-03-edoardo-zaccardi.mp3", duration: 3537 },
 
     seoDescription:
-      "Edoardo Zaccardi, Welfare & Social Dynamics di Edison, su welfare, leadership, fiducia e generazioni. La sintesi a capitoli della terza puntata.",
+      "Edoardo Zaccardi, Welfare & Social Dynamics di Edison, su welfare, leadership, fiducia e generazioni. Sintesi a capitoli e audio della terza puntata.",
 
     summary: {
       intro: [
