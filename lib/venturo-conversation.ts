@@ -62,12 +62,14 @@ export const NEXT_EPISODE = {
 export const PAST_EPISODES = [
   {
     slug: "welfare-manager-edison",
+    /** Video su YouTube dal 27 novembre. Per ora niente audio sul sito: in pagina c'e il video. */
+    videoId: "ldykuYhb9VQ",
     /**
-     * Pubblicata con la sola sintesi: audio e video arrivano dopo. I minuti dei
-     * capitoli sono ricavati dalla trascrizione (registrazione dalle 00:25:23
-     * dell'orologio di Meet): da riallineare sull'audio quando c'e.
+     * I minuti dei capitoli sono ricavati dalla trascrizione (registrazione
+     * dalle 00:25:23 dell'orologio di Meet), assumendo che il video parta da
+     * li. Durata stimata dalla trascrizione: da confermare su YouTube.
      */
-    uploadDate: "2026-11-27T18:00:00+01:00",
+    uploadDate: "2026-11-27T16:00:00+01:00",
     duration: "PT58M",
     title: "Motivazione ed engagement delle persone, cosa ne pensa un Welfare Manager?",
     /** Titolo per Google, entro 65 caratteri */
