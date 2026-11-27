@@ -67,10 +67,10 @@ export const PAST_EPISODES = [
     /**
      * I minuti dei capitoli sono ricavati dalla trascrizione (registrazione
      * dalle 00:25:23 dell'orologio di Meet), assumendo che il video parta da
-     * li. Durata stimata dalla trascrizione: da confermare su YouTube.
+     * li. Durata letta su YouTube.
      */
     uploadDate: "2026-11-27T16:00:00+01:00",
-    duration: "PT58M",
+    duration: "PT58M57S",
     title: "Motivazione ed engagement delle persone, cosa ne pensa un Welfare Manager?",
     /** Titolo per Google, entro 65 caratteri */
     seoTitle: "Motivazione ed engagement, cosa ne pensa un Welfare Manager?",
