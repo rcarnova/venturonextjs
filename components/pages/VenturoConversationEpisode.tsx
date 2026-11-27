@@ -179,7 +179,23 @@ const VenturoConversationEpisode = ({ episode }: { episode: Episode }) => {
                 poster={episode.image}
                 label={episode.title}
               />
-            ) : null}
+            ) : (
+              // Né audio né video ancora: la copertina e un avviso, la sintesi è sotto
+              <div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={episode.image.src}
+                  alt=""
+                  width={episode.image.width}
+                  height={episode.image.height}
+                  className="block w-full h-auto"
+                  style={{ border: `1px solid ${INK}` }}
+                />
+                <p className="font-mono text-eyebrow mt-4" style={{ color: MUTED }}>
+                  LA REGISTRAZIONE ARRIVA A BREVE. INTANTO, LA SINTESI QUI SOTTO.
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">

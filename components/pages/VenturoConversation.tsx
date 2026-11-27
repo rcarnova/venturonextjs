@@ -392,8 +392,8 @@ const VenturoConversation = () => {
                   ) : (
                     // Puntata senza video: la copertina porta alla pagina, dove si ascolta
                     <Link
-                      href={`/venturo-conversation/${ep.slug}#ascolta`}
-                      aria-label={`Ascolta: ${ep.title}`}
+                      href={`/venturo-conversation/${ep.slug}${"audio" in ep && ep.audio ? "#ascolta" : ""}`}
+                      aria-label={`${"audio" in ep && ep.audio ? "Ascolta" : "Leggi la sintesi"}: ${ep.title}`}
                       className="group relative block overflow-hidden"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -410,8 +410,14 @@ const VenturoConversation = () => {
                         className="absolute left-4 bottom-4 md:left-6 md:bottom-6 inline-flex items-center gap-3 font-mono text-eyebrow px-5 py-3 transition-transform group-hover:scale-105"
                         style={{ backgroundColor: "#EC4899", color: INK }}
                       >
-                        <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9-15 9z" fill="currentColor" /></svg>
-                        ASCOLTA LA PUNTATA
+                        {"audio" in ep && ep.audio ? (
+                          <>
+                            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l15 9-15 9z" fill="currentColor" /></svg>
+                            ASCOLTA LA PUNTATA
+                          </>
+                        ) : (
+                          "LEGGI LA SINTESI →"
+                        )}
                       </span>
                     </Link>
                   )}
