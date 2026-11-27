@@ -61,6 +61,140 @@ export const NEXT_EPISODE = {
 /** Puntate gia andate online, dalla piu recente. */
 export const PAST_EPISODES = [
   {
+    slug: "welfare-manager-edison",
+    /**
+     * Pubblicata con la sola sintesi: audio e video arrivano dopo. I minuti dei
+     * capitoli sono ricavati dalla trascrizione (registrazione dalle 00:25:23
+     * dell'orologio di Meet): da riallineare sull'audio quando c'e.
+     */
+    uploadDate: "2026-11-27T18:00:00+01:00",
+    duration: "PT58M",
+    title: "Motivazione ed engagement delle persone, cosa ne pensa un Welfare Manager?",
+    /** Titolo per Google, entro 65 caratteri */
+    seoTitle: "Motivazione ed engagement, cosa ne pensa un Welfare Manager?",
+    dateLabel: "27 novembre 2026",
+    guest: {
+      name: "Edoardo Zaccardi",
+      role: "Welfare & Social Dynamics, Edison",
+    },
+
+    seoDescription:
+      "Edoardo Zaccardi, Welfare & Social Dynamics di Edison, su welfare, leadership, fiducia e generazioni. La sintesi a capitoli della terza puntata.",
+
+    summary: {
+      intro: [
+        "Edoardo Zaccardi si occupa di welfare in Edison, con un ruolo che si chiama Welfare & Social Dynamics. Lavora sempre più spesso con finance, comunicazione e D&I: il welfare oggi non sta più in una funzione sola.",
+        "Dopo una CFO e un change agent, volevamo lo sguardo di chi progetta i servizi per le persone. Gli abbiamo chiesto, senza giri di parole, che cosa pensa di motivazione ed engagement.",
+      ],
+      chapters: [
+        {
+          at: 30,
+          title: "Difficile da misurare, giusto da fare",
+          text: [
+            "L'engagement si misura a fatica. Le rilevazioni arrivano in pochi momenti dell'anno e risentono della fase che l'azienda sta attraversando. Per chi fa welfare la domanda è sempre la stessa: con quali KPI giustifico questa spesa davanti al CFO?",
+            "Il problema è che sull'engagement pesano troppe variabili: retribuzione, mercato, geopolitica, la vita privata delle persone. In Edison la risposta è stata un'altra: certe cose si fanno a prescindere, perché sono coerenti con i valori. I risultati si proverà a misurarli dopo.",
+          ],
+        },
+        {
+          at: 170,
+          title: "Coesione interna, oggi più che mai",
+          text: [
+            "Il contesto esterno è difficile: potere d'acquisto, preoccupazioni, aspettative. Per Edoardo, in questa fase avranno successo le aziende capaci di tenere una coesione interna. I migliori processi e le migliori alleanze con gli stakeholder non bastano.",
+            "Allineati, precisa, non vuol dire mobilitati. Vuol dire poter dare alle persone messaggi rassicuranti che nella vita di tutti i giorni faticano a trovare. E dal Covid in poi i dipendenti portano in azienda temi che prima restavano fuori.",
+          ],
+        },
+        {
+          at: 315,
+          title: "Quando bastava lo stipendio",
+          text: [
+            "In un nostro workshop, alla domanda su che cosa ci motiva, nessuno aveva citato lo stipendio o i benefit: risultati, sfide vinte, un feedback positivo. Edoardo non sottovaluta la retribuzione. In alcuni settori e contratti è ancora la base da raggiungere, e da lì si costruisce tutto il resto.",
+            "Per generazioni lo scambio è stato semplice: tempo e competenze in cambio di uno stipendio che cresceva, con l'ascensore sociale sullo sfondo. Quello scambio non basta più. Una ricerca Censis, a cui Edison ha partecipato, dice che oltre l'80% degli occupati si aspetta che l'azienda contribuisca al proprio benessere. Non come desiderio: come richiesta.",
+          ],
+        },
+        {
+          at: 540,
+          title: "Essere visti",
+          text: [
+            "Oltre lo stipendio ci sono i servizi di welfare, per la persona e per la famiglia. Ma anche quelli non bastano. Le persone vogliono relazioni, vogliono sentirsi accolte nella loro complessità.",
+            "Edoardo mette in fila tre cose. Poter esprimere le proprie competenze e vederle riconosciute, anche solo con un feedback. Lavorare in un'azienda in cui si crede, di cui si condividono valori e purpose. E una leadership che rende vera la promessa.",
+          ],
+          quote: "Oggi le persone vogliono essere viste dalle aziende.",
+        },
+        {
+          at: 655,
+          title: "La promessa passa dal capo",
+          text: [
+            "Puoi comunicare benissimo sui social, avere un report di sostenibilità impeccabile e la carta dei valori più bella. Se poi quei valori non si vivono ogni giorno, già dall'onboarding, la promessa si rompe. Per questo la leadership, dal vertice ai middle manager, è decisiva: un capo che chiede come stai e ascolta davvero la risposta.",
+            "Rosario porta la voce dei manager che segue come coach: sulla loro scrivania, oltre all'operatività, sono finiti benessere, ascolto, inclusione, colloqui. È facile farne il capro espiatorio. Edoardo è d'accordo: il punto non è puntare il dito, ma riconoscere che spesso manca l'investitura. Se un manager è valutato solo sui numeri e nessuno lo forma, la domanda diventa: chi me lo fa fare?",
+          ],
+        },
+        {
+          at: 975,
+          title: "Dare strumenti a chi deve esserci",
+          text: [
+            "Ogni anno Edison convoca tutti i manager che hanno nel team persone in maternità o paternità, o in attesa di un figlio. Raccontano loro l'approccio dell'azienda, quello che mette a disposizione dei neogenitori e i pregiudizi da evitare. Un esempio: non proporre una trasferta a chi è appena rientrato, per proteggerlo, può essere letto come esclusione. Meglio lasciar decidere alla persona.",
+            "Poi i manager hanno cominciato a trovarsi davanti a situazioni molto difficili: un lutto, una fase durissima della vita di un collega. Così è nato un servizio di supporto alla leadership. Il manager che alza la mano viene messo in contatto con specialisti, coach o psicologi, per gestire sé stesso, la persona coinvolta e il team. Se chiedi prossimità, devi dare anche gli strumenti e accogliere chi dice di non farcela.",
+          ],
+        },
+        {
+          at: 1365,
+          title: "Il contesto conta più dell'iniziativa",
+          text: [
+            "Rosario lo vede spesso: iniziative belle, a volte geniali, che non attecchiscono. Non perché siano sbagliate, ma perché nessuno le accompagna, le comunica, ci dedica tempo. La sfida non è inventare iniziative, è creare il contesto in cui possono funzionare.",
+            "Edoardo va oltre: conta, prima ancora di chi fa la formazione e di come la fa, chi c'è e a chi la fai. Il miglior corso del mercato produce cinismo se è lontano da quello che l'azienda fa ogni giorno, o se in aula manca il manager.",
+            "Con più di 150 sedi in Italia, Edison raccontava il welfare anche attraverso consulenti esterni. Oggi ci vanno le persone del welfare, insieme ai manager locali. Meno incontri, risultati migliori. Alle persone di Cagliari o Palermo interessa soprattutto che qualcuno da Milano si sia preso una giornata per incontrarle e associare un volto a una funzione. Da lì è più facile fidarsi, scrivere, perfino dare un feedback negativo.",
+          ],
+        },
+        {
+          at: 2055,
+          title: "Meno giovani, più fiducia da guadagnare",
+          text: [
+            "Edison oggi parla di persone, non solo di talenti, perché la demografia dice che ce ne saranno sempre meno. Per i neolaureati c'è Young Community: un percorso triennale con formazione, carriera, curve retributive dedicate e un supporto all'abitare, con alloggi sostenuti dall'azienda perché l'affitto non superi il 30-35% della retribuzione.",
+            "Anche un marchio come Edison non basta più ad attrarre da solo. E il paradigma si è ribaltato: oggi è l'azienda che deve guadagnarsi la fiducia delle persone, non il contrario. A un convegno interno sul dialogo tra generazioni, un collega della vecchia guardia gli ha risposto che prima vengono i doveri e poi i diritti. Per Edoardo è la prova di quanto siano diverse le culture che oggi convivono in azienda.",
+          ],
+        },
+        {
+          at: 2400,
+          title: "Quello che un senior trasmette davvero",
+          text: [
+            "Si dice che i senior servano a trasmettere le competenze. Per Edoardo le competenze valgono forse il 30-40% di quello che passano a un junior. Il resto è cultura: come si sta in quell'azienda, in che cosa crede, come si comporta con le persone. E l'esperienza di chi ha attraversato tante trasformazioni e può raccontarle.",
+            "Massimo aggiunge il tempo: quello che nei nostri workshop le persone ci restituiscono è aver avuto il tempo di scambiarsi le cose che non sono scritte in nessun manuale. Rosario lo chiama l'antidoto al pregiudizio. Quando le generazioni si parlano scoprono di essere vicine nei problemi e nei valori. Ma serve strutturarlo, quasi come un rito: il calcio balilla nell'area caffè non basta.",
+          ],
+        },
+        {
+          at: 2770,
+          title: "Guardare le persone, non i cluster",
+          text: [
+            "Dal pubblico è arrivato uno spunto dal mondo della customer operation: trattare i dipendenti con la stessa attenzione che si dedica ai clienti. Conoscere chi si ha davanti, senza pregiudizi, e scoprire talenti che c'erano già ma non avevano spazio. Un'analisi che può partire solo dai capi diretti.",
+            "Rosario lo ritrova nella formazione dei manager commerciali: davanti al cliente sanno vedere e ascoltare, basta portare quel metodo nel team. Edoardo invita a diffidare dei cluster. Dietro un under 30 senza figli ci può essere un caregiver. L'azienda deve dire che di certe cose si può parlare, e poi servono persone che quel principio lo agiscano, pronte ad accogliere.",
+          ],
+        },
+        {
+          at: 3250,
+          title: "Se togliessi tutti i servizi",
+          text: [
+            "Massimo gli ha chiesto: se non avessi più servizi da offrire, su che cosa lavoreresti? La risposta è stata immediata: formazione dei manager, sui comportamenti. Gentilezza, accoglienza, attenzione.",
+            "Ci sarà sempre un'azienda che paga di più per lo stesso lavoro, e un aumento dopo sei mesi non basta più. Quello che trattiene è stare bene in un contesto: relazioni, sensibilità, cultura. E l'ascolto, che da solo fa metà del lavoro. Nei workshop le persone ce lo restituiscono così: abbiamo avuto il tempo di ascoltarci.",
+            "Con Edoardo ci rivedremo in una seconda puntata, per capire che cosa vuol dire occuparsi di Social Dynamics.",
+          ],
+        },
+      ],
+      takeaways: [
+        "Lo stipendio è la base, non la risposta: oltre l'80% degli occupati si aspetta che l'azienda contribuisca al proprio benessere.",
+        "Un'iniziativa attecchisce se c'è il contesto: chi la propone ci mette la faccia, i manager sono presenti, e la si accompagna dopo.",
+        "Se ai manager si chiede prossimità, servono investitura, formazione e un posto dove alzare la mano.",
+      ],
+      related: { href: "/magazine/il-vero-significato-di-evp", title: "Il vero significato di EVP." },
+    },
+
+    image: {
+      src: "/images/venturo-conversation-03-edoardo-zaccardi.webp",
+      width: 1280,
+      height: 720,
+    },
+    ogImage: "/images/venturo-conversation-03-edoardo-zaccardi-og.jpg",
+  },
+  {
     slug: "change-agent-reale-group",
     /** Video su YouTube (dal 7 novembre). La pagina resta audio, con il link al video. */
     videoId: "iiXo-tHpm9M",
